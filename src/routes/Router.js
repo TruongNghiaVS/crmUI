@@ -1,19 +1,18 @@
 import { useRoutes } from 'react-router-dom';
-import Login from '../pages/login/Login';
-import Home from '../pages/home/Home';
+import Layout from '../pages/layout/Layout';
 
 function Router() {
   return (
     useRoutes([
-      { path: "/", element: <Login /> },
+      { path: "/", element: <Layout page="/" /> },
       {
         path: "/login",
-        element: <Login />,
+        element: <Layout page="login" />,
         children: [],
       },
       {
         path: "/home",
-        element: <Home />,
+        element: <Layout page="home" />,
         children: [],
       },
     ])

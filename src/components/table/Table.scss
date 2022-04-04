@@ -1,0 +1,48 @@
+.tbl-custom-data {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    
+    .headRow {
+        background-color: #e8ecef;
+    }
+
+    tr {
+        th, td {
+            border: 1px solid #dddada;
+            padding: 6px;
+
+            &:first-child {
+                text-align: center;
+            }
+        }
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            &:first-child {
+                border-left: 0;
+            }
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+
+        .icon-tbl {
+            color: #1c7bd5;
+            cursor: pointer;
+
+            &.icon-exclamation, &.icon-trash {
+                color: #f90707;
+            }
+        }
+        
+        span {
+            display: inline-block;
+            margin: 0 4px;
+        }
+    }
+}

@@ -1,0 +1,74 @@
+.main-layout {
+    padding: 20px;
+
+    .box-tbl {
+        border: 2px solid #ececec;
+        border-radius: 4px;
+
+        .box-tit {
+            background-color: #f7f7f7;
+            border-bottom: 2px solid #ececec;
+            line-height: 30px;
+            padding: 10px 20px;
+            font-weight: normal;
+
+            .icon-tit {
+                color: #1c7bd5;
+                margin-right: 6px;
+            }
+        }
+
+        .list-feature {
+            line-height: 30px;
+            padding: 20px 10px;
+
+            .button-feature {
+                display: inline-block;
+
+                .btn-ft {
+                    background-color: #ffffff;
+                    border: 1px solid #1c7bd5;
+                    color: #1c7bd5;
+                    padding: 6px 10px;
+                    border-radius: 3px;
+                    margin-right: 5px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #1c7bd5;
+                        color: #ffffff;
+                    }
+                }
+            }
+
+            .search-feature {
+                float: right;
+
+                .input-search {
+                    border: 2px solid #dbdcdf;
+                    line-height: 14px;
+                    border-radius: 3px;
+                    margin-left: 4px;
+                    padding: 6px 10px;
+                    width: 170px;
+                    outline: none;
+                }
+
+                .btn-search {
+                    background-color: #24a947;
+                    border: 1px solid #24a947;
+                    color: #ffffff;
+                    padding: 6px 10px;
+                    border-radius: 3px;
+                    margin-left: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .totalTable {
+            padding: 10px;
+            font-weight: bold;
+        }
+    }
+}
