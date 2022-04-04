@@ -1,0 +1,82 @@
+.header {
+    background-color: #007aff;
+
+    .nav {
+        .menu {
+            padding: 0 15px;
+            list-style: none;
+
+            .list-link {
+                display: inline-block;
+                padding-right: 5px;
+                position: relative;
+
+                &:hover {
+                    .sub-menu {
+                        display: block;
+                    }
+                }
+
+                .nav-link {
+                    color: #ffffff;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    display: inline-block;
+                    line-height: 30px;
+                    padding: 10px;
+
+                    &.link-main {
+                        font-size: 18px;
+                        padding-right: 30px;
+                    }
+                }
+            }
+
+            .nav-profile {
+                float: right;
+
+                .list-link {
+                    padding-right: 12px;
+                    cursor: pointer;
+
+                    .nav-link {
+                        text-transform: none;
+                    }
+                
+                    .nav-icon {
+                        color: #ffffff;
+                    }
+                }
+            }
+
+            .sub-menu {
+                background-color: #2f8df2;
+                list-style: none;
+                display: none;
+                padding: 0;
+                width: 220px;
+                position: absolute;
+
+                .sub-list-link {
+                    border-bottom: 1px solid #ffffff;
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    &:hover {
+                        background-color: #007aff;
+                    }
+                    
+                    .nav-link {
+                        line-height: 24px;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        display: block;
+                        text-transform: none;
+                    }
+                }
+            }
+        }
+    }
+}

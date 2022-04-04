@@ -1,0 +1,23 @@
+.footer {
+    background-color: #f8f9fb;
+    line-height: 30px;
+    margin-top: 20px;
+    padding: 20px;
+
+    .copy-right {
+        display: inline-block;
+    }
+
+    .right-footer {
+        float: right;
+
+        .nav-link {
+            color: #2b85f7;
+            text-decoration: none;
+        }
+
+        .dot {
+            margin: 0 5px;
+        }
+    }
+}
