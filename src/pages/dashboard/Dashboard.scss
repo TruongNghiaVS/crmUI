@@ -1,0 +1,109 @@
+.dashboard {
+    .tit-dash {
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    .list-feature {
+        line-height: 30px;
+        padding: 20px 10px;
+        text-align: right;
+
+        .button-feature {
+            display: inline-block;
+
+            .btn-ft {
+                background-color: #ffffff;
+                border: 1px solid #1c7bd5;
+                color: #1c7bd5;
+                padding: 6px 10px;
+                border-radius: 3px;
+                margin-right: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #1c7bd5;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        .search-feature {
+            .input-search {
+                border: 2px solid #dbdcdf;
+                line-height: 14px;
+                border-radius: 3px;
+                margin-left: 4px;
+                padding: 6px 10px;
+                width: 170px;
+                outline: none;
+            }
+
+            .btn-search {
+                background-color: #24a947;
+                border: 1px solid #24a947;
+                color: #ffffff;
+                padding: 6px 10px;
+                border-radius: 3px;
+                margin-left: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .out-bound {
+        background-color: #e8ecef;
+        padding: 12px;
+        border-radius: 3px;
+    }
+
+    .list-box-info {
+        margin: 20px 0;
+
+        .box-detail-info {
+            width: calc(( 100%  - 30px ) / 4);
+            display: inline-block;
+            margin-right: 10px;
+            background-color: #007aff;
+            border-radius: 4px;
+            color: #ffffff;
+
+            &:nth-child(1) {
+                background-color: #fec107;
+            }
+
+            &:nth-child(2) {
+                background-color: #27a844;
+            }
+
+            &:last-child {
+                background-color: #dc3546;
+                margin-right: 0;
+            }
+
+            .tit-info {
+                font-size: 22px;
+                line-height: 30px;
+                padding: 20px;
+            }
+
+            .link-info {
+                line-height: 26px;
+                padding: 6px 20px;
+                color: #ffffff;
+                display: block;
+                border-top: 1px solid #9e9c9c;
+                font-size: 13px;
+                text-decoration: none;
+                position: relative;
+
+                .icon-link {
+                    position: absolute;
+                    top: 50%;
+                    right: 20px;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+}

@@ -15,6 +15,16 @@ function Router() {
         element: <Layout page="home" />,
         children: [],
       },
+      {
+        path: "/user",
+        element: <Layout page="user" />,
+        children: [],
+      },
+      {
+        path: "/dashboard",
+        element: <Layout page="dashboard" />,
+        children: [],
+      },
     ])
   );
 }

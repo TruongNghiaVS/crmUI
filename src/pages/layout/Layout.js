@@ -1,8 +1,10 @@
+import './Layout.scss';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Home from '../home/Home';
 import Login from '../login/Login';
-import './Layout.scss';
+import User from '../user/User';
+import Dashboard from '../dashboard/Dashboard';
 
 const Layout = ({ page }) => {
     if(page === '/' || page === 'login') {
@@ -31,6 +33,10 @@ const Screen = ({ screen }) => {
             return <Home />;
         case 'login':
             return <Login />
+        case 'user':
+            return <User />
+        case 'dashboard':
+            return <Dashboard />
         default:
             return <Login />;
     }

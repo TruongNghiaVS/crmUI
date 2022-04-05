@@ -3,7 +3,6 @@ const DataJson = {
         "Chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", "Ngày kết thúc",
         "Người cập nhật", "Ngày cập nhật", "Cty", "Ưu tiên"
     ],
-
     tbodyData: [
         {
             id: 1,
@@ -62,6 +61,83 @@ const DataJson = {
             vip: ""
         },
     ],
+
+    theadDataUser: [
+        "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
+        "Trạng thái", "Người tạo", "Email", "Điện thoại"
+    ],
+    tbodyDataUser: [
+        {
+            id: 1,
+            user_name: "Test 1",
+            user_login: "Test 1",
+            code: "010896",
+            position: "Điện thoại viên",
+            department: "Collection",
+            company: "ACS",
+            start_day: "0000-00-00 00:00:00",
+            status: "Kich hoat",
+            creater: "ACS Admin",
+            email: "abc@gmail.com",
+            phone: "1234456",
+        },
+        {
+            id: 2,
+            user_name: "Test 1",
+            user_login: "Test 1",
+            code: "010896",
+            position: "Điện thoại viên",
+            department: "Collection",
+            company: "ACS",
+            start_day: "0000-00-00 00:00:00",
+            status: "Kich hoat",
+            creater: "ACS Admin",
+            email: "abc@gmail.com",
+            phone: "1234456",
+        },
+    ],
+
+    theadDataDashboard: [
+        "Gọi bởi", "Tổng", "Số HĐ", "% Kết nối", "Trả lời", "Thời gian gọi", "Thời gian chờ",
+        "Đàm thoại", "Không trả lời", "Hủy", "Bận line", "Kênh lỗi", "Không gọi được", "Lỗi server"
+    ],
+
+    tbodyDataDashboard: [
+        {
+            id: 1,
+            call_by: "#SUM",
+            total: 0,
+            no_contract: 0,
+            connect: "0%",
+            anwser: 0,
+            time_call: "00:00:00",
+            time_wait: "00:00:00",
+            conversation: "00:00:00",
+            no_anwser: 0,
+            cancel: 0,
+            busy: 0,
+            error_channel: 0,
+            no_call: 0,
+            error_server: 0
+        },
+        {
+            id: 2,
+            call_by: "#SUM",
+            total: 0,
+            no_contract: 0,
+            connect: "0%",
+            anwser: 0,
+            time_call: "00:00:00",
+            time_wait: "00:00:00",
+            conversation: "00:00:00",
+            no_anwser: 0,
+            cancel: 0,
+            busy: 0,
+            error_channel: 0,
+            no_call: 0,
+            error_server: 0
+        },
+    ]
 }
 
 export default DataJson;

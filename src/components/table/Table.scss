@@ -33,6 +33,7 @@
 
         .icon-tbl {
             color: #1c7bd5;
+            margin: 0 4px;
             cursor: pointer;
 
             &.icon-exclamation, &.icon-trash {
@@ -42,7 +43,6 @@
         
         span {
             display: inline-block;
-            margin: 0 4px;
         }
     }
 }
