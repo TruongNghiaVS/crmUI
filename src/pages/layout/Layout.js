@@ -5,15 +5,24 @@ import Login from '../login/Login';
 import './Layout.scss';
 
 const Layout = ({ page }) => {
-    return (
-        <>
-            <Header />
-            <main className='main-layout'>
+    if(page === '/' || page === 'login') {
+        return (
+            <div className='layout layout-login'>
                 <Screen screen={ page } />
-            </main>
-            <Footer />  
-        </>
-    );
+            </div>
+        );
+    } else {
+        return (
+            <div className='layout'>
+                <Header classHeader="header" />
+                <main className='main-layout'>
+                    <Screen screen={ page } />
+                </main>
+                <Footer classFooter="footer" />  
+            </div>
+        );
+    }
+    
 }
 
 const Screen = ({ screen }) => {

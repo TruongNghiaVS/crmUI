@@ -1,10 +1,10 @@
-class DataJson {
-    static theadData = [
+const DataJson = {
+    theadData: [
         "Chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", "Ngày kết thúc",
         "Người cập nhật", "Ngày cập nhật", "Cty", "Ưu tiên"
-    ];
+    ],
 
-    static tbodyData = [
+    tbodyData: [
         {
             id: 1,
             campaign: "Test 1",
@@ -61,7 +61,7 @@ class DataJson {
             company: "ACS",
             vip: ""
         },
-    ];
+    ],
 }
 
 export default DataJson;
