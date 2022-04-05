@@ -2,9 +2,9 @@ import './Header.scss';
 import { Link } from 'react-router-dom';
 import { FaUser, FaCaretDown } from 'react-icons/fa';
 
-const Header = () => {
+const Header = ({ classHeader }) => {
     return (
-        <header className="header">
+        <header className={classHeader}>
             <nav className='nav'>
                 <ul className='menu'>
                     <li className='list-link'><Link className='nav-link link-main' to="/">ACS</Link></li>
