@@ -34,10 +34,14 @@
 
             .nav-profile {
                 float: right;
+                position: relative;
 
                 .list-link {
-                    padding-right: 12px;
                     cursor: pointer;
+
+                    &.link-icon {
+                        padding: 10px;
+                    } 
 
                     .nav-link {
                         text-transform: none;
@@ -45,6 +49,30 @@
                 
                     .nav-icon {
                         color: #ffffff;
+                    }
+                }
+
+                .box-profile {
+                    background-color: #ffffff;
+                    box-shadow: 1px 1px 4px #888888;
+                    border-radius: 4px;
+                    position: absolute;
+                    right: 6px;
+
+                    span {
+                        display: block;
+                        line-height: 24px;
+                        padding: 10px 20px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #f7f7f7;
+                        }
+                    }
+
+                    .logout {
+                        text-decoration: none;
+                        border-top: 1px solid #d8d2d2;
                     }
                 }
             }
