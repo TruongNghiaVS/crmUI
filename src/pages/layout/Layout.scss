@@ -131,5 +131,93 @@
                 font-weight: bold;
             }
         }
+
+        .model {
+            .header-model {
+                line-height: 30px;
+                font-size: 22px;
+                padding: 14px 0;
+                border-bottom: 1px solid #ececec;
+            }
+            
+            .main-model {
+                max-height: 500px;
+                overflow: auto;
+    
+                .form-login {
+                    margin: 20px 0;
+                
+                    .input-container {
+                        margin-bottom: 10px;
+                        position: relative;
+                
+                        .icon-lbl {
+                            background-color: #ebecef;
+                            border: 1px solid #d5d9dc;
+                            border-top-left-radius: 3px;
+                            border-bottom-left-radius: 3px;
+                            color: #4a5056;
+                            display: inline-block;
+                            padding: 11px 14px;
+                            line-height: 0;
+                            vertical-align: middle;
+                            position: absolute;
+                        }
+                
+                        .input-field {
+                            border: 1px solid #d5d9dc;
+                            border-left: 0;
+                            border-top-right-radius: 3px;
+                            border-bottom-right-radius: 3px;
+                            padding: 10px 14px 10px 52px;
+                            width: 100%;
+                            outline: 0;
+                            box-sizing: border-box;
+                        }
+    
+                        .col-input {
+                            .input-field {
+                                width: calc(100% / 3);
+    
+                                &:not(:first-child) {
+                                    padding-left: 8px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .footer-model {
+                border-top: 1px solid #ececec;
+                text-align: right;
+                padding-top: 15px;
+    
+                .btn-model {
+                    background-color: #ffffff;
+                    border: 1px solid #1c7bd5;
+                    border-radius: 3px;
+                    color: #1c7bd5;
+                    padding: 10px 14px;
+                    cursor: pointer;
+    
+                    &:hover{
+                        background-color: #1c7bd5;
+                        color: #ffffff;
+                    }
+    
+                    &.btn-close {
+                        border-color: #f80909;
+                        color: #f80909;
+                        margin-left: 10px;
+    
+                        &:hover{
+                            background-color: #f80909;
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

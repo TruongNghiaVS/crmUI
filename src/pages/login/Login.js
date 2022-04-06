@@ -1,5 +1,6 @@
 import './Login.scss';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaUser, FaKey, FaPhoneAlt } from 'react-icons/fa';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import ConstantData from '../../utils/Constants';
@@ -13,12 +14,27 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [extension, setExtension] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  let navigate = useNavigate();
+  
+  useEffect(() => {
+    let isUseEffect = true; 
+    
+    const userInfo =  JSON.parse(localStorage.getItem('user-info'));
+    if(isUseEffect) {
+      if (userInfo.isLogin === 200) {
+        navigate('/user');
+      }
+    }
+
+    return () => { isUseEffect = false };
+  }, [navigate]);
   
   const handleChange = (event) => {
     setValueSelect(event.target.value);
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     setIsLoading(true);
@@ -28,10 +44,8 @@ const Login = () => {
       password: md5(password).toString(),
     };
 
-    await LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
-      console.log(response);
+    LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
       var userInfo = jwt_decode(response.data.token);
-      console.log(userInfo);
 
       var dataJson = {
         role: userInfo.role,
@@ -39,14 +53,11 @@ const Login = () => {
       };
       localStorage.setItem('user-info', JSON.stringify(dataJson));
 
+      navigate('/user');
+
       setIsLoading(false);
     });
   }
-
-  useEffect(() => {
-    const userInfo =  localStorage.getItem('user-info');
-    console.log(userInfo);
-  });
 
   return (
 		<div className='login'>
