@@ -21,8 +21,11 @@ const Login = () => {
     let isUseEffect = true; 
     
     const userInfo =  JSON.parse(localStorage.getItem('user-info'));
-    if(isUseEffect) {
-      if (userInfo.isLogin === 200) {
+
+    if (isUseEffect) {
+      if (userInfo === null || userInfo.isLogin === 201) {
+        return;
+      } else {
         navigate('/user');
       }
     }
