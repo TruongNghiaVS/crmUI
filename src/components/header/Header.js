@@ -4,20 +4,12 @@ import { FaUser, FaCaretDown } from 'react-icons/fa';
 import React, { useState } from 'react';
 import Model from '../model/Model';
 import ModelChangePassword from './ModelChangePassword';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setUrlDetail } from '../../redux/followUp/action';
 
 const Header = ({ classHeader }) => {
     const [isHiddenProfile, setIsHiddenProfile] = useState(false);
     const [isOpenModel, setIsOpenModel] = useState(false);
     
     let navigate = useNavigate();
-
-    let { detail } = useParams();
-
-    const dispatch = useDispatch();
-    dispatch(setUrlDetail(detail));
 
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
     const roleUser = jsonProfile.role;

@@ -14,6 +14,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [extension, setExtension] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorUsername, setErrorUsername] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
 
   let navigate = useNavigate();
   
@@ -40,24 +43,50 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setIsLoading(true);
+    if (username === "") {
+      setErrorUsername("Username is not empty!");
+      setErrorPassword("");
+      setErrorLogin("");
+      return false;
+    } else if (password === "") {
+      setErrorUsername("");
+      setErrorLogin("");
+      setErrorPassword("Password is not empty!");
+      return false;
+    } else {
+      setErrorPassword("");
+      setIsLoading(true);
 
-    const body = {
-      username: username,
-      password: md5(password).toString(),
-    };
-
-    LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
-      var userInfo = jwt_decode(response.data.token);
-
-      var dataJson = {
-        role: userInfo.role,
-        isLogin: response.status
+      const body = {
+        username: username,
+        password: md5(password).toString(),
       };
-      localStorage.setItem('user-info', JSON.stringify(dataJson));
 
-      navigate('/follow-up');
-    });
+      LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
+        if (response.status === 200) {
+          setErrorUsername("");
+          setErrorLogin("");
+
+          var userInfo = jwt_decode(response.data.token);
+
+          var dataJson = {
+            role: userInfo.role,
+            isLogin: response.status
+          };
+          localStorage.setItem('user-info', JSON.stringify(dataJson));
+
+          navigate('/follow-up');
+        } else {
+          setErrorUsername("");
+          setErrorLogin("");
+          setErrorLogin("Login failed!");
+          setIsLoading(false);
+        }
+      }, (error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+    }
   }
 
   return (
@@ -68,10 +97,12 @@ const Login = () => {
         <div className='input-container'>
           <label className='icon-lbl'><FaUser /></label>
           <input className='input-field' type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <p className='error-message'>{ errorUsername }</p>
         </div>
         <div className="input-container">
           <label className='icon-lbl'><FaKey /> </label>
           <input className='input-field' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <p className='error-message'>{ errorPassword }</p>
         </div>
         <div className="input-container">
           <label className='icon-lbl'><FaPhoneAlt /> </label>
@@ -82,6 +113,8 @@ const Login = () => {
           <option value="vn">Vietnamese</option>
           <option value="en">English</option>
         </select>
+
+        <p className='error-message'>{ errorLogin }</p>
 
         <div className="button-container">
           <input className='btn-submit' type="submit" value="Sign in" onClick={(event) =>handleSubmit(event)} />

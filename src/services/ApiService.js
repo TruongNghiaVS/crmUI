@@ -1,5 +1,5 @@
 class ApiService {
-    static httpPost (url, headers, body, callback) {
+    static httpPost (url, headers, body, callSuccess, callError) {
         fetch(url, {
             method: 'POST',
             headers: headers,
@@ -7,10 +7,10 @@ class ApiService {
         })
         .then((res) => res.json())
         .then((json) => {
-            callback(json);
+            callSuccess(json);
         })
         .catch(error => {
-            console.error(error);
+            callError(error);
         });
     }
 }
