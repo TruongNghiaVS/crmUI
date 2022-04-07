@@ -1,31 +1,18 @@
-import { useRoutes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from '../pages/layout/Layout';
 
 function Router() {
   return (
-    useRoutes([
-      { path: "/", element: <Layout page="/" /> },
-      {
-        path: "/login",
-        element: <Layout page="login" />,
-        children: [],
-      },
-      {
-        path: "/home",
-        element: <Layout page="home" />,
-        children: [],
-      },
-      {
-        path: "/user",
-        element: <Layout page="user" />,
-        children: [],
-      },
-      {
-        path: "/dashboard",
-        element: <Layout page="dashboard" />,
-        children: [],
-      },
-    ])
+    <Routes>
+      <Route path="/" element={<Layout page="/" />} />
+      <Route path="/home" element={<Layout page="home" />} />
+      <Route path="/user" element={<Layout page="user" />} />
+      <Route path="/dashboard" element={<Layout page="dashboard" />} />
+      <Route path="/follow-up" element={<Layout page="follow-up" />}>
+        <Route path="/follow-up/:detail" element={<Layout page="follow-up" />} />
+        <Route path="/follow-up/:detail" element={<Layout page="follow-up" />} />
+      </Route>
+  </Routes>
   );
 }
 

@@ -19,14 +19,14 @@ const Login = () => {
   
   useEffect(() => {
     let isUseEffect = true; 
-    
-    const userInfo =  JSON.parse(localStorage.getItem('user-info'));
 
     if (isUseEffect) {
+      const userInfo =  JSON.parse(localStorage.getItem('user-info'));
       if (userInfo === null || userInfo.isLogin === 201) {
         return;
       } else {
-        navigate('/user');
+        navigate('/follow-up');
+        setIsLoading(false);
       }
     }
 
@@ -56,9 +56,7 @@ const Login = () => {
       };
       localStorage.setItem('user-info', JSON.stringify(dataJson));
 
-      navigate('/user');
-
-      setIsLoading(false);
+      navigate('/follow-up');
     });
   }
 
