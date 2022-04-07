@@ -10,7 +10,7 @@ const Dashboard = () => {
         <div className="dashboard">
             <h2 className="tit-dash">Dashboard</h2>
 
-            <div className="list-feature">
+            <div className="list-feature custom-feature">
                 <div className="search-feature">
                     <FaFilter />
                     <input className="input-search" type="text" placeholder="Tìm kiếm" />

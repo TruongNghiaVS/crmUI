@@ -137,6 +137,53 @@ const DataJson = {
             no_call: 0,
             error_server: 0
         },
+    ],
+
+    theadDataFollowUp: [
+        "Họ tên", "Số hợp đồng", "Di động", "Văn phòng", "Số nhà", 
+        "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày"
+    ],
+
+    tbodyDataFollowUp: [
+        {
+            id: 1,
+            name: "#SUM",
+            no_contract: 0,
+            phone: "0123456789",
+            office: "",
+            num_apartment: "",
+            other: "",
+            state: "",
+            status: "",
+            create_by: "ACS",
+            create_date: "0000-00-00 00:00:00",
+        },
+        {
+            id: 2,
+            name: "#SUM",
+            no_contract: 0,
+            phone: "0123456789",
+            office: "",
+            num_apartment: "",
+            other: "",
+            state: "",
+            status: "",
+            create_by: "ACS",
+            create_date: "0000-00-00 00:00:00",
+        },
+        {
+            id: 3,
+            name: "#SUM",
+            no_contract: 0,
+            phone: "0123456789",
+            office: "",
+            num_apartment: "",
+            other: "",
+            state: "",
+            status: "",
+            create_by: "ACS",
+            create_date: "0000-00-00 00:00:00",
+        },
     ]
 }
 

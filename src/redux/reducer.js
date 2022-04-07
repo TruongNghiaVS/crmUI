@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import numberReducer from './Demo/reducer'
+import { combineReducers } from 'redux';
+import urlDetailReducer from './followUp/reducer';
 
 let reducers = combineReducers({
-	numberReducer: numberReducer
+	urlDetailReducer: urlDetailReducer
 })
 
 const rootReducer = (state, action) => {

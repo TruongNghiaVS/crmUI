@@ -4,53 +4,6 @@
         font-weight: 500;
     }
 
-    .list-feature {
-        line-height: 30px;
-        padding: 20px 10px;
-        text-align: right;
-
-        .button-feature {
-            display: inline-block;
-
-            .btn-ft {
-                background-color: #ffffff;
-                border: 1px solid #1c7bd5;
-                color: #1c7bd5;
-                padding: 6px 10px;
-                border-radius: 3px;
-                margin-right: 5px;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: #1c7bd5;
-                    color: #ffffff;
-                }
-            }
-        }
-
-        .search-feature {
-            .input-search {
-                border: 2px solid #dbdcdf;
-                line-height: 14px;
-                border-radius: 3px;
-                margin-left: 4px;
-                padding: 6px 10px;
-                width: 170px;
-                outline: none;
-            }
-
-            .btn-search {
-                background-color: #24a947;
-                border: 1px solid #24a947;
-                color: #ffffff;
-                padding: 6px 10px;
-                border-radius: 3px;
-                margin-left: 5px;
-                cursor: pointer;
-            }
-        }
-    }
-
     .out-bound {
         background-color: #e8ecef;
         padding: 12px;

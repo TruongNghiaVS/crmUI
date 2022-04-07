@@ -5,12 +5,13 @@ import Home from '../home/Home';
 import Login from '../login/Login';
 import User from '../user/User';
 import Dashboard from '../dashboard/Dashboard';
+import FollowUp from '../followUp/FollowUp';
 
-const Layout = ({ page }) => {
-    if(page === '/' || page === 'login') {
+const Layout = (props) => {
+    if(props.page === '/' || props.page === 'login') {
         return (
             <div className='layout layout-login'>
-                <Screen screen={ page } />
+                <Screen screen={ props.page } />
             </div>
         );
     } else {
@@ -18,7 +19,7 @@ const Layout = ({ page }) => {
             <div className='layout'>
                 <Header classHeader="header" />
                 <main className='main-layout'>
-                    <Screen screen={ page } />
+                    <Screen screen={ props.page } />
                 </main>
                 <Footer classFooter="footer" />  
             </div>
@@ -27,8 +28,8 @@ const Layout = ({ page }) => {
     
 }
 
-const Screen = ({ screen }) => {
-    switch (screen) {
+const Screen = (props) => {
+    switch (props.screen) {
         case 'home':
             return <Home />;
         case 'login':
@@ -37,6 +38,8 @@ const Screen = ({ screen }) => {
             return <User />
         case 'dashboard':
             return <Dashboard />
+        case 'follow-up':
+            return <FollowUp />
         default:
             return <Login />;
     }
