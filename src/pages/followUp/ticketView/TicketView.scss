@@ -1,0 +1,21 @@
+.ticket-view {
+    .box-info {
+        padding: 25px;
+    }
+    
+    .col {
+        .form-label {
+            font-size: 16px;
+        }
+
+        .input-group {
+            .input-group-text:not(.input-group-icon) {
+                width: 110px;
+            }
+        }
+
+        textarea {
+            resize: none;
+        }
+    }
+}

@@ -6,26 +6,35 @@ import Login from '../login/Login';
 import User from '../user/User';
 import Dashboard from '../dashboard/Dashboard';
 import FollowUp from '../followUp/FollowUp';
+import React, { useState, useEffect } from 'react'
 
 const Layout = (props) => {
-    if(props.page === '/' || props.page === 'login') {
+    const [heightLayout, setHeightLayout] = useState(0);
+    const [heightMain, setHeightMain] = useState(0);
+
+    useEffect(() => {
+        if(props.page !== '/' || props.page !== '/login') {
+            setHeightMain(heightLayout.clientHeight - 130);
+        }
+    }, [props.page, heightLayout.clientHeight])
+
+    if(props.page === '/' || props.page === '/login') {
         return (
-            <div className='layout layout-login'>
+            <div ref={(height) => { setHeightLayout(height) }} id="layout" className='layout layout-login'>
                 <Screen screen={ props.page } />
             </div>
         );
     } else {
         return (
-            <div className='layout'>
+            <div ref={(height) => { setHeightLayout(height) }} className="layout">
                 <Header classHeader="header" />
-                <main className='main-layout'>
+                <main style={{maxHeight: heightMain+'px'}} className='main-layout'>
                     <Screen screen={ props.page } />
                 </main>
                 <Footer classFooter="footer" />  
             </div>
         );
     }
-    
 }
 
 const Screen = (props) => {

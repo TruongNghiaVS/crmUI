@@ -1,7 +1,7 @@
 .header {
     background-color: #007aff;
 
-    .nav {
+    .nav-header {
         .menu {
             padding: 0 15px;
             list-style: none;
@@ -84,6 +84,7 @@
                 padding: 0;
                 width: 200px;
                 position: absolute;
+                z-index: 10;
 
                 .sub-list-link {
                     border-bottom: 1px solid #ffffff;

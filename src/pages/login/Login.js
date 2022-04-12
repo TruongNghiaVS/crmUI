@@ -7,6 +7,7 @@ import ConstantData from '../../utils/Constants';
 import md5 from 'crypto-js/md5';
 import jwt_decode from "jwt-decode";
 import LoginService from '../../services/LoginService';
+import { InputGroup, FormControl } from 'react-bootstrap';
 
 const Login = () => {
   const [valueSelect, setValueSelect] = useState("vn");
@@ -95,18 +96,27 @@ const Login = () => {
       <p className='logo-login'><img alt='logo' src='http://s6.realtime.vn:8082/crm/layout/assets/img/logo.png?fbclid=IwAR1Fdc7PhXTzGXqlIRMRddjzqe8ImFwBcryX_9R7hwmmnAegXIy1vzOs2jY' /></p>
       <form className='form-login'>
         <div className='input-container'>
-          <label className='icon-lbl'><FaUser /></label>
-          <input className='input-field' type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <InputGroup className="mb-2">
+            <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
+              placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          </InputGroup>
           <p className='error-message'>{ errorUsername }</p>
         </div>
         <div className="input-container">
-          <label className='icon-lbl'><FaKey /> </label>
-          <input className='input-field' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <InputGroup className="mb-2">
+            <InputGroup.Text className="input-group-icon"><FaKey /></InputGroup.Text>
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" type="password" 
+              placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </InputGroup>
           <p className='error-message'>{ errorPassword }</p>
         </div>
         <div className="input-container">
-          <label className='icon-lbl'><FaPhoneAlt /> </label>
-          <input className='input-field' type="text" placeholder="extension" value={extension} onChange={(e) => setExtension(e.target.value)} required />
+          <InputGroup className="mb-2">
+            <InputGroup.Text className="input-group-icon"><FaPhoneAlt /></InputGroup.Text>
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
+              placeholder="extension" value={extension} onChange={(e) => setExtension(e.target.value)} required />
+          </InputGroup>
         </div>
 
         <select className='sl-language' value={valueSelect} onChange={(event) => handleChange(event)}>
