@@ -141,7 +141,7 @@ const DataJson = {
 
     theadDataFollowUp: [
         "Họ tên", "Số hợp đồng", "Di động", "Văn phòng", "Số nhà", 
-        "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày"
+        "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày",
     ],
 
     tbodyDataFollowUp: [

@@ -1,6 +1,7 @@
 import { 
     FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
 } from 'react-icons/fa';
+import { InputGroup, FormControl } from 'react-bootstrap';
 
 const ModelAddUser = (props) => {
     return (
@@ -11,44 +12,42 @@ const ModelAddUser = (props) => {
 
             <div className="main-model">
                 <form className='form-login'>
-                    <div className='input-container'>
-                        <label className='icon-lbl'><FaUser /></label>
-                        <input className='input-field' type="text" placeholder="Tên người dùng" required />
-                    </div>
-                    <div className="input-container">
-                        <label className='icon-lbl'><FaAt /> </label>
-                        <input className='input-field' type="password" placeholder="Tên đăng nhập" required />
-                    </div>
-                    <div className="input-container">
-                        <label className='icon-lbl'><FaLock /> </label>
-                        <input className='input-field' type="text" placeholder="Mật khẩu" required />
-                    </div>
-                    <div className='input-container'>
-                        <label className='icon-lbl'><FaBuilding /></label>
-                        <div className="col-input">
-                            <input className='input-field' type="text" placeholder="ACS" required />
-                            <input className='input-field' type="text" placeholder="Collection" required />
-                            <input className='input-field' type="text" placeholder="Điện thoại viên" required />
-                        </div>
-                    </div>
-                    <div className="input-container">
-                        <label className='icon-lbl'><FaPhone /> </label>
-                        <input className='input-field' type="password" placeholder="Điện thoại" required />
-                    </div>
-                    <div className="input-container">
-                        <label className='icon-lbl'><FaEnvelope /> </label>
-                        <input className='input-field' type="text" placeholder="Email" required />
-                    </div>
-                    <div className="input-container">
-                        <label className='icon-lbl'><FaPortrait /> </label>
-                        <input className='input-field' type="text" placeholder="Địa chỉ liên hệ" required />
-                    </div>
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Tên người dùng" required />
+                    </InputGroup>
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Tên đăng nhập" required />
+                    </InputGroup>
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"type="password" placeholder="Mật khẩu" required />
+                    </InputGroup>
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text><FaBuilding /></InputGroup.Text>
+                        <FormControl aria-label="Small" placeholder="ACS required" required />
+                        <FormControl aria-label="Small" placeholder="Collection" required />
+                        <FormControl aria-label="Small" placeholder="Điện thoại viên" required />
+                    </InputGroup>
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Điện thoại" required />
+                    </InputGroup>
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaEnvelope /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Email" required />
+                    </InputGroup>
+                    <InputGroup>
+                        <InputGroup.Text className="input-group-icon"><FaPortrait /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Địa chỉ liên hệ" required />
+                    </InputGroup>
                 </form>
             </div>
 
             <div className="footer-model">
                 <button className="btn-model btn-add"  onClick={props.handleAdd}>Thêm</button>
-                <button className="btn-model btn-close" onClick={props.handleClose}>Đóng</button>
+                <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>
     );

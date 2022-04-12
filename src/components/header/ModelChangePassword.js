@@ -1,4 +1,5 @@
 import { FaLock } from 'react-icons/fa';
+import { InputGroup, FormControl } from 'react-bootstrap';
 
 const ModelChangePassword = (props) => {
     return (
@@ -9,16 +10,16 @@ const ModelChangePassword = (props) => {
 
             <div className="main-model">
                 <form className='form-login'>
-                    <div className="input-container">
-                        <label className='icon-lbl'><FaLock /> </label>
-                        <input className='input-field' type="text" placeholder="Mật khẩu" required />
-                    </div>
+                    <InputGroup>
+                        <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+                    </InputGroup>
                 </form>
             </div>
 
             <div className="footer-model">
                 <button className="btn-model btn-add"  onClick={props.handleSave}>Lưu</button>
-                <button className="btn-model btn-close" onClick={props.handleClose}>Huỷ</button>
+                <button className="btn-model btn-closes" onClick={props.handleClose}>Huỷ</button>
             </div>
         </div>
     );

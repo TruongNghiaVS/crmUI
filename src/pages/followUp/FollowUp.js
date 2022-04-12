@@ -3,6 +3,7 @@ import Table from "./Table";
 import { FaTable, FaFilter } from "react-icons/fa";
 import DataJson from "../../utils/Data";
 import { useParams } from 'react-router-dom';
+import TicketView from './ticketView/TicketView';
 
 const FollowUp = (props) => {
     const [valTitle, setValTitle] = useState("Danh sách theo dõi");
@@ -24,6 +25,7 @@ const FollowUp = (props) => {
     }, [detail, valTitle]);
 
     return (
+        detail === "ticket-view" ? <TicketView /> :
         <div className="follow-up">
             <div className='box-tbl'>
                 <h4 className='box-tit'>

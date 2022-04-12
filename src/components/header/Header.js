@@ -38,12 +38,12 @@ const Header = ({ classHeader }) => {
             isLogin: 201
         };
         localStorage.setItem('user-info', JSON.stringify(dataJson));
-        navigate('/');
+        navigate('/login');
     };
 
     return (
         <header className={classHeader}>
-            <nav className='nav'>
+            <nav className='nav-header'>
                 <ul className='menu'>
                     <li className='list-link'><NavLink className='nav-link link-main' to="/">ACS</NavLink></li>
                     <li className='list-link'>

@@ -9,7 +9,6 @@
 
     .main-layout {
         padding: 20px;
-        max-height: 550px;
         overflow: auto;
 
         .box-tbl {
@@ -22,11 +21,13 @@
             border-bottom: 2px solid #ececec;
             line-height: 30px;
             padding: 10px 20px;
+            font-size: 16px;
             font-weight: normal;
 
             .icon-tit {
                 color: #1c7bd5;
                 margin-right: 6px;
+                font-size: 15px;
             }
         }
 
@@ -41,7 +42,6 @@
                     background-color: #ffffff;
                     border: 1px solid #1c7bd5;
                     color: #1c7bd5;
-                    padding: 6px 10px;
                     border-radius: 3px;
                     margin-right: 5px;
                     cursor: pointer;
@@ -70,7 +70,6 @@
                     background-color: #24a947;
                     border: 1px solid #24a947;
                     color: #ffffff;
-                    padding: 6px 10px;
                     border-radius: 3px;
                     margin-left: 5px;
                     cursor: pointer;
@@ -132,6 +131,12 @@
                 span {
                     display: inline-block;
                 }
+
+                .icon-edit {
+                    color: #007bff;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
             }
         }
 
@@ -155,45 +160,6 @@
 
             .form-login {
                 margin: 20px 0;
-            
-                .input-container {
-                    margin-bottom: 10px;
-                    position: relative;
-            
-                    .icon-lbl {
-                        background-color: #ebecef;
-                        border: 1px solid #d5d9dc;
-                        border-top-left-radius: 3px;
-                        border-bottom-left-radius: 3px;
-                        color: #4a5056;
-                        display: inline-block;
-                        padding: 11px 14px;
-                        line-height: 0;
-                        vertical-align: middle;
-                        position: absolute;
-                    }
-            
-                    .input-field {
-                        border: 1px solid #d5d9dc;
-                        border-left: 0;
-                        border-top-right-radius: 3px;
-                        border-bottom-right-radius: 3px;
-                        padding: 10px 14px 10px 52px;
-                        width: 100%;
-                        outline: 0;
-                        box-sizing: border-box;
-                    }
-
-                    .col-input {
-                        .input-field {
-                            width: calc(100% / 3);
-
-                            &:not(:first-child) {
-                                padding-left: 8px;
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -215,7 +181,7 @@
                     color: #ffffff;
                 }
 
-                &.btn-close {
+                &.btn-closes {
                     border-color: #f80909;
                     color: #f80909;
                     margin-left: 10px;

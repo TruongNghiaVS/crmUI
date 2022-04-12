@@ -1,3 +1,6 @@
+import { FaEdit } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
+
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
@@ -18,6 +21,11 @@ const TableRow = ({ data }) => {
             <td>{data.status}</td>
             <td>{data.create_by}</td>
             <td>{data.create_date}</td>
+            <td>
+                <NavLink to="/follow-up/ticket-view" target="_blank" onClick={() => localStorage.setItem("ticketData", JSON.stringify(data))}>
+                    <FaEdit className="icon-edit" />
+                </NavLink>
+            </td>
         </tr>
     );
 };
