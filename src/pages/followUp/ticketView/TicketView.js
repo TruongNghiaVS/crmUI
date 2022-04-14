@@ -9,7 +9,7 @@ const TicketView = () => {
     useEffect(() => {
         const ticketData = JSON.parse(localStorage.getItem("ticketData")) || null;
         console.log("Ticket view is", ticketData);
-    });
+    }, []);
 
     return (
         <div className="ticket-view">

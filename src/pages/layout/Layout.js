@@ -13,12 +13,12 @@ const Layout = (props) => {
     const [heightMain, setHeightMain] = useState(0);
 
     useEffect(() => {
-        if(props.page !== '/' || props.page !== '/login') {
+        if(props.page !== '/' || props.page !== 'login') {
             setHeightMain(heightLayout.clientHeight - 130);
         }
     }, [props.page, heightLayout.clientHeight])
 
-    if(props.page === '/' || props.page === '/login') {
+    if(props.page === '/' || props.page === 'login') {
         return (
             <div ref={(height) => { setHeightLayout(height) }} id="layout" className='layout layout-login'>
                 <Screen screen={ props.page } />
@@ -50,7 +50,7 @@ const Screen = (props) => {
         case 'follow-up':
             return <FollowUp />
         default:
-            return <Login />;
+            throw new Error('Invalid Screen')
     }
 }
 
