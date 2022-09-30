@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser, FaKey, FaPhoneAlt } from 'react-icons/fa';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import ConstantData from '../../utils/Constants';
-import md5 from 'crypto-js/md5';
+// import md5 from 'crypto-js/md5';
+import md5 from 'md5';
 import jwt_decode from "jwt-decode";
 import LoginService from '../../services/LoginService';
 import { InputGroup, FormControl } from 'react-bootstrap';
@@ -20,9 +21,9 @@ const Login = () => {
   const [errorLogin, setErrorLogin] = useState("");
 
   let navigate = useNavigate();
-  
+
   useEffect(() => {
-    let isUseEffect = true; 
+    let isUseEffect = true;
 
     if (isUseEffect) {
       const userInfo =  JSON.parse(localStorage.getItem('user-info'));
@@ -36,11 +37,43 @@ const Login = () => {
 
     return () => { isUseEffect = false };
   }, [navigate]);
-  
+
   const handleChange = (event) => {
     setValueSelect(event.target.value);
   }
+  const LoginSucess = (data) => {
+    setErrorUsername("");
+    setErrorLogin("");
+     var userInfo = jwt_decode(data);
+    console.log(userInfo);
+    var dataJson = {
+      role: userInfo.RoleUser,
+      name: userInfo.Name,
+      userId: userInfo.userId,
+      userName: userInfo.userName,
+      isLogin: true
+    };
+    localStorage.setItem('authorizeKey', JSON.stringify(data));
+    localStorage.setItem('user-info', JSON.stringify(dataJson));
 
+    navigate('/follow-up');
+  };
+  // function LoginSucess(data)
+  // {
+
+  //   setErrorUsername("");
+  //   setErrorLogin("");
+  //    var userInfo = jwt_decode(data.token);
+
+  //   var dataJson = {
+  //     role: userInfo.role,
+  //     isLogin: data.status
+  //   };
+  //   localStorage.setItem('user-info', JSON.stringify(dataJson));
+
+  //   navigate('/follow-up');
+
+  // }
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -58,29 +91,25 @@ const Login = () => {
       setErrorPassword("");
       setIsLoading(true);
 
+      // const body = {
+      //userName: username,
+      //password: md5(password),
+      // };
       const body = {
-        username: username,
-        password: md5(password).toString(),
+        userName: username,
+        password: password,
       };
 
+
       LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
-        if (response.status === 200) {
-          setErrorUsername("");
-          setErrorLogin("");
-
-          var userInfo = jwt_decode(response.data.token);
-
-          var dataJson = {
-            role: userInfo.role,
-            isLogin: response.status
-          };
-          localStorage.setItem('user-info', JSON.stringify(dataJson));
-
-          navigate('/follow-up');
+        debugger; 
+        if (response.statusCode === 200) {
+          LoginSucess(response.value);
         } else {
+
           setErrorUsername("");
           setErrorLogin("");
-          setErrorLogin("Login failed!");
+          setErrorLogin("Đăng nhập thất bại");
           setIsLoading(false);
         }
       }, (error) => {
@@ -98,7 +127,7 @@ const Login = () => {
         <div className='input-container'>
           <InputGroup className="mb-2">
             <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
-            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
               placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </InputGroup>
           <p className='error-message'>{ errorUsername }</p>
@@ -106,7 +135,7 @@ const Login = () => {
         <div className="input-container">
           <InputGroup className="mb-2">
             <InputGroup.Text className="input-group-icon"><FaKey /></InputGroup.Text>
-            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" type="password" 
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" type="password"
               placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </InputGroup>
           <p className='error-message'>{ errorPassword }</p>
@@ -114,7 +143,7 @@ const Login = () => {
         <div className="input-container">
           <InputGroup className="mb-2">
             <InputGroup.Text className="input-group-icon"><FaPhoneAlt /></InputGroup.Text>
-            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" 
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
               placeholder="extension" value={extension} onChange={(e) => setExtension(e.target.value)} required />
           </InputGroup>
         </div>

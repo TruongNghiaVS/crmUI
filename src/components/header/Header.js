@@ -13,16 +13,16 @@ const Header = ({ classHeader }) => {
 
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
     const roleUser = jsonProfile.role;
+    const fullName = jsonProfile.name;
+    debugger;
 
     var isHiddenMenu = false;
-
-    if(roleUser === "ADMIN") {
+    if(roleUser === "2") {
         isHiddenMenu = true;
     } else {
         isHiddenMenu = false;
     }
-
-    const handleChangePass = () => {
+     const handleChangePass = () => {
         console.log('change pass');
         setIsOpenModel(!isOpenModel);
     }
@@ -38,6 +38,8 @@ const Header = ({ classHeader }) => {
             isLogin: 201
         };
         localStorage.setItem('user-info', JSON.stringify(dataJson));
+        localStorage.removeItem('user-info');
+        localStorage.removeItem('authorizeKey');
         navigate('/login');
     };
 
@@ -64,13 +66,14 @@ const Header = ({ classHeader }) => {
                     { isHiddenMenu ? <li className='list-link'>
                         <NavLink className='nav-link' to="/">Quản trị hệ thống <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Quản trị hệ thống 1</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Quản trị hệ thống 2</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Quản trị hệ thống 3</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Chiến dịch</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Trạng thái phiếu</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/user">Người dùng</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhóm người dùng</NavLink></li>
                         </ul>
                     </li> : <></>}
                     <div className='nav-profile'>
-                        <li className='list-link'><NavLink className='nav-link' to="">Xin chào {roleUser}!</NavLink></li>
+                        <li className='list-link'><NavLink className='nav-link' to="">Xin chào {fullName}!</NavLink></li>
                         <li className='list-link link-icon' onClick={() => setIsHiddenProfile(!isHiddenProfile)}>
                             <FaUser className='nav-icon icon-user' />
                             <FaCaretDown className='nav-icon icon-caret-down' />
