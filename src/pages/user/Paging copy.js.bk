@@ -1,0 +1,30 @@
+ import "./paging.scss";
+  import React from "react";
+// import Pagination from "react-pagination-library";
+// import "react-pagination-library/build/css/index.css"; 
+const Paging = ({ total, currentPage, totalPages,dataDraw }) => {
+    
+    
+    return (
+            <div className="align-right">
+                    <div>
+                    <div className="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a href="#" className="active">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+
+                    <p className="totalTable">Tổng: 13</p>
+
+                    </div>
+                   
+            </div>
+    );
+};
+
+export default Paging;

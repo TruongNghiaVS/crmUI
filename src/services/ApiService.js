@@ -21,20 +21,30 @@ class ApiService {
         });
     }
 
-    static httpGet (url, headers, body, callSuccess, callError) {
-        fetch(url, {
-            method: 'GET',
-            headers: headers,
-            body: JSON.stringify(body),
-        })
-        .then((res) => res.json())
-        .then((json) => {
-            callSuccess(json);
-        })
-        .catch(error => {
-            callError(error);
-        });
-    }
+    // static httpGet (url, headers, body, callSuccess, callError) {
+    //     console.log(url);
+    //     console.log(headers);
+
+    //     const myRequest = new Request('flowers.jpg', {
+    //         method: 'GET',
+    //         headers: myHeaders,
+    //         mode: 'cors',
+    //         cache: 'default',
+    //       });
+    //       fetch(url, {
+    //         method: 'GET',
+    //         headers: headers,
+    //         body: JSON.stringify(body),
+    //     })
+    //     .then((res) => res.json())
+    //     .then((json) => {
+    //         callSuccess(json);
+    //     })
+    //     .catch(error => {
+    //         console.log("err", error);
+    //         callError(error);
+    //     });
+    // }
 }
 
 export default ApiService;

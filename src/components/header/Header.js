@@ -14,7 +14,6 @@ const Header = ({ classHeader }) => {
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
     const roleUser = jsonProfile.role;
     const fullName = jsonProfile.name;
-    debugger;
 
     var isHiddenMenu = false;
     if(roleUser === "2") {

@@ -63,7 +63,7 @@ const DataJson = {
     ],
 
     theadDataUser: [
-        "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
+       "STT", "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
         "Trạng thái", "Người tạo", "Email", "Điện thoại"
     ],
     tbodyDataUser: [

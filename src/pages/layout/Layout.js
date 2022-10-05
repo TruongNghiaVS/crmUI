@@ -8,6 +8,8 @@ import Dashboard from '../dashboard/Dashboard';
 import FollowUp from '../followUp/FollowUp';
 import React, { useState, useEffect } from 'react'
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Layout = (props) => {
     const [heightLayout, setHeightLayout] = useState(0);
     const [heightMain, setHeightMain] = useState(0);
@@ -32,6 +34,7 @@ const Layout = (props) => {
                     <Screen screen={ props.page } />
                 </main>
                 <Footer classFooter="footer" />  
+                <ToastContainer />
             </div>
         );
     }
