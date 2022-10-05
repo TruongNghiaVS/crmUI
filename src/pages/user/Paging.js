@@ -11,10 +11,8 @@ const Paging = (props) => {
   
     const [modelPage  , setmodelPage]=useState({
         
-        currentPage: 1, 
-            
-        
-        totalRecord: 10,
+        currentPage: 1,
+         totalRecord: 10,
      
         totalPage: 1
 
@@ -32,23 +30,20 @@ const Paging = (props) => {
                   totalRecord:item.totalRecord,
 
                 }
+
               })
 
 
-    });
+    },  [modelPage]);
 
 
 
     const changeCurrentPage = (numPage) => {
-        setmodelPage((prevalue) => {
-            return {
-              ...prevalue,   // Spread Operator               
-              currentPage: numPage,
-              
-            }
-          })
+       
+
           props.handlePaging(numPage);
-          console.log("page", modelPage);
+         
+          // console.log("page", modelPage);
       };
     
     return (

@@ -7,7 +7,7 @@ import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
-
+import { toast } from 'react-toastify';
 const ModelAddUser = (props) => {
     
     const [model  , setmodel]=useState({
@@ -162,12 +162,23 @@ const ModelAddUser = (props) => {
 
     }
     const handleSucess = (data) => {    
-
-        console.log(data);
         if(data.statusCode == 200)
        {
           //loading success
           props.handleAdd(model);  
+       }
+       else 
+       {
+            toast.error('Có lỗi khi thêm mới:'+ data.value, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            });
+
        }
 
 
@@ -216,7 +227,16 @@ const ModelAddUser = (props) => {
        }
        else 
        {
-       
+
+        toast.error('Có lỗi khi cập nhật:'+ data.value, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            });
        }
     }
 

@@ -22,6 +22,10 @@ class EmployeeService   {
      ApiService.httpPost(url, headers, body, callSuccess, callError);
 }
 
+  static exportData(url, headers, body, callSuccess, callError) {
+    ApiService.httpPost(url, headers, body, callSuccess, callError);
+  }
+
 }
 
 export default EmployeeService;

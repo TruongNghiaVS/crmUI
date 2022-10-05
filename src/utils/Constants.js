@@ -19,6 +19,7 @@ class ConstantData {
     static URL_Employee_Delete = `${ConstantData.DOMAIN}/api/employee/delete`;
 
     static URL_Employee_GetById = `${ConstantData.DOMAIN}/api/employee/getById`;
+    static URL_Employee_exportData = `${ConstantData.DOMAIN}/api/employee/exportData`;
 }
 
 export default ConstantData;
