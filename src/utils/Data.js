@@ -63,38 +63,19 @@ const DataJson = {
     ],
 
     theadDataUser: [
-       "STT", "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
-        "Trạng thái", "Người tạo", "Email", "Điện thoại"
-    ],
+        "STT", "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
+         "Trạng thái", "Người tạo", "Email", "Điện thoại"
+     ],
+
+     theadDataReason: [
+        "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
+     ],
+
+     theadDataGroupReason: [
+        "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", "Người tạo", "Ngày tạo", "Người cập nhật", "Ngày cập nhật"
+     ],
     tbodyDataUser: [
-        {
-            id: 1,
-            user_name: "Test 1",
-            user_login: "Test 1",
-            code: "010896",
-            position: "Điện thoại viên",
-            department: "Collection",
-            company: "ACS",
-            start_day: "0000-00-00 00:00:00",
-            status: "Kich hoat",
-            creater: "ACS Admin",
-            email: "abc@gmail.com",
-            phone: "1234456",
-        },
-        {
-            id: 2,
-            user_name: "Test 1",
-            user_login: "Test 1",
-            code: "010896",
-            position: "Điện thoại viên",
-            department: "Collection",
-            company: "ACS",
-            start_day: "0000-00-00 00:00:00",
-            status: "Kich hoat",
-            creater: "ACS Admin",
-            email: "abc@gmail.com",
-            phone: "1234456",
-        },
+       
     ],
 
     theadDataDashboard: [

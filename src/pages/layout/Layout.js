@@ -7,6 +7,9 @@ import User from '../user/User';
 import Dashboard from '../dashboard/Dashboard';
 import FollowUp from '../followUp/FollowUp';
 import React, { useState, useEffect } from 'react'
+import Reason from '../reason/Reason';
+import GroupReason from '../groupReason/GroupReason';
+
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,16 +45,23 @@ const Layout = (props) => {
 
 const Screen = (props) => {
     switch (props.screen) {
+    
         case 'home':
             return <Home />;
         case 'login':
-            return <Login />
+            return <Login />;
         case 'user':
-            return <User />
+            return <User />;
         case 'dashboard':
-            return <Dashboard />
+            return <Dashboard />;
         case 'follow-up':
-            return <FollowUp />
+            return <FollowUp />;
+        case 'reason':
+            return <Reason/>;
+        case 'groupReason':
+            return <GroupReason/>
+        
+            
         default:
             throw new Error('Invalid Screen')
     }

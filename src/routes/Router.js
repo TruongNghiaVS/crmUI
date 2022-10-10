@@ -14,6 +14,19 @@ function Router() {
         <Route path=":detail" element={<Layout page="follow-up" />} />
         <Route path=":detail" element={<Layout page="follow-up" />} />
       </Route>
+
+      <Route path="reason" element={<Layout page="reason" />}>
+        <Route path=":detail" element={<Layout page="reason" />} />
+    
+      </Route>
+
+      <Route path="groupReason" element={<Layout page="groupReason" />}>
+        <Route path=":detail" element={<Layout page="groupReason" />} />
+      </Route>
+
+      
+
+      
   </Routes>
   );
 }
