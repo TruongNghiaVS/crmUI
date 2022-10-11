@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "https://localhost:7098";
+    static DOMAIN = "https://localhost:44332";
     static HEADERS = {
         'Accept': 'application/json',
         'Content-type': 'application/json; charset=UTF-8',
