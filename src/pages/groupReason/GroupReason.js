@@ -7,7 +7,7 @@ import ModelPopup from "./ModelPopup";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/EmployeeService';
+import GroupReasonService from '../../services/GroupReasonService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 
@@ -44,15 +44,15 @@ const GroupReason = () => {
     }
 
     const [employeeItem, setDataItem] = useState({
-        "id": "-1",
-        "fullName": "",
-        "code": "",
-        "displayName": "",
-        "hour": 0,
-        "day": 0
+
+            "id": "-1",
+            "fullName": "",
+            "code": "",
+            "displayName": "",
+            "hour": 0,
+            "day": 0
+
     });
-
-
     
     const handleUpdateById = (id)=> {
             setDataItem((prevalue) => {
@@ -87,25 +87,23 @@ const GroupReason = () => {
 
             setIsOpenModel(!isOpenModel);
     }
-
-
+    
     const handleExportData = ()=> {
         let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
+                    Token: obejctSearch.tokenSearch, 
+                    Page:  obejctPaging.currentPage,
+                    Limit: obejctPaging.limt
+            };
+        GroupReasonService.exportData(ConstantData.URL_groupReason_exportData, ConstantData.HEADERS, bodySearch, (response) => {
+                    if (response.statusCode === 200) {
+                        exportDataExcel(response.value.data);
 
-          };
-          EmployeeService.exportData(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-            if (response.statusCode === 200) {
-                exportDataExcel(response.value.data);
-
-            } else {
-                
-             }
-          }, (error) => {
+                    } else {
+                        
+                    }
+        }, (error) => {
            
-          });
+        });
         
     }
 
@@ -137,11 +135,11 @@ const GroupReason = () => {
                   let nameControl ="tokenSearch";
                  
                   setKeySearch((prevalue) => {
-                      return {
+                        return {
                         ...prevalue,   // Spread Operator               
                         [nameControl]: valueControl
-                      }
-                    })
+                        }
+                  })
                     
     
              }
@@ -186,32 +184,25 @@ const GroupReason = () => {
         });
         getDataEmployee();
     }
-
-
     
-
-
     const getDataEmployee = ()=> {
-
-         
         
-         let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
-
+        let bodySearch = {
+                Token: obejctSearch.tokenSearch, 
+                Page:  obejctPaging.currentPage,
+                Limit: obejctPaging.limt
           };
-          EmployeeService.GetAll(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-            if (response.statusCode === 200) {
-                renderData(response.value);
-            } else {
+        GroupReasonService.GetAll(ConstantData.URL_groupReason_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+        if (response.statusCode === 200) {
+            renderData(response.value);
+        } else {
 
 
 
-             }
-          }, (error) => {
-           
-          });
+            }
+        }, (error) => {
+        
+        });
 
     }
 
@@ -225,28 +216,7 @@ const GroupReason = () => {
 
         let exportFileName = `dataEmployee.xls`;
          XLSX.writeFile(workBook,exportFileName);
-
-        //  const link = document.createElement('a');
-        // link.href = exportFileName;
-        // link.setAttribute(
-        //   'download',
-        //   `employeeReport.xls`,
-        // );
-    
-        // // Append to html link element page
-        // document.body.appendChild(link);
-    
-        // // Start download
-        // link.click();
-    
-        // // Clean up and remove the link
-        // link.parentNode.removeChild(link);
-        
-      
-
-
-
-}
+    }
 
     const renderData = (dataReder) => {
 
@@ -260,20 +230,18 @@ const GroupReason = () => {
             if( obejctPaging.limt <1)
             {
                 totalPage = 1;
-               
-
+            
             }
             else 
             {
                 totalPage = Math.floor(dataReder.total/obejctPaging.limt ) +1;
-
-    
-            }
+             }
            
             setData(prew=>({...prew,tbodyDataUser:dataReder.data}));
 
             setObjectPaging((prevalue) => {
                 return {
+
                   ...prevalue,
                   totalRecord:dataReder.total,
                   totalPage: totalPage
@@ -285,8 +253,7 @@ const GroupReason = () => {
 
 
     const handleShowModel = () => {
-
-        setDataItem((prevalue) => {
+      setDataItem((prevalue) => {
             return {
                 ...prevalue,   // Spread Operator               
                 id:"-1"
@@ -325,7 +292,7 @@ const GroupReason = () => {
             Id:  idEmp,
            
           };
-          EmployeeService.delete(ConstantData.URL_masterdata_Delete,ConstantData.HEADERS,
+          GroupReasonService.delete(ConstantData.URL_groupReason_Delete,ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);

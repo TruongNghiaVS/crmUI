@@ -35,6 +35,15 @@ class ConstantData {
     static URL_groupStatus_exportData = `${ConstantData.DOMAIN}/api/groupStatus/exportData`;
 
 
+    //group-reason
+    static URL_groupReason_GetALl = `${ConstantData.DOMAIN}/api/groupReason/getAll`;
+    static URL_groupReason_Add = `${ConstantData.DOMAIN}/api/groupReason/add`;
+    static URL_groupReason_Update = `${ConstantData.DOMAIN}/api/groupReason/update`;
+    static URL_groupReason_Delete = `${ConstantData.DOMAIN}/api/groupReason/delete`;
+    static URL_groupReason_GetById = `${ConstantData.DOMAIN}/api/groupReason/getById`;
+    static URL_groupReason_exportData = `${ConstantData.DOMAIN}/api/groupReason/exportData`;
+
+
 }
 
 export default ConstantData;

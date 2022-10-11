@@ -23,13 +23,15 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{rowIndex}</td>
             <td>{data.code}</td>
             <td>{data.fullName}</td>
-            <td>{data.displayName}</td>
-            <td>{data.hour}</td>
+            <td>{data.description}</td>
+            <td>{data.status}</td>
             <td>{data.day}</td>
+            <td>{data.companyId}</td>
             <td>{data.authorName}</td>
             <td>{moment(data.createdTime).format("DD/MM/YYYY")}</td>
-      
-          
+            <td>{data.updateByName}</td>
+            <td>{data.updatedTime}</td>
+            
             <td>
                 <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
                 <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
@@ -57,12 +59,12 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                
-                dataDraw.tbodyDataUser.map((item, index) => {
-                    return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
-                    handleViewById = {handleViewById}
-                    handleUpdateById ={handleUpdateById}/>;
-                })}
+                    dataDraw.tbodyDataUser.map((item, index) => {
+                        return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
+                        handleViewById = {handleViewById}
+                        handleUpdateById ={handleUpdateById}/>;
+                    })
+                }
             </tbody>
         </table>
     );
