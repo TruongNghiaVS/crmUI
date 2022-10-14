@@ -71,8 +71,18 @@ const DataJson = {
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
      ],
 
+     theadDataCampang: [
+        "STT", "Mã trạng thái","Tên chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", 
+        "Ngày kết thúc", "Ngày tạo", 
+        "Nguời tạo",'C.ty' ,"Người cập nhật", 
+        "Ngày cập nhật", "Ưu tiên"
+     ],
+
+
      theadDataGroupReason: [
-        "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", "Người tạo", "Ngày tạo", "Người cập nhật", "Ngày cập nhật"
+        "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", 
+        "Người tạo", "Ngày tạo", 
+        "Người cập nhật", "Ngày cập nhật"
      ],
     tbodyDataUser: [
        

@@ -7,7 +7,9 @@ function Router() {
           <Route path="/" element={<Layout page="login" />} />
           <Route path="login" element={<Layout page="login" />} />
           <Route path="home" element={<Layout page="home" />} />
-          <Route path="user" element={<Layout page="user" />} />
+          <Route path="user" element={<Layout page="user" />}
+          
+          />
           <Route path="dashboard" element={<Layout page="dashboard" />} />
           <Route path="follow-up" element={<Layout page="follow-up" />}>
               <Route path=":detail" element={<Layout page="follow-up" />} />
@@ -16,7 +18,10 @@ function Router() {
              <Route path=":detail" element={<Layout page="reason" />} />
           </Route>
           <Route path="groupReason" element={<Layout page="groupReason" />}>
-              <Route path=":detail" element={<Layout page="groupReason" />} />
+               <Route path=":detail" element={<Layout page="groupReason" />} />
+          </Route>
+          <Route path="campangn" element={<Layout page="campangn" />}>
+               <Route path=":edit" element={<Layout page="campangn" />} />
           </Route>
     </Routes>
   );

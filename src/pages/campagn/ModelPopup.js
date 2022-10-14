@@ -8,12 +8,10 @@ import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
-import { mode } from 'crypto-js';
 const ModelPopup = (props) => {
     
-    const [model  , setmodel]=useState({
-       
-        
+    const [model , setmodel]=useState({
+
     });
 
     const [validated, setValidated] = useState(false);
@@ -26,8 +24,7 @@ const ModelPopup = (props) => {
           event.preventDefault();
           event.stopPropagation();
         }
-    
-        setValidated(true);
+         setValidated(true);
       };
 
 
@@ -44,16 +41,12 @@ const ModelPopup = (props) => {
               id: dataItem.id,
               fullName: dataItem.fullName,
               code: dataItem.code, 
-              description: dataItem.description,
-              status: dataItem.status,
-              folder: dataItem.folder,
-              updateByName: dataItem.updateByName,
-              authorName: dataItem.authorName,
-              updatedTime: dataItem.updatedTime,
-              createdTime: dataItem.createdTime,
+              displayName: dataItem.displayName,
+              hour: dataItem.hour,
+              day: dataItem.day
            
             }
-          })
+         })
         }
       };
 
@@ -62,63 +55,47 @@ const ModelPopup = (props) => {
       };
 
     useEffect(() => {
-
         let dataItem = props.dataItem;
-        
         if(dataItem.isView)
         {
             enbaleView(true);
         }
 
-        console.log(dataItem);
         if(dataItem.id =="-1")
         {
             setmodel((prevalue) => {
-                return {
-                  ...prevalue,   // Spread Operator               
-                  id: dataItem.id,
-                  fullName: dataItem.fullName,
-                  code: dataItem.code, 
-                  description: dataItem.description,
-                  status: dataItem.status,
-                  folder: dataItem.folder,
-                  updateByName: dataItem.updateByName,
-                  authorName: dataItem.authorName,
-                  updatedTime: dataItem.updatedTime,
-                  createdTime: dataItem.createdTime
-               
-                }
-              })
-             
-          
+                    return {
+                        ...prevalue,   // Spread Operator               
+                        id: dataItem.id,
+                        fullName: dataItem.fullName,
+                        code: dataItem.code, 
+                        displayName: dataItem.displayName,
+                        hour: dataItem.hour,
+                        day: dataItem.day
+                    }
+            })
         }
 
         else 
 
         {
-            
-          
-            enableEdit(true);
-
-            const bodyRequest = {
+                enableEdit(true);
+                const bodyRequest = {
                 id:  dataItem.id,
-                
-              
-              };
-              
-              EmployeeService.getById(ConstantData.URL_groupReason_GetById,ConstantData.HEADERS,
+
+
+                };
+                EmployeeService.getById(
+                ConstantData.URL_masterdata_GetById,ConstantData.HEADERS,
                 bodyRequest,
                 handleDisplayData, 
                 handleDisplayDataErro);
-
-
-            return;
             
         }
-
-  }, []);
+     }, []);
 
     const handleInputChange =(event)=> {
+
         let valueControl = event.target.value;
         let nameControl = event.target.name;
         console.log( valueControl);
@@ -134,21 +111,17 @@ const ModelPopup = (props) => {
     // const AddEmploy =(event)=> {
       
     // }
-    const  AddEmploy = (event) => {
-      
-         const itemAdd = {
-           
-            fullname: model.fullName,
-            description: model.description,
-            status: true,
-            folder: model.folder,
-            code: model.code, 
-            companyId:  0
-
-          };
-          
-          EmployeeService.add(ConstantData.URL_groupReason_Add,ConstantData.HEADERS,
-            itemAdd,
+    const  AddEmploy = (event) => { 
+        
+            const employeeAdd = {
+                Code:  model.code,
+                DisplayName:  model.displayName,
+                FullName: model.fullName
+            
+            };
+            EmployeeService.add(
+            ConstantData.URL_masterdata_Add,ConstantData.HEADERS,
+            employeeAdd,
             handleSucess, 
             handleErr);
         // props.handleAdd(model);
@@ -156,14 +129,13 @@ const ModelPopup = (props) => {
     }
     const handleSucess = (data) => {    
         if(data.statusCode == 200)
-       {
-          //loading success
-          props.handleAdd(model);  
-       }
-       else 
-       {
+        {
+            props.handleAdd(model);  
+        }
+        else 
+        {
             toast.error('Có lỗi khi thêm mới:'+ data.value, {
-                   position: "top-center",
+                    position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: true,
                     closeOnClick: true,
@@ -171,48 +143,43 @@ const ModelPopup = (props) => {
                     draggable: false,
                     progress: undefined,
             });
-
-       }
-
-
+        }
     }
 
     const handleErr = (data) => {
 
     }
-
-
-
+    
     const  UpdateEmploy = (event) => { 
-      
-        const modelUpdate = {
-            id: model.id,
-            fullname: model.fullName,
-            description: model.description,
-            status: model.status,
-            folder: model.folder
-          
-        };
+            
+            const modelUpdate = {
+                id: model.id,
+                fullName: model.fullName,
+                displayName:model.displayName,
+                hour: model.hour,
+                day: model.day
+            
 
-        EmployeeService.update(ConstantData.URL_groupReason_Update,ConstantData.HEADERS,
-             modelUpdate,
+            };
+
+            EmployeeService.update(ConstantData.URL_masterdata_Update,ConstantData.HEADERS,
+            modelUpdate,
             handleSucessUpdate, 
             handleErrUpdate);
-         props.handleUpdate(model);
+            props.handleUpdate(model);
 
     }
-    const handleSucessUpdate = (data) => {    
-
-
-        if(data.statusCode == 200)
-       {
+    const handleSucessUpdate = (data) => {  
         
-              props.handleUpdate(model);  
-       }
-       else 
-       {
+                if(data.statusCode == 200)
+                {
+                    
+                    props.handleUpdate(model);  
+                }
+                else 
+                {
 
-              toast.error('Có lỗi khi cập nhật:'+ data.value, {
+                    toast.error('Có lỗi khi cập nhật:'+ data.value, {
                         position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: true,
@@ -220,8 +187,8 @@ const ModelPopup = (props) => {
                         pauseOnHover: false,
                         draggable: false,
                         progress: undefined,
-                });
-       }
+                        });
+                }
     }
 
     const handleErrUpdate = (data) => {
@@ -233,17 +200,14 @@ const ModelPopup = (props) => {
 
 
     return (
-
-
-      
         <div className="model">
             <div className="header-model">
                     {
                     model.id == "-1" ? (
-                            <h4>Thêm nhóm trạng thái mới</h4>
+                            <h4>Thêm chiến dịch mới</h4>
                     ) : 
                     (
-                            <h4>Thông tin nhóm trạng thái</h4>
+                            <h4>Thông tin chiến dịch</h4>
                     )}
             </div>
 
@@ -252,51 +216,53 @@ const ModelPopup = (props) => {
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="fullName" placeholder="Tên nhóm trạng thái" 
+                        name ="fullName" placeholder="Tên chiến dịch" 
                         onChange={handleInputChange} value = {model.fullName} required />
-                            <Form.Control.Feedback type="invalid">
-                                    Trường bặt buộc
-                            </Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid">
+                                Trường bặt buộc
+                        </Form.Control.Feedback>
                     </InputGroup>
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
                         <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
-                          placeholder="Mã"    onChange={handleInputChange} value = {model.code} required />
+                          placeholder="Mã chiến dịch"   
+                           onChange={handleInputChange} 
+                           value = {model.code} required />
                     </InputGroup>
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <Form.Select aria-label="Collection" name ="folder" onChange={handleInputChange} value = {model.folder}>
-                                <option value="1">Out-bound</option>
-                                <option selected value="2">In-bound</option>
-                              
-                        </Form.Select>
-                    </InputGroup>
+
 
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  name = "description"  placeholder="Mô tả"    onChange={handleInputChange} value = {model.description} required />
+                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
+                          placeholder="Mô tả"   
+                           onChange={handleInputChange} 
+                           value = {model.code} required />
+                    </InputGroup>
+                    
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
+                          placeholder="Mô tả"   
+                           onChange={handleInputChange} 
+                           value = {model.code} required />
                     </InputGroup>
 
                     <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <Form.Select aria-label="Collection" name ="companyId" onChange={handleInputChange} value = {model.companyId}>
-                                <option selected value="1">ACS</option>
-                      </Form.Select>
+                        <InputGroup.Text className="input-group-icon"><FaEnvelope />
+                        </InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Ngày"  name ="day"  onChange={handleInputChange}  value = {model.day}   />
                     </InputGroup>
-
-                   
-               </form>
+              </form>
             </div>
 
             <div className="footer-model">
-              
-              {
-                    model.id == "-1"  ? (
-                           <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
-                    ) : 
-                    (
-                            <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
-                    )   
+
+                {
+                        model.id == "-1"  ? (
+                        <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
+                        ) : (
+                        <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
+                        )   
                 }
               
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>

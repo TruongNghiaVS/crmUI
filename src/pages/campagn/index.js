@@ -7,14 +7,14 @@ import ModelPopup from "./ModelPopup";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
-import GroupReasonService from '../../services/GroupReasonService';
+import EmployeeService from '../../services/EmployeeService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
-const GroupReason = () => {
+const Campagn = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
     const [obejctPaging, setObjectPaging ] = useState({
@@ -26,9 +26,7 @@ const GroupReason = () => {
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: ""
     });
-
-
-
+    
     const handlePaging = (data)=> {
 
             const key = 'currentPage';
@@ -44,13 +42,12 @@ const GroupReason = () => {
     }
 
     const [employeeItem, setDataItem] = useState({
-
-            "code": "",
+            "id": "-1",
             "fullName": "",
-            "status": "",
-            "folder": "",
-            "description": 0
-
+            "code": "",
+            "displayName": "",
+            "hour": 0,
+            "day": 0
     });
     
     const handleUpdateById = (id)=> {
@@ -65,13 +62,8 @@ const GroupReason = () => {
                     ...prevalue,   // Spread Operator               
                     isView:false
                 }
-             });
+                });
             setIsOpenModel(!isOpenModel);
-    }
-
-    const handleToPageReason = (id)=> {
-         window.open("/reason/"+id);
-
     }
 
     const handleViewById = (id)=> {
@@ -86,74 +78,60 @@ const GroupReason = () => {
                 ...prevalue,   // Spread Operator               
                     isView:true
             }
-            })
-
-
-            setIsOpenModel(!isOpenModel);
+            });
+            
+        setIsOpenModel(!isOpenModel);
     }
     
     const handleExportData = ()=> {
-        let bodySearch = {
-                    Token: obejctSearch.tokenSearch, 
-                    Page:  obejctPaging.currentPage,
-                    Limit: obejctPaging.limt
-            };
-        GroupReasonService.exportData(ConstantData.URL_groupReason_exportData, ConstantData.HEADERS, bodySearch, (response) => {
-                    if (response.statusCode === 200) {
-                        exportDataExcel(response.value.data);
+          let bodySearch = {
+                Token: obejctSearch.tokenSearch, 
+                Page:  obejctPaging.currentPage,
+                Limit: obejctPaging.limt
 
-                    } else {
-                        
-                    }
-        }, (error) => {
+          };
+          EmployeeService.exportData(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+                        if (response.statusCode === 200) {
+                            exportDataExcel(response.value.data);
+
+                        } else {
+                            
+                        }
+          }, (error) => {
            
-        });
+          });
         
     }
-
-
-
     
-
     const [dataEmployee, setData] = useState( {
         tbodyDataUser: [
          
         ],
     }  );
-
-
+    
+    
     useEffect(() => {
-
+        
         if(!isInit)
         {
-
-            document.title = "Danh sách nhóm trạng thái";
+            document.title = "Danh sách trạng thái";
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const token = params.get('token');
-           
-            //  console.log(token)//123
-            if( token!= null && token !="")
+           if( token!= null && token !="")
              {
                   let valueControl =token;
                   let nameControl ="tokenSearch";
-                 
                   setKeySearch((prevalue) => {
-                        return {
+                      return {
                         ...prevalue,   // Spread Operator               
                         [nameControl]: valueControl
-                        }
-                  })
-                    
-    
+                      }
+                    })
              }
              getDataEmployee();
              setInit(true);
         }
-      
-        
-        
-
     }, [obejctPaging]);
 
     const btnSerachKey = useRef(null);
@@ -172,9 +150,7 @@ const GroupReason = () => {
         });
         getDataEmployee();
     }
-
-   
-
+    
     const handleUpdate = (data) => {
         
         toast.success('Câp nhật thành công!', {
@@ -190,20 +166,19 @@ const GroupReason = () => {
     }
     
     const getDataEmployee = ()=> {
-        
-        let bodySearch = {
-                Token: obejctSearch.tokenSearch, 
-                Page:  obejctPaging.currentPage,
-                Limit: obejctPaging.limt
-          };
-        GroupReasonService.GetAll(ConstantData.URL_groupReason_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-        if (response.statusCode === 200) {
-            renderData(response.value);
-        } else {
+            
+                        let bodySearch = {
+                                Token: obejctSearch.tokenSearch, 
+                                Page:  obejctPaging.currentPage,
+                                Limit: obejctPaging.limt
+                        };
+                        
+                        EmployeeService.GetAll(ConstantData.URL_campagn_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+                        if (response.statusCode === 200) {
+                                    renderData(response.value);
+                        } else {
 
-
-
-            }
+                        }
         }, (error) => {
         
         });
@@ -218,13 +193,12 @@ const GroupReason = () => {
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
-        let exportFileName = `dataEmployee.xls`;
-         XLSX.writeFile(workBook,exportFileName);
+        let exportFileName = `dataMaster.xls`;
+        XLSX.writeFile(workBook,exportFileName);
+
     }
 
     const renderData = (dataReder) => {
-
-          
             let totalPage = 1;
 
             if(dataReder.total <1 )
@@ -234,18 +208,16 @@ const GroupReason = () => {
             if( obejctPaging.limt <1)
             {
                 totalPage = 1;
-            
             }
             else 
             {
                 totalPage = Math.floor(dataReder.total/obejctPaging.limt ) +1;
-             }
+            }
            
             setData(prew=>({...prew,tbodyDataUser:dataReder.data}));
 
             setObjectPaging((prevalue) => {
                 return {
-
                   ...prevalue,
                   totalRecord:dataReder.total,
                   totalPage: totalPage
@@ -257,22 +229,19 @@ const GroupReason = () => {
 
 
     const handleShowModel = () => {
-      setDataItem((prevalue) => {
+
+        setDataItem((prevalue) => {
             return {
-                ...prevalue,   // Spread Operator               
+                ...prevalue,          
                 id:"-1"
             }
-            })
-      setIsOpenModel(!isOpenModel);
-        // setIsOpenModel(!isOpenModel);
+        })
+        setIsOpenModel(!isOpenModel);
+        
     }
 
     const searchData =()=> {
-
-           
-
-            getDataEmployee();
-
+        getDataEmployee();
     }
 
     const handleInputChangesearch =(event)=> {
@@ -290,13 +259,10 @@ const GroupReason = () => {
 
     
     const  deleteEmploy = (idEmp) => { 
-       
-    
-        const deleteIdModel = {
-            Id:  idEmp,
-           
-          };
-          GroupReasonService.delete(ConstantData.URL_groupReason_Delete,ConstantData.HEADERS,
+          const deleteIdModel = {
+            Id:  idEmp
+           };
+          EmployeeService.delete(ConstantData.URL_masterdata_Delete,ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);
@@ -314,13 +280,13 @@ const GroupReason = () => {
         else 
         {
                 toast.error('Có lỗi khi xóa:'+ data.value, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
                 });
         }
 
@@ -339,11 +305,11 @@ const GroupReason = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Đồng ý!'
-          }).then((result) => {
-             if (result.isConfirmed) {
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
                 deleteEmploy(id);
-                 
-            }
+             }
           })
 
     }
@@ -354,7 +320,7 @@ const GroupReason = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Trạng thái
+                    Chiến dịch
                 </h4>
 
                 <div className="list-feature">
@@ -370,13 +336,8 @@ const GroupReason = () => {
                 </div>
                 </div>
 
-                <Table theadData={ DataJson.theadDataGroupReason } 
-                dataDraw={dataEmployee} 
-                handleDelete = {handleDeleteEmpl}
-                 handleViewById = {handleViewById}
-                  handleUpdateById = {handleUpdateById} 
-                  handleToPageReason = {handleToPageReason}
-                  tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                <Table theadData={ DataJson.theadDataCampang } dataDraw={dataEmployee} 
+                handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>
@@ -388,4 +349,4 @@ const GroupReason = () => {
     );
 };
 
-export default GroupReason;
+export default Campagn;

@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react'
 import Reason from '../reason/Reason';
 import GroupReason from '../groupReason/GroupReason';
 
+import Campangn from '../campagn';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -59,8 +60,10 @@ const Screen = (props) => {
         case 'reason':
             return <Reason/>;
         case 'groupReason':
-            return <GroupReason/>
-        
+            return <GroupReason/>;
+        case 'campangn':
+            return <Campangn/>
+            
             
         default:
             throw new Error('Invalid Screen')

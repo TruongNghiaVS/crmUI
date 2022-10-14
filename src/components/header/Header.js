@@ -65,8 +65,8 @@ const Header = ({ classHeader }) => {
                     { isHiddenMenu ? <li className='list-link'>
                         <NavLink className='nav-link' to="/">Quản trị hệ thống <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Chiến dịch</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/reason">Trạng thái phiếu</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/campangn">Chiến dịch</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/groupReason">Trạng thái phiếu</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/user">Người dùng</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhóm người dùng</NavLink></li>
                         </ul>

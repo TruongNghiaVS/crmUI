@@ -10,6 +10,7 @@ class ConstantData {
     
     };
     // API URL
+
     // Login
     static URL_LOGIN = `${ConstantData.DOMAIN}/api/user/login`;
     static URL_Employee_GetALl = `${ConstantData.DOMAIN}/api/employee/getAll`;
@@ -18,6 +19,7 @@ class ConstantData {
     static URL_Employee_Delete = `${ConstantData.DOMAIN}/api/employee/delete`;
      static URL_Employee_GetById = `${ConstantData.DOMAIN}/api/employee/getById`;
     static URL_Employee_exportData = `${ConstantData.DOMAIN}/api/employee/exportData`;
+
     //masterData
     static URL_masterdata_GetALl = `${ConstantData.DOMAIN}/api/masterdata/getAll`;
     static URL_masterdata_Add = `${ConstantData.DOMAIN}/api/masterdata/add`;
@@ -25,6 +27,7 @@ class ConstantData {
     static URL_masterdata_Delete = `${ConstantData.DOMAIN}/api/masterdata/delete`;
     static URL_masterdata_GetById = `${ConstantData.DOMAIN}/api/masterdata/getById`;
     static URL_masterdata_exportData = `${ConstantData.DOMAIN}/api/masterdata/exportData`;
+    
 
     //groupStatus
     static URL_groupStatus_GetALl = `${ConstantData.DOMAIN}/api/groupStatus/getAll`;
@@ -33,7 +36,7 @@ class ConstantData {
     static URL_groupStatus_Delete = `${ConstantData.DOMAIN}/api/groupStatus/delete`;
     static URL_groupStatus_GetById = `${ConstantData.DOMAIN}/api/groupStatus/getById`;
     static URL_groupStatus_exportData = `${ConstantData.DOMAIN}/api/groupStatus/exportData`;
-
+    
 
     //group-reason
     static URL_groupReason_GetALl = `${ConstantData.DOMAIN}/api/groupReason/getAll`;
@@ -44,6 +47,12 @@ class ConstantData {
     static URL_groupReason_exportData = `${ConstantData.DOMAIN}/api/groupReason/exportData`;
 
 
+    //campagn
+     static URL_campagn_GetALl = `${ConstantData.DOMAIN}/api/campagn/getAll`;
+     static URL_campagn_Add = `${ConstantData.DOMAIN}/api/campagn/add`;
+     static URL_campagn_Update = `${ConstantData.DOMAIN}/api/campagn/update`;
+     static URL_campagn_Delete = `${ConstantData.DOMAIN}/api/campagn/delete`;
+     static URL_campagn_GetById = `${ConstantData.DOMAIN}/api/campagn/getById`;
+     static URL_campagn_exportData = `${ConstantData.DOMAIN}/api/campagn/exportData`;
 }
-
 export default ConstantData;
