@@ -2,8 +2,7 @@ import ApiService from './ApiService';
 
 class MasterDataService   {
     static GetAll(url, headers, body, callSuccess, callError) {
-        
-         ApiService.httpPost(url, headers, body, callSuccess, callError);
+        ApiService.httpPost(url, headers, body, callSuccess, callError);
     }
 
     static add(url, headers, body, callSuccess, callError) {
@@ -20,11 +19,14 @@ class MasterDataService   {
 
    static delete(url, headers, body, callSuccess, callError) {
      ApiService.httpPost(url, headers, body, callSuccess, callError);
-}
+  }
 
   static exportData(url, headers, body, callSuccess, callError) {
     ApiService.httpPost(url, headers, body, callSuccess, callError);
   }
+
+
+
 
 }
 

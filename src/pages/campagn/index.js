@@ -4,6 +4,7 @@ import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
 import ModelPopup from "./ModelPopup";
+import UploadFile  from "./UploadFile";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
@@ -16,6 +17,7 @@ let XLSX = require("xlsx");
 
 const Campagn = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
+    const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
     const [isInit, setInit] = useState(false);
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
@@ -26,6 +28,22 @@ const Campagn = () => {
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: ""
     });
+    const handleimportRow = (id)=> {
+        
+        setisOPenUploadFile(!isOPenUploadFile);
+    }
+
+    const handleShowModelUploadFile = () => {
+        
+        // setDataItem((prevalue) => {
+        //     return {
+        //         ...prevalue,          
+        //         id:"-1"
+        //     }
+        // })
+        setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
     
     const handlePaging = (data)=> {
 
@@ -49,7 +67,11 @@ const Campagn = () => {
             "hour": 0,
             "day": 0
     });
+
+
     
+
+
     const handleUpdateById = (id)=> {
             setDataItem((prevalue) => {
             return {
@@ -262,7 +284,7 @@ const Campagn = () => {
           const deleteIdModel = {
             Id:  idEmp
            };
-          EmployeeService.delete(ConstantData.URL_masterdata_Delete,ConstantData.HEADERS,
+          EmployeeService.delete(ConstantData.URL_campagn_Delete,ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);
@@ -327,7 +349,7 @@ const Campagn = () => {
                 <div className="button-feature">
                     <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
                     <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button>
-                    {/* <button className="btn-ft btn-more">Mở rộng</button> */}
+             
                 </div>
                 <div className="search-feature">
                     <FaFilter />
@@ -337,12 +359,17 @@ const Campagn = () => {
                 </div>
 
                 <Table theadData={ DataJson.theadDataCampang } dataDraw={dataEmployee} 
-                handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser }
+                handleimportRow = {handleimportRow}
+                tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>
 
             { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
+
+
+            { isOPenUploadFile && <Model handleClose ={handleShowModelUploadFile} content={<UploadFile   handleClose={handleShowModelUploadFile}  />} /> }
 
 
         </div>

@@ -1,13 +1,15 @@
 import { 
     FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
 } from 'react-icons/fa';
-
+import moment from "moment"; 
 import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap';
 import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
+
+
 const ModelPopup = (props) => {
     
     const [model , setmodel]=useState({
@@ -34,19 +36,21 @@ const ModelPopup = (props) => {
         if(data.statusCode == 200)
     
         {
-           
+            console.log( dataItem);
+            
             setmodel((prevalue) => {
             return {
-              ...prevalue,   // Spread Operator               
-              id: dataItem.id,
-              fullName: dataItem.fullName,
-              code: dataItem.code, 
-              displayName: dataItem.displayName,
-              hour: dataItem.hour,
-              day: dataItem.day
-           
+                ...prevalue,   // Spread Operator               
+                code:  dataItem.code,
+                id: dataItem.id,
+                displayName:  dataItem.displayName,
+                status: true,
+                beginTime: dataItem.beginTime,
+                endTime: dataItem.endTime,
+                priority: dataItem.priority,
+                shortDes: dataItem.shortDes
             }
-         })
+            })
         }
       };
 
@@ -55,6 +59,7 @@ const ModelPopup = (props) => {
       };
 
     useEffect(() => {
+
         let dataItem = props.dataItem;
         if(dataItem.isView)
         {
@@ -81,12 +86,11 @@ const ModelPopup = (props) => {
         {
                 enableEdit(true);
                 const bodyRequest = {
-                id:  dataItem.id,
-
-
+                    id:  dataItem.id
                 };
                 EmployeeService.getById(
-                ConstantData.URL_masterdata_GetById,ConstantData.HEADERS,
+                ConstantData.URL_campagn_GetById,
+                ConstantData.HEADERS,
                 bodyRequest,
                 handleDisplayData, 
                 handleDisplayDataErro);
@@ -95,38 +99,42 @@ const ModelPopup = (props) => {
      }, []);
 
     const handleInputChange =(event)=> {
-
+        
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
         setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
               [nameControl]: valueControl
             }
-          })
-     
-    }
-    
-    // const AddEmploy =(event)=> {
-      
-    // }
+         })
+     }
+  
     const  AddEmploy = (event) => { 
         
             const employeeAdd = {
-                Code:  model.code,
-                DisplayName:  model.displayName,
-                FullName: model.fullName
+                code:  model.code,
+                displayName:  model.displayName,
+                status: true,
+                sumCount:0,
+                processingCount: 0,
+                closedCount: 0,
+                beginTime: model.beginTime,
+                endTime: model.endTime,
+                priority: 1,
+                ShortDes: model.shortDes
             
             };
             EmployeeService.add(
-            ConstantData.URL_masterdata_Add,ConstantData.HEADERS,
+            ConstantData.URL_campagn_Add,
+            ConstantData.HEADERS,
             employeeAdd,
             handleSucess, 
             handleErr);
+    }
         // props.handleAdd(model);
 
-    }
+    
     const handleSucess = (data) => {    
         if(data.statusCode == 200)
         {
@@ -150,45 +158,52 @@ const ModelPopup = (props) => {
 
     }
     
-    const  UpdateEmploy = (event) => { 
-            
+    const  UpdateEmploy = (event) => {
+        
             const modelUpdate = {
                 id: model.id,
-                fullName: model.fullName,
-                displayName:model.displayName,
-                hour: model.hour,
-                day: model.day
-            
-
+                displayName:  model.displayName,
+                status: true,
+                sumCount:0,
+                processingCount: 0,
+                closedCount: 0,
+                beginTime: model.beginTime,
+                endTime: model.endTime,
+                priority: model.priority,
+                ShortDes: model.shortDes
             };
-
-            EmployeeService.update(ConstantData.URL_masterdata_Update,ConstantData.HEADERS,
-            modelUpdate,
-            handleSucessUpdate, 
-            handleErrUpdate);
+            EmployeeService.update(
+                ConstantData.URL_campagn_Update,
+                ConstantData.HEADERS,
+                modelUpdate,
+                handleSucessUpdate, 
+                handleErrUpdate
+            );
             props.handleUpdate(model);
 
     }
-    const handleSucessUpdate = (data) => {  
-        
-                if(data.statusCode == 200)
-                {
-                    
-                    props.handleUpdate(model);  
-                }
-                else 
-                {
+    const dateForPicker = (dateString) => {
+        return moment(new Date(dateString)).format('YYYY-MM-DD')
+    };
+    
+    const handleSucessUpdate = (data) => {
+            if(data.statusCode == 200)
+            {
+                props.handleUpdate(model);  
+            }
+            else 
+            {
 
-                    toast.error('Có lỗi khi cập nhật:'+ data.value, {
-                        position: "top-center",
-                        autoClose: 5000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: false,
-                        draggable: false,
-                        progress: undefined,
-                        });
-                }
+                toast.error('Có lỗi khi cập nhật:'+ data.value, {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: false,
+                            draggable: false,
+                            progress: undefined,
+                });
+            }
     }
 
     const handleErrUpdate = (data) => {
@@ -196,8 +211,6 @@ const ModelPopup = (props) => {
        
        
     }
-
-
 
     return (
         <div className="model">
@@ -216,8 +229,8 @@ const ModelPopup = (props) => {
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="fullName" placeholder="Tên chiến dịch" 
-                        onChange={handleInputChange} value = {model.fullName} required />
+                        name ="displayName" placeholder="Tên chiến dịch" 
+                        onChange={handleInputChange} value = {model.displayName} required />
                         <Form.Control.Feedback type="invalid">
                                 Trường bặt buộc
                         </Form.Control.Feedback>
@@ -229,28 +242,42 @@ const ModelPopup = (props) => {
                            onChange={handleInputChange} 
                            value = {model.code} required />
                     </InputGroup>
-
-
-                    <InputGroup className="mb-2">
+                    
+                   <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
-                          placeholder="Mô tả"   
-                           onChange={handleInputChange} 
-                           value = {model.code} required />
+                         <Form.Control
+                            type="date"
+                            name="beginTime"
+                            value ={dateForPicker(model.beginTime)}
+                            placeholder="Ngày bắt đầu"
+                            onChange={handleInputChange} 
+                        
+                             />
+
                     </InputGroup>
                     
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
-                          placeholder="Mô tả"   
-                           onChange={handleInputChange} 
-                           value = {model.code} required />
+                        <Form.Control
+                        type="date"
+                        name="endTime"
+                        value ={dateForPicker(model.endTime)}
+                        placeholder="Ngày kết thúc"
+                        onChange={handleInputChange} 
+                     />
                     </InputGroup>
 
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaEnvelope />
                         </InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Ngày"  name ="day"  onChange={handleInputChange}  value = {model.day}   />
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Mô tả"  name ="shortDes"  onChange={handleInputChange}  value = {model.shortDes}   />
+                    </InputGroup>
+
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon">
+                             <FaEnvelope />
+                        </InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Độ ưu tiên"  name ="priority"  onChange={handleInputChange}  value = {model.priority}   />
                     </InputGroup>
               </form>
             </div>
@@ -258,10 +285,10 @@ const ModelPopup = (props) => {
             <div className="footer-model">
 
                 {
-                        model.id == "-1"  ? (
-                        <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
+                        ( model.id == "-1" )  ? (
+                            <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
                         ) : (
-                        <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
+                            <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
                         )   
                 }
               

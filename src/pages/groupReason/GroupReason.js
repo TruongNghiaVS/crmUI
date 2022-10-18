@@ -126,26 +126,21 @@ const GroupReason = () => {
 
         if(!isInit)
         {
-
-            document.title = "Danh sách nhóm trạng thái";
+             document.title = "Danh sách nhóm trạng thái";
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const token = params.get('token');
-           
             //  console.log(token)//123
             if( token!= null && token !="")
              {
-                  let valueControl =token;
-                  let nameControl ="tokenSearch";
-                 
-                  setKeySearch((prevalue) => {
+                        let valueControl =token;
+                        let nameControl ="tokenSearch";
+                        setKeySearch((prevalue) => {
                         return {
                         ...prevalue,   // Spread Operator               
                         [nameControl]: valueControl
                         }
-                  })
-                    
-    
+                        })
              }
              getDataEmployee();
              setInit(true);
@@ -176,7 +171,6 @@ const GroupReason = () => {
    
 
     const handleUpdate = (data) => {
-        
         toast.success('Câp nhật thành công!', {
                 position: "top-right",
                 autoClose: 3000,
