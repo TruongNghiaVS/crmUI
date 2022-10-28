@@ -48,18 +48,24 @@ const Header = ({ classHeader }) => {
                 <ul className='menu'>
                     <li className='list-link'><NavLink className='nav-link link-main' to="/">ACS</NavLink></li>
                     <li className='list-link'>
-                        <NavLink className='nav-link' to="/follow-up">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
+                        <NavLink className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink  className='nav-link' to="/follow-up/watch-list">Danh sách theo dõi</NavLink></li>
-                            <li className='sub-list-link'><NavLink  className='nav-link' to="/follow-up/new-list">Danh sách mới phân</NavLink></li>
+                            <li className='sub-list-link'><NavLink  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</NavLink></li>
+                            <li className='sub-list-link'><NavLink  className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</NavLink></li>
                         </ul>
                     </li>
                     <li className='list-link'>
                         <NavLink className='nav-link' to="/">Báo cáo <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Báo cáo 1</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Báo cáo 2</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Báo cáo 3</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC chiến dịch gọi ra</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC Lịch sử tác động</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC theo khung giờ</NavLink></li>
+
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhập kết quả</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC talktime</NavLink></li>
+
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC Đăng nhập </NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Dashboard </NavLink></li>
                         </ul>
                     </li>
                     { isHiddenMenu ? <li className='list-link'>

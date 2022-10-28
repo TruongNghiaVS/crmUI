@@ -6,10 +6,9 @@ import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap'
 import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/EmployeeService';
+import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
-import {GiSightDisabled} from 'react-icons/gi';
-const ModelAddUser = (props) => {
+const ModelPopup = (props) => {
     
     const [model  , setmodel]=useState({
        
@@ -37,25 +36,17 @@ const ModelAddUser = (props) => {
         if(data.statusCode == 200)
     
         {
-
-            let isActive =0;
-            if( dataItem.isActive == 1)
-            {
-                isActive =1;
-            }
            
             setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
               id: dataItem.id,
               fullName: dataItem.fullName,
-              status:isActive,
-              userName: dataItem.userName, 
-              phoneNumber: dataItem.phoneNumber,
-              email: dataItem.email, 
-              roleEm: dataItem.roleId,
-              address: dataItem.address,
-              companyName: dataItem.companyName
+              code: dataItem.code, 
+              displayName: dataItem.displayName,
+              hour: dataItem.hour,
+              day: dataItem.day
+           
             }
           })
         }
@@ -85,13 +76,11 @@ const ModelAddUser = (props) => {
                   ...prevalue,   // Spread Operator               
                   id: dataItem.id,
                   fullName: dataItem.fullName,
-                  userName: dataItem.userName, 
-                  phoneNumber: dataItem.phoneNumber,
-                  email: dataItem.email, 
-                  address: dataItem.address,
-                  companyName: dataItem.companyName,
-                  roleEm: "1",
-                  isView: false
+                  code: dataItem.code, 
+                  displayName: dataItem.displayName,
+                  hour: dataItem.hour,
+                  day: dataItem.day
+               
                 }
               })
              
@@ -111,7 +100,7 @@ const ModelAddUser = (props) => {
               
               };
               
-              EmployeeService.add(ConstantData.URL_Employee_GetById,ConstantData.HEADERS,
+              EmployeeService.getById(ConstantData.URL_masterdata_GetById,ConstantData.HEADERS,
                 bodyRequest,
                 handleDisplayData, 
                 handleDisplayDataErro);
@@ -151,19 +140,16 @@ const ModelAddUser = (props) => {
 
         
         const employeeAdd = {
-            UserName:  model.userName,
-            RoleId:  model.roleEm,
-            Email: model.email,
-            FullName: model.fullName,
-            Phone: model.phoneNumber,
-            Pass: model.password,
-            status: model.status
+            Code:  model.code,
+            DisplayName:  model.displayName,
+            FullName: model.fullName
+           
           };
     
 
        
    
-        EmployeeService.add(ConstantData.URL_Employee_Add,ConstantData.HEADERS,
+        EmployeeService.add(ConstantData.URL_masterdata_Add,ConstantData.HEADERS,
             employeeAdd,
             handleSucess, 
             handleErr);
@@ -209,18 +195,15 @@ const ModelAddUser = (props) => {
     
         const modelUpdate = {
             id: model.id,
-            RoleId:  model.roleEm,
-            Email: model.email,
-            FullName: model.fullName,
-            Phone: model.phoneNumber,
-            Address: model.address,
-            companyId:model.companyName,
-            status: model.status
-
+            fullName: model.fullName,
+            displayName:model.displayName,
+            hour: model.hour,
+            day: model.day
+        
 
           };
 
-        EmployeeService.update(ConstantData.URL_Employee_Update,ConstantData.HEADERS,
+        EmployeeService.update(ConstantData.URL_masterdata_Update,ConstantData.HEADERS,
             modelUpdate,
             handleSucessUpdate, 
             handleErrUpdate);
@@ -266,10 +249,10 @@ const ModelAddUser = (props) => {
             <div className="header-model">
                     {
                     model.id == "-1" ? (
-                            <h4>Thêm người dùng mới</h4>
+                            <h4>Thêm trạng thái mới</h4>
                     ) : 
                     (
-                            <h4>Thông tin người dùng</h4>
+                            <h4>Thông tin trạng thái</h4>
                     )}
             </div>
 
@@ -278,7 +261,7 @@ const ModelAddUser = (props) => {
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="fullName" placeholder="Tên người dùng" 
+                        name ="fullName" placeholder="Tên tháng thái" 
                         onChange={handleInputChange} value = {model.fullName} required />
                             <Form.Control.Feedback type="invalid">
                                     Trường bặt buộc
@@ -286,68 +269,24 @@ const ModelAddUser = (props) => {
                     </InputGroup>
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "userName"  placeholder="Tên đăng nhập"    onChange={handleInputChange} value = {model.userName} required />
+                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"  placeholder="Mã trạng thái"    onChange={handleInputChange} value = {model.code} required />
                     </InputGroup>
 
-                    {
-                 model.id == "-1" ? (
+
                     <InputGroup className="mb-2">
-                    <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
-                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" name ="password" type="password" placeholder="Mật khẩu" onChange={handleInputChange} value = {model.password}  required />
-                </InputGroup>
-                ) : (
-                    <div></div>
-                )}
-                  
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text><FaBuilding /></InputGroup.Text>
-                        <Form.Select aria-label="Công ty" name = "companyName" onChange={handleInputChange} value = {model.companyName}>
-                        <option selected value="1" >ACS</option>
-                        <option value="2" >ACS2</option>
-              
-                        </Form.Select>
-
-                        <Form.Select aria-label="Collection" name ="groupName" onChange={handleInputChange} value = {model.groupName}>
-                                <option value="1">Collection</option>
-                                <option selected value="2">Collection2</option>
-                              
-                        </Form.Select>
-
-                        <Form.Select aria-label="Role nhân viên" name ="roleEm" onChange={handleInputChange} value = {model.roleEm} >
-                            <option selected value="1">Điện thoại viên</option>
-                            <option value="2">Admin</option>
-                            <option value="3">Quản lý</option>
-                        </Form.Select>
-
+                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  name = "displayName"  placeholder="Tên Hiển thị"    onChange={handleInputChange} value = {model.displayName} required />
                     </InputGroup>
                     
-                      <InputGroup className="mb-2">
+                    <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Điện thoại" name ="phoneNumber" onChange={handleInputChange}  value = {model.phoneNumber}  required />
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Giờ" name ="hour" onChange={handleInputChange}  value = {model.hour}  required />
                     </InputGroup>
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaEnvelope /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Email"  name ="email"  onChange={handleInputChange}  value = {model.email}   />
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Ngày"  name ="day"  onChange={handleInputChange}  value = {model.day}   />
                     </InputGroup>
-                    <InputGroup>
-                        <InputGroup.Text className="input-group-icon"><FaPortrait /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Địa chỉ liên hệ" name ="address" onChange={handleInputChange} value  = {model.address}  />
-                    </InputGroup>
-
-                    <InputGroup className="mb-2">
-                       <InputGroup.Text className="input-group-icon">
-                             <GiSightDisabled    />
-                        </InputGroup.Text>
-
-                        <Form.Select aria-label="Collection" name ="status" onChange={handleInputChange} value = {model.status}>
-                                <option value= "1">Hoạt động</option>
-                                <option selected value= "0">Vô hiệu hóa</option>
-                              
-                        </Form.Select>
-
-                       
-
-                    </InputGroup>
+               
                
                 </form>
             </div>
@@ -367,4 +306,4 @@ const ModelAddUser = (props) => {
     );
 };
 
-export default ModelAddUser;
+export default ModelPopup;

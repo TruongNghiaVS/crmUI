@@ -54,5 +54,20 @@ class ConstantData {
      static URL_campagn_Delete = `${ConstantData.DOMAIN}/api/campagn/delete`;
      static URL_campagn_GetById = `${ConstantData.DOMAIN}/api/campagn/getById`;
      static URL_campagn_exportData = `${ConstantData.DOMAIN}/api/campagn/exportData`;
+
+
+      //campagn profile
+    static URL_campagnProfile_GetALl = `${ConstantData.DOMAIN}/api/campagnProfile/getAll`;
+    static URL_campagnProfile_Add = `${ConstantData.DOMAIN}/api/campagnProfile/add`;
+    static URL_campagnProfile_Update = `${ConstantData.DOMAIN}/api/campagnProfile/update`;
+    static URL_campagnProfile_Delete = `${ConstantData.DOMAIN}/api/campagnProfile/delete`;
+    static URL_campagnProfile_GetById = `${ConstantData.DOMAIN}/api/campagnProfile/getById`;
+    static URL_campagnProfile_exportData = `${ConstantData.DOMAIN}/api/campagnProfile/exportData`;
+
+    //campagn profile_Assigee
+    static URL_campagnProfile_Assigee = `${ConstantData.DOMAIN}/api/campagn/assignes`;
+
+    static URL_campagnProfile_Assigee_getAll = `${ConstantData.DOMAIN}/api/campagn/getAllCampangeAssigess`;
+ 
 }
 export default ConstantData;

@@ -138,11 +138,14 @@ const ModelPopup = (props) => {
     // }
     const  AddEmploy = (event) => { 
 
+
+        let groupId =   window.location.pathname.split("/").pop();
         
         const employeeAdd = {
             Code:  model.code,
             DisplayName:  model.displayName,
-            FullName: model.fullName
+            FullName: model.fullName,
+            GroupId: groupId
            
           };
     
@@ -192,16 +195,15 @@ const ModelPopup = (props) => {
         //     return;
         // }
         // setOpeartor(true);
-    
+        let groupId =   window.location.pathname.split("/").pop();
         const modelUpdate = {
             id: model.id,
             fullName: model.fullName,
             displayName:model.displayName,
             hour: model.hour,
-            day: model.day
-        
-
-          };
+            day: model.day,
+            groupId: groupId
+        };
 
         EmployeeService.update(ConstantData.URL_masterdata_Update,ConstantData.HEADERS,
             modelUpdate,

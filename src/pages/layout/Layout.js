@@ -6,13 +6,19 @@ import Login from '../login/Login';
 import User from '../user/User';
 import Dashboard from '../dashboard/Dashboard';
 import FollowUp from '../followUp/FollowUp';
+
+import FollowUpNew from '../fololowNew';
 import React, { useState, useEffect } from 'react'
 import Reason from '../reason/Reason';
 import GroupReason from '../groupReason/GroupReason';
 
 import Campangn from '../campagn';
 
+import CampaignAssign from '../campaignAssign'
+
 import { ToastContainer } from 'react-toastify';
+
+import {ticketView} from '../followUp/ticketView/TicketView';
 import 'react-toastify/dist/ReactToastify.css';
 const Layout = (props) => {
     const [heightLayout, setHeightLayout] = useState(0);
@@ -46,7 +52,11 @@ const Layout = (props) => {
 
 const Screen = (props) => {
     switch (props.screen) {
-    
+        
+        case 'campaignAssign':
+            return <CampaignAssign/>;
+        case 'follow-up-new':
+            return <FollowUpNew />;
         case 'home':
             return <Home />;
         case 'login':

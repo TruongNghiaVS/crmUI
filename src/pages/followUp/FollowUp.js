@@ -25,27 +25,29 @@ const FollowUp = (props) => {
     }, [detail, valTitle]);
 
     return (
-        detail === "ticket-view" ? <TicketView /> :
-        <div className="follow-up">
-            <div className='box-tbl'>
-                <h4 className='box-tit'>
-                    <FaTable className="icon-tit" />
-                    {valTitle}
-                </h4>
 
-                <div className="list-feature custom-feature">
-                    <div className="search-feature">
-                        <FaFilter />
-                        <input className="input-search" type="text" placeholder="Tìm kiếm" />
-                        <button className="btn-search">Tìm kiếm</button>
-                    </div>
-                </div>
+        <TicketView />
+        // detail === "ticket-view" ? <TicketView /> :
+        // <div className="follow-up">
+        //     <div className='box-tbl'>
+        //         <h4 className='box-tit'>
+        //             <FaTable className="icon-tit" />
+        //             {valTitle}
+        //         </h4>
 
-                <Table theadData={ DataJson.theadDataFollowUp } tbodyData={ DataJson.tbodyDataFollowUp } tblClass="tbl-custom-data" />
+        //         <div className="list-feature custom-feature">
+        //             <div className="search-feature">
+        //                 <FaFilter />
+        //                 <input className="input-search" type="text" placeholder="Tìm kiếm" />
+        //                 <button className="btn-search">Tìm kiếm</button>
+        //             </div>
+        //         </div>
 
-                <p className="totalTable">Tổng: { DataJson.tbodyDataFollowUp.length }</p>
-            </div>
-        </div>
+        //         <Table theadData={ DataJson.theadDataFollowUp } tbodyData={ DataJson.tbodyDataFollowUp } tblClass="tbl-custom-data" />
+
+        //         <p className="totalTable">Tổng: { DataJson.tbodyDataFollowUp.length }</p>
+        //     </div>
+        // </div>
     );
 };
 

@@ -9,15 +9,18 @@ import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
-
+import CampagnService from '../../services/CampagnService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
+
 
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
-const Campagn = () => {
+const CampaignAssign = () => {
+    
     const [isOpenModel, setIsOpenModel] = useState(false);
+    const [dataSelect, setDataSelect] = useState([]);
 
     const [campagnIdSelect, setCampagnSelect] = useState(-1);
     const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
@@ -38,16 +41,9 @@ const Campagn = () => {
           setisOPenUploadFile(!isOPenUploadFile);
     }
 
-    const handleShowModelUploadFile = () => {
-        
 
-        setisOPenUploadFile(!isOPenUploadFile);
-        
-    }
-    
     const handlePaging = (data)=> {
-
-            const key = 'currentPage';
+         const key = 'currentPage';
             const value = data;
             setObjectPaging(prevState => ({
             ...prevState,
@@ -59,86 +55,63 @@ const Campagn = () => {
             setInit(false);
     }
 
-    const [employeeItem, setDataItem] = useState({
-            "id": "-1",
-            "fullName": "",
-            "code": "",
-            "displayName": "",
-            "hour": 0,
-            "day": 0
-    });
-
 
     
+    const updateDataSelect = (dataItem)=> {
+       
+         if(dataItem)
+        {
 
-    const handleUpdateById = (id)=> {
-            setDataItem((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                id:id
-            }
-            });
-            setDataItem((prevalue) => {
-                return {
-                    ...prevalue,   // Spread Operator               
-                    isView:false
-                }
-                });
-            setIsOpenModel(!isOpenModel);
-    }
-
-    const handleViewById = (id)=> {
-        setDataItem((prevalue) => {
-        return {
-            ...prevalue,   // Spread Operator               
-            id:id
         }
+        let modelData = dataSelect;
+
+        var item =   modelData.find(itemData => {
+            return itemData.key == dataItem.key;
         });
-        setDataItem((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                    isView:true
-            }
-            });
+        if(item)
+        {
             
-        setIsOpenModel(!isOpenModel);
-    }
-    
-    const handleExportData = ()=> {
-          let bodySearch = {
-                Token: obejctSearch.tokenSearch, 
-                Page:  obejctPaging.currentPage,
-                Limit: obejctPaging.limt
+            item.sumCounted = dataItem.sumCounted;
+            
+        }
+        else 
+        {
+            modelData.push({
+                sumCounted: dataItem.sumCounted,
+                key: dataItem.key, 
+                id: dataItem.id
 
-          };
-          EmployeeService.exportData(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-                        if (response.statusCode === 200) {
-                            exportDataExcel(response.value.data);
-
-                        } else {
-                            
-                        }
-          }, (error) => {
-           
-          });
-        
-    }
+            });
+        }
+   
+        setDataSelect(modelData);
     
+    }
+
+   
+
+  
     const [dataEmployee, setData] = useState( {
         tbodyDataUser: [
          
         ],
-    }  );
+    });
     
     
     useEffect(() => {
+     
+
         
         if(!isInit)
         {
-            document.title = "Danh sách trạng thái";
+        
+          
+            document.title = "Phân case cho sale";
             const search = window.location.search;
             const params = new URLSearchParams(search);
+            console.log(params);
             const token = params.get('token');
+
            if( token!= null && token !="")
              {
                   let valueControl =token;
@@ -152,67 +125,47 @@ const Campagn = () => {
              }
              getDataEmployee();
              setInit(true);
+
         }
-    }, [obejctPaging]);
+    }, [obejctPaging,dataSelect]);
 
     const btnSerachKey = useRef(null);
 
-    const handleAddUser = (data) => {
-        
-        setIsOpenModel(!isOpenModel);
-        toast.success('Thêm thành công!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        getDataEmployee();
-    }
-    
-    const handleUpdate = (data) => {
-        
-        toast.success('Câp nhật thành công!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-        });
-        getDataEmployee();
-    }
     
     const getDataEmployee = ()=> {
-            
-                        let bodySearch = {
+                      let campaignId =   window.location.pathname.split("/").pop();
+                      let bodySearch = {
                                 Token: obejctSearch.tokenSearch, 
                                 Page:  obejctPaging.currentPage,
-                                Limit: obejctPaging.limt
+                                Limit: obejctPaging.limt,
+                                CampaignId: campaignId
                         };
                         
-                        EmployeeService.GetAll(ConstantData.URL_campagn_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+                        CampagnService.getAllCampangAsignee(ConstantData.HEADERS, bodySearch, (response) => {
                         if (response.statusCode === 200) {
-                                    renderData(response.value);
+                            renderData(response.value);
                         } else {
 
+
                         }
-        }, (error) => {
+
+
+                        }, (error) => {
         
-        });
+                    
+                    
+                        });
 
     }
 
     const exportDataExcel = (dataReder) => {
 
         var DataExport = dataReder;
-        let workBook = XLSX.utils.book_new();
+          let workBook = XLSX.utils.book_new();
         const workSheet = XLSX.utils.json_to_sheet(DataExport);
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
+
         let exportFileName = `dataMaster.xls`;
         XLSX.writeFile(workBook,exportFileName);
 
@@ -246,22 +199,74 @@ const Campagn = () => {
               })
 
     }
+    
+    const showloadingData= () => {
 
-
-    const handleShowModel = () => {
-
-        setDataItem((prevalue) => {
-            return {
-                ...prevalue,          
-                id:"-1"
-            }
-        })
-        setIsOpenModel(!isOpenModel);
+        Swal.fire({
+            title: 'Đang được cập nhật!',
+            html: 'Vui lòng <b></b> chờ trong bản sau.',
+            didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+          
+            },
+          
+            });
+            
+    }
+    const searchData =()=> {
         
+        Swal.fire({
+            title: 'Bạn chắn chắn thao tác phân',
+            text: "Bạn sẽ không backup lại thao tác",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý!'
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+                showloadingData();
+                ProcessAssignee();
+             }
+          })
+
+
     }
 
-    const searchData =()=> {
-        getDataEmployee();
+    const ProcessAssignee =(event)=> {
+        let campaignId =   window.location.pathname.split("/").pop();
+        var bodyRequest = {
+            DataRequest:  dataSelect,
+            CampangId: campaignId
+        };
+        CampagnService.ProcessAssigee(ConstantData.HEADERS,
+            bodyRequest,
+            processAssigeeSuccess, 
+            handleDeleteError);
+    }
+
+    const processAssigeeSuccess  = (data) => {
+        
+            if(data.statusCode == 200)
+            { 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Phân case thành công',
+                    showConfirmButton: true
+                })
+            }
+            else 
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Có lỗi',
+                    text: 'Có lỗi xảy ra khi phân case!',
+                    footer: '<a href="">Liên hệ admin?</a>'
+                })
+            }
+
     }
 
     const handleInputChangesearch =(event)=> {
@@ -276,12 +281,6 @@ const Campagn = () => {
           })
      
     }
-
-
-    const openAssignee = (id)=> {
-        window.open("/campaignAssign/"+id);
-      }
-
     
     const  deleteEmploy = (idEmp) => { 
           const deleteIdModel = {
@@ -305,13 +304,13 @@ const Campagn = () => {
         else 
         {
                 toast.error('Có lỗi khi xóa:'+ data.value, {
-                       position: "top-center",
+                        position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: false,
                         draggable: false,
-                        progress: undefined, 
+                        progress: undefined,
                 });
         }
 
@@ -321,23 +320,6 @@ const Campagn = () => {
 
     }
     
-    const handleDeleteEmpl = (id)=> {
-         Swal.fire({
-            title: 'Bạn chắc chắn xóa',
-            text: "Bạn sẽ không lấy lại được dữ liệu",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Đồng ý!'
-          })
-          .then((result) => {
-            if (result.isConfirmed) {
-                deleteEmploy(id);
-             }
-          })
-
-    }
 
 
     return (
@@ -345,15 +327,11 @@ const Campagn = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Chiến dịch
+                    Danh sách sale cần phân
                 </h4>
 
                 <div className="list-feature">
-                <div className="button-feature">
-                    <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
-                    <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button>
-             
-                </div>
+                    
                 <div className="search-feature">
                     <FaFilter />
                     <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
@@ -361,23 +339,28 @@ const Campagn = () => {
                 </div>
                 </div>
 
-                <Table theadData={ DataJson.theadDataCampang } dataDraw={dataEmployee} 
-                handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser }
+                <Table theadData={ DataJson.theadDataCampangAssi } dataDraw={dataEmployee} 
+                 tbodyData={ DataJson.tbodyDataUser }
                 handleimportRow = {handleimportRow}
-                openAssignee = {openAssignee}
+                updateDataSelect = {updateDataSelect}
                 tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
+
+              
             
             </div>
 
-            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
+            <div className="list-feature">
+                <div className="search-feature">
+                    <button  className="btn-search"  onClick= {searchData}>Tiến hành phân</button>
+                
+            </div>
 
-
-            { isOPenUploadFile && <Model handleClose ={handleShowModelUploadFile} content={<UploadFile idPass = {campagnIdSelect}   handleClose={handleShowModelUploadFile}  />} /> }
-
+         
+            </div>
 
         </div>
     );
 };
 
-export default Campagn;
+export default CampaignAssign;

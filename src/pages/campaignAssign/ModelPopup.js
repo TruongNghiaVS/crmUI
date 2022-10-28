@@ -1,8 +1,6 @@
 import { 
     FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
 } from 'react-icons/fa';
-import {GiSightDisabled} from 'react-icons/gi';
-import {MdFormatListNumberedRtl} from  'react-icons/md'
 import moment from "moment"; 
 import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap';
 import  { useState } from "react";
@@ -10,7 +8,6 @@ import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
-import MasterDataService from '../../services/GroupReasonService';
 
 
 const ModelPopup = (props) => {
@@ -19,29 +16,6 @@ const ModelPopup = (props) => {
 
     });
 
-    const [statusList , setStatusList]=useState([]);
-
-    const [loadFist , setLoadFirst] =  useState(true);
-    const getAllGroupStatus = ()=> {
-            
-        let bodySearch = {
-                Token:"", 
-                Page:  1,
-                Limit: 100
-        };
-        
-        MasterDataService.GetAll(ConstantData.URL_groupReason_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-        if (response.statusCode === 200) {
-          
-                      setStatusList(response.value.data);
-        } else {
-
-        }
-}, (error) => {
-
-});
-
-}
     const [validated, setValidated] = useState(false);
     const [isEdit, enableEdit] = useState(false);
     const [isView, enbaleView] = useState(false);
@@ -62,20 +36,15 @@ const ModelPopup = (props) => {
         if(data.statusCode == 200)
     
         {
-            let statusDispaly =0;
-            if(dataItem.status)
-            {
-                statusDispaly = 1;
-            }
+            console.log( dataItem);
             
             setmodel((prevalue) => {
             return {
                 ...prevalue,   // Spread Operator               
                 code:  dataItem.code,
                 id: dataItem.id,
-                groupStatus: dataItem.groupStatus,
                 displayName:  dataItem.displayName,
-                status: statusDispaly,
+                status: true,
                 beginTime: dataItem.beginTime,
                 endTime: dataItem.endTime,
                 priority: dataItem.priority,
@@ -88,14 +57,8 @@ const ModelPopup = (props) => {
       const handleDisplayDataErro = (event) => {
         
       };
-     
-    useEffect(() => {
 
-        if(loadFist)
-        {
-            getAllGroupStatus();
-            setLoadFirst(false);
-        }
+    useEffect(() => {
 
         let dataItem = props.dataItem;
         if(dataItem.isView)
@@ -111,7 +74,6 @@ const ModelPopup = (props) => {
                         id: dataItem.id,
                         fullName: dataItem.fullName,
                         code: dataItem.code, 
-                        status: 1,
                         displayName: dataItem.displayName,
                         hour: dataItem.hour,
                         day: dataItem.day
@@ -153,15 +115,14 @@ const ModelPopup = (props) => {
             const employeeAdd = {
                 code:  model.code,
                 displayName:  model.displayName,
-                status: 1,
+                status: true,
                 sumCount:0,
                 processingCount: 0,
                 closedCount: 0,
                 beginTime: model.beginTime,
                 endTime: model.endTime,
                 priority: 1,
-                ShortDes: model.shortDes,
-                groupStatus: model.groupStatus
+                ShortDes: model.shortDes
             
             };
             EmployeeService.add(
@@ -171,7 +132,7 @@ const ModelPopup = (props) => {
             handleSucess, 
             handleErr);
     }
-        // props.handleAdd(model);
+       
 
     
     const handleSucess = (data) => {    
@@ -202,11 +163,13 @@ const ModelPopup = (props) => {
             const modelUpdate = {
                 id: model.id,
                 displayName:  model.displayName,
-                status: model.status,
+                status: true,
+                sumCount:0,
+                processingCount: 0,
+                closedCount: 0,
                 beginTime: model.beginTime,
                 endTime: model.endTime,
                 priority: model.priority,
-                groupStatus:model.groupStatus,
                 ShortDes: model.shortDes
             };
             EmployeeService.update(
@@ -312,49 +275,9 @@ const ModelPopup = (props) => {
 
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon">
-                             <MdFormatListNumberedRtl />
+                             <FaEnvelope />
                         </InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Độ ưu tiên"  name ="priority"  onChange={handleInputChange}  value = {model.priority}   />
-                    </InputGroup>
-
-
-                    <InputGroup className="mb-2">
-                       <InputGroup.Text className="input-group-icon">
-                             <GiSightDisabled    />
-                        </InputGroup.Text>
-
-                        <Form.Select aria-label="Collection" name ="status" onChange={handleInputChange} value = {model.status}>
-                                <option value= "1">Hoạt động</option>
-                                <option selected value= "0">Vô hiệu hóa</option>
-                              
-                        </Form.Select>
-
-                       
-
-                    </InputGroup>
-
-
-                    
-                    <InputGroup className="mb-2">
-                       <InputGroup.Text className="input-group-icon">
-                             <GiSightDisabled    />
-                        </InputGroup.Text>
-
-                        <Form.Select aria-label="Collection" name ="groupStatus" onChange={handleInputChange} value = {model.groupStatus}>
-                        <option selected value= "">Chọn danh sách nhóm trạng thái</option>
-                           {
-
-                        
-                            statusList.map((statusItem, i) => { 
-                                   return ( <option value= {statusItem.id}>{statusItem.fullName}</option>) 
-                            })}
-                               
-                               
-                              
-                        </Form.Select>
-
-                       
-
                     </InputGroup>
               </form>
             </div>

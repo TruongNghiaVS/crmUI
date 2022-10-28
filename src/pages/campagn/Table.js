@@ -1,4 +1,6 @@
 import { FaEye, FaPen, FaTrashAlt,FaFileImport } from "react-icons/fa";
+import { MdAssistantNavigation } from "react-icons/md";
+
 import React, { useState } from "react";
 import moment from "moment"; 
 const TableHeadItem = ({ item }) => {
@@ -15,7 +17,7 @@ const getStatusText = (isActive)=> {
     return <p>Không hoạt động</p>
 }
 
-const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow }) => {
+const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow,openAssignee }) => {
     rowIndex = rowIndex +1;
     return (
         <tr>
@@ -29,9 +31,10 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                     <td>{data.closedCount}</td>
                     <td>{moment(data.beginTime).format("DD/MM/YYYY")}</td>
                     <td>{moment(data.endTime).format("DD/MM/YYYY")}</td>
-                    <td>{data.authorName}</td>
+                   
                     <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
-                    <td>{data.companyId }</td>
+                    <td>{data.authorName}</td>
+                    <td>Vietbank</td>
                     <td>{data.updateByName} </td>
                     <td>{moment(data.updateAt).format("DD/MM/YYYY")} </td>
                     <td>{data.priority}</td>
@@ -41,12 +44,14 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                         <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
                         <FaFileImport onClick={()=>handleimportRow(data.id)} className='icon-tbl' />
 
+                        <MdAssistantNavigation onClick={()=>openAssignee(data.id)} className='icon-tbl'/>
+                       
                     </td>
         </tr>
     );
 };
 
-const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById, handleimportRow }) => {
+const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById, handleimportRow, openAssignee }) => {
      
     return (
         <table className={tblClass}>
@@ -73,6 +78,7 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
                                             handleViewById = {handleViewById}
                                             handleUpdateById ={handleUpdateById}
                                             handleimportRow = {handleimportRow}
+                                            openAssignee = {openAssignee}
                                     />;
                         })
                 }

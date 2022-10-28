@@ -96,7 +96,7 @@ const Reason = () => {
             Limit: obejctPaging.limt
 
           };
-          EmployeeService.exportData(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+          EmployeeService.exportData(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
             if (response.statusCode === 200) {
                 exportDataExcel(response.value.data);
 
@@ -125,7 +125,7 @@ const Reason = () => {
         if(!isInit)
         {
 
-            document.title = "Danh sách trạng thái";
+            document.title = "Danh sách hồ sơ";
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const token = params.get('token');
@@ -170,9 +170,7 @@ const Reason = () => {
         });
         getDataEmployee();
     }
-
-   
-
+    
     const handleUpdate = (data) => {
         
         toast.success('Câp nhật thành công!', {
@@ -194,15 +192,14 @@ const Reason = () => {
     const getDataEmployee = ()=> {
 
          
-        let groupStatus =   window.location.pathname.split("/").pop();
+        
          let bodySearch = {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt,
-            groupStatus: groupStatus
+            Limit: obejctPaging.limt
 
           };
-          EmployeeService.GetAll(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+          EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
             if (response.statusCode === 200) {
                 renderData(response.value);
             } else {
@@ -227,21 +224,7 @@ const Reason = () => {
         let exportFileName = `dataMaster.xls`;
          XLSX.writeFile(workBook,exportFileName);
 
-        //  const link = document.createElement('a');
-        // link.href = exportFileName;
-        // link.setAttribute(
-        //   'download',
-        //   `employeeReport.xls`,
-        // );
-    
-        // // Append to html link element page
-        // document.body.appendChild(link);
-    
-        // // Start download
-        // link.click();
-    
-        // // Clean up and remove the link
-        // link.parentNode.removeChild(link);
+      
         
       
 
@@ -326,7 +309,7 @@ const Reason = () => {
             Id:  idEmp,
            
           };
-          EmployeeService.delete(ConstantData.URL_masterdata_Delete,ConstantData.HEADERS,
+          EmployeeService.delete(ConstantData.URL_campagnProfile_Delete,ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);
@@ -383,14 +366,14 @@ const Reason = () => {
         <div className="user">
             <div className='box-tbl'>
                 <h4 className='box-tit'>
-                    <FaTable className="icon-tit" />
-                    Trạng thái
+                <FaTable className="icon-tit" />
+                     Hồ sơ theo dõi
                 </h4>
 
                 <div className="list-feature">
                 <div className="button-feature">
-                    <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
-                    <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button>
+                    {/* <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
+                    <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button> */}
                     {/* <button className="btn-ft btn-more">Mở rộng</button> */}
                 </div>
                 <div className="search-feature">
@@ -400,7 +383,7 @@ const Reason = () => {
                 </div>
                 </div>
 
-                <Table theadData={ DataJson.theadDataReason } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>

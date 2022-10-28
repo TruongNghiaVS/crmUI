@@ -30,7 +30,7 @@ const Login = () => {
       if (userInfo === null || userInfo.isLogin === 201) {
         return;
       } else {
-        navigate('/follow-up');
+        navigate('/follow-up-new');
         setIsLoading(false);
       }
     }
@@ -56,7 +56,7 @@ const Login = () => {
     localStorage.setItem('authorizeKey', JSON.stringify(data));
     localStorage.setItem('user-info', JSON.stringify(dataJson));
 
-    navigate('/follow-up');
+    navigate('/follow-up-new/watch-list');
   };
   // function LoginSucess(data)
   // {
@@ -102,7 +102,7 @@ const Login = () => {
 
 
       LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
-        debugger; 
+    
         if (response.statusCode === 200) {
           LoginSucess(response.value);
         } else {

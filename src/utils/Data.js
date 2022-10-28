@@ -79,6 +79,11 @@ const DataJson = {
      ],
 
 
+     theadDataCampangAssi: [
+        "STT", "Tên người dùng","SL phân", "Thêm", "Rút", "Đã phân", "Xử lý", "Chưa xử lý", 
+        "Đóng", "Phòng ban", "CTy"
+     ],
+
      theadDataGroupReason: [
         "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", 
         "Người tạo", "Ngày tạo", 
@@ -134,6 +139,12 @@ const DataJson = {
         "Họ tên", "Số hợp đồng", "Di động", "Văn phòng", "Số nhà", 
         "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày",
     ],
+
+    theadDataFollowUpNew: [
+       "STT", "Họ tên", "Số hợp đồng", "Di động", "Văn phòng", "Số nhà", 
+        "Khác", "Tình trạng", "Trạng thái","Đang giao cho", "Tạo bởi", "Tạo ngày",
+    ],
+
 
     tbodyDataFollowUp: [
         {
