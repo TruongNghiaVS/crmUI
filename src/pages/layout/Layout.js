@@ -10,6 +10,8 @@ import FollowUp from '../followUp/FollowUp';
 import FollowUpNew from '../fololowNew';
 import React, { useState, useEffect } from 'react'
 import Reason from '../reason/Reason';
+import MasterDataNew from '../masterDataNew';
+
 import GroupReason from '../groupReason/GroupReason';
 
 import Campangn from '../campagn';
@@ -17,6 +19,10 @@ import Campangn from '../campagn';
 import CampaignAssign from '../campaignAssign'
 
 import { ToastContainer } from 'react-toastify';
+
+
+
+import Relationship from '../reason/Reason';
 
 import {ticketView} from '../followUp/ticketView/TicketView';
 import 'react-toastify/dist/ReactToastify.css';
@@ -73,7 +79,10 @@ const Screen = (props) => {
             return <GroupReason/>;
         case 'campangn':
             return <Campangn/>
-            
+
+        case 'relationship':
+            return <MasterDataNew/>
+              
             
         default:
             throw new Error('Invalid Screen')

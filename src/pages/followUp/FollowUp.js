@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import TicketView from './ticketView/TicketView';
 
 const FollowUp = (props) => {
+    
     const [valTitle, setValTitle] = useState("Danh sách theo dõi");
 
     let { detail } = useParams();

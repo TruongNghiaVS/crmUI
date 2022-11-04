@@ -75,6 +75,9 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><NavLink className='nav-link' to="/groupReason">Trạng thái phiếu</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/user">Người dùng</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhóm người dùng</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi chiến dịch</NavLink></li>
                         </ul>
                     </li> : <></>}
                     <div className='nav-profile'>

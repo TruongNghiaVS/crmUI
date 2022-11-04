@@ -1,28 +1,48 @@
 import { Row, Form, InputGroup, Col, FormControl } from 'react-bootstrap';
-
-const ImpactHistory = () => {
+import moment from "moment"; 
+const ImpactHistory = ({data}) => {
     return (
-        <Row>
-            <Col>
-                <Form.Label htmlFor="basic-url">Thông tin sản phẩm</Form.Label>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Tên hàng</InputGroup.Text>
-                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-                </InputGroup>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Code</InputGroup.Text>
-                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-                </InputGroup>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Giá</InputGroup.Text>
-                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-                </InputGroup>
-                <Form.Group className="mt-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Ghi chú ban đầu</Form.Label>
-                    <Form.Control as="textarea" rows={8} />
-                </Form.Group>
-            </Col>
-        </Row>
+        <>
+
+<table className='tbl-custom-data'>
+          
+            <tbody>
+
+            {
+                data.map((item, i) => {    
+                    
+                    {
+                        return (
+                            <>  
+                                    <tr>
+                                            <td >Nghiêm Song Cẩm Lợi</td>
+                                            <td >{moment(item.createAt).format("DD/MM/YYYY")}</td>
+                                            <td >
+                                            <p className='statusName'>
+                                                { item.statusName }
+                                            </p>
+                    
+                                                <textarea >
+                                                { item.shortDescription }
+                                                </textarea>
+                    
+                                            </td>
+                                    </tr>
+                          
+                            </>
+                        );
+                    }
+            
+                 })
+            }
+           
+
+         
+
+            </tbody>
+        </table>
+        
+        </>
     );
 };
 

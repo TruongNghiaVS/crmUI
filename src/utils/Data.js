@@ -70,7 +70,9 @@ const DataJson = {
      theadDataReason: [
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
      ],
-
+     theadDataMasterNew: [
+        "STT", "Mã", "Tên",  "Người tạo", "Ngày tạo"
+     ],
      theadDataCampang: [
         "STT", "Mã trạng thái","Tên chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", 
         "Ngày kết thúc", "Ngày tạo", 

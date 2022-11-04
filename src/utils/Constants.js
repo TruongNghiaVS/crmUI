@@ -63,11 +63,35 @@ class ConstantData {
     static URL_campagnProfile_Delete = `${ConstantData.DOMAIN}/api/campagnProfile/delete`;
     static URL_campagnProfile_GetById = `${ConstantData.DOMAIN}/api/campagnProfile/getById`;
     static URL_campagnProfile_exportData = `${ConstantData.DOMAIN}/api/campagnProfile/exportData`;
+    static URL_campagnProfile_GetInfo = `${ConstantData.DOMAIN}/api/campagnProfile/getInfo`;
 
     //campagn profile_Assigee
     static URL_campagnProfile_Assigee = `${ConstantData.DOMAIN}/api/campagn/assignes`;
 
     static URL_campagnProfile_Assigee_getAll = `${ConstantData.DOMAIN}/api/campagn/getAllCampangeAssigess`;
- 
+
+
+
+    //campagn profile
+    static URL_impactHistory_GetALl = `${ConstantData.DOMAIN}/api/impacthistory/getAll`;
+    static URL_impactHistory_Add = `${ConstantData.DOMAIN}/api/impacthistory/add`;
+    static URL_impactHistory_Update = `${ConstantData.DOMAIN}/api/impacthistory/update`;
+    static URL_impactHistory_Delete = `${ConstantData.DOMAIN}/api/impacthistory/delete`;
+    static URL_impactHistory_GetById = `${ConstantData.DOMAIN}/api/impacthistory/getById`;
+    static URL_impactHistory_exportData = `${ConstantData.DOMAIN}/api/impacthistory/exportData`;
+
+
+    //masterDataNew
+    static URL_masterDataNew_GetALl = `${ConstantData.DOMAIN}/api/masterdataNew/getAll`;
+    static URL_masterDataNew_Add = `${ConstantData.DOMAIN}/api/masterdataNew/add`;
+    static URL_masterDataNew_Update = `${ConstantData.DOMAIN}/api/masterdataNew/update`;
+    static URL_masterDataNew_Delete = `${ConstantData.DOMAIN}/api/masterdataNew/delete`;
+    static URL_masterDataNew_GetById = `${ConstantData.DOMAIN}/api/masterdataNew/getById`;
+    static URL_masterDataNew_exportData = `${ConstantData.DOMAIN}/api/masterdataNew/exportData`;
+
+    static URL_masterDataNew_getAllInfo = `${ConstantData.DOMAIN}/api/masterdataNew/getAllInfo`;
+
+    static URL_campagnProfile_Asignee = `${ConstantData.DOMAIN}/api/campagnProfile/Asignee`;
+   
 }
 export default ConstantData;

@@ -86,6 +86,8 @@
         }
 
         .tbl-custom-data {
+
+         
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 10px;
@@ -233,4 +235,9 @@
     button {
        margin-right: 10px;
     }
+}
+
+.statusName {
+    color: #24a947;
+    background-color: #dbdcdf;
 }
