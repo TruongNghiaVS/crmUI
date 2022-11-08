@@ -7,19 +7,19 @@ const InfoProduct = ({data, handleInputChange}) => {
             <Form.Label>Thông tin sản phẩm</Form.Label>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tên hàng</InputGroup.Text>
-                <FormControl aria-label="Small" value ={data.nameProduct} onChange={handleInputChange}   />
+                <FormControl aria-label="Small" value ={data.nameProduct} name ="nameProduct"  onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Code</InputGroup.Text>
-                <FormControl aria-label="Small" value ={data.codeProduct} onChange={handleInputChange}  />
-            </InputGroup>
+                <FormControl aria-label="Small" value ={data.codeProduct} name ="codeProduct" onChange={handleInputChange}  />
+            </InputGroup> 
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Giá</InputGroup.Text>
-                <FormControl aria-label="Small" value ={data.priceProduct} onChange={handleInputChange}  />
+                <FormControl aria-label="Small" value ={data.priceProduct} name ="priceProduct"  onChange={handleInputChange}  />
             </InputGroup>
             <Form.Group className="mt-3">
                 <Form.Label>Ghi chú ban đầu</Form.Label>
-                <Form.Control as="textarea" rows={8} value ={data.noteFirstTime} onChange={handleInputChange}  />
+                <Form.Control as="textarea" rows={8} value ={data.noteFirstTime} name ="noteFirstTime"   onChange={handleInputChange}  />
             </Form.Group>
         </Col>
     );

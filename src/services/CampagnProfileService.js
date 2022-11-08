@@ -29,7 +29,10 @@ class CampagnProfileService {
      ApiService.httpPost(url, null, body, callSuccess, callError);
 }
 
-
+static handleCase(body, callSuccess, callError) {
+     let url = Constants.URL_campagnProfile_handleCase;
+     ApiService.httpPost(url, null, body, callSuccess, callError);
+}
 
 
 }

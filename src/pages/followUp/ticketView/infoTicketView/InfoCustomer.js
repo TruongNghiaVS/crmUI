@@ -20,11 +20,11 @@ const InfoCustomer = ({data,handleInputChange}) => {
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số hợp đồng</InputGroup.Text>
-                <FormControl aria-label="Small"   value = {data.noAgreement}  name = "noAgreement"   onChange={handleInputChange}  />
+                <FormControl aria-label="Small" readOnly value = {data.noAgreement}  name = "noAgreement"   onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>CMT/CCCD</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.natioonalId} name = "natioonalId" onChange={handleInputChange} />
+                <FormControl aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Di động</InputGroup.Text>

@@ -1,14 +1,76 @@
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
-
+import { BsSkipForwardBtnFill} from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import React, { useState } from "react";
 import moment from "moment"; 
+import Swal from 'sweetalert2';
+import CampagnProfileService from '../../services/CampagnProfileService';
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
     );
 };
+
+const skipTask = (id)=> {
+
+    Swal.fire({
+        title: 'Bạn có chắc muốn  giữ case',
+        text: "Bạn có chắc muốn  giữ case",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Đồng ý!'
+    })
+    .then((result) => {
+    if (result.isConfirmed) {
+       
+            const modelUpdate = {
+
+            };
+            modelUpdate.id = id;
+            modelUpdate.resetCase = false;
+            modelUpdate.skipp = true;
+            CampagnProfileService.handleCase(
+                modelUpdate,
+                handleSucessUpdateHandleCase, 
+                handleErrUpdate
+            );
+
+    }
+    })
+
+}
+const handleErrUpdate = (data) => {
+
+
+
+}
+
+const handleSucessUpdateHandleCase = (data) => {
+    if(data.statusCode == 200)
+   {
+           Swal.fire({
+               
+               icon: 'success',
+               title: 'Giữ case thành công',
+               showConfirmButton: true,
+               
+           })
+            // props.handleUpdate(model);  
+   }
+   else 
+   {
+
+       Swal.fire({
+           icon: 'error',
+           title: 'lưu thất bại',
+           text: 'Thao tác thất bại',
+         
+         })
+   }
+}
 
 const getStatusText = (isActive)=> {
     if(isActive)
@@ -34,16 +96,15 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.reasonstatusText}</td>
             <td>{data.statusText}</td>
             <td>{data.assigneeName}</td>
-            <td>Admin</td>
-            <td>{moment(data.createdTime).format("DD/MM/YYYY")}</td>
-      
-          
+            <td>{data.authorName}</td>
+            <td>{data.skipp}</td>
+            <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
             <td>
-               
-
-                <NavLink to={likUrl} target="_blank" >
+                 <NavLink to={likUrl} target="_blank" >
                     <FaEdit className="icon-edit" />
                 </NavLink>
+                <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />
+                
                 {/* <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
                 <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
                 <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' /> */}

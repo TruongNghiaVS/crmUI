@@ -92,6 +92,6 @@ class ConstantData {
     static URL_masterDataNew_getAllInfo = `${ConstantData.DOMAIN}/api/masterdataNew/getAllInfo`;
 
     static URL_campagnProfile_Asignee = `${ConstantData.DOMAIN}/api/campagnProfile/Asignee`;
-   
+    static URL_campagnProfile_handleCase = `${ConstantData.DOMAIN}/api/campagnProfile/handleCase`;
 }
 export default ConstantData;

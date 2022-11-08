@@ -6,6 +6,8 @@ import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap'
 import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
+import BaseService from '../../services/BaseService';
+
 import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -20,11 +22,14 @@ const UploadFile = (props) => {
 
 
      useEffect(() => {
+      
 
       
      }, []);
 
      const UploadFileServer = () => {
+
+
         
         var file = fileTran;
      
@@ -44,8 +49,9 @@ const UploadFile = (props) => {
                  }
             })
 
-  
+    
         var data = new FormData();
+      
         data.append('fileData', file)
         data.append('id', props.idPass);
         fetch('https://localhost:44332/api/campagn/importDataById', {

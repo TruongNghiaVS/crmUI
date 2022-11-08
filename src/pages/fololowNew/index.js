@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FaTable, FaFilter } from "react-icons/fa";
+
+
 import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
@@ -10,11 +12,12 @@ import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
-
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
 const Reason = () => {
+    let { detail } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
     const [obejctPaging, setObjectPaging ] = useState({
@@ -190,13 +193,21 @@ const Reason = () => {
 
 
     const getDataEmployee = ()=> {
-
+            let typegetData = 0;
          
-        
+         if(detail== "new-list")
+         {
+            typegetData = "0";
+         }
+         else 
+         {
+            typegetData = "1";
+         }
          let bodySearch = {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
+            Limit: obejctPaging.limt,
+            typegetData: typegetData
 
           };
           EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {

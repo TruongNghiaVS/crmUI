@@ -50,8 +50,8 @@ const Header = ({ classHeader }) => {
                     <li className='list-link'>
                         <NavLink className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</NavLink></li>
-                            <li className='sub-list-link'><NavLink  className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</NavLink></li>
+                            <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</NavLink></li>
                         </ul>
                     </li>
                     <li className='list-link'>
@@ -72,12 +72,12 @@ const Header = ({ classHeader }) => {
                         <NavLink className='nav-link' to="/">Quản trị hệ thống <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/campangn">Chiến dịch</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/groupReason">Trạng thái phiếu</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/user">Người dùng</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhóm người dùng</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi chiến dịch</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/groupReason">Trạng thái phiếu</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/user">Người dùng</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/">Nhóm người dùng</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi chiến dịch</NavLink></li>
                         </ul>
                     </li> : <></>}
                     <div className='nav-profile'>

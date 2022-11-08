@@ -80,9 +80,9 @@ const TicketView = () => {
     useEffect(() => {
         // const ticketData = JSON.parse(localStorage.getItem("ticketData")) || null;
         // console.log("Ticket view is", ticketData);
-
+        let profileId =   window.location.pathname.split("/").pop();
         const bodyRequest = {
-            id:  "26"
+            id: profileId
         };
         CampagnProfileService.getInfoById( bodyRequest,
         handleDisplayData, 
@@ -100,7 +100,6 @@ const TicketView = () => {
     }, []);
 
     const handleInputChange =(event)=> {
-        console.log("333#");
        
         let valueControl = event.target.value;
         let nameControl = event.target.name;
@@ -142,7 +141,8 @@ Swal.fire({
     .then((result) => {
     if (result.isConfirmed) {
         const modelUpdate = modelImpact;
-        modelUpdate.ProfileId = "26";
+        let profileId =   window.location.pathname.split("/").pop();
+        modelUpdate.ProfileId = profileId;
      
     
     
@@ -159,29 +159,30 @@ Swal.fire({
     
     }
 const Save = ()=> {
+    let profileId =   window.location.pathname.split("/").pop();
 
+    Swal.fire({
+    title: 'Bạn chắc chắn xóa',
+    text: "Bạn sẽ không lấy lại được dữ liệu",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Đồng ý!'
+    })
+    .then((result) => {
+    if (result.isConfirmed) {
+       
+            const modelUpdate = model;
+            modelUpdate.id = profileId;
+            CampagnProfileService.update(
+                modelUpdate,
+                handleSucessUpdate, 
+                handleErrUpdate
+            );
 
-Swal.fire({
-title: 'Bạn chắc chắn xóa',
-text: "Bạn sẽ không lấy lại được dữ liệu",
-icon: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Đồng ý!'
-})
-.then((result) => {
-if (result.isConfirmed) {
-        const modelUpdate = model;
-        modelUpdate.id = "26";
-        CampagnProfileService.update(
-            modelUpdate,
-            handleSucessUpdate, 
-            handleErrUpdate
-        );
-
-}
-})
+    }
+    })
 
 }
 
@@ -316,7 +317,7 @@ const handleErrUpdate = (data) => {
             lastPaid: dataItem.lastPaid,
             lastPadDay: dataItem.lastPadDay,
             nameProduct: dataItem.nameProduct,
-            codeProduct: dataItem.vodeProduct,
+            codeProduct: dataItem.codeProduct,
             priceProduct: dataItem.priceProduct, 
             noteFirstTime: dataItem.noteFirstTime,
             skipContent: dataItem.skipContent,
