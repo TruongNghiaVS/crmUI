@@ -58,13 +58,13 @@ const Header = ({ classHeader }) => {
                         <NavLink className='nav-link' to="/">Báo cáo <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">BC chiến dịch gọi ra</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC Lịch sử tác động</NavLink></li>
+                            <li  className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/historical">BC Lịch sử tác động</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">BC theo khung giờ</NavLink></li>
 
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhập kết quả</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">BC talktime</NavLink></li>
 
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC Đăng nhập </NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/report/login">BC Đăng nhập </NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/">Dashboard </NavLink></li>
                         </ul>
                     </li>

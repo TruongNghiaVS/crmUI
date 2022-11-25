@@ -73,6 +73,12 @@ const DataJson = {
      theadDataMasterNew: [
         "STT", "Mã", "Tên",  "Người tạo", "Ngày tạo"
      ],
+     tbheadReportLogin: [
+        "STT", "Tên đăng nhập", "Tên người dùng",  "Hành động", "Ghi chú", "Ngày hoạt động"
+     ],
+     tbheadReportHistory: [
+        "STT", "Họ tên", "Số hợp đồng",  "Di động", "Văn phòng", "Số nhà", "Khác","Tình trạng","Trạng thái", "Tạo bởi", "Tạo ngày", "Chiến dịch"
+     ],
      theadDataCampang: [
         "STT", "Mã trạng thái","Tên chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", 
         "Ngày kết thúc", "Ngày tạo", 
@@ -82,8 +88,8 @@ const DataJson = {
 
 
      theadDataCampangAssi: [
-        "STT", "Tên người dùng","SL phân", "Thêm", "Rút", "Đã phân", "Xử lý", "Chưa xử lý", 
-        "Đóng", "Phòng ban", "CTy"
+        "STT", "Tên người dùng","SL phân", "Thêm", "Rút", "Đã phân", "Đang Xử lý", "Chưa xử lý", 
+        "Đóng", "Giữ case"
      ],
 
      theadDataGroupReason: [

@@ -4,7 +4,7 @@ import ImpactHistory from './ImpactHistory';
 import Skip from './Skip';
 import Assigee from './Assigee';
 
-const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact, masterData, listUser}) => {
+const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact,saveSkip, masterData, listUser}) => {
     return (
             <Tabs
                 defaultActiveKey="home"
@@ -20,9 +20,9 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
             </Tab>
 
             <Tab eventKey="skip" title="Skip">
-                <Skip data = {dataView2}   handleInputChange = {handleInputChange} />
+                <Skip data = {dataView2}  saveSkip = {saveSkip}  handleInputChange = {handleInputChange} />
             </Tab>
-
+            
             <Tab eventKey="assignee" title="Phân công">
                 <Assigee data = {dataView2} listUser ={listUser} masterData = {masterData}  handleInputChange = {handleInputChange} />
             </Tab>

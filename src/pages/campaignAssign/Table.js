@@ -50,16 +50,7 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
      
     return (
         <>
-        <div className='navAssignee'>
-                    <Button variant="outline-primary">Chiến dịch </Button>
-                    <Button variant="outline-primary">Tổng (2) </Button>
-                    <Button variant="outline-info">Chưa phân(2)</Button>
-                    <Button variant="outline-info">Đã phân(0)</Button>
-                    <Button variant="outline-info">Đóng(0)</Button>
-        </div>
-
-     
-        <table className={tblClass}>
+         <table className={tblClass}>
             <thead>
             <tr className='headRow'>
                 <th><input type="checkbox" defaultChecked={false} /></th>
@@ -73,9 +64,9 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                        dataDraw.tbodyDataUser
+                         dataDraw.tbodyDataUser
                         .map((item, index) => {
-                                return <TableRow
+                                return  <TableRow
                                             key={item.id}
                                             data={item}
                                             rowIndex = {index}
@@ -84,13 +75,12 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
                                             handleUpdateById ={handleUpdateById}
                                             handleimportRow = {handleimportRow}
                                             updateDataSelect = {updateDataSelect}
-                                    />;
+                                         />;
                         })
                 }
             </tbody>
         </table>
-
-        </>
+         </>
     );
 };
 

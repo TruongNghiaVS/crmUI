@@ -1,38 +1,80 @@
+import { Col,Row} from 'react-bootstrap';
 import React, { useState } from "react";
 import { FaTable, FaFilter } from "react-icons/fa";
-
-
 import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
 import ModelPopup from "./ModelPopup";
+import Chartsection from "./chartsection";
+import TableRate from "./TableRate";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/EmployeeService';
+import EmployeeService from '../../services/MasterDataNewService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
-const Reason = () => {
-    let { detail } = useParams();
+
+const Reporthistorical = () => {
+    let { edit } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
+  
+    // let typeMasterData = 5;
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
         totalRecord : 28,
         totalPage: 3,
-        currentPage: 1
+        currentPage: 1,
+        type :  -1
     });
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: ""
     });
 
+   
+
+    useEffect(() => {
+      
+        if(!isInit)
+        {
+        
+
+            const search = window.location.search;
+            const params = new URLSearchParams(search);
+            const token = params.get('token');
+           
+            //  console.log(token)//123
+            if( token!= null && token !="")
+             {
+                  let valueControl =token;
+                  let nameControl ="tokenSearch";
+                 
+                  setKeySearch((prevalue) => {
+                      return {
+                        ...prevalue,   // Spread Operator               
+                        [nameControl]: valueControl
+                      }
+                    })
+                    
+    
+             }
+             getDataEmployee();
+             setInit(true);
+        }
+      
+        
+        
+
+    }, [obejctPaging]);
 
 
     const handlePaging = (data)=> {
+
+
 
             const key = 'currentPage';
             const value = data;
@@ -99,7 +141,7 @@ const Reason = () => {
             Limit: obejctPaging.limt
 
           };
-          EmployeeService.exportData(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+          EmployeeService.exportData( bodySearch, (response) => {
             if (response.statusCode === 200) {
                 exportDataExcel(response.value.data);
 
@@ -123,40 +165,6 @@ const Reason = () => {
     }  );
 
 
-    useEffect(() => {
-
-        if(!isInit)
-        {
-
-            document.title = "Danh sách hồ sơ";
-            const search = window.location.search;
-            const params = new URLSearchParams(search);
-            const token = params.get('token');
-           
-            //  console.log(token)//123
-            if( token!= null && token !="")
-             {
-                  let valueControl =token;
-                  let nameControl ="tokenSearch";
-                 
-                  setKeySearch((prevalue) => {
-                      return {
-                        ...prevalue,   // Spread Operator               
-                        [nameControl]: valueControl
-                      }
-                    })
-                    
-    
-             }
-             getDataEmployee();
-             setInit(true);
-        }
-      
-        
-        
-
-    }, [obejctPaging]);
-
     const btnSerachKey = useRef(null);
 
     const handleAddUser = (data) => {
@@ -173,7 +181,9 @@ const Reason = () => {
         });
         getDataEmployee();
     }
-    
+
+   
+
     const handleUpdate = (data) => {
         
         toast.success('Câp nhật thành công!', {
@@ -193,40 +203,45 @@ const Reason = () => {
 
 
     const getDataEmployee = ()=> {
-            let typegetData = 0;
-         
-         if(detail== "new-list")
-         {
-            typegetData = "0";
-         }
-         else if( detail == "watch-list")
-         {
-            typegetData = "1";
-         }
-         else if( detail == "skipcase")
-         {
-            typegetData = "2";
-         }
-         else 
-         {
-            typegetData = "3";
-         }
 
+        let numberAss =-1;
+        if(edit=="quan-ly-nguoi-than")
+    {
+        document.title = "Danh sách người thân";
+        numberAss = 1;
+    }
+    else if(edit=="quan-ly-phong-ban")
+    {
+        document.title = "Danh sách phòng ban";
+        numberAss = 2;
+    }
 
-         let bodySearch = {
+    else if(edit=="quan-ly-trang-thai-follow")
+    {
+        document.title = "Danh sách trạng thái follow";
+        numberAss = 3;
+    }
+    else 
+    {
+        document.title = "danh sách masterdata";
+        numberAss = -1;
+    }
+
+    
+        // let groupStatus =   window.location.pathname.split("/").pop();
+        let bodySearch = {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt,
-            typegetData: typegetData
-
-          };
-          EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+            Limit: obejctPaging.limt, 
+            type: numberAss
+         };
+       
+      
+          EmployeeService.GetAll( bodySearch, (response) => {
             if (response.statusCode === 200) {
                 renderData(response.value);
             } else {
-
-
-
+                
              }
           }, (error) => {
            
@@ -245,7 +260,6 @@ const Reason = () => {
         let exportFileName = `dataMaster.xls`;
          XLSX.writeFile(workBook,exportFileName);
 
-      
         
       
 
@@ -330,7 +344,7 @@ const Reason = () => {
             Id:  idEmp,
            
           };
-          EmployeeService.delete(ConstantData.URL_campagnProfile_Delete,ConstantData.HEADERS,
+          EmployeeService.delete(
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);
@@ -384,17 +398,20 @@ const Reason = () => {
 
 
     return (
-        <div className="user">
+
+        <>
+
+<div className="user">
             <div className='box-tbl'>
                 <h4 className='box-tit'>
-                <FaTable className="icon-tit" />
-                     Hồ sơ theo dõi
+                    <FaTable className="icon-tit" />
+                     Báo cáo lịch sử tương tác
                 </h4>
 
                 <div className="list-feature">
                 <div className="button-feature">
-                    {/* <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
-                    <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button> */}
+             
+                   
                     {/* <button className="btn-ft btn-more">Mở rộng</button> */}
                 </div>
                 <div className="search-feature">
@@ -404,16 +421,41 @@ const Reason = () => {
                 </div>
                 </div>
 
-                <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+              
+            </div>
+
+          
+
+
+        </div>
+            <Row>
+                <Col>
+                <Chartsection/>
+                </Col>
+
+                <Col>
+                <TableRate/>
+                </Col>
+
+            </Row>
+   
+        <div className="user">
+            <div className='box-tbl'>
+              
+
+               
+
+                <Table theadData={ DataJson.tbheadReportHistory } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>
 
-            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
+            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem} typeMasterData = { obejctPaging.type }  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
 
         </div>
+        </>
     );
 };
 
-export default Reason;
+export default Reporthistorical;

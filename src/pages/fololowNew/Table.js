@@ -15,7 +15,7 @@ const TableHeadItem = ({ item }) => {
 const skipTask = (id)=> {
 
     Swal.fire({
-        title: 'Bạn có chắc muốn  giữ case',
+        title: 'Bạn có chắc1 muốn  giữ case',
         text: "Bạn có chắc muốn  giữ case",
         icon: 'warning',
         showCancelButton: true,
@@ -80,6 +80,14 @@ const getStatusText = (isActive)=> {
     return <p>Không hoạt động</p>
 }
 
+const getCaseSkip = (flag)=> {
+    if(flag)
+    {
+      return <p>Có</p>
+    }
+    return <p></p>
+}
+
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     let likUrl = "/follow-up/" + data.id;
@@ -97,13 +105,16 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.statusText}</td>
             <td>{data.assigneeName}</td>
             <td>{data.authorName}</td>
-            <td>{data.skipp}</td>
+            <td>{getCaseSkip(data.skipp)}</td>
             <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
             <td>
                  <NavLink to={likUrl} target="_blank" >
                     <FaEdit className="icon-edit" />
                 </NavLink>
-                <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />
+               {
+                (!data.skipp)?(  <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />) : (<p/>)
+               }
+              
                 
                 {/* <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
                 <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />

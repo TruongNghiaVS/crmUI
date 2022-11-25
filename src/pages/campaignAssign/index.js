@@ -12,6 +12,7 @@ import EmployeeService from '../../services/EmployeeService';
 import CampagnService from '../../services/CampagnService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
+import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap';
 
 
 import Swal from 'sweetalert2'
@@ -33,6 +34,15 @@ const CampaignAssign = () => {
     });
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: ""
+    });
+
+    const [modelCampagnOverview, setCampagnModel] = useState({
+        numberHaveNotAssigee : 0,
+        numberHasAssigee : 0,
+        numberHasClose : 0, 
+        numberHasKeep : 0,
+        numberHasSkip: 0,
+        total: 0
     });
     const handleimportRow = (id)=> {
 
@@ -144,6 +154,17 @@ const CampaignAssign = () => {
                         CampagnService.getAllCampangAsignee(ConstantData.HEADERS, bodySearch, (response) => {
                         if (response.statusCode === 200) {
                             renderData(response.value);
+                            let modelOverviewCampagn  = response.value.model;
+
+                     
+                            setCampagnModel(prew=>({...prew,numberHaveNotAssigee:modelOverviewCampagn.numberHaveNotAssigee}));
+                            setCampagnModel(prew=>({...prew,numberHasAssigee:modelOverviewCampagn.numberHasAssigee}));
+                            setCampagnModel(prew=>({...prew,numberHasClose:modelOverviewCampagn.numberHasClose}));
+                            setCampagnModel(prew=>({...prew,numberHasKeep:modelOverviewCampagn.numberHasKeep}));
+                            setCampagnModel(prew=>({...prew,total:modelOverviewCampagn.total}));
+                            setCampagnModel(prew=>({...prew,numberHasSkip:modelOverviewCampagn.numberHasSkip}));
+                            
+                        
                         } else {
 
 
@@ -338,7 +359,14 @@ const CampaignAssign = () => {
                     <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                 </div>
                 </div>
-
+                <div className='navAssignee'>
+                    <Button variant="outline-primary">Chiến dịch </Button>
+                    <Button variant="outline-primary">Tổng ({modelCampagnOverview.total }) </Button>
+                    <Button variant="outline-info">Chưa phân({modelCampagnOverview.numberHaveNotAssigee})</Button>
+                    <Button variant="outline-info">Đã phân({modelCampagnOverview.numberHasAssigee})</Button>
+                    <Button variant="outline-info">Đóng({modelCampagnOverview.numberHasClose})</Button>
+                    <Button variant="outline-info">Giữ case({modelCampagnOverview.numberHasSkip})</Button>
+                     </div>
                 <Table theadData={ DataJson.theadDataCampangAssi } dataDraw={dataEmployee} 
                  tbodyData={ DataJson.tbodyDataUser }
                 handleimportRow = {handleimportRow}

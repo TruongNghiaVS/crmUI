@@ -14,6 +14,8 @@ const TicketView = () => {
 
     });
   
+
+    
     const [dataImpact, setDataImpact] = useState( {
         data: [
          
@@ -39,9 +41,7 @@ const TicketView = () => {
          
         ],
     });
-
-    // setData(prew=>({...prew,tbodyDataUser:dataReder.data}));
-
+    
     const [modelImpact , setmodelImpact]=useState({
         code : "",
         campagnName: "Chiến dịch 4",
@@ -78,8 +78,7 @@ const TicketView = () => {
     
     };
     useEffect(() => {
-        // const ticketData = JSON.parse(localStorage.getItem("ticketData")) || null;
-        // console.log("Ticket view is", ticketData);
+       
         let profileId =   window.location.pathname.split("/").pop();
         const bodyRequest = {
             id: profileId
@@ -143,10 +142,6 @@ Swal.fire({
         const modelUpdate = modelImpact;
         let profileId =   window.location.pathname.split("/").pop();
         modelUpdate.ProfileId = profileId;
-     
-    
-    
-        
         ImpactHistoryService.add(
             modelUpdate,
             handleSucessUpdateImpact, 
@@ -158,6 +153,8 @@ Swal.fire({
         
     
     }
+
+
 const Save = ()=> {
     let profileId =   window.location.pathname.split("/").pop();
 
@@ -186,6 +183,34 @@ const Save = ()=> {
 
 }
 
+
+const saveSkip = () => {
+
+    let profileId =   window.location.pathname.split("/").pop();
+    Swal.fire({
+            title: 'Bạn chắc chắn xóa',
+            text: "bạn chắc chắn thao tác",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý!'
+    })
+    .then((result) => {
+            if (result.isConfirmed) {
+            
+                    const modelUpdate = model;
+                    modelUpdate.id = profileId;
+                    CampagnProfileService.updateSkip(
+                        modelUpdate,
+                        handleSucessUpdate, 
+                        handleErrUpdate
+                    );
+
+            }
+    })
+
+} 
 
 const handleSucessUpdateImpact = (data) => {
      if(data.statusCode == 200)
@@ -229,6 +254,15 @@ const handleSucessUpdate = (data) => {
                         showConfirmButton: true,
                         
                     })
+                    let profileId =   window.location.pathname.split("/").pop();
+
+                    const bodyRequest = {
+                        id: profileId
+                    };
+
+                    CampagnProfileService.getInfoById( bodyRequest,
+                        handleDisplayData, 
+                        handleDisplayDataErro);
                     // saveImpact();
                      // props.handleUpdate(model);  
             }
@@ -261,6 +295,7 @@ const handleErrUpdate = (data) => {
 
         let reasonData = data.value.listReason;
         let userList = data.value.listUser;
+
        
         console.log(data);
       
@@ -322,7 +357,8 @@ const handleErrUpdate = (data) => {
             noteFirstTime: dataItem.noteFirstTime,
             skipContent: dataItem.skipContent,
             id : dataItem.id,
-            assignee: dataItem.assignee
+            assignee: dataItem.assignee,
+            statusProfile: data.value.statusProfile
 
             // Spread Operator               
 
@@ -348,7 +384,18 @@ const handleErrUpdate = (data) => {
 
 
                     <InfoTicketView handleInputChange = {handleInputChange}  Save = {Save} dataView = {model} />
-                    <TabsTicketView  handleInputChange = {handleInputChange}  handleInputChange1 = {handleInputChangeImpact} dataHistory ={dataImpact.data} masterData = {masterData} dataView = {modelImpact} dataReason = {dataReason} listUser = {listUser} dataView2 = {model} saveImpact = {saveImpact} />
+                    <TabsTicketView 
+                     handleInputChange = {handleInputChange}  
+                     handleInputChange1 = {handleInputChangeImpact} 
+                     dataHistory ={dataImpact.data}
+                     masterData = {masterData}
+                     dataView = {modelImpact} 
+                     dataReason = {dataReason}
+                     listUser = {listUser} 
+                     dataView2 = {model} 
+                     saveImpact = {saveImpact} 
+                     saveSkip = {saveSkip} 
+                     />
                 </div>
                 
                

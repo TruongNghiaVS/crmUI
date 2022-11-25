@@ -23,9 +23,13 @@ const RowAssigee = (props) => {
             processingCount: 0,
             closedCount: 0,
             key: props.dataDraw.id, 
-            id: props.dataDraw.id
-      
-
+            id: props.dataDraw.id,
+            numberHasAssigee: props.dataDraw.numberHasAssigee,
+            numberHasClose: props.dataDraw.numberHasClose,
+            numberHaveNotAssigee: props.dataDraw.numberHaveNotAssigee,
+            numberProcessing : props.dataDraw.numberProcessing,
+            numberNotProcess: props.dataDraw.numberNotProcess,
+            numberHasSkip: props.dataDraw.numberHasSkip
     });
     
     useEffect(() => {
@@ -67,7 +71,6 @@ const RowAssigee = (props) => {
         })
         props.updateDataSelect({
             sumCounted: sumCountedNew,
-           
             key: props.dataDraw.id, 
            
         });
@@ -91,9 +94,7 @@ const RowAssigee = (props) => {
            
         });
      }
-     
-  
-    const dateForPicker = (dateString) => {
+      const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD')
     };
     
@@ -116,20 +117,19 @@ const RowAssigee = (props) => {
                       max = "1000"
                       value = {model.sumCounted}   required />
                </InputGroup>
-                 </td>
+        </td>
         <td  className='align_center'>
            <IoAddOutline onClick={increaseCount} className="icon-add" />
         </td>
         <td  className='align_center'>
              <GrSubtractCircle onClick={decreaseCount} className="icon-sub" />
         </td>
-        <td>{model.sumCount}</td>
-        <td>{model.processingCount}</td>
-        <td>{model.closedCount}</td>
-        <td>0</td>
-
-        <td>Sale</td>
-        <td>VietbankFC</td>
+        <td>{model.numberHasAssigee}</td>
+        <td>{model.numberProcessing}</td>
+        <td>{model.numberNotProcess}</td>
+        <td>{model.numberHasClose}</td>
+        <td>{model.numberHasSkip}</td>
+       
         
                
     </tr>

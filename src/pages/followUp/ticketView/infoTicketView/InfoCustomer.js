@@ -1,11 +1,18 @@
 import { FaEnvelope, FaPhone, FaSms } from "react-icons/fa";
 import { Col, InputGroup, FormControl, Form } from 'react-bootstrap';
+
+import { SimpleUser, SimpleUserOptions } from "sip.js/lib/platform/web";
 import moment from "moment"; 
 const InfoCustomer = ({data,handleInputChange}) => {
     const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD')
     };
 
+    const callToline =()=> {
+       
+            alert("3");
+    };
+ 
    
     return (
       
@@ -29,7 +36,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Di động</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.mobilePhone}  name = "mobilePhone" onChange={handleInputChange} />
-                <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {callToline}/></InputGroup.Text>
                 <InputGroup.Text className="input-group-icon"><FaSms /></InputGroup.Text>
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
@@ -67,6 +74,12 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 name = "dayOfBirth"
                 type="date"
                 aria-label="Small"  value ={dateForPicker(data.dayOfBirth)} onChange={handleInputChange} />
+            </InputGroup>
+
+
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text >Trạng thái hồ sơ </InputGroup.Text>
+                <FormControl aria-label="Small" readOnly value = {data.statusProfile}   />
             </InputGroup>
         </Col>
     );
