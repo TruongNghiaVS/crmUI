@@ -7,13 +7,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 // import Pagination from "react-pagination-library";
 // import "react-pagination-library/build/css/index.css"; 
 const Chartsection = (props) => {
+  console.log(props.dataRaw);
     
   const data = {
-    labels: ['PTP - Promise to pay - Hứa thanh toán', 'NKP - Has signal but not answer', 'MCW - MCW - Khách hàng bị bệnh, tai nạn', 'RTP - COV - MCW - Khách hàng bị cách ly dịch COVID', 'NKP - Has signal but not answer ', 'RTP - Refuse to pay - Từ chối thanh toán'],
+    labels: props.dataRaw.arrayLable,
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: props.dataRaw.arrayPercent,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',

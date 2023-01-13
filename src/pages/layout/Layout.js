@@ -4,6 +4,8 @@ import Footer from '../../components/footer/Footer';
 import Home from '../home/Home';
 import Login from '../login/Login';
 import User from '../user/User';
+import GroupUser from '../groupUser/GroupUser';
+
 import Dashboard from '../dashboard/Dashboard';
 import FollowUp from '../followUp/FollowUp';
 import FollowUpNew from '../fololowNew';
@@ -19,6 +21,10 @@ import Relationship from '../reason/Reason';
 import Reporthistorical from '../reporthistorical';
 import {ticketView} from '../followUp/ticketView/TicketView';
 import 'react-toastify/dist/ReactToastify.css';
+import ReportCDR from '../reportCDR'
+import ReportRecording from '../reportRecording'
+
+
 const Layout = (props) => {
     const [heightLayout, setHeightLayout] = useState(0);
     const [heightMain, setHeightMain] = useState(0);
@@ -64,6 +70,8 @@ const Screen = (props) => {
             return <Login />;
         case 'user':
             return <User />;
+       case 'GroupUser':
+                return <GroupUser />;
         case 'dashboard':
             return <Dashboard />;
         case 'follow-up':
@@ -83,7 +91,15 @@ const Screen = (props) => {
         case 'reportMaster': 
         
             return  <ReportMaster/>
-            
+
+        case 'reportCDR': 
+    
+        return  <ReportCDR/>
+
+        case 'recording': 
+    
+        return  <ReportRecording/>
+                
         default:
             throw new Error('Invalid Screen')
     }

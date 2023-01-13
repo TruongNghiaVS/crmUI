@@ -1,6 +1,6 @@
 import ApiService from './ApiService';
-import Constants from '../utils/Constants';
-class EmployeeService   {
+
+class GroupEmpService   {
 
   
     static GetAll(url, headers, body, callSuccess, callError) {
@@ -26,8 +26,7 @@ class EmployeeService   {
   static exportData(url, headers, body, callSuccess, callError) {
          ApiService.httpPost(url, headers, body, callSuccess, callError);
   }
-  
 
 }
 
-export default EmployeeService;
+export default GroupEmpService;

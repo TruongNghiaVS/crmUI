@@ -1,6 +1,9 @@
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
+
 import React, { useState } from "react";
+
 import moment from "moment"; 
+
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
@@ -18,27 +21,25 @@ const getStatusText = (isActive)=> {
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     return (
-        <tr>
-            <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
-            <td>{rowIndex}</td>
-            <td>Nguyễn thị bích huyền</td>
-            <td>101012757743</td>
-            <td>0365162418</td>
-            <td>0365162418</td>
-             <td> Theo dõi </td>
-             <td>0365162418</td>
-             <td>0365162418</td>
-             <td>0365162418</td>
-             <td>0365162418</td>
-
-             <td>0365162418</td>
-             <td>0365162418</td>
+         <tr>
+                <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
+                <td>{rowIndex}</td>
+                <td>{data.customerName}</td>
+                <td>{data.noAgreement}</td>
+                <td>{data.phone1}</td>
+                <td>{data.officeNumber}</td>
+                <td>{ data.houseNumber }</td>
+                <td>{ data.other }</td>
+                <td>{ data.reasonName }</td>
+                <td>{ data.reasonName }</td>
+                <td>{ data.authorName }</td>
+                <td>{ data.createAt }</td>
+                <td>{ data.updateAt }</td>
         </tr>
     );
 };
 
 const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById }) => {
-    
     
     return (
         <table className={tblClass}>
@@ -55,12 +56,12 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                
-                dataDraw.tbodyDataUser.map((item, index) => {
-                    return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
-                    handleViewById = {handleViewById}
-                    handleUpdateById ={handleUpdateById}/>;
-                })}
+                        dataDraw.tbodyDataUser.map((item, index) => {
+                                return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
+                                handleViewById = {handleViewById}
+                                handleUpdateById ={handleUpdateById}/>;
+                    })
+                }
             </tbody>
         </table>
     );

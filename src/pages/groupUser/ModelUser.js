@@ -6,11 +6,13 @@ import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap'
 import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/EmployeeService';
+import GroupEmpService from '../../services/GroupEmpService';
 import { toast } from 'react-toastify';
 import {GiSightDisabled} from 'react-icons/gi';
 const ModelAddUser = (props) => {
     
+
+   console.log("3333",props.listManager);
     const [model  , setmodel]=useState({
        
         
@@ -43,21 +45,16 @@ const ModelAddUser = (props) => {
             {
                 isActive =1;
             }
-            debugger;
-           
+          
             setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
               id: dataItem.id,
-              fullName: dataItem.fullName,
-              status:isActive,
-              userName: dataItem.userName, 
-              phoneNumber: dataItem.phoneNumber,
-              email: dataItem.email, 
-              roleEm: dataItem.roleId,
-              address: dataItem.address,
-              lineCode: dataItem.lineCode,
-              companyName: dataItem.companyName
+              name: dataItem.name,
+              isActive:(dataItem.isActive==true)?1:0,
+              code: dataItem.code,
+              managerId: dataItem.managerId
+
             }
           })
         }
@@ -70,6 +67,8 @@ const ModelAddUser = (props) => {
     useEffect(() => {
 
         let dataItem = props.dataItem;
+
+       
 
         
         if(dataItem.isView)
@@ -114,7 +113,7 @@ const ModelAddUser = (props) => {
               
               };
               
-              EmployeeService.add(ConstantData.URL_Employee_GetById,ConstantData.HEADERS,
+              GroupEmpService.getById(ConstantData.URL_GroupEmployee_GetById,ConstantData.HEADERS,
                 bodyRequest,
                 handleDisplayData, 
                 handleDisplayDataErro);
@@ -154,20 +153,16 @@ const ModelAddUser = (props) => {
 
         
         const employeeAdd = {
-            UserName:  model.userName,
-            RoleId:  model.roleEm,
-            lineCode: model.lineCode,
-            Email: model.email,
-            FullName: model.fullName,
-            Phone: model.phoneNumber,
-            Pass: model.password,
-            status: model.status
+            code: model.code,
+            name:  model.name,
+            managerId: model.managerId,
+            isActive: model.isActive
           };
     
 
        
    
-        EmployeeService.add(ConstantData.URL_Employee_Add,ConstantData.HEADERS,
+        GroupEmpService.add(ConstantData.URL_GroupEmployee_Add,ConstantData.HEADERS,
             employeeAdd,
             handleSucess, 
             handleErr);
@@ -213,23 +208,19 @@ const ModelAddUser = (props) => {
     
         const modelUpdate = {
             id: model.id,
-            lineCode: model.lineCode,
-            RoleId:  model.roleEm,
-            Email: model.email,
-            FullName: model.fullName,
-            Phone: model.phoneNumber,
-            Address: model.address,
-            companyId:model.companyName,
-            status: model.status
-
+            code: model.code,
+            name:  model.name,
+            managerId: model.managerId,
+            isActive: model.isActive
 
           };
 
-        EmployeeService.update(ConstantData.URL_Employee_Update,ConstantData.HEADERS,
-            modelUpdate,
-            handleSucessUpdate, 
-            handleErrUpdate);
-            props.handleUpdate(model);
+        GroupEmpService.update(ConstantData.URL_GroupEmployee_Update,ConstantData.HEADERS,
+                                modelUpdate,
+                                handleSucessUpdate, 
+                                handleErrUpdate
+                                );
+        props.handleUpdate(model);
 
     }
     const handleSucessUpdate = (data) => {    
@@ -271,10 +262,10 @@ const ModelAddUser = (props) => {
             <div className="header-model">
                     {
                     model.id == "-1" ? (
-                            <h4>Thêm người dùng mới</h4>
+                            <h4>Thêm mới nhóm</h4>
                     ) : 
                     (
-                            <h4>Thông tin người dùng</h4>
+                            <h4>Thông tin nhóm</h4>
                     )}
             </div>
 
@@ -284,68 +275,33 @@ const ModelAddUser = (props) => {
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="fullName" placeholder="Tên người dùng" 
-                        onChange={handleInputChange} value = {model.fullName} required />
-                            <Form.Control.Feedback type="invalid">
-                                    Trường bặt buộc
-                            </Form.Control.Feedback>
+                        name ="code" placeholder="Tên nhóm" disabled ={isEdit}
+                        onChange={handleInputChange} value = {model.code} required />
+                        <Form.Control.Feedback type="invalid">
+                                Trường bặt buộc
+                        </Form.Control.Feedback>
                     </InputGroup>
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "userName"  placeholder="Tên đăng nhập" 
-                           onChange={handleInputChange} value = {model.userName} required />
+                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  name = "name"  placeholder="Mã nhóm" 
+                           onChange={handleInputChange} value = {model.name} required />
                     </InputGroup>
 
+    
                     <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  
-                        name = "lineCode"  placeholder="Mã gọi"    onChange={handleInputChange} value = {model.lineCode} required />
-                    </InputGroup>
 
+                             <InputGroup.Text className="input-group-icon">
+                                    <GiSightDisabled    />
+                             </InputGroup.Text>
+                             <Form.Select aria-label="Mã nhân viên" name ="managerId" onChange={handleInputChange} value = {model.managerId} >
 
-                    {
-                 model.id == "-1" ? (
-                    <InputGroup className="mb-2">
-                    <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
-                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" name ="password" type="password" placeholder="Mật khẩu" onChange={handleInputChange} value = {model.password}  required />
-                </InputGroup>
-                ) : (
-                    <div></div>
-                )}
-                  
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text><FaBuilding /></InputGroup.Text>
-                        <Form.Select aria-label="Công ty" name = "companyName" onChange={handleInputChange} value = {model.companyName}>
-                        <option selected value="1" >ACS</option>
-                        <option value="2" >ACS2</option>
-              
-                        </Form.Select>
-
-                        <Form.Select aria-label="Collection" name ="groupName" onChange={handleInputChange} value = {model.groupName}>
-                                <option value="1">Collection</option>
-                                <option selected value="2">Collection2</option>
-                              
-                        </Form.Select>
-
-                        <Form.Select aria-label="Role nhân viên" name ="roleEm" onChange={handleInputChange} value = {model.roleEm} >
-                            <option selected value="1">Điện thoại viên</option>
-                            <option value="2">Admin</option>
-                            <option value="3">Quản lý</option>
-                        </Form.Select>
-
-                    </InputGroup>
-                    
-                      <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Điện thoại" name ="phoneNumber" onChange={handleInputChange}  value = {model.phoneNumber}  required />
-                    </InputGroup>
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaEnvelope /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Email"  name ="email"  onChange={handleInputChange}  value = {model.email}   />
-                    </InputGroup>
-                    <InputGroup>
-                        <InputGroup.Text className="input-group-icon"><FaPortrait /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Địa chỉ liên hệ" name ="address" onChange={handleInputChange} value  = {model.address}  />
+                             <option  selected disabled >Chọn người quản lý</option>
+                             {
+                                  props.listManager.map((item, index) => {
+                                            return  <option value="{item.id}">{item.fullName}</option>
+                                  })
+                              }
+                              </Form.Select>
                     </InputGroup>
 
                     <InputGroup className="mb-2">
@@ -353,14 +309,11 @@ const ModelAddUser = (props) => {
                              <GiSightDisabled    />
                         </InputGroup.Text>
 
-                        <Form.Select aria-label="Collection" name ="status" onChange={handleInputChange} value = {model.status}>
+                        <Form.Select aria-label="Collection" name ="isActive" onChange={handleInputChange} value = {model.isActive==true?1:0}>
                                 <option value= "1">Hoạt động</option>
-                                <option selected value= "0">Vô hiệu hóa</option>
+                                <option selected value= "0">Không hoạt động</option>
                               
                         </Form.Select>
-
-                       
-
                     </InputGroup>
                
                 </form>
@@ -380,5 +333,4 @@ const ModelAddUser = (props) => {
         </div>
     );
 };
-
 export default ModelAddUser;

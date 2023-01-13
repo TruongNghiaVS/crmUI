@@ -34,15 +34,10 @@ static handleCase(body, callSuccess, callError) {
      ApiService.httpPost(url, null, body, callSuccess, callError);
 }
 
-
 static updateSkip(body, callSuccess, callError) {
      let url = Constants.URL_campagnProfile_updateskip;
      ApiService.httpPost(url, null, body, callSuccess, callError);
 }
-
-
-
-
 }
 
 export default CampagnProfileService;

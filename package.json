@@ -10,6 +10,7 @@
     "chart.js": "^3.9.1",
     "crypto-js": "^4.1.1",
     "drachtio-srf": "^4.5.18",
+    "fs": "^0.0.1-security",
     "jwt-decode": "^3.1.2",
     "md5": "^2.3.0",
     "moment": "^2.29.4",
@@ -18,6 +19,7 @@
     "react-bootstrap-datetimepicker": "^0.0.22",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^17.0.2",
+    "react-dual-listbox": "^4.0.0",
     "react-icons": "^4.6.0",
     "react-pagination-library": "^0.1.14",
     "react-redux": "^7.2.6",
@@ -55,5 +57,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "path-browserify": "^1.0.1"
   }
 }

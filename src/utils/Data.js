@@ -3,6 +3,11 @@ const DataJson = {
         "Chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", "Ngày kết thúc",
         "Người cập nhật", "Ngày cập nhật", "Cty", "Ưu tiên"
     ],
+
+    tbHeadGroupUser: [
+        "STT", "Tên nhóm", "Mã nhóm","Người quản lý", "Ngày tạo", "Người tạo", "Trạng thái"
+     ],
+
     tbodyData: [
         {
             id: 1,
@@ -67,6 +72,10 @@ const DataJson = {
          "Trạng thái", "Người tạo", "Email", "Điện thoại"
      ],
 
+     theadDataReportCDR: [
+      "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Duration","Bill-duration"
+     ],
+
      theadDataReason: [
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
      ],
@@ -80,28 +89,23 @@ const DataJson = {
         "STT", "Họ tên", "Số hợp đồng",  "Di động", "Văn phòng", "Số nhà", "Khác","Tình trạng","Trạng thái", "Tạo bởi", "Tạo ngày", "Chiến dịch"
      ],
      theadDataCampang: [
-        "STT", "Mã trạng thái","Tên chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng", "Ngày chạy", 
-        "Ngày kết thúc", "Ngày tạo", 
-        "Nguời tạo",'C.ty' ,"Người cập nhật", 
+        "STT", "Mã trạng thái","Tên chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng",
+        "Số case giữ", "Ngày chạy","Ngày kết thúc", "Ngày tạo", "Nguời tạo",'C.ty' , "Người cập nhật", 
         "Ngày cập nhật", "Ưu tiên"
      ],
-
-
      theadDataCampangAssi: [
         "STT", "Tên người dùng","SL phân", "Thêm", "Rút", "Đã phân", "Đang Xử lý", "Chưa xử lý", 
         "Đóng", "Giữ case"
      ],
-
      theadDataGroupReason: [
         "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", 
         "Người tạo", "Ngày tạo", 
         "Người cập nhật", "Ngày cập nhật"
      ],
-    tbodyDataUser: [
+      tbodyDataUser: [
        
     ],
-
-    theadDataDashboard: [
+      theadDataDashboard: [
         "Gọi bởi", "Tổng", "Số HĐ", "% Kết nối", "Trả lời", "Thời gian gọi", "Thời gian chờ",
         "Đàm thoại", "Không trả lời", "Hủy", "Bận line", "Kênh lỗi", "Không gọi được", "Lỗi server"
     ],
@@ -193,7 +197,7 @@ const DataJson = {
             status: "",
             create_by: "ACS",
             create_date: "0000-00-00 00:00:00",
-        },
+        }
     ]
 }
 

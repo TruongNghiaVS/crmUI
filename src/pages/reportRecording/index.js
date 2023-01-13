@@ -3,75 +3,33 @@ import { FaTable, FaFilter } from "react-icons/fa";
 import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
-import ModelPopup from "./ModelPopup";
+import ModelAddUser from "./ModelUser";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/MasterDataNewService';
-import LoginReportService from '../../services/LoginReportService';
+import EmployeeService from '../../services/ReportService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
+
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
-const ReportMaster = () => {
-    let { edit } = useParams();
+const User = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
-  
-    // let typeMasterData = 5;
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
         totalRecord : 28,
         totalPage: 3,
-        currentPage: 1,
-        type :  -1
+        currentPage: 1
     });
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: ""
     });
 
-   
-
-    useEffect(() => {
-      
-        if(!isInit)
-        {
-        
-
-            const search = window.location.search;
-            const params = new URLSearchParams(search);
-            const token = params.get('token');
-           
-            //  console.log(token)//123
-            if( token!= null && token !="")
-             {
-                  let valueControl =token;
-                  let nameControl ="tokenSearch";
-                 
-                  setKeySearch((prevalue) => {
-                      return {
-                        ...prevalue,   // Spread Operator               
-                        [nameControl]: valueControl
-                      }
-                    })
-                    
-    
-             }
-             getDataEmployee();
-             setInit(true);
-        }
-      
-        
-        
-
-    }, [obejctPaging]);
 
 
     const handlePaging = (data)=> {
-
-
 
             const key = 'currentPage';
             const value = data;
@@ -80,18 +38,20 @@ const ReportMaster = () => {
             [key]: value
             }
             ));
-            getDataEmployee();
+            getData();
 
             setInit(false);
     }
 
     const [employeeItem, setDataItem] = useState({
-        "id": "-1",
+        "id": "12",
         "fullName": "",
-        "code": "",
-        "displayName": "",
-        "hour": 0,
-        "day": 0
+        "userName": "",
+        "phoneNumber": "",
+        "email": "",
+        "address": "",
+        "RoleIdL": "1",
+        "companyName": "2"
     });
 
 
@@ -138,12 +98,13 @@ const ReportMaster = () => {
             Limit: obejctPaging.limt
 
           };
-          EmployeeService.exportData( bodySearch, (response) => {
+          EmployeeService.exportData(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
             if (response.statusCode === 200) {
-                exportDataExcel(response.value.data);
-
+                 exportDataExcel(response.value.data);
             } else {
-                
+
+
+
              }
           }, (error) => {
            
@@ -162,6 +123,40 @@ const ReportMaster = () => {
     }  );
 
 
+    useEffect(() => {
+
+        if(!isInit)
+        {
+
+            document.title = "Danh sách nhân viên";
+            const search = window.location.search;
+            const params = new URLSearchParams(search);
+            const token = params.get('token');
+           
+            //  console.log(token)//123
+            if( token!= null && token !="")
+             {
+                  let valueControl =token;
+                  let nameControl ="tokenSearch";
+                 
+                  setKeySearch((prevalue) => {
+                      return {
+                        ...prevalue,   // Spread Operator               
+                        [nameControl]: valueControl
+                      }
+                    })
+                    
+    
+             }
+             getData();
+             setInit(true);
+        }
+      
+        
+        
+
+    }, [obejctPaging]);
+
     const btnSerachKey = useRef(null);
 
     const handleAddUser = (data) => {
@@ -176,7 +171,7 @@ const ReportMaster = () => {
             draggable: true,
             progress: undefined,
         });
-        getDataEmployee();
+        getData();
     }
 
    
@@ -192,52 +187,29 @@ const ReportMaster = () => {
                 draggable: true,
                 progress: undefined,
         });
-        getDataEmployee();
+        getData();
     }
 
 
     
 
 
-    const getDataEmployee = ()=> {
-
-        let numberAss =-1;
-        if(edit=="quan-ly-nguoi-than")
-    {
-        document.title = "Danh sách người thân";
-        numberAss = 1;
-    }
-    else if(edit=="quan-ly-phong-ban")
-    {
-        document.title = "Danh sách phòng ban";
-        numberAss = 2;
-    }
-
-    else if(edit=="quan-ly-trang-thai-follow")
-    {
-        document.title = "Danh sách trạng thái follow";
-        numberAss = 3;
-    }
-    else 
-    {
-        document.title = "danh sách masterdata";
-        numberAss = -1;
-    }
-
-    
-        // let groupStatus =   window.location.pathname.split("/").pop();
-        let bodySearch = {
+    const getData = ()=> {
+          
+         let bodySearch = {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt, 
-            type: numberAss
-         };
-         LoginReportService.GetAll( bodySearch, (response) => {
-               if (response.statusCode === 200) {
-                    renderData(response.value);
-                } else {
-                     
-                }
+            Limit: obejctPaging.limt
+
+          };
+          EmployeeService.GetAllReportRecordingFile( bodySearch, (response) => {
+            if (response.statusCode === 200) {
+                renderData(response.value);
+            } else {
+
+
+
+             }
           }, (error) => {
            
           });
@@ -247,24 +219,17 @@ const ReportMaster = () => {
     const exportDataExcel = (dataReder) => {
 
         var DataExport = dataReder;
-          let workBook = XLSX.utils.book_new();
+         let workBook = XLSX.utils.book_new();
         const workSheet = XLSX.utils.json_to_sheet(DataExport);
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
-        let exportFileName = `dataMaster.xls`;
+        let exportFileName = `dataEmployee.xls`;
          XLSX.writeFile(workBook,exportFileName);
-
-        
-      
-
-
 
 }
 
     const renderData = (dataReder) => {
-
-     
 
           
             let totalPage = 1;
@@ -316,7 +281,7 @@ const ReportMaster = () => {
 
            
 
-            getDataEmployee();
+            getData();
 
     }
 
@@ -341,7 +306,7 @@ const ReportMaster = () => {
             Id:  idEmp,
            
           };
-          EmployeeService.delete(
+          EmployeeService.delete(ConstantData.URL_Employee_Delete,ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);
@@ -349,7 +314,7 @@ const ReportMaster = () => {
     const handleDeleteSucess = (data) => {
         if(data.statusCode == 200)
         {   
-                getDataEmployee();
+                getData();
                 Swal.fire(
                 'Đã xóa!',
                 'Đã xóa thành công.',
@@ -399,14 +364,13 @@ const ReportMaster = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                     Hoạt động người dùng
+                    Báo cáo report CDR
                 </h4>
 
                 <div className="list-feature">
                 <div className="button-feature">
-             
-                    <button className="btn-ft btn-export" >Xuất Excel</button>
-                    {/* <button className="btn-ft btn-more">Mở rộng</button> */}
+                   
+                  
                 </div>
                 <div className="search-feature">
                     <FaFilter />
@@ -415,16 +379,16 @@ const ReportMaster = () => {
                 </div>
                 </div>
 
-                <Table theadData={ DataJson.tbheadReportLogin } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                <Table theadData={ DataJson.theadDataReportCDR } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>
 
-            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem} typeMasterData = { obejctPaging.type }  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
+            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelAddUser dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
 
         </div>
     );
 };
 
-export default ReportMaster;
+export default User;

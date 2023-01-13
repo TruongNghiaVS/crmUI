@@ -10,7 +10,7 @@ import TableRate from "./TableRate";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/MasterDataNewService';
+import EmployeeService from '../../services/ReportService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
@@ -22,27 +22,29 @@ const Reporthistorical = () => {
     let { edit } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
-  
+ 
     // let typeMasterData = 5;
     const [obejctPaging, setObjectPaging ] = useState({
-        limt: 10, 
-        totalRecord : 28,
-        totalPage: 3,
-        currentPage: 1,
-        type :  -1
+            limt: 10, 
+            totalRecord : 28,
+            totalPage: 3,
+            currentPage: 1,
+            type :  -1
     });
+    
+    const [objectDraw, setobjectDraw ] = useState({
+            data : [],
+            arrayPercent : [],
+            arrayLable : []
+    });
+
     const [obejctSearch, setKeySearch] = useState({
-        tokenSearch: ""
+           tokenSearch: ""
     });
-
-   
-
+    
     useEffect(() => {
-      
         if(!isInit)
         {
-        
-
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const token = params.get('token');
@@ -62,13 +64,9 @@ const Reporthistorical = () => {
                     
     
              }
-             getDataEmployee();
+             getData();
              setInit(true);
         }
-      
-        
-        
-
     }, [obejctPaging]);
 
 
@@ -83,7 +81,7 @@ const Reporthistorical = () => {
             [key]: value
             }
             ));
-            getDataEmployee();
+            getData();
 
             setInit(false);
     }
@@ -179,7 +177,7 @@ const Reporthistorical = () => {
             draggable: true,
             progress: undefined,
         });
-        getDataEmployee();
+        getData();
     }
 
    
@@ -195,14 +193,14 @@ const Reporthistorical = () => {
                 draggable: true,
                 progress: undefined,
         });
-        getDataEmployee();
+        getData();
     }
 
 
     
 
 
-    const getDataEmployee = ()=> {
+    const getData = ()=> {
 
         let numberAss =-1;
         if(edit=="quan-ly-nguoi-than")
@@ -239,8 +237,56 @@ const Reporthistorical = () => {
       
           EmployeeService.GetAll( bodySearch, (response) => {
             if (response.statusCode === 200) {
+
+                // console.log(response.value);
+                // setobjectDraw(response.value.data);
+                // renderData(response.value);
+                let dataDrawChart = response.value.data;
+                let percent = 0;
+                let arrayLable = [];
+                let arrayPercent = [];
+                var total = 0;
+                dataDrawChart.forEach(item => {
+                         total += item.sum;
+                 });
+                dataDrawChart.forEach(item => {
+                        if(item.sum>0 && total >0)
+                        {
+                            item.percent = item.sum/total*100;
+                        }
+                        else 
+                        {
+                            item.percent =0;
+                        }
+                });
+
+                dataDrawChart.forEach(item =>
+                     {
+                    arrayLable.push(item.reasonName);
+                    arrayPercent.push(item.percent);
+                    }
+                );
+                
+                setobjectDraw((prevalue) => {
+                return {
+                ...prevalue,   // Spread Operator               
+                data: dataDrawChart,
+                arrayPercent: arrayPercent,
+                arrayLable: arrayLable
+                }
+                });
+          } else {
+                
+             }
+          }, (error) => {
+           
+          });
+          EmployeeService.GetAllImpactHistory( bodySearch, (response) => {
+            if (response.statusCode === 200) {
+
                 renderData(response.value);
-            } else {
+              
+          } else {
                 
              }
           }, (error) => {
@@ -316,10 +362,7 @@ const Reporthistorical = () => {
     }
 
     const searchData =()=> {
-
-           
-
-            getDataEmployee();
+            getData();
 
     }
 
@@ -352,7 +395,7 @@ const Reporthistorical = () => {
     const handleDeleteSucess = (data) => {
         if(data.statusCode == 200)
         {   
-                getDataEmployee();
+                getData();
                 Swal.fire(
                 'Đã xóa!',
                 'Đã xóa thành công.',
@@ -430,21 +473,17 @@ const Reporthistorical = () => {
         </div>
             <Row>
                 <Col>
-                <Chartsection/>
+                <Chartsection dataRaw = {objectDraw} />
                 </Col>
 
                 <Col>
-                <TableRate/>
+                <TableRate dataRaw = {objectDraw}/>
                 </Col>
 
             </Row>
    
         <div className="user">
             <div className='box-tbl'>
-              
-
-               
-
                 <Table theadData={ DataJson.tbheadReportHistory } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             

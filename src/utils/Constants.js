@@ -94,5 +94,31 @@ class ConstantData {
 
     static URL_campagnProfile_Asignee = `${ConstantData.DOMAIN}/api/campagnProfile/Asignee`;
     static URL_campagnProfile_handleCase = `${ConstantData.DOMAIN}/api/campagnProfile/handleCase`;
+    
+    static URL_GroupEmployee_GetALl = `${ConstantData.DOMAIN}/api/groupEmployee/getAll`;
+    static URL_GroupEmployee_Add = `${ConstantData.DOMAIN}/api/groupEmployee/add`;
+    static URL_GroupEmployee_GetById = `${ConstantData.DOMAIN}/api/groupEmployee/GetById`;
+    static URL_GroupEmployee_Update = `${ConstantData.DOMAIN}/api/groupEmployee/update`;
+
+    static URL_GroupEmployee_Delete = `${ConstantData.DOMAIN}/api/groupEmployee/delete`;
+     //other
+    static URL_Employee_GetAllManager = `${ConstantData.DOMAIN}/api/groupEmployee/getAllManager`;
+    static URL_User_Logout = `${ConstantData.DOMAIN}/api/user/logout`;
+     //ReportService
+    static URL_ReportService_GetALlOverView = `${ConstantData.DOMAIN}/api/Report/getAllOverView`;
+    static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;
+
+    static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;
+
+
+    static URL_ReportService_ReportRecordingFile = `${ConstantData.DOMAIN}/api/report/ReportRecordingFile`;
+
+    
+    static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;
+
+    static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getOverViewByCall`;
+
+    static URL_makeCall = `${ConstantData.DOMAIN}/api/call/makeCall`;
+    
 }
 export default ConstantData;

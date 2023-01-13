@@ -8,8 +8,11 @@ function Router() {
                          <Route path="test-line" element={<Layout page="test-line" />}>
                                 <Route path=":detail" element={<Layout page="test-line" />} />
                          </Route>
+
+                         <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />} />
                          <Route path="login" element={<Layout page="login" />} />
                          <Route path="home" element={<Layout page="home" />} />
+                       
                          <Route path="user" element={<Layout page="user" />} />
                          <Route path="dashboard" element={<Layout page="dashboard" />} />
                          <Route path="campaignAssign" element={<Layout page="campaignAssign" />}>
@@ -40,6 +43,17 @@ function Router() {
                          <Route path="masterData" element={<Layout page="relationship" />}>
                               <Route path=":edit" element={<Layout page="relationship" />} />
                          </Route>
+
+
+                         <Route path="reportCDR" element={<Layout page="reportCDR" />}>
+                              <Route path=":edit" element={<Layout page="reportCDR" />} />
+                         </Route>
+
+                         <Route path="bao-cao-ghi-am" element={<Layout page="recording" />}>
+                           
+                         </Route>
+
+                         
           </Routes>
      );
 }

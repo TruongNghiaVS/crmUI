@@ -7,27 +7,32 @@ const TableHeadItem = ({ item }) => {
     );
 };
 
-const getStatusText = (isActive)=> {
-    if(isActive)
-    {
-        return (<p>Hoạt động</p>);
+const getShowfile = (item)=> {
+   
+    if(item.isShow)
+    {   
+        return (<p>{item.recordingfile}</p>);
     }
-    return <p>Không hoạt động</p>
+    return <p></p>
 }
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
+    var zone  = "America/New_York";
+    console.log(data);
     return (
         <tr>
-            <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
+            <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{data.fullName}</td>
-            <td>{data.fullName}</td>
-            <td>{data.actionUser}</td>
-            <td></td>
-             <td>{moment(data.businessTime).format("DD/MM/YYYY")}</td>
-            
-              
+            <td>{moment(data.calldate).format("DD/MM/YYYY hh:mm:ss")}</td>
+            <td>{getShowfile(data)}</td>
+            <td>{data.src}</td>
+            <td>{data.dst}</td>
+            <td>{data.disposition}</td>
+            <td>{data.lastapp}</td>
+            <td>{data.billsec}</td>
+            <td>{data.duration}</td>
+
         </tr>
     );
 };

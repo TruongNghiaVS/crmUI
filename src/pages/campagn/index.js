@@ -44,6 +44,9 @@ const Campagn = () => {
         setisOPenUploadFile(!isOPenUploadFile);
         
     }
+
+
+    
     
     const handlePaging = (data)=> {
 
@@ -134,25 +137,25 @@ const Campagn = () => {
     useEffect(() => {
         
         if(!isInit)
-        {
-            document.title = "Danh sách trạng thái";
-            const search = window.location.search;
-            const params = new URLSearchParams(search);
-            const token = params.get('token');
-           if( token!= null && token !="")
-             {
-                  let valueControl =token;
-                  let nameControl ="tokenSearch";
-                  setKeySearch((prevalue) => {
-                      return {
-                        ...prevalue,   // Spread Operator               
-                        [nameControl]: valueControl
-                      }
-                    })
-             }
-             getDataEmployee();
-             setInit(true);
-        }
+            {
+                document.title = "Danh sách trạng thái";
+                const search = window.location.search;
+                const params = new URLSearchParams(search);
+                const token = params.get('token');
+                if( token!= null && token !="")
+                {
+                        let valueControl =token;
+                        let nameControl ="tokenSearch";
+                        setKeySearch((prevalue) => {
+                            return {
+                                ...prevalue,   // Spread Operator               
+                                [nameControl]: valueControl
+                            }
+                            })
+                }
+                getDataEmployee();
+                setInit(true);
+            }
     }, [obejctPaging]);
 
     const btnSerachKey = useRef(null);
@@ -263,35 +266,33 @@ const Campagn = () => {
     const searchData =()=> {
         getDataEmployee();
     }
-
+    
     const handleInputChangesearch =(event)=> {
+
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-       
         setKeySearch((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
               [nameControl]: valueControl
             }
           })
+    }
      
-    }
-
-
     const openAssignee = (id)=> {
-        window.open("/campaignAssign/"+id);
-      }
-
-    
-    const  deleteEmploy = (idEmp) => { 
-          const deleteIdModel = {
-            Id:  idEmp
-           };
-          EmployeeService.delete(ConstantData.URL_campagn_Delete,ConstantData.HEADERS,
-            deleteIdModel,
-            handleDeleteSucess, 
-            handleDeleteError);
+    window.open("/campaignAssign/"+id);
     }
+
+    const  deleteEmploy = (idEmp) => { 
+        const deleteIdModel = {
+        Id:  idEmp
+        };
+        EmployeeService.delete(ConstantData.URL_campagn_Delete,ConstantData.HEADERS,
+        deleteIdModel,
+        handleDeleteSucess, 
+        handleDeleteError);
+    }
+
     const handleDeleteSucess = (data) => {
         if(data.statusCode == 200)
         {   
@@ -322,7 +323,8 @@ const Campagn = () => {
     }
     
     const handleDeleteEmpl = (id)=> {
-         Swal.fire({
+
+        Swal.fire({
             title: 'Bạn chắc chắn xóa',
             text: "Bạn sẽ không lấy lại được dữ liệu",
             icon: 'warning',
@@ -330,50 +332,81 @@ const Campagn = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Đồng ý!'
-          })
-          .then((result) => {
+        })
+        .then((result) => {
             if (result.isConfirmed) {
                 deleteEmploy(id);
-             }
-          })
+            }
+        })
 
     }
-
 
     return (
         <div className="user">
             <div className='box-tbl'>
-                <h4 className='box-tit'>
-                    <FaTable className="icon-tit" />
-                    Chiến dịch
-                </h4>
+                    <h4 className='box-tit'>
+                        <FaTable className="icon-tit" />
+                        Chiến dịch
+                    </h4>
+                    <div className="list-feature">
+                            <div className="button-feature">
+                                    <button className="btn-ft btn-add" 
+                                            onClick={() => handleShowModel()}>
+                                        Thêm
+                                    </button>
+                                    <button className="btn-ft btn-export"
+                                             onClick={()=>handleExportData()}>
+                                        Xuất Excel
+                                    </button>
+                            </div>
+                            <div className="search-feature">
+                                    <FaFilter />
+                                    <input
+                                        className="input-search"
+                                        name ="tokenSearch" 
+                                        onChange={handleInputChangesearch} 
+                                        value= {obejctSearch.tokenSearch}
+                                        type="text"
+                                        placeholder="Tìm kiếm"
+                                    />
+                                    <button  className="btn-search"  onClick= {searchData}>
+                                        Tìm kiếm
+                                    </button>
+                            </div>
+                    </div>
 
-                <div className="list-feature">
-                <div className="button-feature">
-                    <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
-                    <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button>
-             
-                </div>
-                <div className="search-feature">
-                    <FaFilter />
-                    <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
-                    <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
-                </div>
-                </div>
-
-                <Table theadData={ DataJson.theadDataCampang } dataDraw={dataEmployee} 
-                handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser }
-                handleimportRow = {handleimportRow}
-                openAssignee = {openAssignee}
-                tblClass="tbl-custom-data" />
-                <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
-            
+                    <Table
+                        theadData={ DataJson.theadDataCampang } 
+                        dataDraw={dataEmployee} 
+                        handleDelete = {handleDeleteEmpl} 
+                        handleViewById = {handleViewById}
+                        handleUpdateById = {handleUpdateById} 
+                        tbodyData={ DataJson.tbodyDataUser }
+                        handleimportRow = {handleimportRow}
+                        openAssignee = {openAssignee}
+                        tblClass="tbl-custom-data"
+                    />
+                    <Paging
+                        dataPaging = {obejctPaging}
+                        handlePaging = {handlePaging}
+                    />
             </div>
-
-            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
-
-
-            { isOPenUploadFile && <Model handleClose ={handleShowModelUploadFile} content={<UploadFile idPass = {campagnIdSelect}   handleClose={handleShowModelUploadFile}  />} /> }
+            {
+                isOpenModel &&  <Model
+                        handleClose ={handleShowModel} 
+                        content={<ModelPopup dataItem= {employeeItem} 
+                        handleAdd={handleAddUser}
+                        handleUpdate={handleUpdate} 
+                />} />
+            }
+            {
+                isOPenUploadFile && <Model                                        
+                    handleClose ={handleShowModelUploadFile}
+                    content={<UploadFile
+                    idPass = {campagnIdSelect}   
+                    handleClose={handleShowModelUploadFile} 
+                />} />
+             }
 
 
         </div>

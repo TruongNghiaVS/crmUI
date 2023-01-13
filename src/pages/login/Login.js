@@ -50,6 +50,7 @@ const Login = () => {
       role: userInfo.RoleUser,
       name: userInfo.Name,
       userId: userInfo.userId,
+      lineCode: userInfo.lineCode,
       userName: userInfo.userName,
       isLogin: true
     };
@@ -140,13 +141,7 @@ const Login = () => {
           </InputGroup>
           <p className='error-message'>{ errorPassword }</p>
         </div>
-        <div className="input-container">
-          <InputGroup className="mb-2">
-            <InputGroup.Text className="input-group-icon"><FaPhoneAlt /></InputGroup.Text>
-            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-              placeholder="extension" value={extension} onChange={(e) => setExtension(e.target.value)} required />
-          </InputGroup>
-        </div>
+     
 
         <select className='sl-language' value={valueSelect} onChange={(event) => handleChange(event)}>
           <option value="vn">Vietnamese</option>

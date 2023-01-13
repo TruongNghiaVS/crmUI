@@ -29,6 +29,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                     <td>{data.sumCount}</td>
                     <td>{data.processingCount}</td>
                     <td>{data.closedCount}</td>
+                    <td> {data.noSkippCase}</td>
                     <td>{moment(data.beginTime).format("DD/MM/YYYY")}</td>
                     <td>{moment(data.endTime).format("DD/MM/YYYY")}</td>
                    
@@ -43,9 +44,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                         <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
                         <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
                         <FaFileImport onClick={()=>handleimportRow(data.id)} className='icon-tbl' />
-
                         <MdAssistantNavigation onClick={()=>openAssignee(data.id)} className='icon-tbl'/>
-                       
                     </td>
         </tr>
     );

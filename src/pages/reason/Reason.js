@@ -118,8 +118,7 @@ const Reason = () => {
          
         ],
     }  );
-
-
+    
     useEffect(() => {
 
         if(!isInit)
