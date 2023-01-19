@@ -1,6 +1,8 @@
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import React, { useState } from "react";
 import moment from "moment"; 
+
+import ReactAudioPlayer from 'react-audio-player';
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
@@ -9,9 +11,13 @@ const TableHeadItem = ({ item }) => {
 
 const getShowfile = (item)=> {
    
-    if(item.isShow)
+    if(!item.isShow)
     {   
-        return (<p>{item.recordingfile}</p>);
+        return  <ReactAudioPlayer
+        src="{item.recordingfile}"
+        autoPlay
+        controls
+        />;
     }
     return <p></p>
 }
@@ -30,8 +36,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.dst}</td>
             <td>{data.disposition}</td>
             <td>{data.lastapp}</td>
-            <td>{data.billsec}</td>
-            <td>{data.duration}</td>
+              <td>{data.duration}</td>
 
         </tr>
     );

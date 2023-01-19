@@ -73,7 +73,7 @@ const DataJson = {
      ],
 
      theadDataReportCDR: [
-      "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Duration","Bill-duration"
+      "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Duration"
      ],
 
      theadDataReason: [

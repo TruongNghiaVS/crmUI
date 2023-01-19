@@ -1,6 +1,8 @@
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import React, { useState } from "react";
 import moment from "moment"; 
+
+
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
@@ -9,7 +11,7 @@ const TableHeadItem = ({ item }) => {
 
 const getShowfile = (item)=> {
    
-    if(item.isShow)
+    if(!item.isShow)
     {   
         return (<p>{item.recordingfile}</p>);
     }

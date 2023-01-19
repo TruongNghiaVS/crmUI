@@ -8,7 +8,6 @@ function Router() {
                          <Route path="test-line" element={<Layout page="test-line" />}>
                                 <Route path=":detail" element={<Layout page="test-line" />} />
                          </Route>
-
                          <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />} />
                          <Route path="login" element={<Layout page="login" />} />
                          <Route path="home" element={<Layout page="home" />} />
@@ -50,7 +49,7 @@ function Router() {
                          </Route>
 
                          <Route path="bao-cao-ghi-am" element={<Layout page="recording" />}>
-                           
+                              
                          </Route>
 
                          
