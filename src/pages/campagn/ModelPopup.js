@@ -151,17 +151,17 @@ const ModelPopup = (props) => {
     const  AddEmploy = (event) => { 
         
             const employeeAdd = {
-                code:  model.code,
-                displayName:  model.displayName,
-                status: 1,
-                sumCount:0,
-                processingCount: 0,
-                closedCount: 0,
-                beginTime: model.beginTime,
-                endTime: model.endTime,
-                priority: 1,
-                ShortDes: model.shortDes,
-                groupStatus: model.groupStatus
+                        code:  model.code,
+                        displayName:  model.displayName,
+                        status: true,
+                        sumCount:0,
+                        processingCount: 0,
+                        closedCount: 0,
+                        beginTime: model.beginTime,
+                        endTime: model.endTime,
+                        priority: 1,
+                        ShortDes: model.shortDes,
+                        groupStatus: model.groupStatus
             
             };
             EmployeeService.add(
@@ -323,7 +323,7 @@ const ModelPopup = (props) => {
                              <GiSightDisabled    />
                         </InputGroup.Text>
 
-                        <Form.Select aria-label="Collection" name ="status" onChange={handleInputChange} value = {model.status}>
+                        <Form.Select name ="status" onChange={handleInputChange} value = {model.status}>
                                 <option value= "1">Hoạt động</option>
                                 <option selected value= "0">Vô hiệu hóa</option>
                               
@@ -332,43 +332,33 @@ const ModelPopup = (props) => {
                        
 
                     </InputGroup>
-
-
                     
                     <InputGroup className="mb-2">
                        <InputGroup.Text className="input-group-icon">
                              <GiSightDisabled    />
                         </InputGroup.Text>
-
                         <Form.Select aria-label="Collection" name ="groupStatus" onChange={handleInputChange} value = {model.groupStatus}>
-                        <option selected value= "">Chọn danh sách nhóm trạng thái</option>
-                           {
-
-                        
-                            statusList.map((statusItem, i) => { 
-                                   return ( <option value= {statusItem.id}>{statusItem.fullName}</option>) 
-                            })}
-                               
-                               
-                              
-                        </Form.Select>
-
-                       
-
+                           <option selected value= "">Chọn danh sách nhóm trạng thái</option>
+                            {
+                                      statusList.map((statusItem, i) => { 
+                                            return ( <option value= {statusItem.id}>{statusItem.fullName}</option>) 
+                                        })
+                                
+                             }
+                         </Form.Select>
                     </InputGroup>
               </form>
             </div>
 
             <div className="footer-model">
-
                 {
                         ( model.id == "-1" )  ? (
                             <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
-                        ) : (
+                        ) : 
+                        (
                             <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
                         )   
                 }
-              
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>

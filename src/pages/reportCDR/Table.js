@@ -10,12 +10,15 @@ const TableHeadItem = ({ item }) => {
 };
 
 const getShowfile = (item)=> {
-   
+    // return item.recordingfile;
+    let fileUrl = "http://192.168.1.12:3002/api/getFileAudio?filePath=";
+    fileUrl=fileUrl +''+ item.recordingfile;
+    console.log(fileUrl);
     if(!item.isShow)
     {   
         return  <ReactAudioPlayer
-        src="{item.recordingfile}"
-        autoPlay
+        src={fileUrl}
+        
         controls
         />;
     }
@@ -36,7 +39,9 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.dst}</td>
             <td>{data.disposition}</td>
             <td>{data.lastapp}</td>
-              <td>{data.duration}</td>
+            <td>{data.durationReal}</td>
+            <td>{data.durationBill}</td>
+            <td>{data.duration}</td>
 
         </tr>
     );
@@ -60,12 +65,15 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                
-                dataDraw.tbodyDataUser.map((item, index) => {
-                    return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
-                    handleViewById = {handleViewById}
-                    handleUpdateById ={handleUpdateById}/>;
-                })}
+                     dataDraw.tbodyDataUser.map((item, index) => {
+                        return <TableRow 
+                        key={item.id} data={item} 
+                        rowIndex = {index} 
+                        handleDeleteById = {handleDelete} 
+                        handleViewById = {handleViewById}
+                        handleUpdateById ={handleUpdateById}/>;
+                    })
+                }
             </tbody>
         </table>
     );

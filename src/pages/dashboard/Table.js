@@ -29,7 +29,7 @@ const TableRow = ({ data }) => {
             <td>{data.percentConnection}</td>
             <td>{data.sumAnswered}</td>
             <td>{toHHMMSS(data.sumTimeCall)}</td>
-            <td>{toHHMMSS(data.sumTimeWaiting)}</td>
+            <td>{toHHMMSS(data.sumTimeCall-data.sumTimeTalking)}</td>
             <td>{toHHMMSS(data.sumTimeTalking)}</td>
             <td>{data.sumCallNoAswer}</td>
             <td>{data.sumCallCancel}</td>

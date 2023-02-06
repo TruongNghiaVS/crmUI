@@ -97,6 +97,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{rowIndex}</td>
             <td>{data.customerName}</td>
             <td>{data.noAgreement}</td>
+            <td>{data.dpd}</td>
             <td>{data.mobilePhone}</td>
             <td>{data.officeNumber}</td>
             <td>{data.houseNumber}</td>
@@ -112,21 +113,14 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                     <FaEdit className="icon-edit" />
                 </NavLink>
                {
-                (!data.skipp)?(  <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />) : (<p/>)
+                (!data.skipp)? ( <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />) : (<p/>)
                }
-              
-                
-                {/* <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
-                <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
-                <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' /> */}
             </td>
         </tr>
     );
 };
 
 const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById }) => {
-    
-    
     return (
         <table className={tblClass}>
             <thead>

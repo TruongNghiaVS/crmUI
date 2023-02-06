@@ -35,25 +35,12 @@ const InfoCustomer = ({data,handleInputChange}) => {
         let NoAgree =  data.noAgreement;
 
         let bodySearch = {
-            PhoneLog: PhoneLog, 
-            NoAgree:  NoAgree
+            phoneNumber: PhoneLog, 
+            noAgree:  NoAgree
            
          };
     
-         Swal.fire({
-            title: 'Đang thực hiện gọi. Đang chuyển phần mềm gọi',
-            width: 600,
-            timer: 4000,
-            showConfirmButton: false,
-            padding: '3em',
-            color: '#716add',
-            background: '#fff',
-            backdrop: `
-              rgba(0,0,123,0.4)
-              left top
-              no-repeat
-            `
-          });
+    
          
     ProcessingCall.MakeCall( bodySearch, (response) => {
         if (response.statusCode === 200) {
@@ -71,7 +58,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
                   left top
                   no-repeat
                 `
-              })
+              });
         } else{
             Swal.fire({
                 icon: 'error',

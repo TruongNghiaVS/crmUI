@@ -2,7 +2,7 @@ import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import React, { useState } from "react";
 import moment from "moment"; 
 
-
+import ReactAudioPlayer from 'react-audio-player';
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
@@ -10,10 +10,17 @@ const TableHeadItem = ({ item }) => {
 };
 
 const getShowfile = (item)=> {
-   
+    // return item.recordingfile;
+    let fileUrl = "http://192.168.1.12:3002/api/getFileAudio?filePath=";
+    fileUrl=fileUrl +''+ item.recordingfile;
+    console.log(fileUrl);
     if(!item.isShow)
     {   
-        return (<p>{item.recordingfile}</p>);
+        return  <ReactAudioPlayer
+        src={fileUrl}
+        
+        controls
+        />;
     }
     return <p></p>
 }
@@ -32,7 +39,8 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.dst}</td>
             <td>{data.disposition}</td>
             <td>{data.lastapp}</td>
-            <td>{data.billsec}</td>
+            <td>{data.durationReal}</td>
+            <td>{data.durationBill}</td>
             <td>{data.duration}</td>
 
         </tr>
@@ -57,12 +65,15 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                
-                dataDraw.tbodyDataUser.map((item, index) => {
-                    return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
-                    handleViewById = {handleViewById}
-                    handleUpdateById ={handleUpdateById}/>;
-                })}
+                     dataDraw.tbodyDataUser.map((item, index) => {
+                        return <TableRow 
+                        key={item.id} data={item} 
+                        rowIndex = {index} 
+                        handleDeleteById = {handleDelete} 
+                        handleViewById = {handleViewById}
+                        handleUpdateById ={handleUpdateById}/>;
+                    })
+                }
             </tbody>
         </table>
     );

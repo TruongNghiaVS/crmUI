@@ -205,12 +205,6 @@ const ModelAddUser = (props) => {
 
     const  UpdateEmploy = (event) => { 
         
-        // if(isOperator ==true)
-        // {
-        //     return;
-        // }
-        // setOpeartor(true);
-    
         const modelUpdate = {
             id: model.id,
             lineCode: model.lineCode,

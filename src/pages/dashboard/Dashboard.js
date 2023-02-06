@@ -47,16 +47,14 @@ const Dashboard = () => {
             
             DashboardService.getDetailOverview( (response) => {
                         if (response.statusCode === 200) {
-                            
-                                    setobjectDetail((prevalue) => {
-                                        return {
-                                        ...prevalue,   // Spread Operator               
-                                        data: response.value
-                                        }
-                                    })
+                            setobjectDetail((prevalue) => {
+                                            return {
+                                            ...prevalue,   // Spread Operator               
+                                            data: response.value
+                                            }
+                            })
                         }
                         else{
-
 
                         }
 

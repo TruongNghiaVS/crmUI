@@ -73,7 +73,7 @@ const DataJson = {
      ],
 
      theadDataReportCDR: [
-      "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Duration"
+      "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","Duration2","TotalTime"
      ],
 
      theadDataReason: [
@@ -148,12 +148,12 @@ const DataJson = {
     ],
 
     theadDataFollowUp: [
-        "Họ tên", "Số hợp đồng", "Di động", "Văn phòng", "Số nhà", 
+        "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
         "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày",
     ],
 
     theadDataFollowUpNew: [
-       "STT", "Họ tên", "Số hợp đồng", "Di động", "Văn phòng", "Số nhà", 
+       "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
         "Khác", "Tình trạng", "Trạng thái","Đang giao cho", "Tạo bởi","Giữ case", "Tạo ngày",
     ],
 

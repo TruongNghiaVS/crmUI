@@ -196,14 +196,13 @@ const Campagn = () => {
                                 Page:  obejctPaging.currentPage,
                                 Limit: obejctPaging.limt
                         };
-                        
                         EmployeeService.GetAll(ConstantData.URL_campagn_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
                         if (response.statusCode === 200) {
                                     renderData(response.value);
                         } else {
 
                         }
-        }, (error) => {
+              }, (error) => {
         
         });
 
@@ -223,7 +222,6 @@ const Campagn = () => {
 
     const renderData = (dataReder) => {
             let totalPage = 1;
-
             if(dataReder.total <1 )
             {
                 totalPage = 1;

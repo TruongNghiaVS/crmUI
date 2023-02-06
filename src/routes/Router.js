@@ -42,9 +42,8 @@ function Router() {
                          <Route path="masterData" element={<Layout page="relationship" />}>
                               <Route path=":edit" element={<Layout page="relationship" />} />
                          </Route>
-
-
-                         <Route path="reportCDR" element={<Layout page="reportCDR" />}>
+                         
+                          <Route path="reportCDR" element={<Layout page="reportCDR" />}>
                               <Route path=":edit" element={<Layout page="reportCDR" />} />
                          </Route>
 

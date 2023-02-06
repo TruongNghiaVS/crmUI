@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { FaTable, FaFilter } from "react-icons/fa";
+import { Row, Form, InputGroup, Col, FormControl, Button } from 'react-bootstrap';
 
-
+import {
+    FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
+} from 'react-icons/fa';
+import moment from "moment";
 import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
@@ -26,11 +30,27 @@ const Reason = () => {
         totalPage: 3,
         currentPage: 1
     });
+
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: ""
     });
+   
+    const handleInputChange = (event) => {
+        debugger;
+        let valueControl = event.target.value;
+        let nameControl = event.target.name;
+        setKeySearch((prevalue) => {
+            return {
+                ...prevalue,   // Spread Operator               
+                [nameControl]: valueControl
+            }
+        })
 
+    }
 
+    const dateForPicker = (dateString) => {
+        return moment(new Date(dateString)).format('YYYY-MM-DD')
+    };
 
     const handlePaging = (data)=> {
 
@@ -217,17 +237,17 @@ const Reason = () => {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
             Limit: obejctPaging.limt,
+            dpd: obejctSearch.dpd,
+            noAgree: obejctSearch.noAgree,
             typegetData: typegetData
 
           };
           EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-            if (response.statusCode === 200) {
-                renderData(response.value);
-            } else {
+                if (response.statusCode === 200) {
+                    renderData(response.value);
+                } else {
 
-
-
-             }
+                }
           }, (error) => {
            
           });
@@ -390,18 +410,113 @@ const Reason = () => {
                 <FaTable className="icon-tit" />
                      Hồ sơ theo dõi
                 </h4>
+                <Form>
+                            <Row>
+                                <Col>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Từ ngày:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                                            <Form.Control
+                                                type="date"
+                                                name="fromTime"
+                                                value={dateForPicker(obejctSearch.fromTime)}
+                                                placeholder="Từ ngày"
+                                                onChange={handleInputChange}
+                                            />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Đến ngày:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                                            <Form.Control
+                                                type="date"
+                                                name="endTime"
+                                                value={dateForPicker(obejctSearch.endTime)}
+                                                placeholder="Đến ngày"
+                                                onChange={handleInputChange}
+                                            />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col>
+
+                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Số hợp đồng:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                        <Form.Control
+        type="text" name ="noAgree"  onChange={handleInputChange} value ={obejctSearch.noAgree} 
+      />
+                                        </InputGroup>
+                                     </Form.Group>
+                                </Col>
+
+                                <Col>
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Số điện thoại:</Form.Label>
+        <InputGroup className="mb-2">
+        <Form.Control
+type="text"
+name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
+/>
+        </InputGroup>
+    </Form.Group>
+</Col>
+
+
+                                <Col>
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>DPD:</Form.Label>
+        <InputGroup className="mb-2">
+        <Form.Select aria-label="Default select example" name ="dpd" value ={obejctSearch.dpd} onChange={handleInputChange} >
+                        <option value ="-1">Chọn DPD</option>
+                        <option value="0">0-30</option>
+                        <option value="1">31-60</option>
+                        <option value="2">61-90</option>
+                        <option value="3">91-180</option>
+        </Form.Select >
+        </InputGroup>
+    </Form.Group>
+</Col>
+                                
+                            </Row>
+
+                            <Row>
+                            <Col>
+
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>tài khoản:</Form.Label>
+                                <InputGroup className="mb-2">
+                                <Form.Control
+                                type="text" name ="userName"  onChange={handleInputChange} value ={obejctSearch.userName} 
+                                />
+                                </InputGroup>
+                        </Form.Group>
+</Col>
+
+                            </Row>
+                 </Form>
 
                 <div className="list-feature">
-                <div className="button-feature">
-                    {/* <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
-                    <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button> */}
-                    {/* <button className="btn-ft btn-more">Mở rộng</button> */}
-                </div>
-                <div className="search-feature">
-                    <FaFilter />
-                    <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
-                    <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
-                </div>
+                    <div className="button-feature">
+                        {/* <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
+                        <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button> */}
+                        {/* <button className="btn-ft btn-more">Mở rộng</button> */}
+                    </div>
+                    <div className="search-feature">
+                        <FaFilter />
+                        <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
+                        <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
+                    </div>
                 </div>
 
                 <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
