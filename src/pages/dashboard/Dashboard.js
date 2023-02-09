@@ -33,7 +33,7 @@ const Dashboard = () => {
                             setobjectDataOverview((prevalue) => {
                                 return {
                                 ...prevalue,   // Spread Operator               
-                                dataOverview: response.value
+                                dataOverview: response.value.data[0]
                                 }
                             })
                             
@@ -46,11 +46,13 @@ const Dashboard = () => {
             });
             
             DashboardService.getDetailOverview( (response) => {
+                console.log("3",response);
+                debugger;
                         if (response.statusCode === 200) {
                             setobjectDetail((prevalue) => {
                                             return {
                                             ...prevalue,   // Spread Operator               
-                                            data: response.value
+                                            data: response.value.data
                                             }
                             })
                         }
@@ -93,7 +95,7 @@ const Dashboard = () => {
 
             <div className="list-box-info">
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Tổng cuộc gọi {objectDataOverview.dataOverview.sumTimeCall}</h4>
+                    <h4 className="tit-info">Tổng cuộc gọi {objectDataOverview.dataOverview.sumCall}</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
@@ -107,14 +109,14 @@ const Dashboard = () => {
                     </Link>
                 </div>
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Kết nối {objectDataOverview.dataOverview.percentConnection}%</h4>
+                    <h4 className="tit-info">Kết nối {objectDataOverview.dataOverview.perpercent}%</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
                     </Link>
                 </div>
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Talktime {toHHMMSS(objectDataOverview.dataOverview.talkTime)}</h4>
+                    <h4 className="tit-info">Talktime {toHHMMSS(objectDataOverview.dataOverview.timeTalking)}</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />

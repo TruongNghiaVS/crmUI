@@ -21,8 +21,9 @@ import Relationship from '../reason/Reason';
 import Reporthistorical from '../reporthistorical';
 import {ticketView} from '../followUp/ticketView/TicketView';
 import 'react-toastify/dist/ReactToastify.css';
-import ReportCDR from '../reportCDR'
-import ReportRecording from '../reportRecording'
+import ReportCDR from '../reportCDR';
+import ReportTalkTime from '../reportTalkTime';
+import ReportRecording from '../reportRecording';
 
 
 const Layout = (props) => {
@@ -99,6 +100,10 @@ const Screen = (props) => {
         case 'recording': 
     
         return  <ReportRecording/>
+
+        case 'reportTalkTime': 
+    
+        return  <ReportTalkTime/>
                 
         default:
             throw new Error('Invalid Screen')

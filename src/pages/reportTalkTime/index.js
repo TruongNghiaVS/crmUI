@@ -12,7 +12,7 @@ import ModelAddUser from "./ModelUser";
 import "./User.scss";
 import { useEffect, useRef } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/ReportService';
+import Services from '../../services/ReportTalkTimeService';
 import Paging from "./Paging";
 import { toast } from 'react-toastify';
 import DateTimePicker from 'react-datetime-picker';
@@ -127,7 +127,7 @@ const User = () => {
             Limit: obejctPaging.limt
 
         };
-        EmployeeService.exportData(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+        Services.exportData(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
             if (response.statusCode === 200) {
                 exportDataExcel(response.value.data);
             } else {
@@ -239,13 +239,10 @@ const User = () => {
             to: obejctSearch.endTime
 
         };
-        EmployeeService.GetAllReportCDR(bodySearch, (response) => {
+        Services.GetAll(bodySearch, (response) => {
             if (response.statusCode === 200) {
                 renderData(response.value);
             } else {
-
-
-
             }
         }, (error) => {
 
@@ -328,7 +325,7 @@ const User = () => {
             Id: idEmp,
 
         };
-        EmployeeService.delete(ConstantData.URL_Employee_Delete, ConstantData.HEADERS,
+        Services.delete(ConstantData.URL_Employee_Delete, ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess,
             handleDeleteError);
@@ -384,7 +381,7 @@ const User = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Báo cáo talktime
+                    Báo cáo report CDR
                 </h4>
 
             
@@ -439,36 +436,9 @@ const User = () => {
                                     </Form.Group>
                                 </Col>
 
-                                <Col>
-
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Số điện thoại:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Control
-type="text"
-name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
-/>
-        </InputGroup>
-    </Form.Group>
-</Col>
 
 
-                                <Col>
-
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Trạng thái gọi:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Select aria-label="Default select example" name ="status" value ={obejctSearch.status}   onChange={handleInputChange} >
-      <option>Chọn trạng thái</option>
-      <option value="FAILED">FAILED</option>
-      <option value="ANSWERED">ANSWERED</option>
-      <option value="NO ANSWER">NO ANSWER</option>
-
-      <option value="BUSY">BUSY</option>
-    </Form.Select >
-        </InputGroup>
-    </Form.Group>
-</Col>
+                      
                                 
                             </Row>
 
@@ -493,7 +463,7 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
                     </div>
                 </div>
 
-                <Table theadData={DataJson.theadDataReportCDR} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
+                <Table theadData={DataJson.theadDataReportTalkTime} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
                 <Paging dataPaging={obejctPaging} handlePaging={handlePaging} />
 
             </div>

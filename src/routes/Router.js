@@ -51,6 +51,10 @@ function Router() {
                               
                          </Route>
 
+                         <Route path="bao-cao-talktime" element={<Layout page="reportTalkTime" />}>
+                              
+                          </Route>
+     
                          
           </Routes>
      );

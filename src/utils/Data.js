@@ -76,6 +76,10 @@ const DataJson = {
       "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","Duration2","TotalTime"
      ],
 
+     theadDataReportTalkTime: [
+        "STT",  "Gọi bởi", "Số HĐ", "Tổng cuộc gọi", "% kết nối", "Thời gian gọi","Thời gian chờ", "Đàm thoại ", "Trả lời", "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
+       ],
+  
      theadDataReason: [
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
      ],

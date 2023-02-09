@@ -60,7 +60,7 @@ const Header = ({ classHeader }) => {
         <header className={classHeader}>
             <nav className='nav-header'>
                 <ul className='menu'>
-                    <li className='list-link'><NavLink className='nav-link link-main' to="/">ACS</NavLink></li>
+                    <li className='list-link'><NavLink className='nav-link link-main' to="/">Vietstar</NavLink></li>
                     <li className='list-link'>
                         <NavLink className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
@@ -71,13 +71,13 @@ const Header = ({ classHeader }) => {
                     <li className='list-link'>
                         <NavLink className='nav-link' to="/">Báo cáo <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC chiến dịch gọi ra</NavLink></li>
+                            {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">BC chiến dịch gọi ra</NavLink></li> */}
                             <li  className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/historical">BC Lịch sử tác động</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC theo khung giờ</NavLink></li>
+                            {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">BC theo khung giờ</NavLink></li> */}
                           
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhập kết quả</NavLink></li>
+                            {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhập kết quả</NavLink></li> */}
                             <li className='sub-list-link'><NavLink className='nav-link' to="/bao-cao-ghi-am">Báo cáo ghi âm</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/">BC talktime</NavLink></li>
+                            <li className='sub-list-link'><NavLink className='nav-link' to="/bao-cao-talktime">BC talktime</NavLink></li>
                             <li  className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/reportCDR">BC CDR</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/report/login">BC Đăng nhập </NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/dashboard">Dashboard </NavLink></li>

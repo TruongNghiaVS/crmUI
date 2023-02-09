@@ -315,8 +315,7 @@ const ModelAddUser = (props) => {
                   
                     <InputGroup className="mb-2">
                         <InputGroup.Text><FaBuilding /></InputGroup.Text>
-                        <Form.Select aria-label="Công ty" name = "companyName" 
-                        onChange={handleInputChange} value = {model.companyName}>
+                        <Form.Select aria-label="Công ty" name = "companyName" onChange={handleInputChange} value = {model.companyName}>
                         <option selected value="1" >ACS</option>
                         <option value="2" >ACS2</option>
               

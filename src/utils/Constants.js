@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.89";
+    static DOMAIN = "https://localhost:44332";
     static HEADERS = {
         'Accept': 'application/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -114,11 +114,18 @@ class ConstantData {
     static URL_ReportService_ReportRecordingFile = `${ConstantData.DOMAIN}/api/report/ReportRecordingFile`;
 
     
-    static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;
+    // static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;
+    static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getOverView`;
 
-    static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getOverViewByCall`;
+    // static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getOverViewByCall`;
+
+
+    static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getDetailOverView`;
 
     static URL_makeCall = `${ConstantData.DOMAIN}/api/MakeCall/TriggerCall`;
+
+
+    static URL_ReportTalkTime_GetAll = `${ConstantData.DOMAIN}/api/ReportTalkTime/getAll`;
     
 }
 export default ConstantData;

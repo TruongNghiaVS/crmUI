@@ -23,17 +23,17 @@ const TableRow = ({ data }) => {
     return (
         <tr>
             <td><input type="checkbox" defaultChecked={false} /></td>
-            <td>{data.author}</td>
-            <td>{data.sum}</td>
-            <td>{data.sumAgree}</td>
-            <td>{data.percentConnection}</td>
-            <td>{data.sumAnswered}</td>
-            <td>{toHHMMSS(data.sumTimeCall)}</td>
-            <td>{toHHMMSS(data.sumTimeCall-data.sumTimeTalking)}</td>
-            <td>{toHHMMSS(data.sumTimeTalking)}</td>
-            <td>{data.sumCallNoAswer}</td>
-            <td>{data.sumCallCancel}</td>
-            <td>{data.sumCallBusy}</td>
+            <td>{data.lineCode}</td>
+            <td>{data.sumCall}</td>
+            <td></td>
+            <td>{data.perPercent}</td>
+            <td>{data.sumAn}</td>
+            <td>{toHHMMSS(data.timCall)}</td>
+            <td>{toHHMMSS(data.timeWaiting)}</td>
+            <td>{toHHMMSS(data.timeTalking)}</td>
+            <td>{data.sumNOAswer}</td>
+            <td>{data.sumNoFail}</td>
+            <td>{data.sumNoBussy}</td>
             <td>{data.sumCallChanelError}</td>
             <td>{data.sumNotCall}</td>
             <td>{data.sumCallErrorServer}</td>
