@@ -66,6 +66,7 @@ const Header = ({ classHeader }) => {
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</NavLink></li>
                             <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</NavLink></li>
+                            { isHiddenMenu ? <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/follow-up-new/data">Danh sách kho</NavLink></li>: <></> }
                         </ul>
                     </li>
                     <li className='list-link'>

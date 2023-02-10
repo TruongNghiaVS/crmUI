@@ -3,7 +3,8 @@ import moment from "moment";
 const InfoFinance = ({data, handleInputChange}) => {
 
     const dateForPicker = (dateString) => {
-        return moment(new Date(dateString)).format('YYYY-MM-DD')
+        return moment(new Date(dateString)).format('YYYY-MM-DD');
+
     };
     
 
@@ -12,7 +13,7 @@ const InfoFinance = ({data, handleInputChange}) => {
             <Form.Label>Thông tin tài chính</Form.Label>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Ngày ký</InputGroup.Text>
-                <FormControl  type="date"  value ={dateForPicker(data.registerDay)} onChange={handleInputChange}  aria-label="Small"  />
+                <FormControl  type="date" value ={dateForPicker(data.registerDay)} onChange={handleInputChange}  aria-label="Small"  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Nợ Gốc</InputGroup.Text>

@@ -17,12 +17,19 @@ const FollowUp = (props) => {
         if (isUseEffect) {
             if (detail === "new-list") {
                 setValTitle("Danh sách mới phân");
-            } else {
+            } 
+            if (detail === "data") {
+                setValTitle("Danh sách import");
+            }
+            else {
                 setValTitle("Danh sách theo dõi");
             }
         }
     
-        return () => { isUseEffect = false };
+        return () => 
+        { 
+            isUseEffect = false
+         };
     }, [detail, valTitle]);
 
     return (

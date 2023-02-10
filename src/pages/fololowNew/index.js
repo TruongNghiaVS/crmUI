@@ -223,6 +223,10 @@ const Reason = () => {
          {
             typegetData = "1";
          }
+         else if( detail == "data")
+         {
+            typegetData = "10";
+         }
          else if( detail == "skipcase")
          {
             typegetData = "2";
