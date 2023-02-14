@@ -79,7 +79,7 @@ const Header = ({ classHeader }) => {
                             {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhập kết quả</NavLink></li> */}
                             <li className='sub-list-link'><NavLink className='nav-link' to="/bao-cao-ghi-am">Báo cáo ghi âm</NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/bao-cao-talktime">BC talktime</NavLink></li>
-                            <li  className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/reportCDR">BC CDR</NavLink></li>
+                             { isHiddenMenu ? <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/reportCDR">BC CDR</NavLink></li>: <></> }
                             <li className='sub-list-link'><NavLink className='nav-link' to="/report/login">BC Đăng nhập </NavLink></li>
                             <li className='sub-list-link'><NavLink className='nav-link' to="/dashboard">Dashboard </NavLink></li>
                         </ul>

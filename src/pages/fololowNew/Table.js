@@ -92,7 +92,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
     rowIndex = rowIndex +1;
     let likUrl = "/follow-up/" + data.id;
     return (
-        <tr>
+        <tr  >
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>{data.customerName}</td>

@@ -49,7 +49,7 @@ const TicketView = () => {
         statusIm:"-1",
         noteIm: "",
         promiseday: null,
-        moneyPromise: 0,
+        moneyPromise: "",
         daysuggestTime: null, 
         statusFollow: "-1", 
         relationship: "-1",

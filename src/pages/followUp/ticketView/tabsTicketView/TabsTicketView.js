@@ -26,6 +26,10 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
             <Tab eventKey="assignee" title="Phân công">
                 <Assigee data = {dataView2} listUser ={listUser} masterData = {masterData}  handleInputChange = {handleInputChange} />
             </Tab>
+
+            <Tab eventKey="assignee" title="Thông tin thêm">
+                <Assigee data = {dataView2} listUser ={listUser} masterData = {masterData}  handleInputChange = {handleInputChange} />
+            </Tab>
         </Tabs>
     );
 };
