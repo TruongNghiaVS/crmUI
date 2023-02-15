@@ -7,9 +7,15 @@ const TableHeadItem = ({ item }) => {
     );
 };
 
+
+const openDetailItem = ({ item }) => {
+    alert("3");
+
+}
+
 const TableRow = ({ data }) => {
     return (
-        <tr>
+        <tr onClick={this.openDetailItem(data.id)}>
             <td><input type="checkbox" defaultChecked={false} /></td>
             <td>{data.name}</td>
             <td>{data.no_contract}</td>

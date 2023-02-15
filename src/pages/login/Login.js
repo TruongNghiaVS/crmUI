@@ -30,7 +30,7 @@ const Login = () => {
       if (userInfo === null || userInfo.isLogin === 201) {
         return;
       } else {
-        navigate('/follow-up-new');
+        navigate('/follow-up-new/new-list');
         setIsLoading(false);
       }
     }
@@ -57,7 +57,7 @@ const Login = () => {
     localStorage.setItem('authorizeKey', JSON.stringify(data));
     localStorage.setItem('user-info', JSON.stringify(dataJson));
 
-    navigate('/follow-up-new/watch-list');
+    navigate('/follow-up-new/new-list');
   };
   // function LoginSucess(data)
   // {

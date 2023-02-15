@@ -6,8 +6,22 @@ const TableHeadItem = ({ item }) => {
 
 // select COUNT(d.calldate), d.disposition  from cdr d where d.src = '9005' and d.lastapp = 'Dial'
 // group by d.disposition
-
+const percentFix3 = (number) => {
+    if(!isNaN(parseFloat(number)) && isFinite(number))
+    {
+            return number.toFixed(2) +"%";
+    }
+    return "";
+}
 const toHHMMSS = (secs) => {
+    if(!isNaN(parseFloat(secs)) && isFinite(secs))
+    {
+          
+    }
+    else 
+    {
+        return  "";
+    }
     var sec_num = parseInt(secs, 10)
     var hours   = Math.floor(sec_num / 3600)
     var minutes = Math.floor(sec_num / 60) % 60
@@ -26,7 +40,7 @@ const TableRow = ({ data }) => {
             <td>{data.lineCode}</td>
             <td>{data.sumCall}</td>
             <td></td>
-            <td>{data.perPercent}</td>
+            <td>{percentFix3(data.perPercent)}</td>
             <td>{data.sumAn}</td>
             <td>{toHHMMSS(data.timCall)}</td>
             <td>{toHHMMSS(data.timeWaiting)}</td>

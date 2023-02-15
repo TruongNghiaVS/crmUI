@@ -1,6 +1,6 @@
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import React, { useState } from "react";
-import moment from "moment"; 
+import moment from "moment-timezone"; 
 
 import ReactAudioPlayer from 'react-audio-player';
 const TableHeadItem = ({ item }) => {
@@ -29,11 +29,12 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
     console.log(data);
+    const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{moment(data.calldate).format("DD/MM/YYYY hh:mm:ss")}</td>
+            <td>{moment(data.calldate).tz(timeZoneString).format("DD/MM/YYYY hh:mm:ss")}</td>
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
             <td>{data.dst}</td>

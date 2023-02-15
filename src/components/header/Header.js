@@ -94,7 +94,7 @@ const Header = ({ classHeader }) => {
 
                             <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</NavLink></li>
                             <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</NavLink></li>
-                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi chiến dịch</NavLink></li>
+                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi case</NavLink></li>
                         </ul>
                     </li> : <></>}
                     <div className='nav-profile'>

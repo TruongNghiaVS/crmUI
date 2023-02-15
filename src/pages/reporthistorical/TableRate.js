@@ -1,6 +1,13 @@
 
 
 import React from 'react';
+const percentFix3 = (number) => {
+        if(!isNaN(parseFloat(number)) && isFinite(number))
+        {       
+                return number.toFixed(2) +"%";
+        }
+        return "";
+    }
 const renderRowData = ({ data,rowIndex }) => {
         rowIndex = rowIndex +1;
         return (
@@ -8,7 +15,7 @@ const renderRowData = ({ data,rowIndex }) => {
                         <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
                         <td>{rowIndex}</td>
                         <td>{data.sum}</td>
-                        <td>{data.percent}</td>
+                        <td>{percentFix3(data.percent)}</td>
                         <td>{data.reasonName}</td>
                 </tr>
         );
@@ -50,7 +57,8 @@ const TableRate = (props) => {
                         <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
                         <td>{index+1}</td>
                         <td>{item.sum}</td>
-                        <td>{item.percent}</td>
+                      
+                        <td>{percentFix3(item.percent)}</td>
                         <td>{item.reasonName}</td>
                         </tr>
                    )

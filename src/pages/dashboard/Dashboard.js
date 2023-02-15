@@ -16,6 +16,14 @@ const Dashboard = () => {
 });
     const [isInit, setInit] = useState(false);
     const toHHMMSS = (secs) => {
+        if(!isNaN(parseFloat(secs)) && isFinite(secs))
+        {
+              
+        }
+        else 
+        {
+            return  "";
+        }
         var sec_num = parseInt(secs, 10)
         var hours   = Math.floor(sec_num / 3600)
         var minutes = Math.floor(sec_num / 60) % 60
@@ -25,6 +33,14 @@ const Dashboard = () => {
             .map(v => v < 10 ? "0" + v : v)
             .filter((v,i) => v !== "00" || i > 0)
             .join(":")
+    }
+
+    const percentFix2 = (number) => {
+        if(!isNaN(parseFloat(number)) && isFinite(number))
+        {
+                return number.toFixed(2) +"%";
+        }
+        return "";
     }
     const getData = ()=> {
             DashboardService.getInformationOverviewDashboard( (response) => {
@@ -89,9 +105,6 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="out-bound">
-                <p>Outbound</p>
-            </div>
 
             <div className="list-box-info">
                 <div className="box-detail-info">
@@ -109,7 +122,7 @@ const Dashboard = () => {
                     </Link>
                 </div>
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Kết nối {objectDataOverview.dataOverview.perpercent}%</h4>
+                    <h4 className="tit-info">Kết nối {percentFix2(objectDataOverview.dataOverview.perpercent)}</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
@@ -132,7 +145,7 @@ const Dashboard = () => {
 
                 <Table theadData={ DataJson.theadDataDashboard } tbodyData={ objectDetail.data } tblClass="tbl-custom-data" />
 
-                <p className="totalTable">Tổng: { DataJson.tbodyDataDashboard.length }</p>
+            
             </div>
         </div>
     );

@@ -374,7 +374,7 @@ const User = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Báo cáo report CDR
+                    Báo cáo ghi âm
                 </h4>
 
             

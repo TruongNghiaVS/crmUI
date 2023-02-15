@@ -25,7 +25,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.fullName}</td>
             <td>{data.actionUser}</td>
             <td></td>
-             <td>{moment(data.businessTime).format("DD/MM/YYYY")}</td>
+             <td>{moment(data.businessTime).format("DD/MM/YYYY hh:mm:ss")}</td>
             
               
         </tr>

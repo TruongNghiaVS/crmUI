@@ -473,7 +473,7 @@ const Reporthistorical = () => {
         </div>
             <Row>
                 <Col>
-                <Chartsection dataRaw = {objectDraw} />
+                <Chartsection  dataRaw = {objectDraw} />
                 </Col>
 
                 <Col>

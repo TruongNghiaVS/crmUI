@@ -11,7 +11,11 @@ const TableHeadItem = ({ item }) => {
         <th title={item}>{item}</th>
     );
 };
+const openDetailItem = (likUrl) => {
+    
+    window.open(likUrl,"_self")
 
+}
 const skipTask = (id)=> {
 
     Swal.fire({
@@ -92,7 +96,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
     rowIndex = rowIndex +1;
     let likUrl = "/follow-up/" + data.id;
     return (
-        <tr  >
+        <tr onClick={()=>openDetailItem(likUrl)}>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>{data.customerName}</td>

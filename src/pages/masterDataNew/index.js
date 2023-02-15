@@ -398,7 +398,7 @@ const MasterDataNew = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                     Quan hệ người thân
+                     Trạng thái theo dõi case
                 </h4>
 
                 <div className="list-feature">
