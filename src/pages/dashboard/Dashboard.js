@@ -1,6 +1,11 @@
 import React ,{ useState } from "react";
+import { Row, Form, InputGroup, Col, FormControl, Button } from 'react-bootstrap';
 import { FaTable, FaFilter, FaAngleRight } from "react-icons/fa";
+import {
+    FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
+} from 'react-icons/fa';
 import Table from "./Table";
+import moment from "moment";
 import DataJson from "../../utils/Data";
 import { Link } from "react-router-dom";
 import "./Dashboard.scss";
@@ -14,6 +19,37 @@ const Dashboard = () => {
     const [objectDetail, setobjectDetail] = useState({
         data: []
 });
+
+const [obejctSearch, setKeySearch] = useState({
+    tokenSearch: ""
+});
+const handleInputChange = (event) => {
+    let valueControl = event.target.value;
+    let nameControl = event.target.name;
+
+    setKeySearch((prevalue) => {
+        return {
+            ...prevalue,   // Spread Operator               
+            [nameControl]: valueControl
+        }
+    })
+
+}
+
+
+const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+
+const roleUser = jsonProfile.role;
+
+var isAdmin = false;
+if(roleUser === "2") {
+    isAdmin = true;
+}
+
+const dateForPicker = (dateString) => {
+    return moment(new Date(dateString)).format('YYYY-MM-DD')
+};
+
     const [isInit, setInit] = useState(false);
     const toHHMMSS = (secs) => {
         if(!isNaN(parseFloat(secs)) && isFinite(secs))
@@ -96,14 +132,84 @@ const Dashboard = () => {
         <div className="dashboard">
             <h2 className="tit-dash">Dashboard</h2>
 
-            <div className="list-feature custom-feature">
-                <div className="search-feature">
-                    <FaFilter />
-                    <input className="input-search" type="text" placeholder="Tìm kiếm" />
-                    <input className="input-search" type="text" />
-                    <button className="btn-search">Tìm kiếm</button>
+            <form className='form-login'>
+                    <div>
+
+                        <Form>
+                            <Row>
+                                <Col>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Từ ngày:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                                            <Form.Control
+                                                type="date"
+                                                name="fromTime"
+                                                value={dateForPicker(obejctSearch.fromTime)}
+                                                placeholder="Từ ngày"
+                                                onChange={handleInputChange}
+                                            />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Đến ngày:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                                            <Form.Control
+                                                type="date"
+                                                name="endTime"
+                                                value={dateForPicker(obejctSearch.endTime)}
+                                                placeholder="Đến ngày"
+                                                onChange={handleInputChange}
+                                            />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            {
+                                isAdmin? <Row>
+
+                            
+                                <Col>
+
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>line gọi:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                        <Form.Control
+        type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
+      />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+
+
+
+                      
+                                
+                            </Row>:<></>
+                            }
+                           
+
+                           
+                        </Form>
+
+                       
+
+
+
+                    </div>
+                </form>
+                <div className="list-feature">
+                    
+                    <div className="search-feature">
+                      
+                        
+                        <button className="btn-search" >Tìm kiếm</button>
+                    </div>
                 </div>
-            </div>
 
 
             <div className="list-box-info">

@@ -43,7 +43,14 @@ const User = () => {
     };
 
 
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
+    const roleUser = jsonProfile.role;
+
+    var isAdmin = false;
+    if(roleUser === "2") {
+        isAdmin = true;
+    }
   
 
     const handleInputChange = (event) => {
@@ -422,8 +429,10 @@ const User = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
+                            {
+                                isAdmin? <Row>
 
-                            <Row>
+                            
                                 <Col>
 
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -440,12 +449,11 @@ const User = () => {
 
                       
                                 
-                            </Row>
+                            </Row>:<></>
+                            }
+                           
 
-                            <Row>
-
-
-                            </Row>
+                           
                         </Form>
 
                        

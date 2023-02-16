@@ -47,7 +47,14 @@ const Reason = () => {
         })
 
     }
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
+    const roleUser = jsonProfile.role;
+
+    var isAdmin = false;
+    if(roleUser === "2") {
+        isAdmin = true;
+    }
     const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD')
     };
@@ -491,21 +498,26 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
         </InputGroup>
     </Form.Group>
 </Col>
+
+{
+    isAdmin?<Col>
+
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>tài khoản:</Form.Label>
+            <InputGroup className="mb-2">
+            <Form.Control
+            type="text" name ="userName"  onChange={handleInputChange} value ={obejctSearch.userName} 
+            />
+            </InputGroup>
+    </Form.Group>
+    </Col>:<></>
+}
+
                                 
                             </Row>
 
                             <Row>
-                            <Col>
-
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>tài khoản:</Form.Label>
-                                <InputGroup className="mb-2">
-                                <Form.Control
-                                type="text" name ="userName"  onChange={handleInputChange} value ={obejctSearch.userName} 
-                                />
-                                </InputGroup>
-                        </Form.Group>
-</Col>
+                    
 
                             </Row>
                  </Form>

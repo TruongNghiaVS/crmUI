@@ -57,7 +57,7 @@ const TableRow = ({ data }) => {
 
 const Table = ({ theadData, tbodyData, tblClass }) => {
 
-    console.log(tbodyData);
+
     return (
         <table className={tblClass}>
             <thead>

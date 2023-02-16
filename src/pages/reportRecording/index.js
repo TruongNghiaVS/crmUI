@@ -41,10 +41,15 @@ const User = () => {
     const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD')
     };
+    
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
+    const roleUser = jsonProfile.role;
 
-
-  
+    var isAdmin = false;
+    if(roleUser === "2") {
+        isAdmin = true;
+    }
 
     const handleInputChange = (event) => {
         let valueControl = event.target.value;
@@ -416,18 +421,22 @@ const User = () => {
                                 </Col>
                             </Row>
 
+                          
                             <Row>
-                                <Col>
+                            {
+                                    isAdmin? <Col>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>line gọi:</Form.Label>
-                                        <InputGroup className="mb-2">
-                                        <Form.Control
-        type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
-      />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>line gọi:</Form.Label>
+                                            <InputGroup className="mb-2">
+                                            <Form.Control
+            type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
+          />
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Col>:<></>
+                            }
+                               
 
                                 <Col>
 
@@ -477,7 +486,7 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
                 <div className="list-feature">
                     
                     <div className="search-feature">
-                        <FaFilter />
+                       
                         
                         <button className="btn-search" onClick={searchData}>Tìm kiếm</button>
                     </div>
