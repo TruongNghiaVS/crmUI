@@ -10,6 +10,13 @@ const ModelChangePassword = (props) => {
 
             <div className="main-model">
                 <form className='form-login'>
+
+                     <label for="basic-url">Nhập mật khẩu mới</label>
+                    <InputGroup>
+                        <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+                    </InputGroup>
+                    <label for="basic-url">Nhập lại mật khẩu mới</label>
                     <InputGroup>
                         <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
@@ -18,8 +25,8 @@ const ModelChangePassword = (props) => {
             </div>
 
             <div className="footer-model">
-                <button className="btn-model btn-add"  onClick={props.handleSave}>Lưu</button>
-                <button className="btn-model btn-closes" onClick={props.handleClose}>Huỷ</button>
+                <button className="btn-model btn-add"  onClick={props.handleSave}>Đổi mật khẩu</button>
+                <button className="btn-model btn-closes" onClick={props.handleClose}>Hủy</button>
             </div>
         </div>
     );

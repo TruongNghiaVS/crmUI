@@ -129,13 +129,13 @@ const TicketView = () => {
 
         
 Swal.fire({
-    title: 'Bạn chắc chắn xóa',
-    text: "Bạn sẽ không lấy lại được dữ liệu",
-    icon: 'warning',
+    title: 'Bạn có muốn lưu lịch sử tác động',
+    text: "",
+    icon: 'info',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Đồng ý!'
+    confirmButtonText: 'Lưu'
     })
     .then((result) => {
     if (result.isConfirmed) {
@@ -157,13 +157,13 @@ const Save = ()=> {
     let profileId =   window.location.pathname.split("/").pop();
 
     Swal.fire({
-    title: 'Bạn chắc chắn xóa',
-    text: "Bạn sẽ không lấy lại được dữ liệu",
+    title: 'Bạn chắc chắn lưu?',
+    text: "Dự liệu sẽ bị ghi đè",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Đồng ý!'
+    confirmButtonText: 'Lưu'
     })
     .then((result) => {
     if (result.isConfirmed) {
@@ -186,9 +186,9 @@ const saveSkip = () => {
 
     let profileId =   window.location.pathname.split("/").pop();
     Swal.fire({
-            title: 'Bạn chắc chắn xóa',
+            title: 'lưu thông tin thêm',
             text: "bạn chắc chắn thao tác",
-            icon: 'warning',
+            icon: 'info',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

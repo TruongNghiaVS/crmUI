@@ -17,13 +17,21 @@ import EmployeeService from '../../services/EmployeeService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import UploadFile  from "./UploadFile";
 let XLSX = require("xlsx");
+
+
 
 const Reason = () => {
     let { detail } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
+
+    const [campagnIdSelect, setCampagnSelect] = useState(-1);
+
+    const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
         totalRecord : 28,
@@ -35,6 +43,18 @@ const Reason = () => {
         tokenSearch: ""
     });
    
+    const handleimportRow = ()=> {
+
+         setisOPenUploadFile(!isOPenUploadFile);
+   }
+
+    const handleShowModelUploadFile = () => {
+        
+
+        setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
+
     const handleInputChange = (event) => {
         debugger;
         let valueControl = event.target.value;
@@ -521,16 +541,15 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
 
                             </Row>
                  </Form>
+                
 
                 <div className="list-feature">
                     <div className="button-feature">
-                        {/* <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
-                        <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button> */}
-                        {/* <button className="btn-ft btn-more">Mở rộng</button> */}
+                        
+                        <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Import Thông tin thêm</button> 
+                         
                     </div>
                     <div className="search-feature">
-                        <FaFilter />
-                        <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>
                 </div>
@@ -542,6 +561,14 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
 
             { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
+            {
+                isOPenUploadFile && <Model                                        
+                    handleClose ={handleShowModelUploadFile}
+                    content={<UploadFile
+                    idPass = "3333"  
+                    handleClose={handleShowModelUploadFile} 
+                />} />
+             }
 
         </div>
     );

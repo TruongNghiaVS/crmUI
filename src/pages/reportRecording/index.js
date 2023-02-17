@@ -430,7 +430,7 @@ const User = () => {
                                             <Form.Label>line gọi:</Form.Label>
                                             <InputGroup className="mb-2">
                                             <Form.Control
-            type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
+                     type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
           />
                                             </InputGroup>
                                         </Form.Group>

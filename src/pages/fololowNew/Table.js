@@ -12,7 +12,7 @@ const TableHeadItem = ({ item }) => {
     );
 };
 const openDetailItem = (likUrl) => {
-    
+    return;
     window.open(likUrl,"_self")
 
 }
@@ -28,21 +28,20 @@ const skipTask = (id)=> {
         confirmButtonText: 'Đồng ý!'
     })
     .then((result) => {
-    if (result.isConfirmed) {
-       
-            const modelUpdate = {
+            if (result.isConfirmed) {
+            
+                    const modelUpdate = {
 
-            };
-            modelUpdate.id = id;
-            modelUpdate.resetCase = false;
-            modelUpdate.skipp = true;
-            CampagnProfileService.handleCase(
-                modelUpdate,
-                handleSucessUpdateHandleCase, 
-                handleErrUpdate
-            );
-
-    }
+                    };
+                    modelUpdate.id = id;
+                    modelUpdate.resetCase = false;
+                    modelUpdate.skipp = true;
+                    CampagnProfileService.handleCase(
+                        modelUpdate,
+                        handleSucessUpdateHandleCase, 
+                        handleErrUpdate
+                    );
+                }
     })
 
 }

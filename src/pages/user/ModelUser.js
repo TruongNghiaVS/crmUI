@@ -280,15 +280,18 @@ const ModelAddUser = (props) => {
 
             <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate   validated={validated}>
-
+                    
                     <InputGroup className="mb-2">
+                   
                         <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
+                   
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
                         name ="fullName" placeholder="Tên người dùng" 
                         onChange={handleInputChange} value = {model.fullName} required />
                             <Form.Control.Feedback type="invalid">
                                     Trường bặt buộc
                             </Form.Control.Feedback>
+                        
                     </InputGroup>
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>

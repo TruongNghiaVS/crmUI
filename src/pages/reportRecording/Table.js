@@ -28,13 +28,15 @@ const getShowfile = (item)=> {
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
-    console.log(data);
+
     const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{moment(data.calldate).tz(timeZoneString).format("DD/MM/YYYY hh:mm:ss")}</td>
+            <td>{moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss")}</td>
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
             <td>{data.dst}</td>

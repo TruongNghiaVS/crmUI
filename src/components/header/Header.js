@@ -106,7 +106,8 @@ const Header = ({ classHeader }) => {
                         </li>
                         { isHiddenProfile ? <div className="box-profile">
                             <span className="change-pass" onClick={() => handleShowModel()}>Đổi mật khẩu</span>
-                            <span className="change-pass">Line gọi: {lineCode}</span>
+                            
+                            {!isHiddenMenu?<span className="change-pass">Line gọi: {lineCode}</span>: <></>} 
                             <span className="logout" onClick={() => handleLogout()}>Đăng xuất</span>
                         </div> : <></>}
                     </div>
