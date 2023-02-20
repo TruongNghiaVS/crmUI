@@ -510,10 +510,13 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
         <InputGroup className="mb-2">
         <Form.Select aria-label="Default select example" name ="dpd" value ={obejctSearch.dpd} onChange={handleInputChange} >
                         <option value ="-1">Chọn DPD</option>
-                        <option value="0">0-30</option>
-                        <option value="1">31-60</option>
-                        <option value="2">61-90</option>
-                        <option value="3">91-180</option>
+                        <option value="0">DPD ~30</option>
+                        <option value="1">DPD 31 ~60</option>
+                        <option value="2">DPD 61 ~90</option>
+                        <option value="3">DPD 91 ~ 180</option>
+                        <option value="4">DPD 181 ~ 360</option>
+                        <option value="5">DPD 361 ~ 1000</option>
+                        <option value="6">DPD 1001 ~</option>
         </Form.Select >
         </InputGroup>
     </Form.Group>

@@ -41,7 +41,7 @@ const Chartsection = (props) => {
 
     
     return (
-      <Pie  data={data}  />
+      <Pie  data={data}   />
     );
 };
 

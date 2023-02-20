@@ -472,14 +472,14 @@ const Reporthistorical = () => {
 
         </div>
             <Row>
-                <Col>
+                <Col  className='col-4'>
                 <Chartsection  dataRaw = {objectDraw} />
                 </Col>
 
-                <Col>
+                <Col >
                 <TableRate dataRaw = {objectDraw}/>
                 </Col>
-
+                
             </Row>
    
         <div className="user">
