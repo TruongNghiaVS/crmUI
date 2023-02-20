@@ -50,7 +50,6 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td></td>
             <td>{data.sumAn+ data.sumNOAswer+ data.sumNOCancel + data.sumNoBussy +data.sumNoFail }</td>
             <td>{data.perPercent}</td>
-            
             <td>{toHHMMSS(data.timCall)}</td>
             <td>{toHHMMSS(data.timeWaiting)}</td>
             <td>{toHHMMSS(data.timeTalking)}</td>

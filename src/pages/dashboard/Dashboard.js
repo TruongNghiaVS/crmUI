@@ -168,12 +168,11 @@ const dateForPicker = (dateString) => {
                                         </InputGroup>
                                     </Form.Group>
                                 </Col>
-                            </Row>
-                            {
-                                isAdmin? <Row>
+                                {
+                                isAdmin? 
 
                             
-                                <Col>
+                                <Col >
 
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                         <Form.Label>line gọi:</Form.Label>
@@ -189,8 +188,10 @@ const dateForPicker = (dateString) => {
 
                       
                                 
-                            </Row>:<></>
+                            :<></>
                             }
+                            </Row>
+                          
                            
 
                            

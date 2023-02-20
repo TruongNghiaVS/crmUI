@@ -1,6 +1,10 @@
-import { Col,Row} from 'react-bootstrap';
+
 import React, { useState } from "react";
 import { FaTable, FaFilter } from "react-icons/fa";
+import {
+    FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
+} from 'react-icons/fa';
+import { Row, Form, InputGroup, Col, FormControl, Button } from 'react-bootstrap';
 import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
@@ -14,10 +18,13 @@ import EmployeeService from '../../services/ReportService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import moment from "moment";
 let XLSX = require("xlsx");
 
-
+const dateForPicker = (dateString) => {
+    return moment(new Date(dateString)).format('YYYY-MM-DD')
+};
 const Reporthistorical = () => {
     let { edit } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
@@ -41,6 +48,27 @@ const Reporthistorical = () => {
     const [obejctSearch, setKeySearch] = useState({
            tokenSearch: ""
     });
+
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+
+    const roleUser = jsonProfile.role;
+    
+    var isAdmin = false;
+    if(roleUser === "2") {
+        isAdmin = true;
+    }
+    const handleInputChange = (event) => {
+        let valueControl = event.target.value;
+        let nameControl = event.target.name;
+    
+        setKeySearch((prevalue) => {
+            return {
+                ...prevalue,   // Spread Operator               
+                [nameControl]: valueControl
+            }
+        })
+    
+    }
     
     useEffect(() => {
         if(!isInit)
@@ -451,17 +479,90 @@ const Reporthistorical = () => {
                      Báo cáo lịch sử tương tác
                 </h4>
 
+                
+
                 <div className="list-feature">
-                <div className="button-feature">
-             
-                   
-                    {/* <button className="btn-ft btn-more">Mở rộng</button> */}
-                </div>
-                <div className="search-feature">
-                    <FaFilter />
-                    <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
-                    <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
-                </div>
+
+                <form className='form-login'>
+                    <div>
+
+                        <Form>
+                            <Row>
+                                <Col>
+
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Từ ngày:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                                            <Form.Control
+                                                type="date"
+                                                name="fromTime"
+                                                value={dateForPicker(obejctSearch.fromTime)}
+                                                placeholder="Từ ngày"
+                                                onChange={handleInputChange}
+                                            />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Đến ngày:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                                            <Form.Control
+                                                type="date"
+                                                name="endTime"
+                                                value={dateForPicker(obejctSearch.endTime)}
+                                                placeholder="Đến ngày"
+                                                onChange={handleInputChange}
+                                            />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+                                {
+                                isAdmin? 
+
+                            
+                                <Col >
+
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>line gọi:</Form.Label>
+                                        <InputGroup className="mb-2">
+                                        <Form.Control
+        type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
+      />
+                                        </InputGroup>
+                                    </Form.Group>
+                                </Col>
+
+
+
+                      
+                                
+                            :<></>
+                            }
+                            </Row>
+                            
+
+                           
+                        </Form>
+
+                       
+
+
+
+                    </div>
+                </form>
+
+                        <div className="button-feature">
+                    
+                        
+                            {/* <button className="btn-ft btn-more">Mở rộng</button> */}
+                        </div>
+                        <div className="search-feature">
+                          
+                            <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
+                        </div>
                 </div>
 
               
