@@ -3,11 +3,7 @@ import React, { useState } from "react";
 import moment from "moment-timezone"; 
 
 import ReactAudioPlayer from 'react-audio-player';
-const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
-const roleUser = jsonProfile.role;
-
-const lineCode = jsonProfile.lineCode;
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
