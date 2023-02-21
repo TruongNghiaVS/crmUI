@@ -3,17 +3,26 @@ import React, { useState } from "react";
 import moment from "moment-timezone"; 
 
 import ReactAudioPlayer from 'react-audio-player';
+const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+
+const roleUser = jsonProfile.role;
+
+const lineCode = jsonProfile.lineCode;
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
     );
 };
 
-const getShowfile = (item)=> {
+const getShowfile =  (item)=> {
     // return item.recordingfile;
     let fileUrl = "http://192.168.1.12:3002/api/getFileAudio?filePath=";
+    if(item.src.startsWith("7"))
+    {
+        fileUrl = "http://192.168.1.9:3002/api/getFileAudio?filePath=";
+    }
     fileUrl=fileUrl +''+ item.recordingfile;
-    console.log(fileUrl);
+    
     if(!item.isShow)
     {   
         return  <ReactAudioPlayer

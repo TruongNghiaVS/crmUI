@@ -12,8 +12,12 @@ const TableHeadItem = ({ item }) => {
 const getShowfile = (item)=> {
     // return item.recordingfile;
     let fileUrl = "http://192.168.1.12:3002/api/getFileAudio?filePath=";
+    if(item.src.startsWith("7"))
+    {
+        fileUrl = "http://192.168.1.9:3002/api/getFileAudio?filePath=";
+    }
     fileUrl=fileUrl +''+ item.recordingfile;
-    console.log(fileUrl);
+    
     if(!item.isShow)
     {   
         return  <ReactAudioPlayer

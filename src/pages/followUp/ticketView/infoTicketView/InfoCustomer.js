@@ -107,25 +107,25 @@ const InfoCustomer = ({data,handleInputChange}) => {
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
                 <FormControl aria-label="Small" value ={data.phone1} name = "phone1" onChange={handleInputChange} />
-                <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline(e)}/></InputGroup.Text>
                 <InputGroup.Text className="input-group-icon"><FaSms /></InputGroup.Text>
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số nhà</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.houseNumber} name = "houseNumber" onChange={handleInputChange} />
-                <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline(e)} /></InputGroup.Text>
                 <InputGroup.Text className="input-group-icon"><FaSms /></InputGroup.Text>
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Văn phòng</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.officeNumber} name = "officeNumber" onChange={handleInputChange}  />
-                <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline(e)} /></InputGroup.Text>
                 <InputGroup.Text className="input-group-icon"><FaSms /></InputGroup.Text>
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.otherPhone} name = "otherPhone" onChange={handleInputChange} />
-                <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline(e)} /></InputGroup.Text>
                 <InputGroup.Text className="input-group-icon"><FaSms /></InputGroup.Text>
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
