@@ -547,11 +547,14 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
                 
 
                 <div className="list-feature">
-                    <div className="button-feature">
+                    {
+                        isAdmin?  <div className="button-feature">
                         
                         <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Import Thông tin thêm</button> 
                          
-                    </div>
+                    </div>:<></>
+                    }
+                  
                     <div className="search-feature">
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>

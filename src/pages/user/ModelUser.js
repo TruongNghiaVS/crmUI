@@ -6,6 +6,8 @@ import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap'
 import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
+import ModelPopup from '../../components/model/Model2';
+import ModelChangePassword1 from './ModelChangePassword';
 import EmployeeService from '../../services/EmployeeService';
 import { toast } from 'react-toastify';
 import {GiSightDisabled} from 'react-icons/gi';
@@ -15,7 +17,12 @@ const ModelAddUser = (props) => {
        
         
     });
-
+    const [isHiddenProfile, setIsHiddenProfile] = useState(false);
+    const handleShowModel = () => {
+        setIsHiddenProfile(false);
+        setIsOpenModel(!isOpenModel);
+    }
+    const [isOpenModel, setIsOpenModel] = useState(false);
     const [validated, setValidated] = useState(false);
     const [isEdit, enableEdit] = useState(false);
     const [isView, enbaleView] = useState(false);
@@ -202,6 +209,11 @@ const ModelAddUser = (props) => {
     }
 
 
+    const changePassword=(userId)=> {
+
+        setIsOpenModel(!isOpenModel);
+    }
+
 
     const  UpdateEmploy = (event) => { 
         
@@ -375,11 +387,16 @@ const ModelAddUser = (props) => {
                     model.id == "-1"  ? (
                     <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
                 ) : (
+                    <>
                         <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
+                        <button className="btn-model btn-add" hidden = {isView} onClick= {changePassword}>Đổi mật khẩu</button>
+                        </>
                 )   }
               
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
+
+            { isOpenModel && <ModelPopup content={<ModelChangePassword1  userId ={model.id}  />} handleClose={handleShowModel} /> }
         </div>
     );
 };

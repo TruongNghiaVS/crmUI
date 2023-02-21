@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Model from '../model/Model';
 import ModelChangePassword from './ModelChangePassword';
 import LoginService from '../../services/LoginService';
+
 const Header = ({ classHeader }) => {
     const [isHiddenProfile, setIsHiddenProfile] = useState(false);
     const [isOpenModel, setIsOpenModel] = useState(false);
@@ -25,8 +26,10 @@ const Header = ({ classHeader }) => {
         isHiddenMenu = false;
     }
      const handleChangePass = () => {
-        console.log('change pass');
-        setIsOpenModel(!isOpenModel);
+       
+       
+      
+        
     }
 
     const handleShowModel = () => {
@@ -35,26 +38,27 @@ const Header = ({ classHeader }) => {
     }
 
     const handleLogout = () => {
-            var dataJson = {
-                role: "",
-                isLogin: 201
-            };
-            LoginService.logout( (response) => {
-            if (response.statusCode === 200) {
-                localStorage.setItem('user-info', JSON.stringify(dataJson));
-                localStorage.removeItem('user-info');
-                localStorage.removeItem('authorizeKey');
-                navigate('/login');
-            } else {
+        var dataJson = {
+            role: "",
+            isLogin: 201
+        };
+        LoginService.logout( (response) => {
+        if (response.statusCode === 200) {
+            localStorage.setItem('user-info', JSON.stringify(dataJson));
+            localStorage.removeItem('user-info');
+            localStorage.removeItem('authorizeKey');
+            navigate('/login');
+        } else {
 
-            }
-          }, (error) => {
-             console.log(error);
-            // setIsLoading(false);
-          });
+        }
+      }, (error) => {
+         console.log(error);
+        // setIsLoading(false);
+      });
 
-      
-    };
+  
+};
+
 
     return (
         <header className={classHeader}>

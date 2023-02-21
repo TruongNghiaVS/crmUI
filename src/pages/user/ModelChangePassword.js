@@ -3,12 +3,14 @@ import { InputGroup, FormControl } from 'react-bootstrap';
 import EmployeeService from '../../services/EmployeeService';
 import  { useState } from "react";
 import { NavLink, useNavigate  } from 'react-router-dom';
+
 import Swal from 'sweetalert2'
-const ModelChangePassword = (props) => {
+const ModelChangePassword1 = (props) => {
 
     const [model  , setmodel]=useState({
         PaswordNew: '',
-        RepeatPassword: ''
+        RepeatPassword: '',
+        userId: props.userId
         
     });
     let navigate = useNavigate();
@@ -29,39 +31,35 @@ const ModelChangePassword = (props) => {
     const handleChangePass = () => {
         var dataJson = {
             PaswordNew: model.PaswordNew,
-            RepeatPassword: model.RepeatPassword
+            RepeatPassword: model.RepeatPassword,
+            userId: model.userId
         };
-     
-
+        
         var dataJson1 = {
             role: "",
             isLogin: 201
         };
         console.log(dataJson);
-        EmployeeService.ChangePassword( dataJson, (response) => {
+        EmployeeService.ResetPassword( dataJson, (response) => {
+             if (response.statusCode === 200) {
+                    localStorage.setItem('user-info', JSON.stringify(dataJson1));
+                    localStorage.removeItem('user-info');
+                    localStorage.removeItem('authorizeKey');
 
-            
-        if (response.statusCode === 200) {
-            localStorage.setItem('user-info', JSON.stringify(dataJson1));
-            localStorage.removeItem('user-info');
-            localStorage.removeItem('authorizeKey');
-
-            Swal.fire({
-                
-                icon: 'success',
-                title: 'Đổi mật khẩu thành công',
-                showConfirmButton: false,
-                timer: 3000
-            })
-            .then((result) => {
-                navigate('/login');
-            })
+                    Swal.fire({
+                        
+                        icon: 'success',
+                        title: 'Đổi thành công',
+                        showConfirmButton: false,
+                        
+                    })
+                  
         } else {
-            Swal.fire({
-                icon: 'error',
-                 text: response.value,
-            
-              })
+                Swal.fire({
+                    icon: 'error',
+                    text: response.value,
+                
+                })
         }
       }, (error) => {
          console.log(error);
@@ -79,9 +77,8 @@ const ModelChangePassword = (props) => {
 
             <div className="main-model">
                 <form className='form-login'>
-
-                     <label for="basic-url">Nhập mật khẩu mới</label>
-                    <InputGroup   > 
+                    <label for="basic-url">Nhập mật khẩu mới</label>
+                    <InputGroup> 
                         <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
                         <FormControl name ="PaswordNew"
                         onChange={handleInputChange} value = {model.PaswordNew} aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
@@ -94,8 +91,7 @@ const ModelChangePassword = (props) => {
                     </InputGroup>
                 </form>
             </div>
-
-            <div className="footer-model">
+             <div className="footer-model">
                 <button className="btn-model btn-add"  onClick={handleChangePass}>Đổi mật khẩu</button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Hủy</button>
             </div>
@@ -103,4 +99,4 @@ const ModelChangePassword = (props) => {
     );
 };
 
-export default ModelChangePassword;
+export default ModelChangePassword1;

@@ -19,6 +19,8 @@ class ConstantData {
     static URL_Employee_Delete = `${ConstantData.DOMAIN}/api/employee/delete`;
      static URL_Employee_GetById = `${ConstantData.DOMAIN}/api/employee/getById`;
     static URL_Employee_exportData = `${ConstantData.DOMAIN}/api/employee/exportData`;
+    static URL_Employee_changePassword = `${ConstantData.DOMAIN}/api/employee/changePassword`;
+    static URL_Employee_resetPassword = `${ConstantData.DOMAIN}/api/employee/ResetPassword`;
 
     //masterData
     static URL_masterdata_GetALl = `${ConstantData.DOMAIN}/api/masterdata/getAll`;

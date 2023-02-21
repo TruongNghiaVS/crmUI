@@ -75,12 +75,24 @@ const handleSucessUpdateHandleCase = (data) => {
    }
 }
 
-const getStatusText = (isActive)=> {
-    if(isActive)
+const getStatusText = (status)=> {
+    if(status==0)
     {
-        return (<p>Hoạt động</p>);
+        return (<p>Mới phân</p>);
     }
-    return <p>Không hoạt động</p>
+    else if(status==10)
+    {
+        return (<p>Mới import</p>);
+    }
+    else if(status==20)
+    {
+        return (<p>Thu case</p>);
+    }
+    else 
+    {
+        return (<p>Đang xử lý</p>);
+    }
+    
 }
 
 const getCaseSkip = (flag)=> {
@@ -106,7 +118,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.houseNumber}</td>
             <td>{data.otherPhone}</td>
             <td>{data.reasonstatusText}</td>
-            <td>{data.statusText}</td>
+            <td>{getStatusText(data.status)}</td>
             <td>{data.assigneeName}</td>
             <td>{data.authorName}</td>
             <td>{getCaseSkip(data.skipp)}</td>
