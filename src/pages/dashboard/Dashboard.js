@@ -81,13 +81,15 @@ const dateForPicker = (dateString) => {
     const getData = ()=> {
             DashboardService.getInformationOverviewDashboard( (response) => {
                         if (response.statusCode === 200) {
-                        
+                            console.log(response.value);
+
                             setobjectDataOverview((prevalue) => {
                                 return {
                                 ...prevalue,   // Spread Operator               
-                                dataOverview: response.value.data[0]
+                                 dataOverview: response.value.data[0]
                                 }
                             })
+                          
                             
 
                         } else {
@@ -98,8 +100,7 @@ const dateForPicker = (dateString) => {
             });
             
             DashboardService.getDetailOverview( (response) => {
-                console.log("3",response);
-                debugger;
+              
                         if (response.statusCode === 200) {
                             setobjectDetail((prevalue) => {
                                             return {

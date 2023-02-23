@@ -68,7 +68,7 @@ const DataJson = {
     ],
 
     theadDataUser: [
-        "STT", "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
+        "STT","ID", "Tên người dùng", "Tên đăng nhập", "Mã gọi", "Chức vụ", "Phòng ban", "Cty", "Ngày khởi tạo",
          "Trạng thái", "Người tạo", "Email", "Điện thoại"
      ],
 
@@ -105,6 +105,9 @@ const DataJson = {
         "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", 
         "Người tạo", "Ngày tạo", 
         "Người cập nhật", "Ngày cập nhật"
+     ],
+     theadLine: [
+        "STT", "Mã line", "Tên gọi", "Trạng thái"
      ],
       tbodyDataUser: [
        

@@ -15,17 +15,17 @@ const ImpactHistory = ({data}) => {
                         return (
                             <>  
                                     <tr>
-                                            <td >Nghiêm Song Cẩm Lợi</td>
+                                            <td >{item.authorName}</td>
                                             <td >{moment(item.createAt).format("DD/MM/YYYY")}</td>
                                             <td >
-                                            <p className='statusName'>
-                                                { item.statusName }
-                                            </p>
-                    
-                                                <textarea >
-                                                { item.shortDescription }
-                                                </textarea>
-                    
+                                                    <p className='statusName'>
+                                                        { item.statusName }
+                                                    </p>
+                            
+                                                        <textarea >
+                                                        { item.shortDescription }
+                                                        </textarea>
+                            
                                             </td>
                                     </tr>
                           

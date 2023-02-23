@@ -9,6 +9,7 @@ import ConstantData from '../../utils/Constants';
 import ModelPopup from '../../components/model/Model2';
 import ModelChangePassword1 from './ModelChangePassword';
 import EmployeeService from '../../services/EmployeeService';
+import LineService from '../../services/LineService';
 import { toast } from 'react-toastify';
 import {GiSightDisabled} from 'react-icons/gi';
 const ModelAddUser = (props) => {
@@ -83,13 +84,8 @@ const ModelAddUser = (props) => {
         {
             enbaleView(true);
         }
-
-        console.log(dataItem);
         if(dataItem.id =="-1")
-        {
-            
-
-            setmodel((prevalue) => {
+        { setmodel((prevalue) => {
                 return {
                   ...prevalue,   // Spread Operator               
                   id: dataItem.id,
@@ -153,10 +149,7 @@ const ModelAddUser = (props) => {
           })
      
     }
-    
-    // const AddEmploy =(event)=> {
-      
-    // }
+
     const  AddEmploy = (event) => { 
 
         
@@ -170,17 +163,11 @@ const ModelAddUser = (props) => {
             Pass: model.password,
             status: model.status
           };
-    
-
-       
-   
-        EmployeeService.add(ConstantData.URL_Employee_Add,ConstantData.HEADERS,
+           EmployeeService.add(ConstantData.URL_Employee_Add,ConstantData.HEADERS,
             employeeAdd,
             handleSucess, 
             handleErr);
-        // props.handleAdd(model);
-
-    }
+     }
     const handleSucess = (data) => {    
         if(data.statusCode == 200)
        {
@@ -200,8 +187,6 @@ const ModelAddUser = (props) => {
             });
 
        }
-
-
     }
 
     const handleErr = (data) => {
@@ -217,12 +202,7 @@ const ModelAddUser = (props) => {
 
     const  UpdateEmploy = (event) => { 
         
-        // if(isOperator ==true)
-        // {
-        //     return;
-        // }
-        // setOpeartor(true);
-    
+       
         const modelUpdate = {
             id: model.id,
             lineCode: model.lineCode,
@@ -233,9 +213,7 @@ const ModelAddUser = (props) => {
             Address: model.address,
             companyId:model.companyName,
             status: model.status
-
-
-          };
+         };
 
         EmployeeService.update(ConstantData.URL_Employee_Update,ConstantData.HEADERS,
             modelUpdate,
@@ -272,13 +250,8 @@ const ModelAddUser = (props) => {
        
        
     }
-
-
-
-    return (
-
-
-      
+     return (
+     
         <div className="model">
             <div className="header-model">
                     {
@@ -330,22 +303,24 @@ const ModelAddUser = (props) => {
                   
                     <InputGroup className="mb-2">
                         <InputGroup.Text><FaBuilding /></InputGroup.Text>
-                        <Form.Select aria-label="Công ty" name = "companyName" onChange={handleInputChange} value = {model.companyName}>
+                        {/* <Form.Select aria-label="Công ty" name = "companyName" onChange={handleInputChange} value = {model.companyName}>
                         <option selected value="1" >ACS</option>
                         <option value="2" >ACS2</option>
               
-                        </Form.Select>
+                        </Form.Select> */}
 
-                        <Form.Select aria-label="Collection" name ="groupName" onChange={handleInputChange} value = {model.groupName}>
+                        {/* <Form.Select aria-label="Collection" name ="groupName" onChange={handleInputChange} value = {model.groupName}>
                                 <option value="1">Collection</option>
                                 <option selected value="2">Collection2</option>
                               
-                        </Form.Select>
+                        </Form.Select> */}
 
                         <Form.Select aria-label="Role nhân viên" name ="roleEm" onChange={handleInputChange} value = {model.roleEm} >
                             <option selected value="1">Điện thoại viên</option>
                             <option value="2">Admin</option>
                             <option value="3">Quản lý</option>
+
+                            <option value="4">Dự án</option>
                         </Form.Select>
 
                     </InputGroup>

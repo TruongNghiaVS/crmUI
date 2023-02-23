@@ -25,7 +25,7 @@ import ReportCDR from '../reportCDR';
 import ReportTalkTime from '../reportTalkTime';
 import ReportRecording from '../reportRecording';
 
-
+import LineManagement from '../lineManagement';
 const Layout = (props) => {
     const [heightLayout, setHeightLayout] = useState(0);
     const [heightMain, setHeightMain] = useState(0);
@@ -104,6 +104,8 @@ const Screen = (props) => {
         case 'reportTalkTime': 
     
         return  <ReportTalkTime/>
+        case 'lineManagement':
+            return <LineManagement/>;
                 
         default:
             throw new Error('Invalid Screen')

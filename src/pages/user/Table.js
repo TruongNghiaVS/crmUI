@@ -22,6 +22,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
+            <td>{data.id}</td>
             <td>{data.fullName}</td>
             <td>{data.userName}</td>
             <td>{data.lineCode}</td>

@@ -1,13 +1,11 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.2:8888";
+    static DOMAIN = "https://localhost:44332";
     static HEADERS = {
         'Accept': 'application/json',
         'Content-type': 'application/json; charset=UTF-8',
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
-        
-    
     };
     // API URL
 
@@ -129,5 +127,16 @@ class ConstantData {
 
     static URL_ReportTalkTime_GetAll = `${ConstantData.DOMAIN}/api/ReportTalkTime/getAll`;
     
+
+
+    
+    //group-reason
+    static URL_lineReason_GetALl = `${ConstantData.DOMAIN}/api/line/getAll`;
+    static URL_lineReason_Add = `${ConstantData.DOMAIN}/api/line/add`;
+    static URL_lineReason_Update = `${ConstantData.DOMAIN}/api/line/update`;
+    static URL_lineReason_Delete = `${ConstantData.DOMAIN}/api/line/delete`;
+    static URL_lineReason_GetById = `${ConstantData.DOMAIN}/api/line/getById`;
+    static URL_lineReason_exportData = `${ConstantData.DOMAIN}/api/line/exportData`;
+
 }
 export default ConstantData;

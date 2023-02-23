@@ -54,6 +54,11 @@ function Router() {
                          <Route path="bao-cao-talktime" element={<Layout page="reportTalkTime" />}>
                               
                           </Route>
+
+
+                          <Route path="quan-ly-line" element={<Layout page="lineManagement" />}>
+                              <Route path=":detail" element={<Layout page="lineManagement" />} />
+                         </Route>
      
                          
           </Routes>

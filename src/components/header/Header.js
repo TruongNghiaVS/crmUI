@@ -20,7 +20,7 @@ const Header = ({ classHeader }) => {
     const lineCode = jsonProfile.lineCode;
 
     var isHiddenMenu = false;
-    if(roleUser === "2") {
+    if(roleUser === "2" ||  roleUser === "4") {
         isHiddenMenu = true;
     } else {
         isHiddenMenu = false;

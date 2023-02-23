@@ -5,6 +5,16 @@ import Skip from './Skip';
 import Assigee from './Assigee';
 
 const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact,saveSkip, masterData, listUser}) => {
+ 
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+
+    const roleUser = jsonProfile.role;
+    
+    var isAdmin = false;
+    if(roleUser === "2") {
+        isAdmin = true;
+    }
+ 
     return (
             <Tabs
                 defaultActiveKey="home"
@@ -22,10 +32,12 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
             <Tab eventKey="skip" title="Skip(Thông tin thêm)">
                 <Skip data = {dataView2}  saveSkip = {saveSkip}  handleInputChange = {handleInputChange} />
             </Tab>
-            
+            {
+             isAdmin? 
             <Tab eventKey="assignee" title="Phân công">
                 <Assigee data = {dataView2} listUser ={listUser} masterData = {masterData}  handleInputChange = {handleInputChange} />
-            </Tab>
+            </Tab>: <></>
+            }
 
     
         </Tabs>

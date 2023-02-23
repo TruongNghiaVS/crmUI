@@ -35,8 +35,8 @@ const handleErrUpdate = (data) => {
 const SaveAssi = ()=> {
 
     Swal.fire({
-    title: 'Bạn chắc chắn xóa',
-    text: "Bạn sẽ không lấy lại được dữ liệu",
+    title: 'Chuyển case',
+    text: "Bạn chắc chắn tháo tác chuyển phiếu?",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -45,16 +45,11 @@ const SaveAssi = ()=> {
     })
     .then((result) => {
     if (result.isConfirmed) {
-        
-            const modelUpdate = {
+             const modelUpdate = {
 
-
-            }
-  
+              }
             modelUpdate.id = data.id;
             modelUpdate.assignedId = data.assignee;
-
-            console.log(modelUpdate);
             CampagnProfileService.assigee(
                 modelUpdate,
                 handleSucessUpdate, 
