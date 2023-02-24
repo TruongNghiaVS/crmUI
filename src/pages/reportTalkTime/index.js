@@ -230,7 +230,7 @@ const User = () => {
 
     const getData = () => {
 
-        let fromDate = obejctPaging.from;
+        let fromDate = obejctSearch.fromTime;
         if(fromDate=="")
         {
             fromDate = null;
@@ -388,7 +388,7 @@ const User = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Báo cáo report CDR
+                    Báo cáo Talktime
                 </h4>
 
             

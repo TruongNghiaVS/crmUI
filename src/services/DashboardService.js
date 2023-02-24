@@ -2,15 +2,15 @@ import ApiService from './ApiService';
 import Constants from '../utils/Constants';
 class DashboardService {
     
-    static getInformationOverviewDashboard(callSuccess, callError) {
+    static getInformationOverviewDashboard(bodySearch,callSuccess, callError) {
        let url =  Constants.URL_User_getAllOverView;
-       ApiService.httpPost(url, {}, {}, callSuccess, callError);
+       ApiService.httpPost(url, {}, bodySearch, callSuccess, callError);
     }
 
-    static getDetailOverview( callSuccess, callError) 
+    static getDetailOverview( bodySearch, callSuccess, callError) 
     {
        let urlInput = Constants.URL_User_getOverViewByCall;
-       ApiService.httpPost(urlInput, {}, {}, callSuccess, callError);
+       ApiService.httpPost(urlInput, {}, bodySearch, callSuccess, callError);
     }
 
 }

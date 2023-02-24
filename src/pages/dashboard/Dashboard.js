@@ -15,6 +15,12 @@ const Dashboard = () => {
     const [objectDataOverview, setobjectDataOverview] = useState({
             dataOverview: {}
     });
+    const [obejctPaging, setObjectPaging] = useState({
+            limt: 10,
+            totalRecord: 28,
+            totalPage: 3,
+            currentPage: 1
+    });
 
     const [objectDetail, setobjectDetail] = useState({
         data: []
@@ -78,8 +84,30 @@ const dateForPicker = (dateString) => {
         }
         return "";
     }
+
+     const searchData = () => {
+        getData();
+
+    }
     const getData = ()=> {
-            DashboardService.getInformationOverviewDashboard( (response) => {
+           
+
+            let fromDate = obejctSearch.from;
+            if(fromDate=="")
+            {
+                fromDate = null;
+            }
+            let bodySearch = {
+                // Token: obejctSearch.tokenSearch,
+                Page: obejctPaging.currentPage,
+                Limit: obejctPaging.limt,
+                LineCode: obejctSearch.lineCode,
+                from:fromDate,
+                to: obejctSearch.endTime
+
+            };
+            
+            DashboardService.getInformationOverviewDashboard(bodySearch, (response) => {
                         if (response.statusCode === 200) {
                             console.log(response.value);
 
@@ -99,7 +127,7 @@ const dateForPicker = (dateString) => {
                 
             });
             
-            DashboardService.getDetailOverview( (response) => {
+            DashboardService.getDetailOverview(bodySearch, (response) => {
               
                         if (response.statusCode === 200) {
                             setobjectDetail((prevalue) => {
@@ -146,8 +174,8 @@ const dateForPicker = (dateString) => {
                                             <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
                                             <Form.Control
                                                 type="date"
-                                                name="fromTime"
-                                                value={dateForPicker(obejctSearch.fromTime)}
+                                                name="from"
+                                                value={dateForPicker(obejctSearch.from)}
                                                 placeholder="Từ ngày"
                                                 onChange={handleInputChange}
                                             />
@@ -209,7 +237,7 @@ const dateForPicker = (dateString) => {
                     <div className="search-feature">
                       
                         
-                        <button className="btn-search" >Tìm kiếm</button>
+                        <button className="btn-search"  onClick={searchData} >Tìm kiếm</button>
                     </div>
                 </div>
 
