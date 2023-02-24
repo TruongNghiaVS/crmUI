@@ -12,9 +12,12 @@ const ImpactHistory = ({data}) => {
                 data.map((item, i) => {    
                     
                     {
+                        let shortDes = "Số tiền hứa:" + item.moneyPromise + "\n";
+                        shortDes += "Ngày hứa:" + item.promiseday + "\n";
+                        shortDes += "Ghi chú" + item.shortDescription;
                         return (
                             <>  
-                                    <tr>
+                            <tr>
                                             <td >{item.authorName}</td>
                                             <td >{moment(item.createAt).format("DD/MM/YYYY")}</td>
                                             <td >
@@ -22,10 +25,9 @@ const ImpactHistory = ({data}) => {
                                                         { item.statusName }
                                                     </p>
                             
-                                                        <textarea >
-                                                        { item.shortDescription }
-                                                        </textarea>
-                            
+                                                    <textarea >
+                                                        { shortDes }
+                                                    </textarea>
                                             </td>
                                     </tr>
                           

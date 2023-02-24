@@ -61,12 +61,10 @@ const SaveAssi = ()=> {
     
     }
     
- 
-        
+    
     return (
-        <>  
-
-<Form.Label htmlFor="basic-url">Chuyển phiếu</Form.Label>
+        <> 
+        <Form.Label htmlFor="basic-url">Chuyển phiếu</Form.Label>
                 {/* <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Phòng ban</InputGroup.Text>
                     <Form.Select aria-label="Default select example"
@@ -102,16 +100,19 @@ const SaveAssi = ()=> {
                      >
                     <option value = "-1" >Chọn nhân viên được phân công</option>
                     {
-                    listUser.data.map((item, i) => {    
+                         listUser.data.map((item, i) => {    
 
-                        return ( <>
-                            <option value = {item.id}>{item.userName}-{item.fullName}</option>
-    
-                                </>)
-                   
+                                return
+                                (
+                                        <>
+                                          <option value = {item.id}>{item.userName}-{item.fullName}</option>
+
+                                        </>
+                                )
+                    
                        
-                        })
-                        }
+                            })
+                    }
                     </Form.Select>
                 </InputGroup>
 
