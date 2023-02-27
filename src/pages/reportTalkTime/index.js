@@ -126,15 +126,27 @@ const User = () => {
         setIsOpenModel(!isOpenModel);
     }
 
-
-    const handleExportData = () => {
+ 
+    const exportData = () => {
+    
+        let fromDate = obejctSearch.fromTime;
+        if(fromDate=="")
+        {
+            fromDate = null;
+        }
         let bodySearch = {
             Token: obejctSearch.tokenSearch,
             Page: obejctPaging.currentPage,
-            Limit: obejctPaging.limt
+            Limit: obejctPaging.limt,
+            LineCode: obejctSearch.lineCode,
+            phoneLog: obejctSearch.phoneLog,
+            Disposition: obejctSearch.status,
+            from:fromDate,
+            to: obejctSearch.endTime
 
         };
-        Services.exportData(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+
+        Services.exportData(  bodySearch, (response) => {
             if (response.statusCode === 200) {
                 exportDataExcel(response.value.data);
             } else {
@@ -265,7 +277,7 @@ const User = () => {
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
-        let exportFileName = `dataEmployee.xls`;
+        let exportFileName = `talktimeReport.xls`;
         XLSX.writeFile(workBook, exportFileName);
 
     }
@@ -322,7 +334,9 @@ const User = () => {
 
     }
 
+   
 
+  
 
 
     const deleteEmploy = (idEmp) => {
@@ -468,6 +482,7 @@ const User = () => {
                         <FaFilter />
                         
                         <button className="btn-search" onClick={searchData}>Tìm kiếm</button>
+                        <button className="btn-search" onClick={exportData}>Xuất file</button>
                     </div>
                 </div>
 

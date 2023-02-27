@@ -126,8 +126,10 @@ class ConstantData {
 
 
     static URL_ReportTalkTime_GetAll = `${ConstantData.DOMAIN}/api/ReportTalkTime/getAll`;
-    
 
+    static URL_ReportTalkTime_exportData = `${ConstantData.DOMAIN}/api/ReportTalkTime/exportData`;
+    
+    
 
     
     //group-reason

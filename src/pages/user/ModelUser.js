@@ -295,7 +295,7 @@ const ModelAddUser = (props) => {
                  model.id == "-1" ? (
                     <InputGroup className="mb-2">
                     <InputGroup.Text className="input-group-icon"><FaLock /></InputGroup.Text>
-                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" name ="password" type="password" placeholder="Mật khẩu" onChange={handleInputChange} value = {model.password}  required />
+                    <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" name ="password" type="text" placeholder="Mật khẩu" onChange={handleInputChange} value = {model.password}  required />
                 </InputGroup>
                 ) : (
                     <div></div>

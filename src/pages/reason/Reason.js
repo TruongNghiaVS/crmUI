@@ -10,7 +10,7 @@ import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
-
+import UploadFile  from "./UploadFile";
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
@@ -27,6 +27,14 @@ const Reason = () => {
         tokenSearch: ""
     });
 
+    const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+    const [campagnIdSelect, setCampagnSelect] = useState(-1);
+    const handleShowModelUploadFile = () => {
+        setCampagnSelect(13);
+
+        setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
 
 
     const handlePaging = (data)=> {
@@ -87,6 +95,11 @@ const Reason = () => {
 
             setIsOpenModel(!isOpenModel);
     }
+
+
+    const importFile = ()=> {
+         setisOPenUploadFile(!isOPenUploadFile);
+   }
 
 
     const handleExportData = ()=> {
@@ -226,23 +239,7 @@ const Reason = () => {
         let exportFileName = `dataMaster.xls`;
          XLSX.writeFile(workBook,exportFileName);
 
-        //  const link = document.createElement('a');
-        // link.href = exportFileName;
-        // link.setAttribute(
-        //   'download',
-        //   `employeeReport.xls`,
-        // );
-    
-        // // Append to html link element page
-        // document.body.appendChild(link);
-    
-        // // Start download
-        // link.click();
-    
-        // // Clean up and remove the link
-        // link.parentNode.removeChild(link);
-        
-      
+     
 
 
 
@@ -390,6 +387,7 @@ const Reason = () => {
                 <div className="button-feature">
                     <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
                     <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button>
+                    <button className="btn-ft btn-export" onClick={()=>importFile()}>Import file</button>
                     {/* <button className="btn-ft btn-more">Mở rộng</button> */}
                 </div>
                 <div className="search-feature">
@@ -406,6 +404,14 @@ const Reason = () => {
 
             { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
+            {
+                isOPenUploadFile && <Model                                        
+                    handleClose ={handleShowModelUploadFile}
+                    content={<UploadFile
+                    idPass = {campagnIdSelect}   
+                    handleClose={handleShowModelUploadFile} 
+                />} />
+             }
 
         </div>
     );
