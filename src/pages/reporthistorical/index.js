@@ -164,7 +164,9 @@ const Reporthistorical = () => {
         let bodySearch = {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
+            Limit: obejctPaging.limt,
+            from: obejctSearch.from,
+            to: obejctSearch.to
 
           };
           EmployeeService.exportData( bodySearch, (response) => {
@@ -259,16 +261,17 @@ const Reporthistorical = () => {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
             Limit: obejctPaging.limt, 
-            type: numberAss
+            type: numberAss,
+            lineCode : obejctSearch.lineCode,
+            from: obejctSearch.from,
+            to: obejctSearch.to
          };
        
       
           EmployeeService.GetAll( bodySearch, (response) => {
             if (response.statusCode === 200) {
 
-                // console.log(response.value);
-                // setobjectDraw(response.value.data);
-                // renderData(response.value);
+             
                 let dataDrawChart = response.value.data;
                 let percent = 0;
                 let arrayLable = [];
@@ -496,8 +499,8 @@ const Reporthistorical = () => {
                                             <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
                                             <Form.Control
                                                 type="date"
-                                                name="fromTime"
-                                                value={dateForPicker(obejctSearch.fromTime)}
+                                                name="from"
+                                                value={dateForPicker(obejctSearch.from)}
                                                 placeholder="Từ ngày"
                                                 onChange={handleInputChange}
                                             />
@@ -511,8 +514,8 @@ const Reporthistorical = () => {
                                             <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
                                             <Form.Control
                                                 type="date"
-                                                name="endTime"
-                                                value={dateForPicker(obejctSearch.endTime)}
+                                                name="to"
+                                                value={dateForPicker(obejctSearch.to)}
                                                 placeholder="Đến ngày"
                                                 onChange={handleInputChange}
                                             />

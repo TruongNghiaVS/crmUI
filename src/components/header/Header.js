@@ -1,5 +1,5 @@
 import './Header.scss';
-import { NavLink, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import { FaUser, FaCaretDown } from 'react-icons/fa';
 import React, { useState } from 'react';
 import Model from '../model/Model';
@@ -64,45 +64,45 @@ const Header = ({ classHeader }) => {
         <header className={classHeader}>
             <nav className='nav-header'>
                 <ul className='menu'>
-                    <li className='list-link'><NavLink className='nav-link link-main' to="/">Vietstar</NavLink></li>
+                    <li className='list-link'><Link className='nav-link link-main' to="/">Vietstar</Link></li>
                     <li className='list-link'>
-                        <NavLink className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
+                        <Link className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</NavLink></li>
-                            <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</NavLink></li>
-                            { isHiddenMenu ? <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/follow-up-new/data">Danh sách kho</NavLink></li>: <></> }
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</Link></li>
+                            <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
+                            { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/data">Danh sách kho</Link></li>: <></> }
                         </ul>
                     </li>
                     <li className='list-link'>
-                        <NavLink className='nav-link' to="/">Báo cáo <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
+                        <Link className='nav-link' to="/">Báo cáo <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
-                            {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">BC chiến dịch gọi ra</NavLink></li> */}
-                            <li  className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/historical">BC Lịch sử tác động</NavLink></li>
-                            {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">BC theo khung giờ</NavLink></li> */}
+                            {/* <li className='sub-list-link'><Link className='nav-link' to="/">BC chiến dịch gọi ra</Link></li> */}
+                            <li  className='sub-list-link'><Link reloadDocument className='nav-link' to="/historical">BC Lịch sử tác động</Link></li>
+                            {/* <li className='sub-list-link'><Link className='nav-link' to="/">BC theo khung giờ</Link></li> */}
                           
-                            {/* <li className='sub-list-link'><NavLink className='nav-link' to="/">Nhập kết quả</NavLink></li> */}
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/bao-cao-ghi-am">Báo cáo ghi âm</NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/bao-cao-talktime">BC talktime</NavLink></li>
-                             { isHiddenMenu ? <li className='sub-list-link'><NavLink  reloadDocument className='nav-link' to="/reportCDR">BC CDR</NavLink></li>: <></> }
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/report/login">BC Đăng nhập </NavLink></li>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/dashboard">Dashboard </NavLink></li>
+                            {/* <li className='sub-list-link'><Link className='nav-link' to="/">Nhập kết quả</Link></li> */}
+                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-ghi-am">Báo cáo ghi âm</Link></li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-talktime">BC talktime</Link></li>
+                             { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/reportCDR">BC CDR</Link></li>: <></> }
+                            <li className='sub-list-link'><Link className='nav-link' to="/report/login">BC Đăng nhập </Link></li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/dashboard">Dashboard </Link></li>
                         </ul>
                     </li>
                     { isHiddenMenu ? <li className='list-link'>
-                        <NavLink className='nav-link' to="/">Quản trị hệ thống <FaCaretDown className='nav-icon icon-caret-down' /></NavLink>
+                        <Link className='nav-link' to="/">Quản trị hệ thống <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><NavLink className='nav-link' to="/campangn">Chiến dịch</NavLink></li>
-                            <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/groupReason">Trạng thái phiếu</NavLink></li>
-                            <li className='sub-list-link'><NavLink reloadDocument  className='nav-link' to="/user">Người dùng</NavLink></li>
-                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/danh-sach-nhom">Nhóm người dùng</NavLink></li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/campangn">Chiến dịch</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/groupReason">Trạng thái phiếu</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/user">Người dùng</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/danh-sach-nhom">Nhóm người dùng</Link></li>
 
-                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</NavLink></li>
-                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</NavLink></li>
-                            <li className='sub-list-link'><NavLink reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi case</NavLink></li>
+                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi case</Link></li>
                         </ul>
                     </li> : <></>}
                     <div className='nav-profile'>
-                        <li className='list-link'><NavLink className='nav-link' to="">Xin chào {fullName}!</NavLink></li>
+                        <li className='list-link'><Link className='nav-link' to="">Xin chào {fullName}!</Link></li>
                         <li className='list-link link-icon' 
                             onClick={() => setIsHiddenProfile(!isHiddenProfile)}>
                             <FaUser className='nav-icon icon-user' />

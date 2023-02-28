@@ -27,7 +27,6 @@ const UploadFile = (props) => {
      const UploadFileServer = () => {
         
         var file = fileTran;
-     
          Swal.fire({
             title: 'Đang xử lý!',
             html: 'Vui lòng <b></b> chờ trong giây lát.',
@@ -43,9 +42,7 @@ const UploadFile = (props) => {
          
                  }
             })
-
-  
-        var data = new FormData();
+         var data = new FormData();
         data.append('fileData', file)
         data.append('id', props.idPass);
         fetch('http://192.168.1.2:8888/api/campagn/importDataById', {
@@ -64,7 +61,6 @@ const UploadFile = (props) => {
                     icon: 'error',
                     title: 'Có lỗi',
                     text: 'Có lỗi xảy ra!'
-                    // footer: '<a href="">?</a>'
                   })
 
             }

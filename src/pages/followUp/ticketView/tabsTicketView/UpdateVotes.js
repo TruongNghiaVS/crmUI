@@ -80,19 +80,10 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                     <Form.Select aria-label="Default select example" name = "statusFollow"  
                     
                     onChange={handleInputChange}  value = {dataView1.statusFollow}>
-                        <option value = "-1" selected>Chọn trạng thái theo dõi</option>
-                        {
-                              masterData.data.map((item, i) => {    
-                                if( item.type == "3")
-                                {
-                                    return ( <>
-                                        <option value = {item.id}>{item.name}</option>
-   
-                                   </>)
-                                }
+                         <option  value="15" selected >Theo dõi</option>
+                     
+                        <option value="16">Đóng</option>
                        
-                        })
-                        }
                     </Form.Select>
                 </InputGroup>
                 <InputGroup size="sm" className="mb-1">
@@ -101,7 +92,7 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                       onChange={handleInputChange} 
                        value ={dataView1.relationship} >
 
-<option value = "-1" selected>Chọn mối quan hệ</option>
+                    <option value = "-1" selected>Chọn mối quan hệ</option>
                                 {
                                 masterData.data.map((item, i) => {    
                                         if( item.type == "1")
