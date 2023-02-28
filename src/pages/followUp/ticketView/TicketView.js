@@ -355,6 +355,7 @@ const handleErrUpdate = (data) => {
             noteFirstTime: dataItem.noteFirstTime,
             skipContent: dataItem.skipContent,
             id : dataItem.id,
+            noteRel: dataItem.noteRel,
             assignee: dataItem.assignee,
             statusProfile: data.value.statusProfile
 

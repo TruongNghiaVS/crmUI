@@ -53,7 +53,7 @@ const InfoFinance = ({data, handleInputChange}) => {
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Ngày TT</InputGroup.Text>
-                <FormControl type ="date" aria-label="Small" value ={dateForPicker(data.lastPadDay)} name ="lastPadDay"  onChange={handleInputChange}  />
+                <FormControl type ="text" aria-label="Small" value ={dateForPicker(data.lastPadDay)} name ="lastPadDay"  onChange={handleInputChange}  />
             </InputGroup>
         </Col>
     );

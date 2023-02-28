@@ -313,13 +313,13 @@ const Reporthistorical = () => {
            
           });
           EmployeeService.GetAllImpactHistory( bodySearch, (response) => {
-            if (response.statusCode === 200) {
+                if (response.statusCode === 200) {
 
-                renderData(response.value);
-              
-          } else {
+                    renderData(response.value);
                 
-             }
+            } else {
+                    
+                }
           }, (error) => {
            
           });

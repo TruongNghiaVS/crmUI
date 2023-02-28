@@ -22,14 +22,14 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
                 id="noanim-tab-example"
                 className="mb-3"
             >
-            <Tab eventKey="home" title="Cập nhật phiêu">
+            <Tab eventKey="home" title="Cập nhật phiếu">
                 <UpdateVotes dataView1 = {dataView}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
             </Tab>
             <Tab eventKey="profile" title="Lịch sử tác động">
                 <ImpactHistory data = {dataHistory} />
             </Tab>
 
-            <Tab eventKey="skip" title="Skip(Thông tin thêm)">
+            <Tab eventKey="skip" title="Thông tin thêm">
                 <Skip data = {dataView2}  saveSkip = {saveSkip}  handleInputChange = {handleInputChange} />
             </Tab>
             {

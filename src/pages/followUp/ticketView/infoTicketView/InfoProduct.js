@@ -21,6 +21,11 @@ const InfoProduct = ({data, handleInputChange}) => {
                 <Form.Label>Ghi chú ban đầu</Form.Label>
                 <Form.Control as="textarea" rows={8} value ={data.noteFirstTime} name ="noteFirstTime"   onChange={handleInputChange}  />
             </Form.Group>
+
+            <Form.Group className="mt-3">
+                <Form.Label>Ghi chú tham chiếu</Form.Label>
+                <Form.Control as="textarea" rows={7} value ={data.noteRel} name ="noteRel"   onChange={handleInputChange}  />
+            </Form.Group>
         </Col>
     );
 };
