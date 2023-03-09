@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.2:8888";
+    static DOMAIN = "https://localhost:44332";
     static HEADERS = {
         'Accept': 'application/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -106,6 +106,7 @@ class ConstantData {
     static URL_User_Logout = `${ConstantData.DOMAIN}/api/user/logout`;
      //ReportService
     static URL_ReportService_GetALlOverView = `${ConstantData.DOMAIN}/api/Report/getAllOverView`;
+    static  URL_ReportService_getReportImpact = `${ConstantData.DOMAIN}/api/report/exportImpactData`;
     static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;
 
     static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;

@@ -63,7 +63,7 @@ const UploadFile = (props) => {
         }
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.2:8888/api/masterdata/importData', {
+        fetch('https://localhost:44332/api/masterdata/importData', {
             method: 'POST',
             headers: {
                 
@@ -154,7 +154,7 @@ const UploadFile = (props) => {
         var data = new FormData();
         data.append('fileData', file)
         data.append('id', 1);
-        fetch('http://192.168.1.2:8888/api/campagn/importDataById', {
+        fetch('https://localhost:44332/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })

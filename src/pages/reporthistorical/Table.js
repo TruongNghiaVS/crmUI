@@ -1,7 +1,7 @@
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 
 import React, { useState } from "react";
-
+import { NavLink } from 'react-router-dom';
 import moment from "moment"; 
 
 const TableHeadItem = ({ item }) => {
@@ -20,12 +20,21 @@ const getStatusText = (isActive)=> {
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
+    let likUrl = "/follow-up/" + data.id;
     return (
          <tr>
                 <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
                 <td>{rowIndex}</td>
-                <td>{data.customerName}</td>
-                <td>{data.noAgreement}</td>
+                <td> 
+                     <NavLink to={likUrl} >
+                             {data.customerName}
+                     </NavLink>
+                </td>
+                <td>
+                     <NavLink to={likUrl} >
+                             {data.noAgreement}
+                     </NavLink>
+                </td>
                 <td>{data.phone1}</td>
                 <td>{data.officeNumber}</td>
                 <td>{ data.houseNumber }</td>

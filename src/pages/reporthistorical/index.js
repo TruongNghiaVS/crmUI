@@ -326,6 +326,38 @@ const Reporthistorical = () => {
 
     }
 
+    const exportData = () => {
+    
+        let fromDate = obejctSearch.from;
+        if(fromDate=="")
+        {
+            fromDate = null;
+        }
+        let bodySearch = {
+            Token: obejctSearch.tokenSearch,
+            Page: obejctPaging.currentPage,
+            Limit: obejctPaging.limt,
+            LineCode: obejctSearch.lineCode,
+            phoneLog: obejctSearch.phoneLog,
+            Disposition: obejctSearch.status,
+            from:fromDate,
+            to: obejctSearch.to
+
+        };
+
+        EmployeeService.exportData(  bodySearch, (response) => {
+                if (response.statusCode === 200) {
+                    exportDataExcel(response.value.data);
+                } else {
+                    
+                }
+        }, (error) => {
+
+        });
+
+    }
+
+
     const exportDataExcel = (dataReder) => {
 
         var DataExport = dataReder;
@@ -336,11 +368,6 @@ const Reporthistorical = () => {
 
         let exportFileName = `dataMaster.xls`;
          XLSX.writeFile(workBook,exportFileName);
-
-        
-      
-
-
 
 }
 
@@ -537,12 +564,7 @@ const Reporthistorical = () => {
                                         </InputGroup>
                                     </Form.Group>
                                 </Col>
-
-
-
-                      
-                                
-                            :<></>
+                              :<></>
                             }
                             </Row>
                             
@@ -563,7 +585,7 @@ const Reporthistorical = () => {
                             {/* <button className="btn-ft btn-more">Mở rộng</button> */}
                         </div>
                         <div className="search-feature">
-                          
+                              <button className="btn-search" onClick={exportData}>Xuất file</button>
                             <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>
                 </div>

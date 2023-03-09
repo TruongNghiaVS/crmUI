@@ -110,10 +110,25 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
         <tr onClick={()=>openDetailItem(likUrl)}>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{data.customerName}</td>
-            <td>{data.noAgreement}</td>
+            <td>
+                 <NavLink to={likUrl} >
+                 {data.customerName}
+                </NavLink>
+            </td>
+
+            <td>
+                 <NavLink to={likUrl} >
+                 {data.noAgreement}
+                </NavLink>
+            </td>
             <td>{data.dpd}</td>
-            <td>{data.mobilePhone}</td>
+            
+            <td>
+                 <NavLink to={likUrl} >
+                 {data.mobilePhone}
+                </NavLink>
+            </td>
+
             <td>{data.officeNumber}</td>
             <td>{data.houseNumber}</td>
             <td>{data.otherPhone}</td>
@@ -124,7 +139,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{getCaseSkip(data.skipp)}</td>
             <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
             <td>
-                 <NavLink to={likUrl} target="_blank" >
+                 <NavLink to={likUrl} >
                     <FaEdit className="icon-edit" />
                 </NavLink>
                {
