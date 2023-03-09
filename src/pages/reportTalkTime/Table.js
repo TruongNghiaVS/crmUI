@@ -23,10 +23,10 @@ const toHHMMSS = (secs) => {
 }
 
 const getShowfile = (item)=> {
-    let fileUrl = "http://192.168.1.12:3002/api/getFileAudio?filePath=";
+    let fileUrl = "http://118.69.182.32:7878/api/getFileAudio?filePath=";
     if(item.src.startsWith("1"))
     {
-        fileUrl = "http://192.168.1.9:3002/api/getFileAudio?filePath=";
+        fileUrl = "http://118.69.182.32:7879/api/getFileAudio?filePath=";
     }
     fileUrl=fileUrl +''+ item.recordingfile;
     
