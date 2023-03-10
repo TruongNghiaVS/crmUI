@@ -263,6 +263,7 @@ const Reporthistorical = () => {
             Limit: obejctPaging.limt, 
             type: numberAss,
             lineCode : obejctSearch.lineCode,
+            statusSearch : obejctSearch.statusSearch,
             from: obejctSearch.from,
             to: obejctSearch.to
          };
@@ -338,6 +339,7 @@ const Reporthistorical = () => {
             Page: obejctPaging.currentPage,
             Limit: obejctPaging.limt,
             LineCode: obejctSearch.lineCode,
+            statusSearch: obejctSearch.statusSearch,
             phoneLog: obejctSearch.phoneLog,
             Disposition: obejctSearch.status,
             from:fromDate,
@@ -564,8 +566,31 @@ const Reporthistorical = () => {
                                         </InputGroup>
                                     </Form.Group>
                                 </Col>
+
+                                
                               :<></>
                             }
+
+<Col >
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Trạng thái:</Form.Label>
+               <InputGroup className="mb-2">
+                      
+
+                        <Form.Select name ="statusSearch" onChange={handleInputChange} value = {obejctSearch.statusSearch}>
+                       
+                                <option value ="-1">Chọn trạng thái</option>
+                                <option value= "144">Call back - Gọi lại </option>
+                                <option value= "145">Special busIness - KH đứng tên dùm </option>
+                                <option value= "146">Customers are dead - KH chết gia định khó khăn kinh tế </option>
+                        </Form.Select>
+
+                       
+
+                    </InputGroup>
+    </Form.Group>
+</Col>
                             </Row>
                             
 
@@ -582,7 +607,7 @@ const Reporthistorical = () => {
                         <div className="button-feature">
                     
                         
-                            {/* <button className="btn-ft btn-more">Mở rộng</button> */}
+                           
                         </div>
                         <div className="search-feature">
                               <button className="btn-search" onClick={exportData}>Xuất file</button>

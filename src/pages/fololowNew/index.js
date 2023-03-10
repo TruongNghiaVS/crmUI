@@ -269,7 +269,11 @@ const Reason = () => {
             Page:  obejctPaging.currentPage,
             Limit: obejctPaging.limt,
             dpd: obejctSearch.dpd,
+            lineCode:  obejctSearch.lineCode,
+            phoneSerach:  obejctSearch.phoneSerach,
             noAgree: obejctSearch.noAgree,
+            from: obejctSearch.fromTime,
+            to: obejctSearch.endTime,
             typegetData: typegetData
 
           };
@@ -496,7 +500,7 @@ const Reason = () => {
         <InputGroup className="mb-2">
         <Form.Control
 type="text"
-name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
+name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChange}
 />
         </InputGroup>
     </Form.Group>
@@ -529,7 +533,7 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
             <Form.Label>tài khoản:</Form.Label>
             <InputGroup className="mb-2">
             <Form.Control
-            type="text" name ="userName"  onChange={handleInputChange} value ={obejctSearch.userName} 
+            type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
             />
             </InputGroup>
     </Form.Group>
