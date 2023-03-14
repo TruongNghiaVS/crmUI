@@ -6,7 +6,16 @@ const InfoFinance = ({data, handleInputChange}) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD');
 
     };
-    
+
+
+    function numberWithCommas(x) {
+
+        if(x =='' || x == null)
+        {
+            return '';
+        }
+        return x.toLocaleString();
+    }
 
     return (
         <Col>
@@ -17,23 +26,23 @@ const InfoFinance = ({data, handleInputChange}) => {
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Nợ Gốc</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.debitOriginal} name ="debitOriginal" onChange={handleInputChange}  />
+                <FormControl aria-label="Small" value = {numberWithCommas(data.debitOriginal)} name ="debitOriginal" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tiền vay</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.amountLoan} name = "amountLoan" onChange={handleInputChange}   />
+                <FormControl aria-label="Small" value = {numberWithCommas(data.amountLoan)} name = "amountLoan" onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Trả tháng(EMI)</InputGroup.Text>
-                <FormControl aria-label="Small"  value ={data.emi} name ="emi" onChange={handleInputChange}  />
+                <FormControl aria-label="Small"  value ={numberWithCommas(data.emi)} name ="emi" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng phạt</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.totalFines} name ="totalFines" onChange={handleInputChange}   />
+                <FormControl aria-label="Small" value = {numberWithCommas(data.totalFines)} name ="totalFines" onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng phải trả</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.totalMoneyPaid} name ="totalMoneyPaid" onChange={handleInputChange}  />
+                <FormControl aria-label="Small" value = {numberWithCommas(data.totalMoneyPaid)} name ="totalMoneyPaid" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Kỳ hạn TT</InputGroup.Text>
@@ -45,11 +54,11 @@ const InfoFinance = ({data, handleInputChange}) => {
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng TT</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.totalPaid} name = "totalPaid"  onChange={handleInputChange}  />
+                <FormControl aria-label="Small" value = {numberWithCommas(data.totalPaid)} name = "totalPaid"  onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>TT gần nhất</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.lastPaid} name ="lastPaid" onChange={handleInputChange}  />
+                <FormControl aria-label="Small" value = {numberWithCommas(data.lastPaid)} name ="lastPaid" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Ngày TT</InputGroup.Text>

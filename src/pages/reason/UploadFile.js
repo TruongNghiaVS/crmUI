@@ -28,8 +28,6 @@ const UploadFile = (props) => {
      }, []);
 
      const UploadFileServer = () => {
-
-
         
         var file = fileTran;
      
@@ -62,7 +60,7 @@ const UploadFile = (props) => {
             authorizeKey ="";
         }
         data.append('fileData', file)
-        data.append('id', props.idPass);
+        data.append('id', window.location.pathname.split("/").pop());
         fetch('http://118.69.182.32:7777/api/masterdata/importData', {
             method: 'POST',
             headers: {
