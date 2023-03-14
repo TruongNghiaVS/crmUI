@@ -23,7 +23,7 @@ const toHHMMSS = (secs) => {
 }
 
 const getShowfile = (item)=> {
-    let fileUrl = "http://118.69.182.32:7878/api/getFileAudio?filePath=";
+    let fileUrl = "http://tongdaibpx.ddns.net:7878/api/getFileAudio?filePath=";
     if(item.src.startsWith("1"))
     {
         fileUrl = "http://118.69.182.32:7879/api/getFileAudio?filePath=";
