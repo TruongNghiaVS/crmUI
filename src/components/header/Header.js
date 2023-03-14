@@ -93,7 +93,7 @@ const Header = ({ classHeader }) => {
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link className='nav-link' to="/campangn">Chiến dịch</Link></li>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/groupReason">Trạng thái phiếu</Link></li>
-                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/user">Người dùng</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/quan-ly-nguoi-dung">Người dùng</Link></li>
                             <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/danh-sach-nhom">Nhóm người dùng</Link></li>
 
                             <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</Link></li>

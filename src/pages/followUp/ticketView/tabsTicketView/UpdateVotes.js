@@ -24,10 +24,7 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
         <Row>
             <Col>
                 <Form.Label htmlFor="basic-url">Tác động</Form.Label>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Chiến dịch</InputGroup.Text>
-                    <FormControl value ={dataView1.campagnName} readOnly aria-label="Small" aria-describedby="inputGroup-sizing-sm"    />
-                </InputGroup>
+               
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="statusIm" value ={dataView1.statusIm}    onChange={handleInputChange}  >

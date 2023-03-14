@@ -20,17 +20,34 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import moment from "moment";
+import UploadFile  from "./UploadFile";
 let XLSX = require("xlsx");
 
 const dateForPicker = (dateString) => {
     return moment(new Date(dateString)).format('YYYY-MM-DD')
 };
+
+
+
 const Reporthistorical = () => {
     let { edit } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
- 
+    const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
     // let typeMasterData = 5;
+
+    const handleShowModelUploadFile = () => {
+      
+
+        setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
+
+
+    const importFile = ()=> {
+        setisOPenUploadFile(!isOPenUploadFile);
+  }
+
     const [obejctPaging, setObjectPaging ] = useState({
             limt: 10, 
             totalRecord : 28,
@@ -38,6 +55,9 @@ const Reporthistorical = () => {
             currentPage: 1,
             type :  -1
     });
+
+  
+
     
     const [objectDraw, setobjectDraw ] = useState({
             data : [],
@@ -610,8 +630,9 @@ const Reporthistorical = () => {
                            
                         </div>
                         <div className="search-feature">
-                              <button className="btn-search" onClick={exportData}>Xuất file</button>
-                            <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
+                                <button className="btn-search" onClick={()=>importFile()}>Nhập dữ liệu</button>
+                                <button className="btn-search" onClick={exportData}>Xuất dữ liệu</button>
+                                <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>
                 </div>
 
@@ -642,7 +663,11 @@ const Reporthistorical = () => {
 
             { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem} typeMasterData = { obejctPaging.type }  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
-
+            {
+                isOPenUploadFile && <Model                                        
+                    handleClose ={handleShowModelUploadFile}
+                    content={<UploadFile/>} />
+             }
         </div>
         </>
     );

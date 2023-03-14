@@ -265,13 +265,12 @@ const Reason = () => {
 
 
          let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
+            Token: obejctSearch.token, 
             Page:  obejctPaging.currentPage,
             Limit: obejctPaging.limt,
             dpd: obejctSearch.dpd,
             lineCode:  obejctSearch.lineCode,
             phoneSerach:  obejctSearch.phoneSerach,
-            noAgree: obejctSearch.noAgree,
             from: obejctSearch.fromTime,
             to: obejctSearch.endTime,
             typegetData: typegetData
@@ -484,10 +483,10 @@ const Reason = () => {
                                 <Col>
 
                                      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Số hợp đồng:</Form.Label>
+                                        <Form.Label>Từ khóa:</Form.Label>
                                         <InputGroup className="mb-2">
                                         <Form.Control
-        type="text" name ="noAgree"  onChange={handleInputChange} value ={obejctSearch.noAgree} 
+        type="text" name ="token" placeholder="Số hợp đồng,họ tên"  onChange={handleInputChange} value ={obejctSearch.token} 
       />
                                         </InputGroup>
                                      </Form.Group>

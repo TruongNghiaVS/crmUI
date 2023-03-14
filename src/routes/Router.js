@@ -12,7 +12,7 @@ function Router() {
                          <Route path="login" element={<Layout page="login" />} />
                          <Route path="home" element={<Layout page="home" />} />
                        
-                         <Route path="user" element={<Layout page="user" />} />
+                         <Route path="quan-ly-nguoi-dung" element={<Layout page="user" />} />
                          <Route path="dashboard" element={<Layout page="dashboard" />} />
                          <Route path="campaignAssign" element={<Layout page="campaignAssign" />}>
                               <Route path=":id" element={<Layout page="campaignAssign" />} />

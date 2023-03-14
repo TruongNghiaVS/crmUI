@@ -224,7 +224,7 @@ const User = () => {
     
     const getData = () => {
 
-            let fromDate = obejctPaging.from;
+            let fromDate = obejctSearch.fromTime;
             if(fromDate=="")
             {
                 fromDate = null;
