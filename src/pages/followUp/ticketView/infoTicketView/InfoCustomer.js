@@ -36,7 +36,8 @@ const InfoCustomer = ({data,handleInputChange}) => {
 
         let bodySearch = {
             phoneNumber: PhoneLog, 
-            noAgree:  NoAgree
+            noAgree:  NoAgree, 
+            profileId: window.location.pathname.split("/").pop()
            
          };
     
