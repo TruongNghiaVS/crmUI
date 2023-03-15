@@ -51,6 +51,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{rowIndex}</td>
             <td>{data.lineCode}</td>
             <td></td>
+            <td>{data.dayR +'-'+data.monthR + '-'+data.yearR}</td>
             <td>{data.sumAn+ data.sumNOAswer+ data.sumNOCancel + data.sumNoBussy +data.sumNoFail }</td>
             <td>{data.perPercent}</td>
             <td>{toHHMMSS(data.timCall)}</td>
