@@ -112,7 +112,7 @@ const DataJson = {
       tbodyDataUser: [
        
     ],
-      theadDataDashboard: [
+      theadDataDashboard: ["Ngày",
         "Gọi bởi", "Tổng", "Số HĐ", "% Kết nối", "Trả lời", "Thời gian gọi", "Thời gian chờ",
         "Đàm thoại", "Không trả lời", "Hủy", "Bận line", "Kênh lỗi", "Không gọi được", "Lỗi server"
     ],

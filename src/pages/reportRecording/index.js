@@ -30,7 +30,9 @@ const User = () => {
         currentPage: 1
     });
     const [obejctSearch, setKeySearch] = useState({
-        tokenSearch: ""
+        tokenSearch: "",
+        fromTime: moment(),
+        endTime: moment()
     });
 
     const [value, onChange] = useState(new Date());

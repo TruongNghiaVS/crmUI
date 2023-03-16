@@ -27,7 +27,10 @@ const Dashboard = () => {
 });
 
 const [obejctSearch, setKeySearch] = useState({
-    tokenSearch: ""
+    tokenSearch: "",
+    from: moment(),
+    endTime: moment()
+    
 });
 const handleInputChange = (event) => {
     let valueControl = event.target.value;

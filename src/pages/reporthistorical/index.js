@@ -66,7 +66,9 @@ const Reporthistorical = () => {
     });
 
     const [obejctSearch, setKeySearch] = useState({
-           tokenSearch: ""
+           tokenSearch: "",
+           from: moment(),
+           to: moment()
     });
 
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));

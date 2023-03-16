@@ -37,6 +37,7 @@ const TableRow = ({ data }) => {
     return (
         <tr>
             <td><input type="checkbox" defaultChecked={false} /></td>
+            <td>{data.dayR+"/"+data.monthR + "/" +data.yearR}</td>
             <td>{data.lineCode}</td>
             <td>{data.sumCall}</td>
             <td>{data.sumNoAgree}</td>
