@@ -39,7 +39,7 @@ const TableRow = ({ data }) => {
             <td><input type="checkbox" defaultChecked={false} /></td>
             <td>{data.lineCode}</td>
             <td>{data.sumCall}</td>
-            <td></td>
+            <td>{data.sumNoAgree}</td>
             <td>{percentFix3(data.perPercent)}</td>
             <td>{data.sumAn}</td>
             <td>{toHHMMSS(data.timCall)}</td>
