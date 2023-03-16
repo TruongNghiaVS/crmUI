@@ -386,11 +386,54 @@ const Reporthistorical = () => {
 
         var DataExport = dataReder;
           let workBook = XLSX.utils.book_new();
-        const workSheet = XLSX.utils.json_to_sheet(DataExport);
+          const Heading = [
+            [
+                'Số hợp đồng', 'Tên khách hàng', 'Ngày sinh','CCCD/CMND', 'Ngày đăng ký',
+                    'Mã SP', 'Tên SP',
+                    'Giá SP',
+                    'Tổng phạt',
+                    'Tổng phải trả',
+                    'Kỳ hạn TT',
+                    'Trả tháng(EMI)',
+                    'Ngày TT gần nhất',
+                    'Số kỳ đã TT',
+                    'Nợ Gốc',
+                    'DPD',
+                    'SĐT',
+                    'Ghi chú ban đầu',
+                    'Đường(chính)',
+                    'Quận/Huyện(c)',
+                    'Tỉnh/TP(chính)',
+                    'Đường(tạm)',
+                    'Quận/Huyện(t)',
+                    'Tỉnh/TP(tạm)',
+                    'Đường',
+                    'Quận/Huyện',
+                    'Tỉnh/TP',
+                    'Đã thanh toán',
+                    'Lý do',
+                    'trạng thái',
+                    'Nhân viên',
+                    'Ghi chú tác động',
+                    'Ghi chú tác động',
+                    'Ngày hứa',
+                    'Số tiền hứa',
+                    'Ngày hẹn',
+                    'Ngày tạo',
+                        'Ngày cập nhật'
 
+
+
+            ]
+        ];
+          
+        const workSheet = XLSX.utils.json_to_sheet(DataExport,  
+            { origin: 'A2', skipHeader: true }
+            );
+        XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
-        let exportFileName = `dataMaster.xls`;
+        let exportFileName = `impactHistory.xls`;
          XLSX.writeFile(workBook,exportFileName);
 
 }
