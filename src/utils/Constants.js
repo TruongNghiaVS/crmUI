@@ -112,7 +112,11 @@ class ConstantData {
     static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;
     static URL_ReportService_getAllRecordingFile = `${ConstantData.DOMAIN}/api/report/getAllRecordingFile`;
 
-    static URL_ReportService_ReportRecordingFile = `${ConstantData.DOMAIN}/api/report/ReportRecordingFile`;
+    static URL_ReportService_exportRecord = `${ConstantData.DOMAIN}/api/report/exportRecordingFile`;
+
+    
+
+    static URL_ReportService_ReportRecordingFile = `${ConstantData.DOMAIN}/api/report/ExportRecordingFile`;
 
     
     // static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;

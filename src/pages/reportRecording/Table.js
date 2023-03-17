@@ -49,8 +49,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.disposition}</td>
             <td>{data.lastapp}</td>
             <td>{data.durationReal}</td>
-            <td>{data.durationBill}</td>
-            <td>{data.duration}</td>
+             <td>{data.duration}</td>
 
         </tr>
     );

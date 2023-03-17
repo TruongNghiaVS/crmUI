@@ -274,11 +274,37 @@ const User = () => {
     const exportDataExcel = (dataReder) => {
 
         var DataExport = dataReder;
+        const Heading = [
+            [
+                'Họ tên',
+                'Line gọi',
+                'Số HĐ',
+                'Ngày',
+                'Tổng cuộc gọi',
+                'Phần trăm kết nối',
+                'Tổng thời gian gọi',
+                'Tổng thời gian chờ',
+                'Thời gian đàm thoại',
+                'Trả lời',
+                'Không trả lời',
+                'Cuộc gọi hủy',
+                'Busy',
+                'Kênh lỗi',
+                'Không gọi được',
+                'Lỗi server',
+                'Thời gian tạo'
+
+            ]
+        ];
         let workBook = XLSX.utils.book_new();
-        const workSheet = XLSX.utils.json_to_sheet(DataExport);
+        const workSheet = XLSX.utils.json_to_sheet(DataExport,  
+        { origin: 'A2', skipHeader: true }
+        );
+        XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
+   
+        // const workSheet = XLSX.utils.json_to_sheet(DataExport);
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
-
         let exportFileName = `talktimeReport.xls`;
         XLSX.writeFile(workBook, exportFileName);
 
