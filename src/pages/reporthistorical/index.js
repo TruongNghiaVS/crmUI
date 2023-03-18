@@ -182,28 +182,6 @@ const Reporthistorical = () => {
     }
 
 
-    const handleExportData = ()=> {
-        let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt,
-            from: obejctSearch.from,
-            to: obejctSearch.to
-
-          };
-          EmployeeService.exportData( bodySearch, (response) => {
-            if (response.statusCode === 200) {
-                exportDataExcel(response.value.data);
-
-            } else {
-                
-             }
-          }, (error) => {
-           
-          });
-        
-    }
-
 
 
     
@@ -368,8 +346,8 @@ const Reporthistorical = () => {
             to: obejctSearch.to
 
         };
-
-        EmployeeService.exportData(  bodySearch, (response) => {
+  
+        EmployeeService.exportDataImpact(  bodySearch, (response) => {
                 if (response.statusCode === 200) {
                     exportDataExcel(response.value.data);
                 } else {
