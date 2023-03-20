@@ -6,13 +6,11 @@ import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap'
 import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
-import GroupEmpService from '../../services/GroupEmpService';
+import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
 import {GiSightDisabled} from 'react-icons/gi';
-const ModelAddUser = (props) => {
+const ModelPopup = (props) => {
     
-
-   console.log("3333",props.listManager);
     const [model  , setmodel]=useState({
        
         
@@ -39,22 +37,17 @@ const ModelAddUser = (props) => {
         if(data.statusCode == 200)
     
         {
-
-            let isActive =0;
-            if( dataItem.isActive == 1)
-            {
-                isActive =1;
-            }
-          
+           
             setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
               id: dataItem.id,
-              name: dataItem.name,
-              isActive:(dataItem.isActive==true)?1:0,
-              code: dataItem.code,
-              managerId: dataItem.managerId
-
+              fullName: dataItem.fullName,
+              code: dataItem.code, 
+              displayName: dataItem.displayName,
+              hour: dataItem.hour,
+              day: dataItem.day
+           
             }
           })
         }
@@ -67,8 +60,6 @@ const ModelAddUser = (props) => {
     useEffect(() => {
 
         let dataItem = props.dataItem;
-
-       
 
         
         if(dataItem.isView)
@@ -86,14 +77,11 @@ const ModelAddUser = (props) => {
                   ...prevalue,   // Spread Operator               
                   id: dataItem.id,
                   fullName: dataItem.fullName,
-                  userName: dataItem.userName, 
-                  phoneNumber: dataItem.phoneNumber,
-                  email: dataItem.email, 
-                  lineCode: dataItem.lineCode,
-                  address: dataItem.address,
-                  companyName: dataItem.companyName,
-                  roleEm: "1",
-                  isView: false
+                  code: dataItem.code, 
+                  displayName: dataItem.displayName,
+                  hour: dataItem.hour,
+                  day: dataItem.day
+               
                 }
               })
              
@@ -113,7 +101,7 @@ const ModelAddUser = (props) => {
               
               };
               
-              GroupEmpService.getById(ConstantData.URL_GroupEmployee_GetById,ConstantData.HEADERS,
+              EmployeeService.getById(ConstantData.URL_masterdata_GetById,ConstantData.HEADERS,
                 bodyRequest,
                 handleDisplayData, 
                 handleDisplayDataErro);
@@ -151,18 +139,21 @@ const ModelAddUser = (props) => {
     // }
     const  AddEmploy = (event) => { 
 
+
+        let groupId =   window.location.pathname.split("/").pop();
         
         const employeeAdd = {
-            code: model.code,
-            name:  model.name,
-            managerId: model.managerId,
-            isActive: model.isActive
+            Code:  model.code,
+            DisplayName:  model.displayName,
+            FullName: model.fullName,
+            GroupId: groupId
+           
           };
     
 
        
    
-        GroupEmpService.add(ConstantData.URL_GroupEmployee_Add,ConstantData.HEADERS,
+        EmployeeService.add(ConstantData.URL_masterdata_Add,ConstantData.HEADERS,
             employeeAdd,
             handleSucess, 
             handleErr);
@@ -205,22 +196,18 @@ const ModelAddUser = (props) => {
         //     return;
         // }
         // setOpeartor(true);
-    
+        let groupId =   window.location.pathname.split("/").pop();
         const modelUpdate = {
-            id: model.id,
-            code: model.code,
-            name:  model.name,
-            managerId: model.managerId,
-            isActive: model.isActive
+          Groupid: groupId,
+          Memberid: model.memberid,
+            
+        };
 
-          };
-
-        GroupEmpService.update(ConstantData.URL_GroupEmployee_Update,ConstantData.HEADERS,
-                                modelUpdate,
-                                handleSucessUpdate, 
-                                handleErrUpdate
-                                );
-        props.handleUpdate(model);
+        EmployeeService.update(ConstantData.URL_addMemberGroupRequest,ConstantData.HEADERS,
+            modelUpdate,
+            handleSucessUpdate, 
+            handleErrUpdate);
+            props.handleUpdate(model);
 
     }
     const handleSucessUpdate = (data) => {    
@@ -262,75 +249,46 @@ const ModelAddUser = (props) => {
             <div className="header-model">
                     {
                     model.id == "-1" ? (
-                            <h4>Thêm mới nhóm</h4>
+                            <h4>Thêm nhân viên vào nhóm</h4>
                     ) : 
                     (
-                            <h4>Thông tin nhóm</h4>
+                            <h4>Thông tin trạng thái</h4>
                     )}
             </div>
 
             <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate   validated={validated}>
+                    
 
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="code" placeholder="Tên nhóm" disabled ={isEdit}
-                        onChange={handleInputChange} value = {model.code} required />
-                        <Form.Control.Feedback type="invalid">
-                                Trường bặt buộc
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  name = "name"  placeholder="Mã nhóm" 
-                           onChange={handleInputChange} value = {model.name} required />
-                    </InputGroup>
-
-    
-                    <InputGroup className="mb-2">
-
-                             <InputGroup.Text className="input-group-icon">
-                                    <GiSightDisabled    />
-                             </InputGroup.Text>
-                             <Form.Select aria-label="Mã nhân viên" name ="managerId" onChange={handleInputChange} value = {model.managerId} >
-
-                             <option  selected disabled >Chọn người quản lý</option>
-                             {
-                                  props.listManager.map((item, index) => {
-                                            return  <option value={item.id}>{item.userName +"-" +item.fullName }</option>
-                                  })
-                              }
-                              </Form.Select>
-                    </InputGroup>
-
-                    <InputGroup className="mb-2">
+                     <InputGroup className="mb-2">
                        <InputGroup.Text className="input-group-icon">
                              <GiSightDisabled    />
                         </InputGroup.Text>
+                        
+                        <Form.Select aria-label="Collection" name ="memberid" onChange={handleInputChange} value = {model.memberid}>
+                               
 
-                        <Form.Select aria-label="Collection" name ="isActive" onChange={handleInputChange} value = {model.isActive==true?1:0}>
-                                <option value= "1">Hoạt động</option>
-                                <option selected value= "0">Không hoạt động</option>
+                            {
+                                  props.listUserNotGroup.map((item, index) => {
+                                            return  <option value={item.id}>{item.userName +'_' + item.fullName }</option>
+                                  })
+                              }
                               
                         </Form.Select>
                     </InputGroup>
+               
                
                 </form>
             </div>
 
             <div className="footer-model">
 
-                 {
-                    model.id == "-1"  ? (
-                    <button className="btn-model btn-add" onClick= {AddEmploy}>Lưu lại</button>
-                ) : (
-                        <button className="btn-model btn-add" hidden = {isView} onClick= {UpdateEmploy}>Cập nhật</button>
-                )   }
+             <button className="btn-model btn-add" onClick= {UpdateEmploy}>Lưu lại</button>
               
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>
     );
 };
-export default ModelAddUser;
+
+export default ModelPopup;

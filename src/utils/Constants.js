@@ -20,14 +20,20 @@ class ConstantData {
     static URL_Employee_changePassword = `${ConstantData.DOMAIN}/api/employee/changePassword`;
     static URL_Employee_resetPassword = `${ConstantData.DOMAIN}/api/employee/ResetPassword`;
 
+    //group emmployee
+    static URL_Employee_getAllMemberHaveNotIngroup = `${ConstantData.DOMAIN}/api/groupEmployee/getAllMemberHaveNotIngroup`;
+    static URL_getMemberByGroup_GetALl = `${ConstantData.DOMAIN}/api/groupEmployee/getMemberByGroup`;
     //masterData
     static URL_masterdata_GetALl = `${ConstantData.DOMAIN}/api/masterdata/getAll`;
+
     static URL_masterdata_Add = `${ConstantData.DOMAIN}/api/masterdata/add`;
     static URL_masterdata_Update = `${ConstantData.DOMAIN}/api/masterdata/update`;
     static URL_masterdata_Delete = `${ConstantData.DOMAIN}/api/masterdata/delete`;
+
+    static URL_groupMember_DeleteMember = `${ConstantData.DOMAIN}/api/groupEmployee/deleteMember`;
     static URL_masterdata_GetById = `${ConstantData.DOMAIN}/api/masterdata/getById`;
     static URL_masterdata_exportData = `${ConstantData.DOMAIN}/api/masterdata/exportData`;
-    
+    static URL_addMemberGroupRequest = `${ConstantData.DOMAIN}/api/groupEmployee/addMember`;
 
     //groupStatus
     static URL_groupStatus_GetALl = `${ConstantData.DOMAIN}/api/groupStatus/getAll`;

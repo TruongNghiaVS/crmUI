@@ -83,6 +83,10 @@ const DataJson = {
      theadDataReason: [
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
      ],
+
+     theadDataDetailGroup: [
+        "STT", "Mã", "Tên người dùng", "Đăng nhập", "Mã gọi" ,"Ngày thêm"
+     ],
      theadDataMasterNew: [
         "STT", "Mã", "Tên",  "Người tạo", "Ngày tạo"
      ],

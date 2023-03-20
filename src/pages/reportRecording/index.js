@@ -41,7 +41,7 @@ const User = () => {
 
     });
     const exportData = () => {
-    
+        return;
         let fromDate = obejctSearch.fromTime;
         if(fromDate=="")
         {

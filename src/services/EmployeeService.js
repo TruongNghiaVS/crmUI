@@ -31,6 +31,11 @@ class EmployeeService   {
     let url1 = Constants.URL_Employee_changePassword;
     ApiService.httpPost(url1, null, body, callSuccess, callError);
 }
+
+static GetAllMemberNotGroup( body, callSuccess, callError) {
+    let url1 = Constants.URL_Employee_getAllMemberHaveNotIngroup;
+    ApiService.httpPost(url1, null, body, callSuccess, callError);
+}
 static ResetPassword( body, callSuccess, callError) {
     let url1 = Constants.URL_Employee_resetPassword;
     ApiService.httpPost(url1, null, body, callSuccess, callError);

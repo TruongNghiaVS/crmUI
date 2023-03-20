@@ -3,20 +3,21 @@ import { FaTable, FaFilter } from "react-icons/fa";
 import Table from "./Table";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
-import ModelAddUser from "./ModelUser";
+import ModelPopup from "./ModelPopup";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
-
+import UploadFile  from "./UploadFile";
 import Swal from 'sweetalert2'
 let XLSX = require("xlsx");
 
-const User = () => {
+const Reason = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
+    const [listUserNotGroup, setlistUserNotGroup] = useState([]);
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
         totalRecord : 28,
@@ -27,7 +28,44 @@ const User = () => {
         tokenSearch: ""
     });
 
+    const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+    const [campagnIdSelect, setCampagnSelect] = useState(-1);
+    const handleShowModelUploadFile = () => {
+        setCampagnSelect(13);
 
+        setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
+    const  GetAllMemberNotGroup = ()=> {
+       
+        let bodySearch = {
+
+                  Token: obejctSearch.tokenSearch, 
+                  Page:  obejctPaging.currentPage,
+                  Limit: obejctPaging.limt,
+                  Type: 1
+
+        };
+        EmployeeService.GetAllMemberNotGroup( bodySearch, (response) => {
+                  if (response.statusCode === 200) {
+                       if(response.value != null )
+                       {
+                        setlistUserNotGroup( response.value.data);
+                       }
+                  
+                      
+                    
+                  } 
+                  else {
+                    
+                  }
+        }, (error) => {
+         
+
+        });
+       
+  
+  }
 
     const handlePaging = (data)=> {
 
@@ -44,14 +82,12 @@ const User = () => {
     }
 
     const [employeeItem, setDataItem] = useState({
-        "id": "12",
+        "id": "-1",
         "fullName": "",
-        "userName": "",
-        "phoneNumber": "",
-        "email": "",
-        "address": "",
-        "RoleIdL": "1",
-        "companyName": "2"
+        "code": "",
+        "displayName": "",
+        "hour": 0,
+        "day": 0
     });
 
 
@@ -91,6 +127,11 @@ const User = () => {
     }
 
 
+    const importFile = ()=> {
+         setisOPenUploadFile(!isOPenUploadFile);
+   }
+
+
     const handleExportData = ()=> {
         let bodySearch = {
             Token: obejctSearch.tokenSearch, 
@@ -98,13 +139,12 @@ const User = () => {
             Limit: obejctPaging.limt
 
           };
-          EmployeeService.exportData(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+          EmployeeService.exportData(ConstantData.URL_masterdata_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
             if (response.statusCode === 200) {
-                 exportDataExcel(response.value.data);
+                exportDataExcel(response.value.data);
+
             } else {
-
-
-
+                
              }
           }, (error) => {
            
@@ -121,14 +161,13 @@ const User = () => {
          
         ],
     }  );
-
-
+    
     useEffect(() => {
 
         if(!isInit)
         {
 
-            document.title = "Danh sách nhân viên";
+            document.title = "Danh sách trạng thái";
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const token = params.get('token');
@@ -149,6 +188,7 @@ const User = () => {
     
              }
              getDataEmployee();
+             GetAllMemberNotGroup();
              setInit(true);
         }
       
@@ -188,6 +228,7 @@ const User = () => {
                 progress: undefined,
         });
         getDataEmployee();
+        setIsOpenModel(!isOpenModel);
     }
 
 
@@ -197,14 +238,15 @@ const User = () => {
     const getDataEmployee = ()=> {
 
          
-        
+        let groupId =   window.location.pathname.split("/").pop();
          let bodySearch = {
             Token: obejctSearch.tokenSearch, 
             Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
+            Limit: obejctPaging.limt,
+            GroupId: groupId
 
           };
-          EmployeeService.GetAll(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+          EmployeeService.GetAll(ConstantData.URL_getMemberByGroup_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
             if (response.statusCode === 200) {
                 renderData(response.value);
             } else {
@@ -221,19 +263,22 @@ const User = () => {
     const exportDataExcel = (dataReder) => {
 
         var DataExport = dataReder;
-         let workBook = XLSX.utils.book_new();
+          let workBook = XLSX.utils.book_new();
         const workSheet = XLSX.utils.json_to_sheet(DataExport);
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
-        let exportFileName = `dataEmployee.xls`;
+        let exportFileName = `dataMaster.xls`;
          XLSX.writeFile(workBook,exportFileName);
+
+     
+
+
 
 }
 
     const renderData = (dataReder) => {
-
-          
+        
             let totalPage = 1;
 
             if(dataReder.total <1 )
@@ -253,7 +298,9 @@ const User = () => {
     
             }
            
-            setData(prew=>({...prew,tbodyDataUser:dataReder.data}));
+            setData(
+                prew=>({...prew,tbodyDataUser:dataReder.data})
+                );
 
             setObjectPaging((prevalue) => {
                 return {
@@ -268,7 +315,7 @@ const User = () => {
 
 
     const handleShowModel = () => {
-
+        GetAllMemberNotGroup();
         setDataItem((prevalue) => {
             return {
                 ...prevalue,   // Spread Operator               
@@ -308,7 +355,7 @@ const User = () => {
             Id:  idEmp,
            
           };
-          EmployeeService.delete(ConstantData.URL_Employee_Delete,ConstantData.HEADERS,
+          EmployeeService.delete(ConstantData.URL_groupMember_DeleteMember,ConstantData.HEADERS,
             deleteIdModel,
             handleDeleteSucess, 
             handleDeleteError);
@@ -366,13 +413,14 @@ const User = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Nhân viên
+                    Trạng thái
                 </h4>
 
                 <div className="list-feature">
                 <div className="button-feature">
                     <button className="btn-ft btn-add" onClick={() => handleShowModel()}>Thêm</button>
                     <button className="btn-ft btn-export" onClick={()=>handleExportData()}>Xuất Excel</button>
+                    <button className="btn-ft btn-export" onClick={()=>importFile()}>Import file</button>
                     {/* <button className="btn-ft btn-more">Mở rộng</button> */}
                 </div>
                 <div className="search-feature">
@@ -382,21 +430,24 @@ const User = () => {
                 </div>
                 </div>
 
-                <Table theadData={ DataJson.theadDataUser } 
-                        dataDraw={dataEmployee}
-                        handleDelete = {handleDeleteEmpl} 
-                        handleViewById = {handleViewById}
-                        handleUpdateById = {handleUpdateById}
-                        tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                <Table theadData={ DataJson.theadDataDetailGroup } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>
 
-            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelAddUser dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
+            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  listUserNotGroup ={listUserNotGroup}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
+            {
+                isOPenUploadFile && <Model                                        
+                    handleClose ={handleShowModelUploadFile}
+                    content={<UploadFile
+                    idPass = {campagnIdSelect}   
+                    handleClose={handleShowModelUploadFile} 
+                />} />
+             }
 
         </div>
     );
 };
 
-export default User;
+export default Reason;

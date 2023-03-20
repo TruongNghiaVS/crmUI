@@ -321,6 +321,9 @@ const ModelAddUser = (props) => {
                             <option value="3">Quản lý</option>
 
                             <option value="4">Dự án</option>
+
+                            <option value="5">Sup</option>
+
                         </Form.Select>
 
                     </InputGroup>

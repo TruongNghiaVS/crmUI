@@ -1,5 +1,7 @@
-import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
+import { FaEye, FaPen, FaTrashAlt,FaExpandAlt } from "react-icons/fa";
 import React, { useState } from "react";
+
+import { NavLink } from 'react-router-dom';
 import moment from "moment"; 
 const TableHeadItem = ({ item }) => {
     return (
@@ -7,6 +9,11 @@ const TableHeadItem = ({ item }) => {
     );
 };
 
+
+const handleToPageReason = (id)=> {
+    window.open("/nhom/"+id);
+
+}
 const getStatusText = (isActive)=> {
      if(isActive)
     {
@@ -17,13 +24,21 @@ const getStatusText = (isActive)=> {
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
+    let likUrl = "/nhom/" + data.id;
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{data.name}</td>
-            <td>{data.code}</td>
-            <td>{data.managerName}</td>
+            <td>
+                <NavLink to={likUrl} >
+                 {data.name}
+                </NavLink>
+            </td>
+            <td>
+                {data.code}
+            
+            </td>
+            <td>{data.managementName}</td>
             <td>{moment(data.create_At).format("DD/MM/YYYY")}</td>
              <td>{data.authorName}</td>
             <td>{getStatusText(data.isActive)}</td>
@@ -31,6 +46,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                 <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
                 <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
                 <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
+                <FaExpandAlt className='icon-tbl' onClick={()=>handleToPageReason(data.id)}/>
             </td>
         </tr>
     );

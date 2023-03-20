@@ -11,6 +11,8 @@ import FollowUp from '../followUp/FollowUp';
 import FollowUpNew from '../fololowNew';
 import React, { useState, useEffect } from 'react'
 import Reason from '../reason/Reason';
+import DetailGroup from '../DetailGroup/Reason';
+
 import MasterDataNew from '../masterDataNew';
 import GroupReason from '../groupReason/GroupReason';
 import Campangn from '../campagn';
@@ -79,6 +81,9 @@ const Screen = (props) => {
             return <FollowUp />;
         case 'reason':
             return <Reason/>;
+
+        case 'detailGroup':
+                return <DetailGroup/>;
         case 'groupReason':
             return <GroupReason/>;
         case 'campangn':

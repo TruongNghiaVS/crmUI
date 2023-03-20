@@ -8,7 +8,6 @@ const TableHeadItem = ({ item }) => {
 };
 
 const getStatusText = (isActive)=> {
-    console.log(isActive);
     if(isActive)
     {
         return (<p>Hoạt động</p>);
@@ -23,20 +22,12 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>{data.id}</td>
-            <td>{data.fullName}</td>
             <td>{data.userName}</td>
+            <td>{data.fullName}</td>
             <td>{data.lineCode}</td>
-            <td>{data.positionName}</td>
-            <td>{data.departmentName}</td>
-            <td>{data.companyName}</td>
-            <td>{moment(data.createdTime).format("DD/MM/YYYY")}</td>
-            <td>{getStatusText(data.isActive)}</td>
-            <td>{data.authorName}</td>
-            <td>{data.email}</td>
-            <td>{data.phoneNumber}</td>
-            <td>
-                <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
-                <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
+            <td>{moment(data.crateAt).format("DD/MM/YYYY")}</td>
+           <td>
+                
                 <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
             </td>
         </tr>
@@ -61,11 +52,14 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                 dataDraw.tbodyDataUser.map((item, index) => {
+                
+                dataDraw.tbodyDataUser.map((item, index) => {
                     return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
                     handleViewById = {handleViewById}
                     handleUpdateById ={handleUpdateById}/>;
-                })}
+                })
+                
+                }
             </tbody>
         </table>
     );

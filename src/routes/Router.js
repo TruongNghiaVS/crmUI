@@ -8,7 +8,13 @@ function Router() {
                          <Route path="test-line" element={<Layout page="test-line" />}>
                                 <Route path=":detail" element={<Layout page="test-line" />} />
                          </Route>
-                         <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />} />
+                         
+                         <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />}>
+                              
+                          </Route>
+                         <Route path="nhom" element={<Layout page="detailGroup" />}>
+                                    <Route path=":detail" element={<Layout page="detailGroup" />} />
+                         </Route>
                          <Route path="login" element={<Layout page="login" />} />
                          <Route path="home" element={<Layout page="home" />} />
                        
