@@ -10,7 +10,9 @@ import DataJson from "../../utils/Data";
 import { Link } from "react-router-dom";
 import "./Dashboard.scss";
 import DashboardService from '../../services/DashboardService';
+import Services from '../../services/ReportTalkTimeService';
 import { useEffect,useRef  } from 'react';
+let XLSX = require("xlsx");
 const Dashboard = () => {
     const [objectDataOverview, setobjectDataOverview] = useState({
             dataOverview: {}
@@ -44,6 +46,33 @@ const handleInputChange = (event) => {
     })
 
 }
+const handleInputChangeDay = (event) => {
+    if( event.target.value=="on")
+    {
+        setKeySearch((prevalue) => {
+            return {
+                    ...prevalue,              
+                    from: moment().subtract(1, 'day'),
+                    endTime: moment().subtract(1, 'day')
+            }
+        })
+    }
+    else 
+    {
+        setKeySearch((prevalue) => {
+            return {
+                    ...prevalue,              
+                    from: moment().subtract(0, 'day'),
+                    endTime: moment().subtract(0, 'day')
+            }
+        })
+
+    }
+    
+}
+
+
+
 
 
 const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
@@ -51,7 +80,7 @@ const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 const roleUser = jsonProfile.role;
 
 var isAdmin = false;
-if(roleUser === "2") {
+if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
     isAdmin = true;
 }
 
@@ -92,6 +121,84 @@ const dateForPicker = (dateString) => {
         getData();
 
     }
+
+
+    const exportData = () => {
+    
+        let fromDate = obejctSearch.from;
+        if(fromDate=="")
+        {
+            fromDate = null;
+        }
+
+     
+        let bodySearch = {
+
+                Token: obejctSearch.tokenSearch,
+                Page: obejctPaging.currentPage,
+                Limit: obejctPaging.limt,
+                LineCode: obejctSearch.lineCode,
+                phoneLog: obejctSearch.phoneLog,
+                Disposition: obejctSearch.status,
+                from:fromDate,
+                to: obejctSearch.endTime
+
+        };
+
+        Services.exportData(  bodySearch, (response) => {
+            if (response.statusCode === 200) {
+                exportDataExcel(response.value.data);
+            } else {
+
+
+
+            }
+        }, (error) => {
+
+        });
+
+    }
+
+    const exportDataExcel = (dataReder) => {
+
+        var DataExport = dataReder;
+        const Heading = [
+            [
+                'Họ tên',
+                'Line gọi',
+                'Số HĐ',
+                'Ngày',
+                'Tổng cuộc gọi',
+                'Phần trăm kết nối',
+                'Tổng thời gian gọi',
+                'Tổng thời gian chờ',
+                'Thời gian đàm thoại',
+                'Trả lời',
+                'Không trả lời',
+                'Cuộc gọi hủy',
+                'Busy',
+                'Kênh lỗi',
+                'Không gọi được',
+                'Lỗi server',
+                'Thời gian tạo'
+
+            ]
+        ];
+        let workBook = XLSX.utils.book_new();
+        const workSheet = XLSX.utils.json_to_sheet(DataExport,  
+        { origin: 'A2', skipHeader: true }
+        );
+        XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
+   
+        // const workSheet = XLSX.utils.json_to_sheet(DataExport);
+
+        XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
+        
+        let exportFileName = `talktimeReport.xls`;
+        XLSX.writeFile(workBook, exportFileName);
+
+    }
+
     const getData = ()=> {
            
 
@@ -183,7 +290,16 @@ const dateForPicker = (dateString) => {
                                                 onChange={handleInputChange}
                                             />
                                         </InputGroup>
+
+                                        
                                     </Form.Group>
+
+                                    <Form.Check 
+                                                type="switch"
+                                                id="custom-switch"
+                                                label="Ngày hôm qua"
+                                                onChange={handleInputChangeDay}
+                                                />
                                 </Col>
                                 <Col>
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -199,6 +315,8 @@ const dateForPicker = (dateString) => {
                                             />
                                         </InputGroup>
                                     </Form.Group>
+
+                                            
                                 </Col>
                                 {
                                 isAdmin? 
@@ -223,8 +341,7 @@ const dateForPicker = (dateString) => {
                             :<></>
                             }
                             </Row>
-                          
-                           
+                    
 
                            
                         </Form>
@@ -239,7 +356,7 @@ const dateForPicker = (dateString) => {
                     
                     <div className="search-feature">
                       
-                        
+                    <button className="btn-search"  onClick={exportData} >Xuất file</button>
                         <button className="btn-search"  onClick={searchData} >Tìm kiếm</button>
                     </div>
                 </div>

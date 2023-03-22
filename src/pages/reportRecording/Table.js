@@ -44,7 +44,6 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss")}</td>
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
-           
             <td>{data.dst}</td>
             <td>{data.disposition}</td>
             <td>{data.lastapp}</td>

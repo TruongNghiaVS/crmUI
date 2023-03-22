@@ -50,7 +50,7 @@ const User = () => {
     const roleUser = jsonProfile.role;
 
     var isAdmin = false;
-    if(roleUser === "2") {
+    if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
         isAdmin = true;
     }
   

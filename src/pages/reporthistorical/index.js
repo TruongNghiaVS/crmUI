@@ -21,6 +21,10 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import moment from "moment";
 import UploadFile  from "./UploadFile";
+
+import MasterDataService from '../../services/MasterDataNewService';
+
+
 let XLSX = require("xlsx");
 
 const dateForPicker = (dateString) => {
@@ -47,6 +51,29 @@ const Reporthistorical = () => {
     const importFile = ()=> {
         setisOPenUploadFile(!isOPenUploadFile);
   }
+  const [statusList , setStatusList]=useState([]);
+
+
+  const getAllStatus = ()=> {
+            
+    let bodySearch = {
+            Token:"", 
+            Page:  1,
+            Limit: 100
+    };
+    
+    MasterDataService.GetAllStatus( bodySearch, (response) => {
+    if (response.statusCode === 200) {
+      
+                  setStatusList(response.value.data);
+    } else {
+
+    }
+}, (error) => {
+
+});
+
+}
 
     const [obejctPaging, setObjectPaging ] = useState({
             limt: 10, 
@@ -76,7 +103,7 @@ const Reporthistorical = () => {
     const roleUser = jsonProfile.role;
     
     var isAdmin = false;
-    if(roleUser === "2") {
+    if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
         isAdmin = true;
     }
     const handleInputChange = (event) => {
@@ -115,16 +142,14 @@ const Reporthistorical = () => {
     
              }
              getData();
+             getAllStatus();
              setInit(true);
         }
     }, [obejctPaging]);
 
 
     const handlePaging = (data)=> {
-
-
-
-            const key = 'currentPage';
+         const key = 'currentPage';
             const value = data;
             setObjectPaging(prevState => ({
             ...prevState,
@@ -623,10 +648,13 @@ const Reporthistorical = () => {
 
                         <Form.Select name ="statusSearch" onChange={handleInputChange} value = {obejctSearch.statusSearch}>
                        
-                                <option value ="-1">Chọn trạng thái</option>
-                                <option value= "144">Call back - Gọi lại </option>
-                                <option value= "145">Special busIness - KH đứng tên dùm </option>
-                                <option value= "146">Customers are dead - KH chết gia định khó khăn kinh tế </option>
+                            
+                                <option  selected value ="-1" >Chọn trạng thái</option>
+                             {
+                                  statusList.map((item, index) => {
+                                            return  <option value={item.id}>{item.code +"-" +item.fullName }</option>
+                                  })
+                              }
                         </Form.Select>
 
                        
@@ -653,7 +681,7 @@ const Reporthistorical = () => {
                            
                         </div>
                         <div className="search-feature">
-                                <button className="btn-search" onClick={()=>importFile()}>Nhập dữ liệu</button>
+                                {/* <button className="btn-search" onClick={()=>importFile()}>Nhập dữ liệu</button> */}
                                 <button className="btn-search" onClick={exportData}>Xuất dữ liệu</button>
                                 <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>

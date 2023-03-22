@@ -41,7 +41,7 @@ const User = () => {
 
     });
     const exportData = () => {
-        return;
+ 
         let fromDate = obejctSearch.fromTime;
         if(fromDate=="")
         {
@@ -80,7 +80,7 @@ const User = () => {
     const roleUser = jsonProfile.role;
 
     var isAdmin = false;
-    if(roleUser === "2") {
+    if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
         isAdmin = true;
     }
 
@@ -126,23 +126,13 @@ const User = () => {
         var DataExport = dataReder;
         const Heading = [
             [
-                'Họ tên',
-                'Line gọi',
-                'Số HĐ',
-                'Ngày',
-                'Tổng cuộc gọi',
-                'Phần trăm kết nối',
-                'Tổng thời gian gọi',
-                'Tổng thời gian chờ',
-                'Thời gian đàm thoại',
-                'Trả lời',
-                'Không trả lời',
-                'Cuộc gọi hủy',
-                'Busy',
-                'Kênh lỗi',
-                'Không gọi được',
-                'Lỗi server',
-                'Thời gian tạo'
+                 'Line gọi',
+                'Thời gian gọi',
+                'Số điện thoại',
+                'Time talking',
+                'Tổng thời  gian gọi',
+                'File Ghi âm'
+
 
             ]
         ];

@@ -6,6 +6,11 @@ class MasterDataNewService   {
         ApiService.httpPost(url, null, body, callSuccess, callError);
     }
 
+    static GetAllStatus( body, callSuccess, callError) {
+      let url = Constants.URL_masterDataNew_GetAllStatus;
+      ApiService.httpPost(url, null, body, callSuccess, callError);
+  }
+
     static add( body, callSuccess, callError) {
       let url = Constants.URL_masterDataNew_Add;
       ApiService.httpPost(url, null, body, callSuccess, callError);

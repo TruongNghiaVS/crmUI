@@ -90,6 +90,8 @@ class ConstantData {
 
     //masterDataNew
     static URL_masterDataNew_GetALl = `${ConstantData.DOMAIN}/api/masterdataNew/getAll`;
+
+    static URL_masterDataNew_GetAllStatus = `${ConstantData.DOMAIN}/api/groupReason/getAllStatus`;
     static URL_masterDataNew_Add = `${ConstantData.DOMAIN}/api/masterdataNew/add`;
     static URL_masterDataNew_Update = `${ConstantData.DOMAIN}/api/masterdataNew/update`;
     static URL_masterDataNew_Delete = `${ConstantData.DOMAIN}/api/masterdataNew/delete`;
