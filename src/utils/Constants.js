@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://118.69.182.32:7777";
+    static DOMAIN = "https://localhost:44332";
     static HEADERS = {
         'Accept': 'application/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -77,8 +77,11 @@ class ConstantData {
 
     static URL_campagnProfile_Assigee_getAll = `${ConstantData.DOMAIN}/api/campagn/getAllCampangeAssigess`;
 
+    static URL_campagn_getOverview= `${ConstantData.DOMAIN}/api/campagn/getOverViewDashboardById`;
 
+    static URL_campagn_getOverviewAllAssignee= `${ConstantData.DOMAIN}/api/campagn/getAllCampangeAssigess`;
 
+    
     //campagn profile
     static URL_impactHistory_GetALl = `${ConstantData.DOMAIN}/api/impacthistory/getAll`;
     static URL_impactHistory_Add = `${ConstantData.DOMAIN}/api/impacthistory/add`;
@@ -90,7 +93,8 @@ class ConstantData {
 
     //masterDataNew
     static URL_masterDataNew_GetALl = `${ConstantData.DOMAIN}/api/masterdataNew/getAll`;
-
+    static URL_line_GetALl = `${ConstantData.DOMAIN}/api/line/getAll`;
+    
     static URL_masterDataNew_GetAllStatus = `${ConstantData.DOMAIN}/api/groupReason/getAllStatus`;
     static URL_masterDataNew_Add = `${ConstantData.DOMAIN}/api/masterdataNew/add`;
     static URL_masterDataNew_Update = `${ConstantData.DOMAIN}/api/masterdataNew/update`;

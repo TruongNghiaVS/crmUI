@@ -2,6 +2,7 @@ import { FaEye, FaPen, FaTrashAlt,FaFileImport } from "react-icons/fa";
 import { MdAssistantNavigation } from "react-icons/md";
 
 import React, { useState } from "react";
+import { NavLink } from 'react-router-dom';
 import moment from "moment"; 
 const TableHeadItem = ({ item }) => {
     return (
@@ -19,12 +20,18 @@ const getStatusText = (isActive)=> {
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow,openAssignee }) => {
     rowIndex = rowIndex +1;
+    let likUrl = "/thong-tin-chien-dich/" + data.id;
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
                     <td>{rowIndex}</td>
                     <td>{data.code}</td>
-                    <td>{data.displayName}</td>
+                   
+                    <td>
+                 <NavLink to={likUrl} >
+                 {data.displayName}
+                </NavLink>
+            </td>
                     <td>{getStatusText(data.status)}</td>
                     <td>{data.sumCount}</td>
                     <td>{data.processingCount}</td>

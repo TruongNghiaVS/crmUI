@@ -16,6 +16,7 @@ import DetailGroup from '../DetailGroup/Reason';
 import MasterDataNew from '../masterDataNew';
 import GroupReason from '../groupReason/GroupReason';
 import Campangn from '../campagn';
+import CampaignOverview from '../campaignOverview';
 import CampaignAssign from '../campaignAssign';
 import { ToastContainer } from 'react-toastify';
 import ReportMaster from '../reportMaster';
@@ -111,7 +112,10 @@ const Screen = (props) => {
         return  <ReportTalkTime/>
         case 'lineManagement':
             return <LineManagement/>;
-                
+
+       case 'infoManagement':
+                return <CampaignOverview/>;
+      
         default:
             throw new Error('Invalid Screen')
     }

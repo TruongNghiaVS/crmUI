@@ -121,6 +121,12 @@ const DataJson = {
         "Đàm thoại", "Không trả lời", "Hủy", "Bận line", "Kênh lỗi", "Không gọi được", "Lỗi server"
     ],
 
+    theadCampagnOverview: ["Line gọi",
+    "User name", "Tên", "SL phân", "Đang xử lý", "Chưa tác động", "Đóng", 
+    "Số case giữ"
+    ],
+
+
     tbodyDataDashboard: [
         {
             id: 1,

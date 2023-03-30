@@ -65,6 +65,10 @@ function Router() {
                           <Route path="quan-ly-line" element={<Layout page="lineManagement" />}>
                               <Route path=":detail" element={<Layout page="lineManagement" />} />
                          </Route>
+
+                         <Route path="thong-tin-chien-dich" element={<Layout page="infoManagement" />}>
+                              <Route path=":detail" element={<Layout page="infoManagement" />} />
+                         </Route>
      
                          
           </Routes>

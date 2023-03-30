@@ -12,12 +12,15 @@ import EmployeeService from '../../services/EmployeeService';
 import LineService from '../../services/LineService';
 import { toast } from 'react-toastify';
 import {GiSightDisabled} from 'react-icons/gi';
+import MasterDataService from '../../services/MasterDataNewService';
+
 const ModelAddUser = (props) => {
     
     const [model  , setmodel]=useState({
        
         
     });
+    const [statusList , setStatusList]=useState([]);
     const [isHiddenProfile, setIsHiddenProfile] = useState(false);
     const handleShowModel = () => {
         setIsHiddenProfile(false);
@@ -51,7 +54,7 @@ const ModelAddUser = (props) => {
             {
                 isActive =1;
             }
-            debugger;
+   
            
             setmodel((prevalue) => {
             return {
@@ -65,20 +68,43 @@ const ModelAddUser = (props) => {
               roleEm: dataItem.roleId,
               address: dataItem.address,
               lineCode: dataItem.lineCode,
+              lineId: dataItem.lineId, 
+              
               companyName: dataItem.companyName
             }
           })
         }
       };
-
+     
       const handleDisplayDataErro = (event) => {
         
       };
-
+      const getallLineEmpty = ()=> {
+            
+        let bodySearch = {
+                Token:"", 
+                Page:  1,
+                status: "2", 
+             
+                Limit: 100
+        };
+        
+        MasterDataService.GetAllLine( bodySearch, (response) => {
+        if (response.statusCode === 200) {
+          
+                      setStatusList(response.value.data);
+        } else {
+    
+        }
+    }, (error) => {
+    
+    });
+    
+    }
     useEffect(() => {
-
+        
         let dataItem = props.dataItem;
-
+        getallLineEmpty();
         
         if(dataItem.isView)
         {
@@ -94,6 +120,7 @@ const ModelAddUser = (props) => {
                   phoneNumber: dataItem.phoneNumber,
                   email: dataItem.email, 
                   lineCode: dataItem.lineCode,
+                  lineId: dataItem.lineId, 
                   address: dataItem.address,
                   companyName: dataItem.companyName,
                   roleEm: "1",
@@ -152,11 +179,12 @@ const ModelAddUser = (props) => {
 
     const  AddEmploy = (event) => { 
 
-        
+        debugger;
         const employeeAdd = {
             UserName:  model.userName,
             RoleId:  model.roleEm,
             lineCode: model.lineCode,
+            lineId: model.lineId, 
             Email: model.email,
             FullName: model.fullName,
             Phone: model.phoneNumber,
@@ -206,6 +234,7 @@ const ModelAddUser = (props) => {
         const modelUpdate = {
             id: model.id,
             lineCode: model.lineCode,
+            lineId: model.lineId, 
             RoleId:  model.roleEm,
             Email: model.email,
             FullName: model.fullName,
@@ -288,6 +317,22 @@ const ModelAddUser = (props) => {
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
                         <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  
                         name = "lineCode"  placeholder="Mã gọi"    onChange={handleInputChange} value = {model.lineCode} required />
+                    </InputGroup>
+
+                    <InputGroup className="mb-2">
+                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                        
+                            <Form.Select aria-label="Mã gọi nhân viên" name ="lineId" onChange={handleInputChange} value = {model.lineId} >
+
+                            <option  selected value ="-1" >Chọn line</option>
+                            {
+                                
+                                statusList.map((item, index) => {
+                                        return  <option value={item.id}>{item.code +"-" +item.name }</option>
+                                })
+                            }
+
+                    </Form.Select>
                     </InputGroup>
 
 

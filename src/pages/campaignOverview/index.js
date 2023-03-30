@@ -9,7 +9,7 @@ import moment from "moment";
 import DataJson from "../../utils/Data";
 import { Link } from "react-router-dom";
 import "./Dashboard.scss";
-import DashboardService from '../../services/DashboardService';
+import DashboardService from '../../services/CampagnOverviewService';
 import Services from '../../services/ReportTalkTimeService';
 import { useEffect,useRef  } from 'react';
 let XLSX = require("xlsx");
@@ -90,28 +90,26 @@ const dateForPicker = (dateString) => {
 
     const [isInit, setInit] = useState(false);
     const toHHMMSS = (secs) => {
-
-                if(!isNaN(parseFloat(secs)) && isFinite(secs))
-                {
-                    
-                }
-                else 
-                {
-                    return  "";
-                }
-                var sec_num = parseInt(secs, 10)
-                var hours   = Math.floor(sec_num / 3600)
-                var minutes = Math.floor(sec_num / 60) % 60
-                var seconds = sec_num % 60
-            
-                return [hours,minutes,seconds]
-                    .map(v => v < 10 ? "0" + v : v)
-                    .filter((v,i) => v !== "00" || i > 0)
-                    .join(":")
+        if(!isNaN(parseFloat(secs)) && isFinite(secs))
+        {
+              
+        }
+        else 
+        {
+            return  "";
+        }
+        var sec_num = parseInt(secs, 10)
+        var hours   = Math.floor(sec_num / 3600)
+        var minutes = Math.floor(sec_num / 60) % 60
+        var seconds = sec_num % 60
+    
+        return [hours,minutes,seconds]
+            .map(v => v < 10 ? "0" + v : v)
+            .filter((v,i) => v !== "00" || i > 0)
+            .join(":")
     }
 
     const percentFix2 = (number) => {
-
         if(!isNaN(parseFloat(number)) && isFinite(number))
         {
                 return number.toFixed(2) +"%";
@@ -123,7 +121,8 @@ const dateForPicker = (dateString) => {
         getData();
 
     }
-    
+
+
     const exportData = () => {
     
         let fromDate = obejctSearch.from;
@@ -131,6 +130,8 @@ const dateForPicker = (dateString) => {
         {
             fromDate = null;
         }
+
+     
         let bodySearch = {
 
                 Token: obejctSearch.tokenSearch,
@@ -200,7 +201,7 @@ const dateForPicker = (dateString) => {
 
     const getData = ()=> {
            
-
+            let param2= window.location.pathname.split("/").pop();
             let fromDate = obejctSearch.from;
             if(fromDate=="")
             {
@@ -212,18 +213,18 @@ const dateForPicker = (dateString) => {
                 Limit: obejctPaging.limt,
                 LineCode: obejctSearch.lineCode,
                 from:fromDate,
+                campaignId: param2, 
                 to: obejctSearch.endTime
 
             };
             
             DashboardService.getInformationOverviewDashboard(bodySearch, (response) => {
                         if (response.statusCode === 200) {
-                            console.log(response.value);
-
+                            
                             setobjectDataOverview((prevalue) => {
                                 return {
                                 ...prevalue,   // Spread Operator               
-                                 dataOverview: response.value.data[0]
+                                 dataOverview: response.value
                                 }
                             })
                           
@@ -235,8 +236,8 @@ const dateForPicker = (dateString) => {
             }, (error) => {
                 
             });
-            
-            DashboardService.getDetailOverview(bodySearch, (response) => {
+        
+            DashboardService.GetAllAssigns(bodySearch, (response) => {
               
                         if (response.statusCode === 200) {
                             setobjectDetail((prevalue) => {
@@ -253,13 +254,12 @@ const dateForPicker = (dateString) => {
             }, (error) => {
 
             });
-
+ 
     }
     useEffect(() => {
         if(!isInit)
         {
              getData();
-
              setInit(true);
         }
     }, [objectDataOverview,objectDetail]);
@@ -268,7 +268,7 @@ const dateForPicker = (dateString) => {
 
     return (
         <div className="dashboard">
-            <h2 className="tit-dash">Dashboard</h2>
+            <h2 className="tit-dash">Thông tin tổng quan</h2>
 
             <form className='form-login'>
                     <div>
@@ -363,28 +363,31 @@ const dateForPicker = (dateString) => {
 
             <div className="list-box-info">
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Tổng cuộc gọi {objectDataOverview.dataOverview.sumCall}</h4>
+                    <h4 className="tit-info">Tổng case: {
+                        objectDataOverview.dataOverview.total 
+                    }
+                    </h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
                     </Link>
                 </div>
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Tổng hợp đồng {objectDataOverview.dataOverview.sumNoAgree}</h4>
+                    <h4 className="tit-info">Chưa phân {objectDataOverview.dataOverview.numberHaveNotAssigee}</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
                     </Link>
                 </div>
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Kết nối {percentFix2(objectDataOverview.dataOverview.perpercent)}</h4>
+                    <h4 className="tit-info"> Đang xử lý {objectDataOverview.dataOverview.numberProcessing}</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
                     </Link>
                 </div>
                 <div className="box-detail-info">
-                    <h4 className="tit-info">Talktime {toHHMMSS(objectDataOverview.dataOverview.timeTalking)}</h4>
+                    <h4 className="tit-info">Đóng {objectDataOverview.dataOverview.numberHasClose}</h4>
                     <Link className="link-info" to="/">
                         <span>View details</span>
                         <FaAngleRight className="icon-link" />
@@ -395,10 +398,10 @@ const dateForPicker = (dateString) => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    BC Talktime
+                    BC Theo người dùng
                 </h4>
 
-                <Table theadData={ DataJson.theadDataDashboard } tbodyData={ objectDetail.data } tblClass="tbl-custom-data" />
+                <Table theadData={ DataJson.theadCampagnOverview } tbodyData={ objectDetail.data } tblClass="tbl-custom-data" />
 
             
             </div>
