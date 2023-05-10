@@ -73,20 +73,22 @@ const ModelAddUser = (props) => {
               companyName: dataItem.companyName
             }
           })
+
+          getallLineEmpty(dataItem.lineId);
         }
       };
      
       const handleDisplayDataErro = (event) => {
         
       };
-      const getallLineEmpty = ()=> {
-            
+      const getallLineEmpty = (lineId)=> {
+        
         let bodySearch = {
                 Token:"", 
                 Page:  1,
                 status: "2", 
-             
-                Limit: 100
+                lineIdAdd: lineId,
+                 Limit: 100
         };
         
         MasterDataService.GetAllLine( bodySearch, (response) => {
@@ -104,14 +106,16 @@ const ModelAddUser = (props) => {
     useEffect(() => {
         
         let dataItem = props.dataItem;
-        getallLineEmpty();
+
         
         if(dataItem.isView)
         {
             enbaleView(true);
         }
         if(dataItem.id =="-1")
-        { setmodel((prevalue) => {
+        {
+            
+                setmodel((prevalue) => {
                 return {
                   ...prevalue,   // Spread Operator               
                   id: dataItem.id,
@@ -127,7 +131,7 @@ const ModelAddUser = (props) => {
                   isView: false
                 }
               })
-             
+              getallLineEmpty(0);
           
         }
 
@@ -233,7 +237,7 @@ const ModelAddUser = (props) => {
        
         const modelUpdate = {
             id: model.id,
-            lineCode: model.lineCode,
+            
             lineId: model.lineId, 
             RoleId:  model.roleEm,
             Email: model.email,
@@ -313,12 +317,7 @@ const ModelAddUser = (props) => {
                            onChange={handleInputChange} value = {model.userName} required />
                     </InputGroup>
 
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm"  
-                        name = "lineCode"  placeholder="Mã gọi"    onChange={handleInputChange} value = {model.lineCode} required />
-                    </InputGroup>
-
+         
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
                         

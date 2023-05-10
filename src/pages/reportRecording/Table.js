@@ -12,10 +12,10 @@ const TableHeadItem = ({ item }) => {
 
 const getShowfile =  (item)=> {
     // return item.recordingfile;
-    let fileUrl = "http://42.115.94.180:7878/api/getFileAudio?filePath=";
+    let fileUrl = "http://118.69.182.32:7777/api/file/getaudio12?filePath=";
     if(item.src.startsWith("1"))
     {
-        fileUrl = "http://118.69.182.32:7879/api/getFileAudio?filePath=";
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
     }
     fileUrl=fileUrl +''+ item.recordingfile;
     
