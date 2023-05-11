@@ -17,6 +17,10 @@ const getShowfile =  (item)=> {
     {
         fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
     }
+    if(item.src.startsWith("3"))
+    {
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio09?filePath=";
+    }
     fileUrl=fileUrl +''+ item.recordingfile;
     
     if(!item.isShow)
