@@ -97,17 +97,21 @@ const User = () => {
 
     }
     const handlePaging = (data) => {
+        // window.location.replace = "/bao-cao-ghi-am?page"+data;
 
-        const key = 'currentPage';
-        const value = data;
-        setObjectPaging(prevState => ({
-            ...prevState,
-            [key]: value
-        }
-        ));
-        getData();
+        window.location.replace("/bao-cao-ghi-am?page="+data);
 
-        setInit(false);
+        return;
+        // const key = 'currentPage';
+        // const value = data;
+        // setObjectPaging(prevState => ({
+        //     ...prevState,
+        //     [key]: value
+        // }
+        // ));
+        // getData();
+
+        // setInit(false);
     }
 
     const [employeeItem, setDataItem] = useState({
@@ -283,22 +287,66 @@ const User = () => {
     }
     
     const getData = () => {
+        const search = window.location.search;
+        const query = new URLSearchParams(search);
+        const page = query.get('page');
+        const limit = query.get('limit');
+        
 
-            let fromDate = obejctSearch.fromTime;
+        let fromDate = obejctSearch.fromTime;
             if(fromDate=="")
             {
                 fromDate = null;
             }
+          
+        
+            if( page!= null && page !="")
+            {
+                    let valueControl =page;
+                    let nameControl ="Page";
+                    setKeySearch((prevalue) => {
+                        return {
+                            ...prevalue,   // Spread Operator               
+                            [nameControl]: valueControl
+                        }
+                        })
+                    
+
+                        setObjectPaging((prevalue) => {
+                            return {
+                                ...prevalue,   // Spread Operator               
+                                ["currentPage"]: valueControl
+                            }
+                            })
+    
+    
+
+                        
+            }
+
+            
             let bodySearch = {
                 Token: obejctSearch.tokenSearch,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
+
                 LineCode: obejctSearch.lineCode,
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,
                 from:fromDate,
                 to: obejctSearch.endTime
             };
+
+            if(page)
+            {
+                bodySearch.Page =page; 
+
+            }
+            if(limit)
+            {
+                bodySearch.Limit =limit; 
+
+            }
             EmployeeService.GetAllRecordingfile(bodySearch, (response) => {
                 if (response.statusCode === 200) {
                     renderData(response.value);
