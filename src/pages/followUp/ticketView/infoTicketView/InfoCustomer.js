@@ -1,9 +1,13 @@
+import React, { useState } from "react";
 import { FaEnvelope, FaPhone, FaSms } from "react-icons/fa";
 import { Col, InputGroup, FormControl, Form } from 'react-bootstrap';
 import ProcessingCall from '../../../../services/ProcessingCall';
+import Model from "../../../../components/model/Model";
+import PopupSms from './PopupSms';
 import { SimpleUser, SimpleUserOptions } from "sip.js/lib/platform/web";
 import moment from "moment";
 import Swal from 'sweetalert2';
+import { mode } from "crypto-js";
 // var ami = new require('asterisk-manager')('5038','127.0.0.1','admin','BdqYzZCXXOHB', true);
 
 // const process = require('process'); 
@@ -12,6 +16,18 @@ const InfoCustomer = ({data,handleInputChange}) => {
     const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD');
     };
+
+    const [isOpenModel, setIsOpenModel] = useState(false);
+    const [modelsms , setModelsms]=useState({
+        "PhoneNumber":"",
+        "ContentSms":"",
+        "NoAgree": ""
+
+
+    });
+    const handleShowModel = ()=> {
+         setIsOpenModel(!isOpenModel);
+    }
     const callToline1 =(valueCall)=> {
 
 
@@ -75,8 +91,42 @@ const InfoCustomer = ({data,handleInputChange}) => {
                })
          
          });
+
+
      }
   
+     const smsToMessage =(valueCall)=> {
+
+
+        // let inputValue = e.target.parentElement.parentElement.getElementsByTagName("input");
+        let PhoneLog = valueCall;
+  
+   
+        if(PhoneLog.length <1)
+        {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Không có số điện thoại',
+                 text: 'Không có số điện thoại',
+                 footer: 'Yêu cầu thông tin!'
+             })
+             return;
+        }
+        
+        let PhoneNumber = valueCall;
+        let NoAgree =data.noAgreement;
+   
+        
+        setModelsms((prevalue) => {
+            return {
+              ...prevalue,   // Spread Operator               
+              [PhoneNumber]: PhoneNumber,
+              [NoAgree]:  NoAgree
+              
+            }
+         })
+         setIsOpenModel(true);
+     }
      return (
          <Col>
             <Form.Label>Thông tin khách</Form.Label>
@@ -100,6 +150,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <InputGroup.Text>Di động</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.mobilePhone}  name = "mobilePhone" onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.mobilePhone)}/></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>smsToMessage(data.mobilePhone)}/></InputGroup.Text>
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
@@ -142,6 +193,9 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <InputGroup.Text >Trạng thái hồ sơ </InputGroup.Text>
                 <FormControl aria-label="Small" readOnly value = {data.statusProfile}   />
             </InputGroup>
+
+            { isOpenModel && <Model handleClose ={handleShowModel}  content={<PopupSms  modelsms = {modelsms} />} /> }
+
         </Col>
     );
 };

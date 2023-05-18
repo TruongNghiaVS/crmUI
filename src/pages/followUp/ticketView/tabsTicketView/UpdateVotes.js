@@ -58,8 +58,8 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
             </Col>
             <Col>
                 <Form.Label htmlFor="basic-url">Ghi chú</Form.Label>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Control as="textarea" rows={5} name ="noteIm" onChange={handleInputChange} 
+                <Form.Group className="mb-3">
+                    <Form.Control as="textarea" rows={5}  name ="noteIm" onChange={handleInputChange} 
                        value = {dataView1.noteIm}  />
                 </Form.Group>
             </Col>

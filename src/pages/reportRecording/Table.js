@@ -12,14 +12,14 @@ const TableHeadItem = ({ item }) => {
 
 const getShowfile =  (item)=> {
     // return item.recordingfile;
-    let fileUrl = "http://118.69.182.32:7777/api/file/getaudio12?filePath=";
+    let fileUrl = "https://localhost:44332/api/file/getaudio12?filePath=";
     if(item.src.startsWith("1"))
     {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
+        fileUrl = "https://localhost:44332/api/file/getaudio10?filePath=";
     }
     if(item.src.startsWith("3"))
     {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio09?filePath=";
+        fileUrl = "https://localhost:44332/api/file/getaudio09?filePath=";
     }
     fileUrl=fileUrl +''+ item.recordingfile;
     

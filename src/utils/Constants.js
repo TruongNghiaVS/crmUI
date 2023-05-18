@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://118.69.182.32:7777";
+    static DOMAIN = "https://localhost:44332";
     static HEADERS = {
         'Accept': 'application/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -156,6 +156,10 @@ class ConstantData {
     static URL_lineReason_Delete = `${ConstantData.DOMAIN}/api/line/delete`;
     static URL_lineReason_GetById = `${ConstantData.DOMAIN}/api/line/getById`;
     static URL_lineReason_exportData = `${ConstantData.DOMAIN}/api/line/exportData`;
+
+    //sms server
+
+    static URL_sms_Send = `${ConstantData.DOMAIN}/api/sms/send`;
 
 }
 export default ConstantData;
