@@ -17,7 +17,7 @@ const InfoTicketView = ({ dataView , handleInputChange, Save }) => {
             <InfoProduct handleInputChange = {handleInputChange} data = {dataView} />
         </Row>
                 <div className="mt-3 text-center">
-                    <Button onClick= {Save} variant="outline-primary">Cập nhật hồ sơ</Button>
+                    <Button  variant="outline-primary">Cập nhật hồ sơ</Button>
                 </div>
 
 

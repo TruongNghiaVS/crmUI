@@ -1,12 +1,11 @@
 import { 
-    FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
+    FaUser, FaAt, FaLock, FaBuilding,FaSms, FaPhone, FaEnvelope, FaPortrait
 } from 'react-icons/fa';
 
 import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap';
 import  { useState } from "react";
 import SmsService from '../../../../services/SmsService';
 import Swal from 'sweetalert2';
-import { mode } from 'crypto-js';
 
 const PopupSms = (props) => {
     
@@ -16,9 +15,6 @@ const PopupSms = (props) => {
 
 
     });
-
-  
-
 
     const handleInputChange =(event)=> {
        
@@ -32,16 +28,16 @@ const PopupSms = (props) => {
          })
      }
 
+
+     const closeSms =(valueCall)=> {
+        props.handleShowModel();
+    }
+
     const sendSms =(valueCall)=> {
         
 
          const {PhoneNumber,ContentSms,NoAgree}  = model;
-
-
-
-
-        // let inputValue = e.target.parentElement.parentElement.getElementsByTagName("input");
-        let PhoneLog = PhoneNumber;
+           let PhoneLog = PhoneNumber;
         
        
         if(PhoneLog.length <10)
@@ -72,7 +68,7 @@ const PopupSms = (props) => {
                     PhoneNumber: PhoneNumber,
                     ContentSms: ContentSms,
 
-                 NoAgree:"0383388440",
+                 NoAgree: props.modelsms.NoAgree,
          
                 profileId: window.location.pathname.split("/").pop()
         
@@ -118,10 +114,6 @@ const PopupSms = (props) => {
          });
      }
 
-
-    
-  
-
     return (
         <div className="model">
             <div className="header-model">
@@ -131,22 +123,21 @@ const PopupSms = (props) => {
             <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate >
                   
-
-          
+           
+                <Form.Label>Số điện thoại</Form.Label>
                     <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                        <InputGroup.Text className="input-group-icon"><FaPhone /></InputGroup.Text>
                         <FormControl  onChange={handleInputChange}  aria-label="Small" aria-describedby="inputGroup-sizing-sm" value ={model.PhoneNumber}  name = "PhoneNumber"
-                          placeholder="Số điện thoại"   
+                         
                             required />
                     </InputGroup>
 
-
-                    <InputGroup className="mb-12">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                 
+                    <Form.Label>Nội dung tin nhắn</Form.Label>
+                    <InputGroup className="mb-2">
+                      
                         <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control onChange={handleInputChange} value = {model.ContentSms}  as="textarea" rows={5} name ="ContentSms" 
-                                    placeholder='nội dung tin nhắn'
+                                    <Form.Control onChange={handleInputChange} value = {model.ContentSms}  as="textarea" rows={5} cols ={100} name ="ContentSms" 
+                                 
                                     />
                         </Form.Group>
                     </InputGroup>
@@ -155,6 +146,7 @@ const PopupSms = (props) => {
 
             <div className="footer-model">
                   <button className="btn-model btn-add" onClick= {sendSms}>Gửi tin nhắn</button> 
+                  <button className="btn-model btn-add" onClick= {closeSms}>Đóng</button> 
             </div>
         </div>
     );

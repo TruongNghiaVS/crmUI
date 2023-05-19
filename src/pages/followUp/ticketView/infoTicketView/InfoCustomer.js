@@ -120,8 +120,8 @@ const InfoCustomer = ({data,handleInputChange}) => {
         setModelsms((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
-              [PhoneNumber]: PhoneNumber,
-              [NoAgree]:  NoAgree
+              "PhoneNumber": PhoneNumber,
+              "NoAgree":  NoAgree
               
             }
          })
@@ -150,31 +150,35 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <InputGroup.Text>Di động</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.mobilePhone}  name = "mobilePhone" onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.mobilePhone)}/></InputGroup.Text>
-                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>smsToMessage(data.mobilePhone)}/></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.mobilePhone)}/></InputGroup.Text>
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
                 <FormControl aria-label="Small" value ={data.phone1} name = "phone1" onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.phone1)}/></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.phone1)}/></InputGroup.Text>
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số nhà</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.houseNumber} name = "houseNumber" onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline1(data.houseNumber)} /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.houseNumber)}/></InputGroup.Text>
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Văn phòng</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.officeNumber} name = "officeNumber" onChange={handleInputChange}  />
                 <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline1(data.officeNumber)} /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.officeNumber)}/></InputGroup.Text>
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
                 <FormControl aria-label="Small" value = {data.otherPhone} name = "otherPhone" onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.otherPhone)} /></InputGroup.Text>
+                <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.otherPhone)}/></InputGroup.Text>
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
@@ -194,7 +198,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <FormControl aria-label="Small" readOnly value = {data.statusProfile}   />
             </InputGroup>
 
-            { isOpenModel && <Model handleClose ={handleShowModel}  content={<PopupSms  modelsms = {modelsms} />} /> }
+            { isOpenModel && <Model handleClose ={handleShowModel}  content={<PopupSms handleShowModel ={handleShowModel}  modelsms = {modelsms} />} /> }
 
         </Col>
     );

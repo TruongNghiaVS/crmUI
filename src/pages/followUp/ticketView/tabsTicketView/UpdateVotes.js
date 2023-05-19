@@ -1,10 +1,34 @@
 import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap';
 import { useEffect,useState } from 'react';
 import moment from "moment"; 
-
+import Swal from 'sweetalert2';
 import { FaTicketAlt } from "react-icons/fa";
 const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listUser,saveImpact}) => {
 
+
+    const SaveIpactTry =() =>
+    {
+     
+        if(dataView1.statusIm  <0)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chưa chọn lý dó',
+                text: 'Chưa chọn lý dó',
+                footer: 'Yêu cầu thông tin!'
+            })
+        }
+        if(dataView1.noteIm =='')
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chưa điền ghi chú',
+                text: 'Chưa điền ghi chú',
+                footer: 'Yêu cầu thông tin!'
+            })
+        }
+        saveImpact();
+    }
     const dateForPicker = (dateString) => {
          if( dateString == null)
          {
@@ -111,7 +135,7 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
         </Row>
 
                 <div className="mt-3 text-center">
-                            <Button variant="outline-primary" onClick={saveImpact}>Lưu tác động</Button>
+                            <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button>
                  </div>
         </>
     );
