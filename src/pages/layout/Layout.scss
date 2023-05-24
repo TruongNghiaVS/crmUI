@@ -175,8 +175,8 @@ tr:hover {
         }
         
         .main-model {
-            max-height: 500px;
-            overflow: auto;
+            max-height: max-content;
+            
 
             .form-login {
                 margin: 20px 0;

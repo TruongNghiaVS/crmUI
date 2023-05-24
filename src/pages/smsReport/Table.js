@@ -1,0 +1,92 @@
+import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
+import React, { useState } from "react";
+import moment from "moment-timezone"; 
+
+import ReactAudioPlayer from 'react-audio-player';
+
+const TableHeadItem = ({ item }) => {
+    return (
+        <th title={item}>{item}</th>
+    );
+};
+
+const getShowfile =  (item)=> {
+    // return item.recordingfile;
+    let fileUrl = "http://118.69.182.32:7777/api/file/getaudio12?filePath=";
+    if(item.src.startsWith("1"))
+    {
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
+    }
+    if(item.src.startsWith("3"))
+    {
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio09?filePath=";
+    }
+    fileUrl=fileUrl +''+ item.recordingfile;
+    
+    if(!item.isShow)
+    {   
+        return  <ReactAudioPlayer
+        src={fileUrl}
+        
+        controls
+        />;
+    }
+    return <p></p>
+}
+
+const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
+    rowIndex = rowIndex +1;
+    var zone  = "America/New_York";
+
+    const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+
+    return (
+        <tr>
+            <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
+            <td>{rowIndex}</td>
+            <td>{moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss")}</td>
+       
+            <td>{data.src}</td>
+            <td>{data.dst}</td>
+            <td>{data.disposition}</td>
+            <td>Thành công</td>
+            <td>TaskId</td>
+
+        </tr>
+    );
+};
+
+const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById }) => {
+    
+    
+    return (
+        <table className={tblClass}>
+            <thead>
+                <tr className='headRow'>
+                    <th><input type="checkbox" defaultChecked={false} /></th>
+                    { 
+                      theadData.map((h, index) => {
+                        
+                        return <TableHeadItem key={h} item={h} />;
+                    })}
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                     dataDraw.tbodyDataUser.map((item, index) => {
+                        return <TableRow 
+                        key={item.id} data={item} 
+                        rowIndex = {index} 
+                        handleDeleteById = {handleDelete} 
+                        handleViewById = {handleViewById}
+                        handleUpdateById ={handleUpdateById}/>;
+                    })
+                }
+            </tbody>
+        </table>
+    );
+};
+
+export default Table;

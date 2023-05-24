@@ -75,6 +75,10 @@ const DataJson = {
      theadDataReportCDR: [
       "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime"
      ],
+     theadReportSms: [
+        "STT", "Ngày",  "line",  "Số điện thoại","Nội dung", "Trạng thái","TaskId"
+       ],
+  
 
     theadDataReportTalkTime: [
     "STT",  "Gọi bởi", "Số HĐ", "Ngày Thống kê","Tổng cuộc gọi", "% kết nối", "Thời gian gọi","Thời gian chờ", "Đàm thoại ", "Trả lời", "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
@@ -112,6 +116,12 @@ const DataJson = {
      ],
      theadLine: [
         "STT", "Mã line", "Tên gọi", "Trạng thái"
+     ],
+     theaddpd: [
+        "STT", "Tên gợi nhớ", "Từ", "Đến", "Trạng thái","Ngày tạo"
+     ],
+     tablePackage: [
+        "STT", "Tên gói", "Loại dùng","Giá trị","Id user", "Trạng thái"
      ],
       tbodyDataUser: [
        

@@ -5,10 +5,13 @@ import React, { useState } from 'react';
 import Model from '../model/Model';
 import ModelChangePassword from './ModelChangePassword';
 import LoginService from '../../services/LoginService';
+import moment from "moment";
 
 const Header = ({ classHeader }) => {
     const [isHiddenProfile, setIsHiddenProfile] = useState(false);
     const [isOpenModel, setIsOpenModel] = useState(false);
+    const formTime =  moment().format("YYYY-MM-DD");
+    const endTime =  moment().format("YYYY-MM-DD");
     
     let navigate = useNavigate();
 
@@ -61,6 +64,8 @@ const Header = ({ classHeader }) => {
 
 
     return (
+
+
         <header className={classHeader}>
             <nav className='nav-header'>
                 <ul className='menu'>
@@ -81,7 +86,16 @@ const Header = ({ classHeader }) => {
                             {/* <li className='sub-list-link'><Link className='nav-link' to="/">BC theo khung giờ</Link></li> */}
                           
                             {/* <li className='sub-list-link'><Link className='nav-link' to="/">Nhập kết quả</Link></li> */}
-                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-ghi-am">Báo cáo ghi âm</Link></li>
+                            <li className='sub-list-link'>
+                                <Link reloadDocument className='nav-link' 
+                                to={"/bao-cao-ghi-am?fromTime="+formTime+"&endTime="+endTime}>
+                                Báo cáo ghi âm
+                                </Link>
+                            </li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tin-nhan">Báo cáo Sms</Link></li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/tong-quan-tin-nhan">Tổng quan tin nhắn</Link></li>
+
+                       
                             <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-talktime">BC talktime</Link></li>
                              { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/reportCDR">BC CDR</Link></li>: <></> }
                             <li className='sub-list-link'><Link className='nav-link' to="/report/login">BC Đăng nhập </Link></li>
@@ -103,7 +117,15 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link  className='nav-link' to="/thong-tin-chien-dich">Thông tin chiến dịch</Link></li>
                         </ul>
                     </li> : <></>}
-                    <div className='nav-profile'>
+                    {/* <li className='list-link'>
+                        <Link className='nav-link' to="/follow-up-new">Chương trình <FaCaretDown className='nav-icon icon-caret-down' /></Link>
+                        <ul className='sub-menu'>
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/quan-ly-goi">Quản lý gói</Link></li>
+                            <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/quan-ly-dpd">Quản lý DPD</Link></li>
+                        </ul>
+                    </li> */}
+                    
+                     <div className='nav-profile'>
                         <li className='list-link'><Link className='nav-link' to="">Xin chào {fullName}!</Link></li>
                         <li className='list-link link-icon' 
                             onClick={() => setIsHiddenProfile(!isHiddenProfile)}>

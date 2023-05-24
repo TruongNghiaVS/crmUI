@@ -161,5 +161,18 @@ class ConstantData {
 
     static URL_sms_Send = `${ConstantData.DOMAIN}/api/sms/send`;
 
+    //dpd server
+    static URL_dpd_GetALl = `${ConstantData.DOMAIN}/api/dpd/getAll`;
+    static URL_dpd_Add = `${ConstantData.DOMAIN}/api/dpd/add`;
+    static URL_dpd_Update = `${ConstantData.DOMAIN}/api/dpd/update`;
+    static URL_dpd_Delete = `${ConstantData.DOMAIN}/api/dpd/delete`;
+    static URL_dpd_GetById = `${ConstantData.DOMAIN}/api/dpd/getById`;
+    //package server
+    static URL_package_GetALl = `${ConstantData.DOMAIN}/api/package/getAll`;
+    static URL_package_Add = `${ConstantData.DOMAIN}/api/package/add`;
+    static URL_package_Update = `${ConstantData.DOMAIN}/api/package/update`;
+    static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;
+    static URL_package_GetById = `${ConstantData.DOMAIN}/api/package/getById`;
+
 }
 export default ConstantData;

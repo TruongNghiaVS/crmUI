@@ -20,6 +20,10 @@ function Router() {
                        
                          <Route path="quan-ly-nguoi-dung" element={<Layout page="user" />} />
                          <Route path="dashboard" element={<Layout page="dashboard" />} />
+
+                         <Route path="tong-quan-tin-nhan" element={<Layout page="smsDashboard" />}>
+                              
+                         </Route>
                          <Route path="campaignAssign" element={<Layout page="campaignAssign" />}>
                               <Route path=":id" element={<Layout page="campaignAssign" />} />
                          </Route>
@@ -57,6 +61,9 @@ function Router() {
                               
                          </Route>
 
+                         <Route path="bao-cao-tin-nhan" element={<Layout page="smsReport" />}>
+
+                         </Route>
                          <Route path="bao-cao-talktime" element={<Layout page="reportTalkTime" />}>
                               
                           </Route>
@@ -69,7 +76,17 @@ function Router() {
                          <Route path="thong-tin-chien-dich" element={<Layout page="infoManagement" />}>
                               <Route path=":detail" element={<Layout page="infoManagement" />} />
                          </Route>
+
+
+                         <Route path="quan-ly-goi" element={<Layout page="managementPackage" />}>
+                             
+                         </Route>
+
+                         <Route path="quan-ly-dpd" element={<Layout page="quan-ly-dpd" />}>
+                        
+                         </Route>
      
+                       
                          
           </Routes>
      );

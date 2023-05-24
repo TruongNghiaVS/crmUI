@@ -96,7 +96,24 @@ const User = () => {
         })
 
     }
-   
+    const handlePaging = (data) => {
+        // window.location.replace = "/bao-cao-ghi-am?page"+data;
+
+        window.location.replace("/bao-cao-ghi-am?page="+data);
+
+        return;
+        // const key = 'currentPage';
+        // const value = data;
+        // setObjectPaging(prevState => ({
+        //     ...prevState,
+        //     [key]: value
+        // }
+        // ));
+        // getData();
+
+        // setInit(false);
+    }
+
     const [employeeItem, setDataItem] = useState({
         "id": "12",
         "fullName": "",
@@ -268,170 +285,56 @@ const User = () => {
         });
         getData();
     }
-
-    const SearchData = () => {
-        let fromTime =obejctSearch.fromTime;
-        if(fromTime !='' && fromTime != null)
-        {
-            fromTime = fromTime;
-        }
-        let endTime =obejctSearch.endTime;
-
-        let page = 1;
-        
-
-        if(endTime !='' && endTime != null)
-        {
-            endTime = endTime;
-        }
-         var urlPag= "/bao-cao-ghi-am";
-      
-        urlPag +='?page=' +page;
-        if(fromTime !='' && fromTime !='')
-        {
-            urlPag +='&fromTime=' +fromTime;
-        }
-        
-        if(endTime !='' && endTime !='')
-        {
-            urlPag +='&endTime=' +endTime;
-        }
-        window.location.replace(urlPag);
-    }
-    const handlePaging = (data) => {
-        
-
-        let fromTime =obejctSearch.fromTime;
-        if(fromTime !='' && fromTime != null)
-        {
-            fromTime = fromTime;
-        }
-        let endTime =obejctSearch.endTime;
-
-        if(endTime !='' && endTime != null)
-        {
-            endTime = endTime;
-        }
-         var urlPag= "/bao-cao-ghi-am";
-      
-        urlPag +='?page=' +data;
-        if(fromTime !='' && fromTime !='')
-        {
-            urlPag +='&fromTime=' +fromTime;
-        }
-        
-        if(endTime !='' && endTime !='')
-        {
-            urlPag +='&endTime=' +endTime;
-        }
-        window.location.replace(urlPag);
-       
-
-        return;
-        // const key = 'currentPage';
-        // const value = data;
-        // setObjectPaging(prevState => ({
-        //     ...prevState,
-        //     [key]: value
-        // }
-        // ));
-        // getData();
-
-        // setInit(false);
-    }
-
-
-
+    
     const getData = () => {
         const search = window.location.search;
         const query = new URLSearchParams(search);
         const page = query.get('page');
         const limit = query.get('limit');
-        const fromDateQuery = query.get('fromTime');
-        const toDateQuerry = query.get('endTime');
-      
         
-        
-        if( fromDateQuery!= null && fromDateQuery !="")
-        {
-                let valueControl =fromDateQuery;
-                let nameControl ="fromTime";
-                setKeySearch((prevalue) => {
-                    return {
-                        ...prevalue,   // Spread Operator               
-                        [nameControl]: valueControl
-                    }
-                    })
-         }
-        else {
-            fromDateQuery = obejctSearch.fromTime;
 
-        }
-
-        if( toDateQuerry!= null && toDateQuerry !="")
-        {
-                let valueControl =toDateQuerry;
-                let nameControl ="endTime";
-                setKeySearch((prevalue) => {
-                    return {
-                        ...prevalue,   // Spread Operator               
-                        [nameControl]: valueControl
-                    }
-                    })
-         }
-         else 
-         {
-            toDateQuerry = obejctSearch.endTime;
-         }
-         
-        
-            if( page!= null && page !="")
-            {
-                        let valueControl =page;
-                        let nameControl ="Page";
-                        setKeySearch((prevalue) => {
-                            return {
-                                ...prevalue,   // Spread Operator               
-                                [nameControl]: valueControl
-                            }
-                            })
-                        
-
-                            setObjectPaging((prevalue) => {
-                                return {
-                                    ...prevalue,   // Spread Operator               
-                                    ["currentPage"]: valueControl
-                                }
-                                })
-    
-    
-
-                        
-            }
-
-            let fromDate = fromDateQuery;
-
-          
+        let fromDate = obejctSearch.fromTime;
             if(fromDate=="")
             {
                 fromDate = null;
             }
-
-            let toDateRquest = toDateQuerry;
-            if(fromDate=="")
+          
+        
+            if( page!= null && page !="")
             {
-                toDateRquest = null;
+                    let valueControl =page;
+                    let nameControl ="Page";
+                    setKeySearch((prevalue) => {
+                        return {
+                            ...prevalue,   // Spread Operator               
+                            [nameControl]: valueControl
+                        }
+                        })
+                    
+
+                        setObjectPaging((prevalue) => {
+                            return {
+                                ...prevalue,   // Spread Operator               
+                                ["currentPage"]: valueControl
+                            }
+                            })
+    
+    
+
+                        
             }
+
             
             let bodySearch = {
                 Token: obejctSearch.tokenSearch,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
+
                 LineCode: obejctSearch.lineCode,
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,
                 from:fromDate,
-                to: toDateRquest
+                to: obejctSearch.endTime
             };
 
             if(page)
@@ -503,7 +406,6 @@ const User = () => {
     }
 
     const searchData = () => {
-
         getData();
 
     }
@@ -683,11 +585,11 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
                     <div className="search-feature">
                        
                      <button className="btn-search" onClick={exportData}>Xuất file</button>
-                        <button className="btn-search" onClick={SearchData}>Tìm kiếm</button>
+                        <button className="btn-search" onClick={searchData}>Tìm kiếm</button>
                     </div>
                 </div>
 
-                <Table theadData={DataJson.theadDataReportCDR} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
+                <Table theadData={DataJson.theadReportSms} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
                 <Paging dataPaging={obejctPaging} handlePaging={handlePaging} />
 
             </div>

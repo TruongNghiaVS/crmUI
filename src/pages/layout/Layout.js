@@ -7,6 +7,8 @@ import User from '../user/User';
 import GroupUser from '../groupUser/GroupUser';
 
 import Dashboard from '../dashboard/Dashboard';
+import SmsDashboard from '../smsDashboard/Dashboard';
+
 import FollowUp from '../followUp/FollowUp';
 import FollowUpNew from '../fololowNew';
 import React, { useState, useEffect } from 'react'
@@ -27,8 +29,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReportCDR from '../reportCDR';
 import ReportTalkTime from '../reportTalkTime';
 import ReportRecording from '../reportRecording';
-
+import SmsReport  from  '../smsReport';
 import LineManagement from '../lineManagement';
+import DpdManagement from '../dpdManagement';
+import NanagementPackage from '../packageManagement';
 const Layout = (props) => {
     const [heightLayout, setHeightLayout] = useState(0);
     const [heightMain, setHeightMain] = useState(0);
@@ -78,6 +82,8 @@ const Screen = (props) => {
                 return <GroupUser />;
         case 'dashboard':
             return <Dashboard />;
+        case 'tong-quan-tin-nhan':
+            return <SmsDashboard />;
         case 'follow-up':
             return <FollowUp />;
         case 'reason':
@@ -107,6 +113,11 @@ const Screen = (props) => {
     
         return  <ReportRecording/>
 
+        case 'smsReport': 
+    
+        return  <SmsReport/>
+
+        
         case 'reportTalkTime': 
     
         return  <ReportTalkTime/>
@@ -116,6 +127,12 @@ const Screen = (props) => {
        case 'infoManagement':
                 return <CampaignOverview/>;
       
+
+        case 'managementPackage':
+            return <NanagementPackage/>;
+
+         case 'quan-ly-dpd':
+            return <DpdManagement/>;
         default:
             throw new Error('Invalid Screen')
     }
