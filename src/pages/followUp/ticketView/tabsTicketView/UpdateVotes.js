@@ -9,16 +9,7 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
     const SaveIpactTry =() =>
     {
      
-        if(dataView1.noteCode =='' || dataView1.noteCode =='-1' )
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Chưa chọn người liên hệ',
-                text: 'Chưa chọn người liên hệ',
-                footer: 'Yêu cầu thông tin!'
-            })
-            return;
-        }
+      
         if(dataView1.statusIm  <0)
         {
             Swal.fire({
