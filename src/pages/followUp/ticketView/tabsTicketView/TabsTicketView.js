@@ -21,11 +21,12 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
                 transition={false}
                 id="noanim-tab-example"
                 className="mb-3"
+              
             >
             <Tab eventKey="home" title="Cập nhật phiếu">
                 <UpdateVotes dataView1 = {dataView}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
             </Tab>
-            <Tab eventKey="profile" title="Lịch sử tác động">
+            <Tab  eventKey="profile" title="Lịch sử tác động">
                 <ImpactHistory data = {dataHistory} />
             </Tab>
 

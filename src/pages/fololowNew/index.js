@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Tabs, Tab } from 'react-bootstrap';
 import { FaTable, FaFilter } from "react-icons/fa";
 import { Row, Form, InputGroup, Col, FormControl, Button } from 'react-bootstrap';
 
@@ -14,6 +15,7 @@ import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
+import MangagementPackageService from '../../services/PackageService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
@@ -39,8 +41,13 @@ const Reason = () => {
         currentPage: 1
     });
 
+    const [packageManagement, setPackageManagement ] = useState({
+         packageManagement:[]
+    });
+
     const [obejctSearch, setKeySearch] = useState({
-        tokenSearch: ""
+        tokenSearch: "",
+        IdPackage: ""
     });
    
     const handleimportRow = ()=> {
@@ -48,6 +55,65 @@ const Reason = () => {
          setisOPenUploadFile(!isOPenUploadFile);
    }
 
+   let keyLoop = '';
+    const handleSelect =(key)=>{
+     
+        if(keyLoop == key)
+        {
+            return;
+        }
+        keyLoop =key;
+
+        let valueControl = key;
+        let nameControl = "IdPackage";
+        setKeySearch((prevalue) => {
+            return {
+                ...prevalue,   // Spread Operator               
+                [nameControl]: valueControl
+            }
+        })
+        getDataEmployee(key);
+      
+    }
+
+   const getAllPackage = ()=> {
+        
+    let bodyRequest = {
+           
+      };
+    MangagementPackageService.GetAllInfo( bodyRequest, (response) => {
+    if (response.statusCode === 200) {
+     
+        let dataDPD= response.value.data;
+
+        let items =[]
+        dataDPD.forEach(dataDPD => {
+
+       
+          items.push(dataDPD);
+         
+        
+        });
+        setPackageManagement((prevalue) => {
+          return {
+            ...prevalue,   // Spread Operator               
+            packageManagement: items
+          }
+        })
+
+
+
+
+    } else {
+
+
+
+      }
+    }, (error) => {
+
+    });
+
+    }
     const handleShowModelUploadFile = () => {
         
 
@@ -56,7 +122,7 @@ const Reason = () => {
     }
 
     const handleInputChange = (event) => {
-        debugger;
+     
         let valueControl = event.target.value;
         let nameControl = event.target.name;
         setKeySearch((prevalue) => {
@@ -139,27 +205,7 @@ const Reason = () => {
     }
 
 
-    const handleExportData = ()=> {
-        let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
-
-          };
-          EmployeeService.exportData(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-            if (response.statusCode === 200) {
-                exportDataExcel(response.value.data);
-
-            } else {
-                
-             }
-          }, (error) => {
-           
-          });
-        
-    }
-
-
+    
 
     
 
@@ -196,6 +242,7 @@ const Reason = () => {
     
              }
              getDataEmployee();
+             getAllPackage();
              setInit(true);
         }
       
@@ -239,8 +286,10 @@ const Reason = () => {
     
 
 
-    const getDataEmployee = ()=> {
-            let typegetData = 0;
+    const getDataEmployee = (PackageKey ='')=> {
+         let typegetData = 0;
+
+
          
          if(detail== "new-list")
          {
@@ -263,9 +312,14 @@ const Reason = () => {
             typegetData = "3";
          }
 
-
+         var idpackageserach = obejctSearch.IdPackage;
+         if(PackageKey != '')
+         {
+            idpackageserach = PackageKey; 
+         }
          let bodySearch = {
             Token: obejctSearch.token, 
+            IdPackage: idpackageserach,
             Page:  obejctPaging.currentPage,
             Limit: obejctPaging.limt,
             dpd: obejctSearch.dpd,
@@ -363,6 +417,7 @@ const Reason = () => {
 
     }
 
+   
     const handleInputChangesearch =(event)=> {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
@@ -562,6 +617,22 @@ name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChan
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>
                 </div>
+                {/* <Tabs
+                        onSelect={(e)=>handleSelect(e)}
+                            transition={false}
+                            className="mb-3"
+                        >
+                            
+                        { 
+                                packageManagement.packageManagement.map((item, index) => {
+                                        return <Tab 
+                                        
+                                                eventKey={item.id} title={item.name}>
+
+                                                </Tab>;
+                                })
+                            }
+                </Tabs> */}
 
                 <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>

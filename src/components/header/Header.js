@@ -16,7 +16,7 @@ const Header = ({ classHeader }) => {
     let navigate = useNavigate();
 
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
-    console.log(jsonProfile);
+
     const roleUser = jsonProfile.role;
     const fullName = jsonProfile.name;
 

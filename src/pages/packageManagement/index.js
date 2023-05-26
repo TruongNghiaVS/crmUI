@@ -92,24 +92,7 @@ const Index = () => {
             setIsOpenModel(!isOpenModel);
     }
     
-    const handleExportData = ()=> {
-        let bodySearch = {
-                    Token: obejctSearch.tokenSearch, 
-                    Page:  obejctPaging.currentPage,
-                    Limit: obejctPaging.limt
-            };
-        PackageService.exportData( ConstantData.HEADERS, bodySearch, (response) => {
-                    if (response.statusCode === 200) {
-                        exportDataExcel(response.value.data);
-
-                    } else {
-                        
-                    }
-        }, (error) => {
-           
-        });
-        
-    }
+   
 
     const [dataEmployee, setData] = useState( {
         tbodyDataUser: [
@@ -181,22 +164,22 @@ const Index = () => {
     
     const getData = ()=> {
         
-        let bodySearch = {
-                Token: obejctSearch.tokenSearch, 
-                Page:  obejctPaging.currentPage,
-                Limit: obejctPaging.limt
-          };
-        PackageService.GetAll( bodySearch, (response) => {
-        if (response.statusCode === 200) {
-            renderData(response.value);
-        } else {
+            let bodySearch = {
+                    Token: obejctSearch.tokenSearch, 
+                    Page:  obejctPaging.currentPage,
+                    Limit: obejctPaging.limt
+            };
+            PackageService.GetAll( bodySearch, (response) => {
+            if (response.statusCode === 200) {
+                renderData(response.value.data);
+            } else {
 
 
 
-            }
-        }, (error) => {
-        
-        });
+                }
+            }, (error) => {
+            
+            });
 
     }
 
@@ -231,7 +214,7 @@ const Index = () => {
                 totalPage = Math.floor(dataReder.total/obejctPaging.limt ) +1;
              }
            
-            setData(prew=>({...prew,tbodyDataUser:dataReder.data}));
+            setData(prew=>({...prew,tbodyDataUser:dataReder}));
 
             setObjectPaging((prevalue) => {
                 return {

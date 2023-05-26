@@ -5,6 +5,12 @@ class DpdService   {
          let url = Constants.URL_package_GetALl;
          ApiService.httpPost(url,null, body, callSuccess, callError);
     }
+
+    static GetAllInfo( body, callSuccess, callError) {
+     let url = Constants.URL_package_GetInfo;
+     ApiService.httpPost(url,null, body, callSuccess, callError);
+}
+   
     
     static add( body, callSuccess, callError) {
         let url = Constants.URL_package_Add;

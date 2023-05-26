@@ -48,6 +48,7 @@ const TicketView = () => {
         shortDescription: "",
         statusIm:"-1",
         noteIm: "",
+        noteCode: "-1",
         promiseday: null,
         moneyPromise: "",
         daysuggestTime: null, 
@@ -94,9 +95,9 @@ const TicketView = () => {
 
         };
         CampagnProfileService.getAllInfo( bodyMassterInfo,
-            loaddingMasterData, 
-            handleDisplayDataErro);
-    }, []);
+        loaddingMasterData, 
+        handleDisplayDataErro);
+        }, []);
 
     const handleInputChange =(event)=> {
        
@@ -125,30 +126,27 @@ const TicketView = () => {
     }
 
     const saveImpact = ()=> {
-
-
-        
-Swal.fire({
-    title: 'Bạn có muốn lưu lịch sử tác động',
-    text: "",
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Lưu'
-    })
-    .then((result) => {
-    if (result.isConfirmed) {
-        const modelUpdate = modelImpact;
-        let profileId =   window.location.pathname.split("/").pop();
-        modelUpdate.ProfileId = profileId;
-        ImpactHistoryService.add(
-            modelUpdate,
-            handleSucessUpdateImpact, 
-            handleErrUpdateImpact
-        );
-    }
-    })
+        Swal.fire({
+            title: 'Bạn có muốn lưu lịch sử tác động',
+            text: "",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Lưu'
+            })
+            .then((result) => {
+            if (result.isConfirmed) {
+                const modelUpdate = modelImpact;
+                let profileId =   window.location.pathname.split("/").pop();
+                modelUpdate.ProfileId = profileId;
+                ImpactHistoryService.add(
+                    modelUpdate,
+                    handleSucessUpdateImpact, 
+                    handleErrUpdateImpact
+                );
+            }
+        })
 
 }
 
@@ -217,10 +215,11 @@ const handleSucessUpdateImpact = (data) => {
                 
                 icon: 'success',
                 title: 'Lưu thành công',
-                showConfirmButton: true,
-                
-            })
-             // props.handleUpdate(model);  
+             
+            }).then(function() {
+                window.location.reload();
+            });
+           
     }
     else 
     {

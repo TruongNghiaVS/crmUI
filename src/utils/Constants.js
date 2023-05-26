@@ -169,6 +169,8 @@ class ConstantData {
     static URL_dpd_GetById = `${ConstantData.DOMAIN}/api/dpd/getById`;
     //package server
     static URL_package_GetALl = `${ConstantData.DOMAIN}/api/package/getAll`;
+    static URL_package_GetInfo = `${ConstantData.DOMAIN}/api/package/GetALlInfo`;
+  
     static URL_package_Add = `${ConstantData.DOMAIN}/api/package/add`;
     static URL_package_Update = `${ConstantData.DOMAIN}/api/package/update`;
     static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;

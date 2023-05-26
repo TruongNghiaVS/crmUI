@@ -9,6 +9,16 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
     const SaveIpactTry =() =>
     {
      
+        if(dataView1.noteCode =='' || dataView1.noteCode =='-1' )
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chưa chọn người liên hệ',
+                text: 'Chưa chọn người liên hệ',
+                footer: 'Yêu cầu thông tin!'
+            })
+            return;
+        }
         if(dataView1.statusIm  <0)
         {
             Swal.fire({
@@ -17,7 +27,38 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                 text: 'Chưa chọn lý dó',
                 footer: 'Yêu cầu thông tin!'
             })
+            return;
         }
+
+        if(dataView1.statusIm ==215 || dataView1.statusIm ==243 )
+        {
+
+            if(dataView1.moneyPromise =='')
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Bạn chưa nhập số tiền hứa thanh toán',
+                    text: 'Ràng buộc nghiệp vụ',
+                    footer: 'Yêu cầu điền số tiền hứa thanh toán!'
+                })
+                return;
+            }
+
+            debugger;
+            if(dataView1.promiseday == null || dataView1.promiseday =="")
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Bạn chưa nhập thông tin ngày thanh toán',
+                    text: 'Ràng buộc nghiệp vụ',
+                    footer: 'Yêu cầu thông tin ngày thanh toán!'
+                })
+                return;
+            }
+          
+        }
+       
+    
         if(dataView1.noteIm =='')
         {
             Swal.fire({
@@ -26,7 +67,10 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                 text: 'Chưa điền ghi chú',
                 footer: 'Yêu cầu thông tin!'
             })
+            return;
         }
+
+       
         saveImpact();
     }
     const dateForPicker = (dateString) => {
@@ -48,6 +92,30 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
         <Row>
             <Col>
                 <Form.Label htmlFor="basic-url">Tác động</Form.Label>
+                <InputGroup size="sm" className="mb-1">
+                    <InputGroup.Text id="inputGroup-sizing-sm">Liên hệ</InputGroup.Text>
+                    <Form.Select aria-label="Default select example" name ="noteCode" value ={dataView1.noteCode}    onChange={handleInputChange}  >
+                    
+                                    <option value = "-1" selected>Người liên hệ</option>
+                                    <option value = "DIEN_THOAI">Điện thoại</option>
+                                    <option value = "KHACH_HANG">Khách hàng</option>
+                                    <option value = "CON">Con</option>
+                                    <option value = "CHA">Cha</option>
+                                    <option value = "ME">Mẹ</option>
+                                    <option value = "CHI_GAI/EM_GAI">Chị gái,em gái</option>
+                                    <option value = "ANH_TRAI/EM_TRAI">Anh trai, em trai</option>
+                                    <option value = "VO">Vợ</option>
+                                    <option value = "CHONG">Chồng</option>
+                                    <option value = "NGUOI_THAM_CHIEU_KHAC">Người tham chiếu khác</option>
+                                    <option value = "KHONG_GAP_AI">không gặp ai</option>
+                                    <option value = "NGUOI_THAN_XA">Người thân xa</option>
+                                    <option value = "BAN_BE">Bạn bè</option>
+                                    <option value = "DONG_NGHIEP">Đồng nghiệp</option>
+                                    <option value = "CHU_SO_HUU">Chủ sở hữu</option>
+                                    <option value = "KHONG_XAC_DINH">Không xác định</option>
+                            
+                    </Form.Select>
+                </InputGroup>
                
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
@@ -69,7 +137,7 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                     </Form.Select>
                 </InputGroup>
                 <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Ngày hứa</InputGroup.Text>
+                    <InputGroup.Text id="inputGroup-sizing-sm">Ngày hứa(TT)</InputGroup.Text>
                     <FormControl 
                         name = "promiseday"
                         type="date"

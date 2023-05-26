@@ -7,6 +7,8 @@ import  { useState } from "react";
 import { useEffect } from 'react';
 import ConstantData from '../../utils/Constants';
 import PackageService from '../../services/PackageService';
+import DpdService from '../../services/DpdService';
+import EmployeeService from '../../services/EmployeeService';
 import { toast } from 'react-toastify';
 import { mode } from 'crypto-js';
 
@@ -14,7 +16,8 @@ import React from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 const ModelPopup = (props) => {
-    
+  const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+  const roleUser = jsonProfile.role;
     const [model  , setmodel]=useState({ 
 
        value: [
@@ -26,12 +29,25 @@ const ModelPopup = (props) => {
 
         
     });
+
+    const [model1  , setmodel1]=useState({ 
+
+      value: [
+         ],
+
+         dataUser: [
+          
+         ],
+       idUser: [
+       
+       ]
+
+       
+   });
     const animatedComponents = makeAnimated();
-    const options = [
+    let options = [
       
-          { value: '1', label: '1-30' },
-          { value: '2', label: '31-60' },
-          { value: '3', label: '61-90' }
+         
      ]
 
 
@@ -49,8 +65,86 @@ const ModelPopup = (props) => {
     const [isView, enbaleView] = useState(false);
     const [isOperator, setOpeartor] = useState(false);
 
+    const getALLDPD = ()=> {
+        
+      let bodyRequest = {
+             
+        };
+      DpdService.GetAll( bodyRequest, (response) => {
+      if (response.statusCode === 200) {
+       
+          let dataDPD= response.value.data;
+
+          let items =[]
+          dataDPD.forEach(dataDPD => {
+
+            var item = {
+              value: dataDPD.id, 
+              label:dataDPD.name
+            };
+
+            items.push(item);
+           
+          
+          });
+
+          options = items;
+          setmodel1((prevalue) => {
+            return {
+              ...prevalue,   // Spread Operator               
+              value: items
+            }
+          })
 
 
+
+
+      } else {
+
+
+
+        }
+      }, (error) => {
+
+      });
+
+      }
+
+      const getAllEmployee = ()=> {
+        
+            let bodyRequest = {
+                  
+              };
+              EmployeeService.GetAll(ConstantData.URL_Employee_GetALl, ConstantData.HEADERS, bodyRequest, (response) => {
+            if (response.statusCode === 200) {
+            
+                let dataDPD= response.value.data;
+      
+                let items =[]
+              
+                options = items;
+                setmodel1((prevalue) => {
+                  return {
+                    ...prevalue,   // Spread Operator               
+                    dataUser: dataDPD
+                  }
+                })
+              
+            } else {
+      
+      
+      
+              }
+            }, (error) => {
+      
+            });
+  
+        }
+
+
+
+        
+      
       const handleDisplayData = (data) => {
           let dataItem = data.value;
 
@@ -69,9 +163,20 @@ const ModelPopup = (props) => {
                 authorName: dataItem.authorName,
                 updatedTime: dataItem.updatedTime,
                 createdTime: dataItem.createdTime,
+                value: JSON.parse(dataItem.value)
            
             }
           })
+
+
+
+          // setmodel1((prevalue) => {
+          //   return {
+          //     ...prevalue,   // Spread Operator               
+          //     value:dataItem.value
+           
+          //   }
+          // })
         }
       };
 
@@ -79,7 +184,17 @@ const ModelPopup = (props) => {
         
       };
 
+      let isInit = false;
+
     useEffect(() => {
+       
+      if( isInit ==true)
+      {
+        return;
+      }
+
+       getALLDPD();
+       getAllEmployee();
 
         let dataItem = props.dataItem;
         
@@ -125,9 +240,12 @@ const ModelPopup = (props) => {
 
         }
 
+        isInit = true;
+
   }, []);
 
     const handleInputChange =(event)=> {
+      
         let valueControl = event.target.value;
         let nameControl = event.target.name;
         console.log( valueControl);
@@ -141,19 +259,54 @@ const ModelPopup = (props) => {
           })
      
     }
+
+    const handleInputChangeSelectDpd =(event)=> {
+      
+
+      let nameControl ="value";
+      // console.log( valueControl);
+      // debugger;
+
+      setmodel((prevalue) => {
+          return {
+            ...prevalue,   // Spread Operator               
+            [nameControl]: event
+          }
+        })
+   
+  }
+
+
+  
+  const handleInputChangeUserId =(event)=> {
+      
+
+    let nameControl ="idUser";
+    // console.log( valueControl);
+    // debugger;
+
+    setmodel((prevalue) => {
+        return {
+          ...prevalue,   // Spread Operator               
+          [nameControl]: event
+        }
+      })
+ 
+}
+  
     
     // const AddEmploy =(event)=> {
       
     // }
     const  AddEmploy = (event) => {
-      
+
          const itemAdd = {
            
             name: model.name,
-            code: model.code,
-            status: model.status,
-          
-
+            type: "1", 
+            value: JSON.stringify(model.value),
+            idUser: model.idUser,
+            status: model.status
           };
           
           PackageService.add(
@@ -197,7 +350,9 @@ const ModelPopup = (props) => {
         const modelUpdate = {
             id: model.id,
             name: model.name,
-            code: model.code, 
+            type: "1", 
+            value: JSON.stringify(model.value),
+            idUser: model.idUser,
             status: model.status
           
         };
@@ -258,6 +413,8 @@ const ModelPopup = (props) => {
 
             <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate   validated={validated}>
+                <Form.Group className="mb-3">
+                      <Form.Label>Tên gợi nhớ:</Form.Label>
                     <InputGroup className="mb-2">
                         <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
                         <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
@@ -267,50 +424,54 @@ const ModelPopup = (props) => {
                                     Trường bặt buộc
                             </Form.Control.Feedback>
                     </InputGroup>
-           
+                   </Form.Group>
 
               
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                    <Form.Group className="mb-3">
+                  
+                        <Form.Label>Loại gói:</Form.Label>
                         <Form.Select aria-label="Collection" name ="type" onChange={handleInputChange} value = {model.type}>
+                                <option value="-1">Chọn loại gói</option>
                                 <option value="1">Tất cả</option>
                                 <option  value="2">Dự án</option>
                                 <option  value="3">Id user</option>
                         </Form.Select>
-                    </InputGroup>
+                    </Form.Group>
 
-            
-                      <Select options={options} 
+                    <Form.Group className="mb-3">
+                      <Form.Label>Chọn DPD tương ứng:</Form.Label>
+                      <Select options={model1.value} 
                         className="basic-multi-select"
                         classNamePrefix="select"
                         components={animatedComponents}
                         isMulti
-                        name ="value" onChange={handleInputChange} value = {model.value}
+                        name ="dpdvalue" onChange={handleInputChangeSelectDpd} 
+                        value={model.value}
                       />
 
-                    <Select options={optionsUser} 
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                        components={animatedComponents}
-                        isMulti
-                        name ="idUser" onChange={handleInputChange} value = {model.idUser}
-                      />
-                      
-                        <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <Form.Select aria-label="Collection" name ="status" onChange={handleInputChange} value = {model.status}>
-                                <option value="1">Hoạt động</option>
-                                <option  value="2">Không hoạt động</option>
-                              
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                      <Form.Label>Chọn User Id tương ứng:</Form.Label>
+                 
+                      <Form.Select aria-label="Collection" name ="idUser" onChange={handleInputChange} value = {model.idUser}>
+                            <option  value="-1">Gán cho user</option>
+                              {
+                                model1.dataUser.map ((item, index) => {
+                                      return  <option value={item.id}>{item.fullName}</option>    
+                                })
+                              }
                         </Form.Select>
-                    </InputGroup>
-
-               
-                  
-                  
-
-
-                   
+                      </Form.Group>  
+                      <Form.Group className="mb-3">
+                      <Form.Label>Trạng thái:</Form.Label>
+                     
+                      <Form.Select aria-label="Collection" name ="status" onChange={handleInputChange} value = {model.status}>
+                              <option value="1">Hoạt động</option>
+                              <option  value="2">Không hoạt động</option>
+                            
+                      </Form.Select>
+                  </Form.Group>
+                    
                </form>
             </div>
 
