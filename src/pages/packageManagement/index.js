@@ -47,6 +47,7 @@ const Index = () => {
 
             "code": "",
             "fullName": "",
+            "type": "",
             "status": "",
             "folder": "",
             "description": 0
@@ -227,8 +228,6 @@ const Index = () => {
               })
 
     }
-
-
     const handleShowModel = () => {
       setDataItem((prevalue) => {
             return {

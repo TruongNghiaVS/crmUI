@@ -31,6 +31,7 @@ const User = () => {
     });
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: "",
+        lineCode: "",
         fromTime: moment(),
         endTime: moment()
     });
@@ -113,12 +114,12 @@ const User = () => {
         var DataExport = dataReder;
         const Heading = [
             [
-                 'Line gọi',
-                'Thời gian gọi',
-                'Số điện thoại',
-                'Time talking',
-                'Tổng thời  gian gọi',
-                'File Ghi âm'
+            'Line gọi',
+            'Thời gian gọi',
+            'Số điện thoại',
+            'Time talking',
+            'Tổng thời  gian gọi',
+            'File Ghi âm'
 
 
             ]
@@ -271,6 +272,7 @@ const User = () => {
 
     const SearchData = () => {
         let fromTime =obejctSearch.fromTime;
+        let linecode = obejctSearch.linecode;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -296,12 +298,16 @@ const User = () => {
         {
             urlPag +='&endTime=' +endTime;
         }
+        if(linecode !='' && linecode !='')
+        {
+            urlPag +='&linecode=' +linecode;
+        }
         window.location.replace(urlPag);
     }
     const handlePaging = (data) => {
-        
-
+    
         let fromTime =obejctSearch.fromTime;
+        let linecode = obejctSearch.lineCode;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -324,7 +330,12 @@ const User = () => {
         {
             urlPag +='&endTime=' +endTime;
         }
-        window.location.replace(urlPag);
+
+        if(linecode != null && linecode !='' && linecode !='')
+        {
+            urlPag +='&linecode=' +linecode;
+        }
+         window.location.replace(urlPag);
        
 
         return;
@@ -349,8 +360,27 @@ const User = () => {
         const limit = query.get('limit');
         const fromDateQuery = query.get('fromTime');
         const toDateQuerry = query.get('endTime');
-      
+
+        let linecode = query.get('linecode');
         
+   
+        if(linecode == null || linecode.trim().length === 0)
+        {
+            linecode = obejctSearch.lineCode;
+         }
+        else {
+           
+
+            let valueControl =linecode;
+            let nameControl ="lineCode";
+            setKeySearch((prevalue) => {
+                return {
+                    ...prevalue,   // Spread Operator               
+                    [nameControl]: valueControl
+                }
+                })
+
+        }
         
         if( fromDateQuery!= null && fromDateQuery !="")
         {
@@ -377,7 +407,7 @@ const User = () => {
                         ...prevalue,   // Spread Operator               
                         [nameControl]: valueControl
                     }
-                    })
+                 })
          }
          else 
          {
@@ -427,10 +457,11 @@ const User = () => {
                 Token: obejctSearch.tokenSearch,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
-                LineCode: obejctSearch.lineCode,
+                LineCode: linecode,
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,
                 from:fromDate,
+
                 to: toDateRquest
             };
 

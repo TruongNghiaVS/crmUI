@@ -53,7 +53,7 @@ const ModelPopup = (props) => {
       };
 
       const handleDisplayDataErro = (event) => {
-        
+            
       };
 
     useEffect(() => {

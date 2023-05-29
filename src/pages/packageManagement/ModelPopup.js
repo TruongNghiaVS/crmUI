@@ -32,15 +32,14 @@ const ModelPopup = (props) => {
 
     const [model1  , setmodel1]=useState({ 
 
-      value: [
-         ],
+        value: [
+        ],
+        dataUser: [
 
-         dataUser: [
-          
-         ],
-       idUser: [
-       
-       ]
+        ],
+        idUser: [
+        
+        ]
 
        
    });
@@ -151,13 +150,13 @@ const ModelPopup = (props) => {
         if(data.statusCode == 200)
     
         {
-           
-            setmodel((prevalue) => {
+           setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
                 id: dataItem.id,
                 name: dataItem.name,
                 code: dataItem.code, 
+                type: dataItem.type,
                 status: dataItem.status,
                 updateByName: dataItem.updateByName,
                 authorName: dataItem.authorName,
@@ -303,7 +302,7 @@ const ModelPopup = (props) => {
          const itemAdd = {
            
             name: model.name,
-            type: "1", 
+            type: model.type, 
             value: JSON.stringify(model.value),
             idUser: model.idUser,
             status: model.status
@@ -350,7 +349,7 @@ const ModelPopup = (props) => {
         const modelUpdate = {
             id: model.id,
             name: model.name,
-            type: "1", 
+            type: model.type, 
             value: JSON.stringify(model.value),
             idUser: model.idUser,
             status: model.status
@@ -432,9 +431,9 @@ const ModelPopup = (props) => {
                         <Form.Label>Loại gói:</Form.Label>
                         <Form.Select aria-label="Collection" name ="type" onChange={handleInputChange} value = {model.type}>
                                 <option value="-1">Chọn loại gói</option>
-                                <option value="1">Tất cả</option>
-                                <option  value="2">Dự án</option>
-                                <option  value="3">Id user</option>
+                                <option  value="3">Tất cả</option>
+                                <option  value="1">Dự án</option>
+                                <option  value="2">Id user</option>
                         </Form.Select>
                     </Form.Group>
 
@@ -450,7 +449,10 @@ const ModelPopup = (props) => {
                       />
 
                   </Form.Group>
-                  <Form.Group className="mb-3">
+
+                  {model.type ==2
+          ? 
+          (<Form.Group className="mb-3">
                       <Form.Label>Chọn User Id tương ứng:</Form.Label>
                  
                       <Form.Select aria-label="Collection" name ="idUser" onChange={handleInputChange} value = {model.idUser}>
@@ -462,6 +464,9 @@ const ModelPopup = (props) => {
                               }
                         </Form.Select>
                       </Form.Group>  
+          )
+          : <></>}
+                  
                       <Form.Group className="mb-3">
                       <Form.Label>Trạng thái:</Form.Label>
                      

@@ -249,3 +249,23 @@ tr:hover {
     color: #24a947;
     background-color: #dbdcdf;
 }
+
+.btnTab{
+
+    color: black;
+    background: #ffffff;
+    button{
+        border: none;
+        outline: none;
+        border:none;
+        font-weight: bold !important;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    a{
+        color: blue !important;
+        font-weight: bold !important;
+    }
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

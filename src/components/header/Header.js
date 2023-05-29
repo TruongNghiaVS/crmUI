@@ -117,13 +117,13 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link  className='nav-link' to="/thong-tin-chien-dich">Thông tin chiến dịch</Link></li>
                         </ul>
                     </li> : <></>}
-                    {/* <li className='list-link'>
+                  { roleUser == "4"?  <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Chương trình <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/quan-ly-goi">Quản lý gói</Link></li>
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/quan-ly-dpd">Quản lý DPD</Link></li>
                         </ul>
-                    </li> */}
+                    </li>:<></> } 
                     
                      <div className='nav-profile'>
                         <li className='list-link'><Link className='nav-link' to="">Xin chào {fullName}!</Link></li>

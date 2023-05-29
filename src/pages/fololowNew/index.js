@@ -83,8 +83,8 @@ const Reason = () => {
       };
     MangagementPackageService.GetAllInfo( bodyRequest, (response) => {
     if (response.statusCode === 200) {
-     
-        let dataDPD= response.value.data;
+        debugger;
+        let dataDPD= response.value;
 
         let items =[]
         dataDPD.forEach(dataDPD => {
@@ -94,6 +94,7 @@ const Reason = () => {
          
         
         });
+       
         setPackageManagement((prevalue) => {
           return {
             ...prevalue,   // Spread Operator               
@@ -242,7 +243,12 @@ const Reason = () => {
     
              }
              getDataEmployee();
-             getAllPackage();
+     
+            if(detail== "new-list" && roleUser =="1")
+        {
+        getAllPackage();
+        }
+             
              setInit(true);
         }
       
@@ -291,6 +297,13 @@ const Reason = () => {
 
 
          
+        
+         var idpackageserach = obejctSearch.IdPackage;
+         if(PackageKey != '')
+         {
+            idpackageserach = PackageKey; 
+         }
+
          if(detail== "new-list")
          {
             typegetData = "0";
@@ -312,11 +325,6 @@ const Reason = () => {
             typegetData = "3";
          }
 
-         var idpackageserach = obejctSearch.IdPackage;
-         if(PackageKey != '')
-         {
-            idpackageserach = PackageKey; 
-         }
          let bodySearch = {
             Token: obejctSearch.token, 
             IdPackage: idpackageserach,
@@ -541,43 +549,43 @@ const Reason = () => {
                                         <Form.Label>Từ khóa:</Form.Label>
                                         <InputGroup className="mb-2">
                                         <Form.Control
-        type="text" name ="token" placeholder="Số hợp đồng,họ tên"  onChange={handleInputChange} value ={obejctSearch.token} 
-      />
+                                        type="text" name ="token" placeholder="Số hợp đồng,họ tên"  onChange={handleInputChange} value ={obejctSearch.token} 
+                                        />
                                         </InputGroup>
                                      </Form.Group>
                                 </Col>
 
                                 <Col>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Số điện thoại:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Control
-type="text"
-name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChange}
-/>
-        </InputGroup>
-    </Form.Group>
-</Col>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>Số điện thoại:</Form.Label>
+                                            <InputGroup className="mb-2">
+                                            <Form.Control
+                                            type="text"
+                                            name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChange}
+                                            />
+                                            </InputGroup>
+                                        </Form.Group>
+                                </Col>
 
 
                                 <Col>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>DPD:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Select aria-label="Default select example" name ="dpd" value ={obejctSearch.dpd} onChange={handleInputChange} >
-                        <option value ="-1">Chọn DPD</option>
-                        <option value="0">DPD ~30</option>
-                        <option value="1">DPD 31 ~60</option>
-                        <option value="2">DPD 61 ~90</option>
-                        <option value="3">DPD 91 ~ 180</option>
-                        <option value="4">DPD 181 ~ 360</option>
-                        <option value="5">DPD 361 ~ 1000</option>
-                        <option value="6">DPD 1001 ~</option>
-        </Form.Select >
-        </InputGroup>
-    </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>DPD:</Form.Label>
+                                <InputGroup className="mb-2">
+                                <Form.Select aria-label="Default select example" name ="dpd" value ={obejctSearch.dpd} onChange={handleInputChange} >
+                                        <option value ="-1">Chọn DPD</option>
+                                        <option value="0">DPD ~30</option>
+                                        <option value="1">DPD 31 ~60</option>
+                                        <option value="2">DPD 61 ~90</option>
+                                        <option value="3">DPD 91 ~ 180</option>
+                                        <option value="4">DPD 181 ~ 360</option>
+                                        <option value="5">DPD 361 ~ 1000</option>
+                                        <option value="6">DPD 1001 ~</option>
+                                </Form.Select >
+                                </InputGroup>
+                                </Form.Group>
 </Col>
 
 {
@@ -618,21 +626,21 @@ name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChan
                     </div>
                 </div>
                 {/* <Tabs
-                        onSelect={(e)=>handleSelect(e)}
+                        // onSelect={(e)=>handleSelect(e)}
                             transition={false}
                             className="mb-3"
-                        >
+                        > */}
                             
                         { 
+                        
                                 packageManagement.packageManagement.map((item, index) => {
-                                        return <Tab 
-                                        
-                                                eventKey={item.id} title={item.name}>
 
-                                                </Tab>;
+                                      return <div className="btnTab"> <button> {item.name} <a>{"(" +item.total+"/"+obejctPaging.totalRecord + ")"}</a> </button></div>
+                                 
+                                      
                                 })
                             }
-                </Tabs> */}
+                {/* </Tabs> */}
 
                 <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
@@ -641,7 +649,7 @@ name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChan
 
             { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
-            {
+            {                                                                                         
                 isOPenUploadFile && <Model                                        
                     handleClose ={handleShowModelUploadFile}
                     content={<UploadFile

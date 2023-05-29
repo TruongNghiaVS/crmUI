@@ -20,9 +20,21 @@ const getStatusText = (status)=> {
     {
         return (<p>Vô hiệu hóa</p>);
     }
-    return <p></p>
+    return <p>Hoạt động</p>
 }
 
+const getTypeText = (status)=> {
+    if(status == '1' )
+    {
+        return (<p>Dự án</p>);
+    }
+    if(status == '2' )
+    {
+        return (<p>Người dùng</p>);
+    }
+    
+    return <p>Chưa xác định</p>
+}
 const gettypeText = (typeText)=> {
     if(typeText == '1' )
     {
@@ -46,10 +58,13 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>{data.name}</td>
-            <td>{getStatusText(data.type)}</td>
-            <td>{getStatusText(data.status)}</td>
+            <td>{getTypeText(data.type)}</td>
+   
+            
             <td>{data.value}</td>
             <td>{data.idUser}</td>
+            <td>{getStatusText(data.status)}</td>
+          
             <td>
                 <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
                 <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}/>
