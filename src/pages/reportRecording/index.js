@@ -362,25 +362,25 @@ const User = () => {
         const toDateQuerry = query.get('endTime');
 
         let linecode = query.get('linecode');
-        
-   
-        if(linecode == null || linecode.trim().length === 0)
-        {
-            linecode = obejctSearch.lineCode;
-         }
-        else {
+
+        // if(typeof num1 == 'number')
+        // {
+        //     let valueControl =linecode;
+        //     let nameControl ="linecode";
+        //     setKeySearch((prevalue) => {
+        //         return {
+        //             ...prevalue,   // Spread Operator               
+        //             [nameControl]: valueControl
+        //         }
+        //         })
+
+            
+        //  }
+        // else {
            
-
-            let valueControl =linecode;
-            let nameControl ="lineCode";
-            setKeySearch((prevalue) => {
-                return {
-                    ...prevalue,   // Spread Operator               
-                    [nameControl]: valueControl
-                }
-                })
-
-        }
+        //     linecode = obejctSearch.linecode;
+           
+        // }
         
         if( fromDateQuery!= null && fromDateQuery !="")
         {
@@ -457,7 +457,7 @@ const User = () => {
                 Token: obejctSearch.tokenSearch,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
-                LineCode: linecode,
+            
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,
                 from:fromDate,
@@ -656,7 +656,7 @@ const User = () => {
                                             <Form.Label>line gọi:</Form.Label>
                                             <InputGroup className="mb-2">
                                             <Form.Control
-                     type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
+                     type="text" name ="linecode"  onChange={handleInputChange} value ={obejctSearch.linecode} 
           />
                                             </InputGroup>
                                         </Form.Group>
