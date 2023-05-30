@@ -249,9 +249,13 @@ tr:hover {
     color: #24a947;
     background-color: #dbdcdf;
 }
+.packageList{
+    display: flex;
+    width: 100%;
+}
 
 .btnTab{
-
+    margin-right: 10px;
     color: black;
     background: #ffffff;
     button{

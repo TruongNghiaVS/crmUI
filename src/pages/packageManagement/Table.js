@@ -64,6 +64,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.value}</td>
             <td>{data.idUser}</td>
             <td>{getStatusText(data.status)}</td>
+            <td>{data.priorities} </td>
           
             <td>
                 <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />

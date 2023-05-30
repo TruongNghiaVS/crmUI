@@ -121,7 +121,7 @@ const DataJson = {
         "STT", "Tên gợi nhớ", "Từ", "Đến", "Trạng thái","Ngày tạo"
      ],
      tablePackage: [
-        "STT", "Tên gói", "Loại dùng","Giá trị","Id user", "Trạng thái"
+        "STT", "Tên gói", "Loại dùng","Giá trị","Id user", "Trạng thái","Độ ưu tiên"
      ],
       tbodyDataUser: [
        

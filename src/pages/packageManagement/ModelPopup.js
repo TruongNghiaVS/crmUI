@@ -19,13 +19,11 @@ const ModelPopup = (props) => {
   const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
   const roleUser = jsonProfile.role;
     const [model  , setmodel]=useState({ 
-
+      priorities: 10, 
        value: [
-          ],
+          ]
 
-        idUser: [
         
-        ]
 
         
     });
@@ -36,10 +34,8 @@ const ModelPopup = (props) => {
         ],
         dataUser: [
 
-        ],
-        idUser: [
-        
         ]
+     
 
        
    });
@@ -158,9 +154,11 @@ const ModelPopup = (props) => {
                 code: dataItem.code, 
                 type: dataItem.type,
                 status: dataItem.status,
+                priorities: dataItem.priorities,
                 updateByName: dataItem.updateByName,
                 authorName: dataItem.authorName,
                 updatedTime: dataItem.updatedTime,
+                idUser: dataItem.idUser, 
                 createdTime: dataItem.createdTime,
                 value: JSON.parse(dataItem.value)
            
@@ -305,7 +303,8 @@ const ModelPopup = (props) => {
             type: model.type, 
             value: JSON.stringify(model.value),
             idUser: model.idUser,
-            status: model.status
+            status: model.status,
+            priorities: model.priorities
           };
           
           PackageService.add(
@@ -352,6 +351,7 @@ const ModelPopup = (props) => {
             type: model.type, 
             value: JSON.stringify(model.value),
             idUser: model.idUser,
+            priorities: model.priorities,
             status: model.status
           
         };
@@ -475,8 +475,20 @@ const ModelPopup = (props) => {
                               <option  value="2">Không hoạt động</option>
                             
                       </Form.Select>
+
                   </Form.Group>
-                    
+                      <Form.Group className="mb-3">
+                      <Form.Label>Độ ưu tiên:</Form.Label>
+                    <InputGroup className="mb-2">
+                     
+                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                        name ="priorities" placeholder="Độ ưu tiên" 
+                        onChange={handleInputChange} value = {model.priorities} required />
+                            <Form.Control.Feedback type="invalid">
+                                    Trường bặt buộc
+                            </Form.Control.Feedback>
+                    </InputGroup>
+                   </Form.Group>
                </form>
             </div>
 

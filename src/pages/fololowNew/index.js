@@ -87,13 +87,20 @@ const Reason = () => {
         let dataDPD= response.value;
 
         let items =[]
+        let hasActive = 0;
         dataDPD.forEach(dataDPD => {
-
-       
-          items.push(dataDPD);
-         
-        
-        });
+            if(dataDPD.total != dataDPD.remain)
+            {
+                hasActive++;
+                if(hasActive ==1)
+                {
+                    dataDPD.active = true;
+                }
+                else dataDPD.active = false;
+               
+            }
+            items.push(dataDPD);
+         });
        
         setPackageManagement((prevalue) => {
           return {
@@ -480,7 +487,7 @@ const Reason = () => {
     const handleDeleteError = (data) => {
 
     }
-    
+    var isActive = false;
     const handleDeleteEmpl = (id)=> {
          Swal.fire({
             title: 'Bạn chắc chắn xóa',
@@ -630,16 +637,30 @@ const Reason = () => {
                             transition={false}
                             className="mb-3"
                         > */}
-                            
+                        <div className="packageList">
+
                         { 
-                        
-                                packageManagement.packageManagement.map((item, index) => {
-                                    return <div className="btnTab"> <button> {item.name} <a>{"(" +item.total+"/"+obejctPaging.totalRecord + ")"}</a> </button></div>;
-                                     
-                                 
+                                
+
+                                   
+                                    packageManagement.packageManagement.map((item, index) => {
+                                        
+                                        if(index ==0)
+                                        {
+                                            <div className="btnTab"> <button> {item.name} <a style ="color:red"> {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>;
+                                        }
+                                        else 
+                                        {
+                                            <div className="btnTab"> <button> {item.name} <a style ="color:red"> {"(" +item.remain+ ")"}</a> </button></div>;
+                                        }
                                       
-                                })
-                            }
+                                    }
+                        
+                        )
+                    }
+                        </div>
+                            
+                       
                 {/* </Tabs> */}
 
                 <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
