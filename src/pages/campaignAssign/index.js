@@ -154,9 +154,7 @@ const CampaignAssign = () => {
                         CampagnService.getAllCampangAsignee(ConstantData.HEADERS, bodySearch, (response) => {
                         if (response.statusCode === 200) {
                             renderData(response.value);
-                            let modelOverviewCampagn  = response.value.model;
-
-                     
+                            let modelOverviewCampagn  = response.value.data;
                             setCampagnModel(prew=>({...prew,numberHaveNotAssigee:modelOverviewCampagn.numberHaveNotAssigee}));
                             setCampagnModel(prew=>({...prew,numberHasAssigee:modelOverviewCampagn.numberHasAssigee}));
                             setCampagnModel(prew=>({...prew,numberHasClose:modelOverviewCampagn.numberHasClose}));

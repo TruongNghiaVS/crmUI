@@ -634,8 +634,11 @@ const Reason = () => {
                         { 
                         
                                 packageManagement.packageManagement.map((item, index) => {
-
-                                      return <div className="btnTab"> <button> {item.name} <a>{"(" +item.total+"/"+obejctPaging.totalRecord + ")"}</a> </button></div>
+                                      if(item.total >0)
+                                         {
+                                            return <div className="btnTab"> <button> {item.name} <a>{"(" +item.total+"/"+obejctPaging.totalRecord + ")"}</a> </button></div>;
+                                         }
+                                     
                                  
                                       
                                 })
