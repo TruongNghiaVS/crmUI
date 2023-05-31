@@ -666,7 +666,7 @@ const Reason = () => {
                                         }
                                         else 
                                         {
-                                            return (<div className="btnTab"> <button> {item.name} <p > {"(" +item.remain + ")"}</p> </button></div>);
+                                            return (<div className="btnTab"> <button > {item.name} <p> {"(" +item.total+"/"+item.remain + ")"}</p> </button></div>);
                                         }
                                       
                                     }
