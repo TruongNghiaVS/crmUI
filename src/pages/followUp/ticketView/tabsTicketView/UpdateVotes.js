@@ -35,7 +35,6 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                 return;
             }
 
-            debugger;
             if(dataView1.promiseday == null || dataView1.promiseday =="")
             {
                 Swal.fire({
@@ -127,6 +126,8 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                 
                     </Form.Select>
                 </InputGroup>
+
+
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Ngày hứa(TT)</InputGroup.Text>
                     <FormControl 
@@ -137,6 +138,19 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Tiền hứa</InputGroup.Text>
                     <FormControl   onChange={handleInputChange}   name ="moneyPromise" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value ={dataView1.moneyPromise} />
+                </InputGroup>
+
+                <InputGroup size="sm" className="mb-1">
+                    <InputGroup.Text id="inputGroup-sizing-sm">Màu hiển thị</InputGroup.Text>
+                    <Form.Select aria-label="Default select example" name ="colorCode" value ={dataView1.colorCode}    onChange={handleInputChange}  >
+                                        <option value = "white" selected>Chọn màu</option>
+                                    <option value = "red">Thanh lý</option>
+                                    <option value = "blue">Góp kỳ</option>
+                                    <option value = "yellow">đi Skip thông tin</option>
+                                    <option value = "black">Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng</option>
+                                   
+                            
+                    </Form.Select>
                 </InputGroup>
             </Col>
             <Col>

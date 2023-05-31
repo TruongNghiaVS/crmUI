@@ -56,6 +56,7 @@ const TicketView = () => {
         relationship: "-1",
         profileId: 26,
         priority:-1,
+        colorCode: "-1",
         assignee:"-1",
         department: "-1"
 

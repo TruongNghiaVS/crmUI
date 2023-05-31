@@ -106,8 +106,14 @@ const getCaseSkip = (flag)=> {
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     let likUrl = "/follow-up/" + data.id;
+    let colorcode = data.colorCode;
+
+    if(colorcode =="" || colorcode == null)
+    {
+        colorcode ="white";
+    }
     return (
-        <tr onClick={()=>openDetailItem(likUrl)}>
+        <tr onClick={()=>openDetailItem(likUrl)} className={colorcode}>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>
