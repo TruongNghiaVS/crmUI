@@ -265,9 +265,20 @@ tr:hover {
         font-weight: bold !important;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     }
-    a{
-        color: blue !important;
+  .actvie a{
+        color:red !important;
         font-weight: bold !important;
+    }
+    .actvie {
+        background-color: #24a947;
+        color: #ffffff !important;
+
+    }
+
+
+    p{
+        display: inline-block;
+        color: blue;
     }
     border: none;
     margin-top: 5px;

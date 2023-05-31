@@ -83,24 +83,31 @@ const Reason = () => {
       };
     MangagementPackageService.GetAllInfo( bodyRequest, (response) => {
     if (response.statusCode === 200) {
-        debugger;
+     
         let dataDPD= response.value;
 
         let items =[]
-        let hasActive = 0;
+        
+        let itemActive;
         dataDPD.forEach(dataDPD => {
-            if(dataDPD.total != dataDPD.remain)
+          
+            if(dataDPD.active)
             {
-                hasActive++;
-                if(hasActive ==1)
-                {
-                    dataDPD.active = true;
-                }
-                else dataDPD.active = false;
-               
+                itemActive = dataDPD;
             }
             items.push(dataDPD);
          });
+
+         if(itemActive)
+         {
+            getDataEmployee(itemActive.id);
+         }
+         else 
+         {
+            getDataEmployee();
+         }
+         
+       
        
         setPackageManagement((prevalue) => {
           return {
@@ -249,11 +256,15 @@ const Reason = () => {
                     
     
              }
-             getDataEmployee();
+           
      
             if(detail== "new-list" && roleUser =="1")
         {
-        getAllPackage();
+             getAllPackage();
+        }
+        else 
+        {
+            getDataEmployee();
         }
              
              setInit(true);
@@ -644,14 +655,18 @@ const Reason = () => {
 
                                    
                                     packageManagement.packageManagement.map((item, index) => {
+                                
+
                                         
-                                        if(index ==0)
+                                        // return <div className="btnTab"> <button> {item.name} <a style ="color:red"> {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>;
+
+                                        if(item.active)
                                         {
-                                            <div className="btnTab"> <button> {item.name} <a style ="color:red"> {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>;
+                                            return (<div className="btnTab"> <button  className="actvie"> {item.name} <a > {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>);
                                         }
                                         else 
                                         {
-                                            <div className="btnTab"> <button> {item.name} <a style ="color:red"> {"(" +item.remain+ ")"}</a> </button></div>;
+                                            return (<div className="btnTab"> <button> {item.name} <p > {"(" +item.remain + ")"}</p> </button></div>);
                                         }
                                       
                                     }
