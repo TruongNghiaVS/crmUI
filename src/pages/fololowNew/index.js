@@ -40,7 +40,8 @@ const Reason = () => {
         limt: 10, 
         totalRecord : 28,
         totalPage: 3,
-        currentPage: 1
+        currentPage: 1,
+      
     });
 
     const [packageManagement, setPackageManagement ] = useState({
@@ -50,7 +51,9 @@ const Reason = () => {
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: "",
         dpd: "-1",
-        IdPackage: ""
+        IdPackage: "",
+        fromTime: moment().subtract(20, 'days'),
+        endTime: moment()
     });
    
     const handleimportRow = ()=> {
@@ -162,6 +165,7 @@ const Reason = () => {
         isAdmin = true;
     }
     const dateForPicker = (dateString) => {
+    
         return moment(new Date(dateString)).format('YYYY-MM-DD')
     };
 
