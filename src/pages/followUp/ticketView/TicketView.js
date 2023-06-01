@@ -112,6 +112,27 @@ const TicketView = () => {
          })
      }
 
+     const handleInputChangeColor =(value)=> {
+       
+        let valueControl = value;
+        let nameControl = "colorCode";
+        setmodelImpact((prevalue) => {
+            return {
+              ...prevalue,   // Spread Operator               
+              [nameControl]: valueControl
+            }
+         })
+     }
+
+     const handleClick =(value)=> {
+       
+        document.getElementById("red").classList.remove("activebutton");
+        document.getElementById("black").classList.remove("activebutton");
+        document.getElementById("green").classList.remove("activebutton");
+        document.getElementById("yellow").classList.remove("activebutton");
+        document.getElementById(value).classList.add("activebutton");
+        handleInputChangeColor(value);
+     }
 
      const handleInputChangeImpact =(event)=> {
        
@@ -386,14 +407,17 @@ const handleErrUpdate = (data) => {
                     <TabsTicketView 
                      handleInputChange = {handleInputChange}  
                      handleInputChange1 = {handleInputChangeImpact} 
+                     handleInputChangeColor = {handleInputChangeColor}
                      dataHistory ={dataImpact.data}
                      masterData = {masterData}
                      dataView = {modelImpact} 
                      dataReason = {dataReason}
                      listUser = {listUser} 
                      dataView2 = {model} 
+                     handleClick = {handleClick}
                      saveImpact = {saveImpact} 
                      saveSkip = {saveSkip} 
+                     
                      />
                 </div>
                 

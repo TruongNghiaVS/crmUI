@@ -3,12 +3,23 @@ import { useEffect,useState } from 'react';
 import moment from "moment"; 
 import Swal from 'sweetalert2';
 import { FaTicketAlt } from "react-icons/fa";
-const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listUser,saveImpact}) => {
+const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listUser,saveImpact, handleInputChangeColor, handleClick}) => {
 
 
     const SaveIpactTry =() =>
     {
-     
+       
+       
+        if(dataView1.colorCode == '' || dataView1.colorCode == '-1' ||  dataView1.colorCode =='white')
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chưa phân loại hồ sơ',
+                text: 'Chưa phân loại hồ sơ',
+                footer: 'Yêu cầu nghiệp vụ!'
+            })
+            return;
+        }
       
         if(dataView1.statusIm  <0)
         {
@@ -71,6 +82,9 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
         return moment(new Date(dateString)).format('YYYY-MM-DD')
     };
 
+
+   
+
     const [model , setmodel]=useState({
        
     });
@@ -82,32 +96,9 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
         <Row>
             <Col>
                 <Form.Label htmlFor="basic-url">Tác động</Form.Label>
+           
                 <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Liên hệ</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name ="noteCode" value ={dataView1.noteCode}    onChange={handleInputChange}  >
-                    
-                                    <option value = "-1" selected>Người liên hệ</option>
-                                    <option value = "DIEN_THOAI">Điện thoại</option>
-                                    <option value = "KHACH_HANG">Khách hàng</option>
-                                    <option value = "CON">Con</option>
-                                    <option value = "CHA">Cha</option>
-                                    <option value = "ME">Mẹ</option>
-                                    <option value = "CHI_GAI/EM_GAI">Chị gái,em gái</option>
-                                    <option value = "ANH_TRAI/EM_TRAI">Anh trai, em trai</option>
-                                    <option value = "VO">Vợ</option>
-                                    <option value = "CHONG">Chồng</option>
-                                    <option value = "NGUOI_THAM_CHIEU_KHAC">Người tham chiếu khác</option>
-                                    <option value = "KHONG_GAP_AI">không gặp ai</option>
-                                    <option value = "NGUOI_THAN_XA">Người thân xa</option>
-                                    <option value = "BAN_BE">Bạn bè</option>
-                                    <option value = "DONG_NGHIEP">Đồng nghiệp</option>
-                                    <option value = "CHU_SO_HUU">Chủ sở hữu</option>
-                                    <option value = "KHONG_XAC_DINH">Không xác định</option>
-                            
-                    </Form.Select>
-                </InputGroup>
-               
-                <InputGroup size="sm" className="mb-1">
+                
                     <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="statusIm" value ={dataView1.statusIm}    onChange={handleInputChange}  >
                     
@@ -141,17 +132,41 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                 </InputGroup>
 
                 <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Màu hiển thị</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name ="colorCode" value ={dataView1.colorCode}    onChange={handleInputChange}  >
-                                        <option value = "white" selected>Chọn màu</option>
-                                    <option value = "red">Thanh lý</option>
-                                    <option value = "blue">Góp kỳ</option>
-                                    <option value = "yellow">đi Skip thông tin</option>
-                                    <option value = "black">Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng</option>
-                                   
+                    <InputGroup.Text id="inputGroup-sizing-sm">Liên hệ</InputGroup.Text>
+                    <Form.Select aria-label="Default select example" name ="noteCode" value ={dataView1.noteCode}    onChange={handleInputChange}  >
+                    
+                                    <option value = "-1" selected>Người liên hệ</option>
+                                    <option value = "DIEN_THOAI">Điện thoại</option>
+                                    <option value = "KHACH_HANG">Khách hàng</option>
+                                    <option value = "CON">Con</option>
+                                    <option value = "CHA">Cha</option>
+                                    <option value = "ME">Mẹ</option>
+                                    <option value = "CHI_GAI/EM_GAI">Chị gái,em gái</option>
+                                    <option value = "ANH_TRAI/EM_TRAI">Anh trai, em trai</option>
+                                    <option value = "VO">Vợ</option>
+                                    <option value = "CHONG">Chồng</option>
+                                    <option value = "NGUOI_THAM_CHIEU_KHAC">Người tham chiếu khác</option>
+                                    <option value = "KHONG_GAP_AI">không gặp ai</option>
+                                    <option value = "NGUOI_THAN_XA">Người thân xa</option>
+                                    <option value = "BAN_BE">Bạn bè</option>
+                                    <option value = "DONG_NGHIEP">Đồng nghiệp</option>
+                                    <option value = "CHU_SO_HUU">Chủ sở hữu</option>
+                                    <option value = "KHONG_XAC_DINH">Không xác định</option>
                             
                     </Form.Select>
                 </InputGroup>
+
+                <InputGroup size="sm" className="mb-1">
+                    <InputGroup.Text id="inputGroup-sizing-sm">Phân loại hồ sơ:</InputGroup.Text>
+                   
+                     <div className='btnGroup'>
+                                    <button class="button green "  title=" Góp kỳ"  id ="green" onClick={()=>handleClick("green")} ></button>
+                                    <button class="button yellow "  title="Đi Skip thông tin"  id ="yellow"  onClick={()=>handleClick("yellow")}  ></button>
+                                     <button class="button red" id ="red"  title="Thanh lý"   onClick={()=>handleClick("red")}  ></button>
+                                    <button class="button black " id ="black" title="Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng" onClick={()=>handleClick("black")} ></button>
+                     </div>
+                </InputGroup>
+               
             </Col>
             <Col>
                 <Form.Label htmlFor="basic-url">Ghi chú</Form.Label>

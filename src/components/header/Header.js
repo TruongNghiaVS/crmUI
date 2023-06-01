@@ -14,9 +14,12 @@ const Header = ({ classHeader }) => {
     const endTime =  moment().format("YYYY-MM-DD");
     
     let navigate = useNavigate();
+    // navigate('/campangn');
 
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
+
+   
     const roleUser = jsonProfile.role;
     const fullName = jsonProfile.name;
 
@@ -28,6 +31,7 @@ const Header = ({ classHeader }) => {
     } else {
         isHiddenMenu = false;
     }
+ 
      const handleChangePass = () => {
        
        
@@ -131,7 +135,7 @@ const Header = ({ classHeader }) => {
                     { roleUser == "4"?  <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Vận hành <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
-                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/chuyen-case">Chuyển case</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/campangn">Chuyển case</Link></li>
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/xoa-case">Xóa case</Link></li>
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/hoat-dong-chien-dich">Hoạt động chiến dịch</Link></li>
                             <li className='sub-list-link'><Link  className='nav-link' to="/quan-ly-line">Quản lý line</Link></li>

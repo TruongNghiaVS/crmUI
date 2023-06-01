@@ -288,11 +288,17 @@ tr:hover {
 .red {
     background-color: rgba(255, 0, 0, 0.825) !important;
     color: #ffffff;
+    a {
+        color: #ffffff !important;
+    }
     
 }
 .green {
     background-color: green !important;
     color: #ffffff;
+    a {
+        color: #ffffff !important;
+    }
 }
 
 .blue {
@@ -302,10 +308,52 @@ tr:hover {
 
 .yellow {
     background-color: yellow !important;
-    color: #ffffff;
+    color: black;
+    a {
+        color: black !important;
+    }
 }
 .black {
     background-color: rgba(0, 0, 0, 0.826) !important;
     color: #ffffff;
+    a {
+        color: #ffffff !important;
+    }
 
 }
+
+.button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 40px;
+    height: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+  .button:active {
+    border: 1px solid black;
+  }
+
+  .button1 {background-color: #4CAF50;} /* Green */
+  .button2 {background-color: #008CBA;} /* Blue */
+  .button3 {background-color: #f44336;} /* Red */
+  .button4 {background-color: #e7e7e7; color: black;} /* Gray */
+  .button5 {background-color: #555555;} /* Black */;
+  
+  .activebutton {
+    padding: 15px;
+    outline: red;
+    border: solid 1px green;
+  }
+
+
+  .button:hover {
+    background-color: #4CAF50;
+    color: white;
+  }

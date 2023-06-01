@@ -33,6 +33,8 @@ const Reason = () => {
     const [campagnIdSelect, setCampagnSelect] = useState(-1);
 
     const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+    const [isseachdpp, setIsseachdpp] = useState(true);
+
 
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
@@ -47,6 +49,7 @@ const Reason = () => {
 
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: "",
+        dpd: "-1",
         IdPackage: ""
     });
    
@@ -82,6 +85,7 @@ const Reason = () => {
            
       };
     MangagementPackageService.GetAllInfo( bodyRequest, (response) => {
+        debugger;
     if (response.statusCode === 200) {
      
         let dataDPD= response.value;
@@ -101,6 +105,7 @@ const Reason = () => {
          if(itemActive)
          {
             getDataEmployee(itemActive.id);
+            setIsseachdpp(false);
          }
          else 
          {
@@ -353,7 +358,8 @@ const Reason = () => {
             phoneSerach:  obejctSearch.phoneSerach,
             from: obejctSearch.fromTime,
             to: obejctSearch.endTime,
-            typegetData: typegetData
+            typegetData: typegetData,
+            colorCode: obejctSearch.colorCode
 
           };
           EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
@@ -587,7 +593,7 @@ const Reason = () => {
                                 </Col>
 
 
-                                <Col>
+                             {  isseachdpp ==true ?   <Col>
 
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>DPD:</Form.Label>
@@ -604,7 +610,7 @@ const Reason = () => {
                                 </Form.Select >
                                 </InputGroup>
                                 </Form.Group>
-</Col>
+                                </Col> : <></> }
 
 {
     isAdmin?<Col>
@@ -622,7 +628,31 @@ const Reason = () => {
 
                                 
                             </Row>
+                          {  (detail == "watch-list")? <Row>
+                                <Col xs={6} >
 
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Phân loại hồ sơ:</Form.Label>
+                                <InputGroup className="mb-2">
+                                <Form.Select aria-label="Default select example" name ="colorCode" value ={obejctSearch.colorCode} onChange={handleInputChange} >
+                                        <option selected value ="-1">Tất cả</option>
+                                        <option className="green" value="green">Góp kỳ</option>
+                                        <option className="yellow"  value="yellow">Đi Skip thông tin</option>
+                                        <option className="red"  value="red">Thanh lý</option>
+                                        <option className="black"  value="black">Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng</option>
+                                        
+                                </Form.Select >
+                                </InputGroup>
+                                </Form.Group>
+                                </Col>
+
+                               
+
+
+
+
+                                
+                            </Row>: <></> }
                             <Row>
                     
 
@@ -656,10 +686,6 @@ const Reason = () => {
                                    
                                     packageManagement.packageManagement.map((item, index) => {
                                 
-
-                                        
-                                        // return <div className="btnTab"> <button> {item.name} <a style ="color:red"> {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>;
-
                                         if(item.active)
                                         {
                                             return (<div className="btnTab"> <button  className="actvie"> {item.name} <a > {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>);
@@ -676,7 +702,7 @@ const Reason = () => {
                         </div>
                             
                        
-                {/* </Tabs> */}
+         
 
                 <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>

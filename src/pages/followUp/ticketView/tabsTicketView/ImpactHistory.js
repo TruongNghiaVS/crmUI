@@ -12,12 +12,21 @@ const ImpactHistory = ({data}) => {
                 data.map((item, i) => {    
                     
                     {
-                        let shortDes = "Số tiền hứa:" + item.moneyPromise + "\n";
-                        shortDes += "Ngày hứa:" + item.promiseday + "\n";
+                        let shortDes ="";
+                        if(item.moneyPromise )
+                        {
+                            shortDes += "Số tiền hứa:" + item.moneyPromise + "\n";
+                        }
+                        
+                        if(item.promiseday)
+                        {
+                            shortDes += "Ngày hứa:" + item.promiseday + "\n";
+                        }
+              
                         shortDes += "Ghi chú" + item.shortDescription;
                         return (
                             <>  
-                            <tr>
+                            <tr className={item.colorCode}>
                                             <td >{item.authorName}</td>
                                             <td >{moment(item.createAt).format("DD/MM/YYYY")}</td>
                                             <td >{item.shortDescription}</td>

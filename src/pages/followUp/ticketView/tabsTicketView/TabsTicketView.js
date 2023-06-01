@@ -4,7 +4,7 @@ import ImpactHistory from './ImpactHistory';
 import Skip from './Skip';
 import Assigee from './Assigee';
 
-const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact,saveSkip, masterData, listUser}) => {
+const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact,saveSkip, masterData,handleClick, listUser, handleInputChangeColor}) => {
  
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
@@ -24,7 +24,7 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
               
             >
             <Tab eventKey="home" title="Cập nhật phiếu">
-                <UpdateVotes dataView1 = {dataView}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
+                <UpdateVotes handleClick= {handleClick} dataView1 = {dataView} handleInputChangeColor = {handleInputChangeColor}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
             </Tab>
             <Tab  eventKey="profile" title="Lịch sử tác động">
                 <ImpactHistory data = {dataHistory} />
