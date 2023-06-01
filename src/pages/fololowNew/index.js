@@ -640,9 +640,11 @@ const Reason = () => {
                                 <InputGroup className="mb-2">
                                 <Form.Select aria-label="Default select example" name ="colorCode" value ={obejctSearch.colorCode} onChange={handleInputChange} >
                                         <option selected value ="-1">Tất cả</option>
+                                        
                                         <option className="green" value="green">Góp kỳ</option>
                                         <option className="yellow"  value="yellow">Đi Skip thông tin</option>
                                         <option className="red"  value="red">Thanh lý</option>
+                                        <option className="greenBlude" value="greenBlude">Thông tin kết nối được với khách hàng</option>
                                         <option className="black"  value="black">Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng</option>
                                         
                                 </Form.Select >

@@ -437,6 +437,16 @@ const Reporthistorical = () => {
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
         let exportFileName = `impactHistory.xls`;
+
+                // var i;
+                // for (i = 1; i <= sheets["data"].length; i++) {
+                // spreadsheet.Sheets["data"]["A"+i].s = {
+                // fill: {
+                // patternType: "solid",
+                // fgColor: { rgb: "111111" }
+                // }
+                // };
+                // }
          XLSX.writeFile(workBook,exportFileName);
 
 }

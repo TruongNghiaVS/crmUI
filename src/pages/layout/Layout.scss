@@ -286,7 +286,7 @@ tr:hover {
 }
 
 .red {
-    background-color: rgba(255, 0, 0, 0.825) !important;
+    background-color: rgba(249, 70, 70, 0.825) !important;
     color: #ffffff;
     a {
         color: #ffffff !important;
@@ -300,6 +300,13 @@ tr:hover {
         color: #ffffff !important;
     }
 }
+.greenBlude{
+    background-color: #00FFFF !important;
+    color: #ffffff;
+    a {
+        color: #ffffff !important;
+    }
+}
 
 .blue {
     background-color: #008000 !important;
@@ -307,7 +314,7 @@ tr:hover {
 }
 
 .yellow {
-    background-color: yellow !important;
+    background-color: rgb(247, 247, 133) !important;
     color: black;
     a {
         color: black !important;

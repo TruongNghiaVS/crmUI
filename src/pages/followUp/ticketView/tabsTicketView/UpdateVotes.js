@@ -161,9 +161,13 @@ const UpdateVotes = ({dataView1, handleInputChange, masterData, dataReason,listU
                    
                      <div className='btnGroup'>
                                     <button class="button green "  title=" Góp kỳ"  id ="green" onClick={()=>handleClick("green")} ></button>
+                                    <button class="button red" id ="red"  title="Thanh lý"   onClick={()=>handleClick("red")}  ></button>
                                     <button class="button yellow "  title="Đi Skip thông tin"  id ="yellow"  onClick={()=>handleClick("yellow")}  ></button>
-                                     <button class="button red" id ="red"  title="Thanh lý"   onClick={()=>handleClick("red")}  ></button>
+                                   
                                     <button class="button black " id ="black" title="Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng" onClick={()=>handleClick("black")} ></button>
+
+                                    <button class="button greenBlude " id ="greenBlude" title="Thông tin kết nối được với khách hàng" onClick={()=>handleClick("greenBlude")} ></button>
+                                    
                      </div>
                 </InputGroup>
                
