@@ -21,6 +21,11 @@ const getShowfile =  (item)=> {
     {
         fileUrl = "http://192.168.1.2:8888/api/file/getaudio09?filePath=";
     }
+
+    if(item.src.startsWith("4"))
+    {
+        fileUrl = "http://192.168.1.2:8888/api/file/getaudio151?filePath=";
+    }
     fileUrl=fileUrl +''+ item.recordingfile;
     
     if(!item.isShow)
