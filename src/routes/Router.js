@@ -61,6 +61,9 @@ function Router() {
                               
                          </Route>
 
+                         <Route path="bao-cao-ghi-am-theo-so-hop-dong" element={<Layout page="recordingNoAgree" />}>
+                              
+                         </Route>
                          <Route path="bao-cao-tin-nhan" element={<Layout page="smsReport" />}>
 
                          </Route>

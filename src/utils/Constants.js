@@ -64,6 +64,8 @@ class ConstantData {
 
       //campagn profile
     static URL_campagnProfile_GetALl = `${ConstantData.DOMAIN}/api/campagnProfile/getAll`;
+
+    static URL_campagnProfile_exportFile = `${ConstantData.DOMAIN}/api/campagnProfile/exportData1`;
     static URL_campagnProfile_Add = `${ConstantData.DOMAIN}/api/campagnProfile/add`;
     static URL_campagnProfile_Update = `${ConstantData.DOMAIN}/api/campagnProfile/update`;
     static URL_campagnProfile_updateskip = `${ConstantData.DOMAIN}/api/campagnProfile/updateskip`;
@@ -123,7 +125,7 @@ class ConstantData {
 
     static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;
     static URL_ReportService_getAllRecordingFile = `${ConstantData.DOMAIN}/api/report/getAllRecordingFile`;
-
+    static URL_ReportService_getAllRecordingFileWithNo = `${ConstantData.DOMAIN}/api/report/getAllRecordingFileWithNo`;
     static URL_ReportService_exportRecord = `${ConstantData.DOMAIN}/api/report/exportRecordingFile`;
 
     

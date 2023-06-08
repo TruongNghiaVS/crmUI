@@ -78,6 +78,7 @@ const Header = ({ classHeader }) => {
                         <Link className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</Link></li>
+                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/skip-data">Danh sách skip</Link></li>
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
                             { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/data">Danh sách kho</Link></li>: <></> }
                         </ul>
@@ -96,6 +97,7 @@ const Header = ({ classHeader }) => {
                                 Báo cáo ghi âm
                                 </Link>
                             </li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-ghi-am-theo-so-hop-dong">BCGhi âm theo HĐ</Link></li>
                             <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tin-nhan">Báo cáo Sms</Link></li>
                             <li className='sub-list-link'><Link className='nav-link' to="/tong-quan-tin-nhan">Tổng quan tin nhắn</Link></li>
 
@@ -103,6 +105,7 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-talktime">BC talktime</Link></li>
                              { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/reportCDR">BC CDR</Link></li>: <></> }
                             <li className='sub-list-link'><Link className='nav-link' to="/report/login">BC Đăng nhập </Link></li>
+                            
                             <li className='sub-list-link'><Link className='nav-link' to="/dashboard">Dashboard </Link></li>
                         </ul>
                     </li>

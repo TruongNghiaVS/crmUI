@@ -29,6 +29,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReportCDR from '../reportCDR';
 import ReportTalkTime from '../reportTalkTime';
 import ReportRecording from '../reportRecording';
+
+import RecordingNoAgree from '../recordingNoAgree';
+
 import SmsReport  from  '../smsReport';
 import LineManagement from '../lineManagement';
 import DpdManagement from '../dpdManagement';
@@ -113,6 +116,11 @@ const Screen = (props) => {
     
         return  <ReportRecording/>
 
+        
+        case 'recordingNoAgree': 
+    
+        return  <RecordingNoAgree/>
+        
         case 'smsReport': 
     
         return  <SmsReport/>

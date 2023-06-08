@@ -75,6 +75,10 @@ const DataJson = {
      theadDataReportCDR: [
       "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime"
      ],
+
+     theadDataReportCDRWidthNo: [
+        "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime" ,"Số hợp đồng"
+       ],
      theadReportSms: [
         "STT", "Ngày",  "line",  "Số điện thoại","Nội dung", "Trạng thái","TaskId"
        ],

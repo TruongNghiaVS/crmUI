@@ -315,7 +315,65 @@ const Reason = () => {
         getDataEmployee();
     }
 
+    const ExportFile = (PackageKey ='')=> {
+        let typegetData = 0;
+       
 
+
+        
+       
+        var idpackageserach = obejctSearch.IdPackage;
+        if(PackageKey != '')
+        {
+           idpackageserach = PackageKey; 
+        }
+
+        if(detail== "new-list")
+        {
+           typegetData = "0";
+        }
+        else if( detail == "watch-list")
+        {
+           typegetData = "1";
+        }
+        else if( detail == "data")
+        {
+           typegetData = "10";
+        }
+        else if( detail == "skipcase")
+        {
+           typegetData = "2";
+        }
+        else 
+        {
+           typegetData = "3";
+        }
+
+        let bodySearch = {
+           Token: obejctSearch.token, 
+           IdPackage: idpackageserach,
+           Page:  obejctPaging.currentPage,
+           Limit: obejctPaging.limt,
+           dpd: obejctSearch.dpd,
+           lineCode:  obejctSearch.lineCode,
+           phoneSerach:  obejctSearch.phoneSerach,
+           from: obejctSearch.fromTime,
+           to: obejctSearch.endTime,
+           typegetData: typegetData,
+           colorCode: obejctSearch.colorCode
+
+         };
+         EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
+               if (response.statusCode === 200) {
+                  exportDataExcel(response.value.data);
+               } else {
+
+               }
+         }, (error) => {
+          
+         });
+
+   }
     
 
 
@@ -379,20 +437,33 @@ const Reason = () => {
     }
 
     const exportDataExcel = (dataReder) => {
-
         var DataExport = dataReder;
-          let workBook = XLSX.utils.book_new();
-        const workSheet = XLSX.utils.json_to_sheet(DataExport);
+        const Heading = [
+            [
+            'Số hợp đồng',
+            'Tên khách hàng',
+            'SĐT',
+            'Ngày sinh nhật',
+            'CCCD',
+            'Người xử lý',
+            'Trạng thái',
+            'Tác động mới nhất',
+            'Mã màu',
+            'Ngày câp nhật',
+            'Id hệ thống'
+            ]
+        ];
+        let workBook = XLSX.utils.book_new();
+        const workSheet = XLSX.utils.json_to_sheet(DataExport,  
+        { origin: 'A2', skipHeader: true }
+        );
+        XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
+   
+        // const workSheet = XLSX.utils.json_to_sheet(DataExport);
 
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
-
-        let exportFileName = `dataMaster.xls`;
-         XLSX.writeFile(workBook,exportFileName);
-
-      
-        
-      
-
+        let exportFileName = `DataExport.xls`;
+        XLSX.writeFile(workBook, exportFileName);
 
 
 }
@@ -453,6 +524,13 @@ const Reason = () => {
 
     }
 
+    const exportfileAll =()=> {
+           ExportFile();
+
+}
+
+
+    
    
     const handleInputChangesearch =(event)=> {
         let valueControl = event.target.value;
@@ -676,6 +754,7 @@ const Reason = () => {
                     }
                   
                     <div className="search-feature">
+                        {/* <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button> */}
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>
                 </div>

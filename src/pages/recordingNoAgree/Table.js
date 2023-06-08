@@ -22,7 +22,7 @@ const getShowfile =  (item)=> {
     }
     if(item.src.startsWith("3"))
     {
-        fileUrl = "http://192.168.1.2:8888/api/file/getaudio10?filePath=";
+        fileUrl = "http://192.168.1.2:8888/api/file/getaudio09?filePath=";
     }
 
     if(item.src.startsWith("4"))
@@ -62,6 +62,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.durationReal}</td>
              <td>{data.duration}</td>
 
+             <td>{data.noAgree}</td>
         </tr>
     );
 };
