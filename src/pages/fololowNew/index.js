@@ -331,13 +331,14 @@ const Reason = () => {
     }
 
     const ExportFile = (PackageKey ='')=> {
-        let typegetData = 0;
+        let typegetData = "0";
        
 
 
         
        
         var idpackageserach = obejctSearch.IdPackage;
+        var skipData  = false;
         if(PackageKey != '')
         {
            idpackageserach = PackageKey; 
@@ -355,9 +356,10 @@ const Reason = () => {
         {
            typegetData = "10";
         }
-        else if( detail == "skipcase")
+        else if( detail == "skip-data")
         {
-           typegetData = "2";
+         
+            skipData  = true; 
         }
         else 
         {
@@ -373,6 +375,7 @@ const Reason = () => {
            lineCode:  obejctSearch.lineCode,
            phoneSerach:  obejctSearch.phoneSerach,
            from: obejctSearch.fromTime,
+           skipData: skipData, 
            to: obejctSearch.endTime,
            typegetData: typegetData,
            colorCode: obejctSearch.colorCode
@@ -393,10 +396,10 @@ const Reason = () => {
 
 
     const getDataEmployee = (PackageKey ='')=> {
-         let typegetData = 0;
+         let typegetData = "0";
 
 
-         
+         var skipData  = false;
         
          var idpackageserach = obejctSearch.IdPackage;
          if(PackageKey != '')
@@ -416,9 +419,9 @@ const Reason = () => {
          {
             typegetData = "10";
          }
-         else if( detail == "skipcase")
+         else if( detail == "skip-data")
          {
-            typegetData = "2";
+            skipData = true;
          }
          else 
          {
@@ -431,6 +434,7 @@ const Reason = () => {
             Page:  obejctPaging.currentPage,
             Limit: obejctPaging.limt,
             dpd: obejctSearch.dpd,
+            skipData: skipData,
             lineCode:  obejctSearch.lineCode,
             phoneSerach:  obejctSearch.phoneSerach,
             from: obejctSearch.fromTime,
@@ -769,8 +773,8 @@ const Reason = () => {
                     }
                   
                     <div className="search-feature">
-                    <button  className="btn-search" onClick={()=>handleimportRowList("skip")}>Import danh sách</button>
-                        <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button>
+                         {/* <button  className="btn-search" onClick={()=>handleimportRowList("skip")}>Import danh sách</button>
+                        <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button> */}
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>
                 </div>

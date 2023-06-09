@@ -17,7 +17,8 @@ import MasterDataService from '../../services/MasterDataNewService';
 const ModelAddUser = (props) => {
     
     const [model  , setmodel]=useState({
-       
+        password: "Vietstar@2021",
+        status:  1
         
     });
     const [statusList , setStatusList]=useState([]);

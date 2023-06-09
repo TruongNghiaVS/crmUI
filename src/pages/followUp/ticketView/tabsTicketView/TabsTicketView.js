@@ -24,7 +24,7 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
               
             >
             <Tab eventKey="home" title="Cập nhật phiếu">
-                <UpdateVotes handleClick= {handleClick} dataView1 = {dataView} handleInputChangeColor = {handleInputChangeColor}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
+                <UpdateVotes handleClick= {handleClick} dataView2 ={dataView2} dataView1 = {dataView} handleInputChangeColor = {handleInputChangeColor}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
             </Tab>
             <Tab  eventKey="profile" title="Lịch sử tác động">
                 <ImpactHistory data = {dataHistory} />
