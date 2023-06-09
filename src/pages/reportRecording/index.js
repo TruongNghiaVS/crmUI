@@ -31,7 +31,7 @@ const User = () => {
     });
     const [obejctSearch, setKeySearch] = useState({
         tokenSearch: "",
-        lineCode: "",
+        linecode: "",
         fromTime: moment(),
         endTime: moment()
     });
@@ -273,6 +273,7 @@ const User = () => {
     const SearchData = () => {
         let fromTime =obejctSearch.fromTime;
         let linecode = obejctSearch.linecode;
+        debugger;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -305,9 +306,8 @@ const User = () => {
         window.location.replace(urlPag);
     }
     const handlePaging = (data) => {
-    
-        let fromTime =obejctSearch.fromTime;
-        let linecode = obejctSearch.lineCode;
+           let fromTime =obejctSearch.fromTime;
+        let linecode = obejctSearch.linecode;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -361,7 +361,7 @@ const User = () => {
         const fromDateQuery = query.get('fromTime');
         const toDateQuerry = query.get('endTime');
 
-        let linecode = query.get('linecode');
+        let linecodeInput = query.get('linecode');
 
         // if(typeof num1 == 'number')
         // {
@@ -381,6 +381,21 @@ const User = () => {
         //     linecode = obejctSearch.linecode;
            
         // }
+        if( linecodeInput!= null && linecodeInput !="")
+        {
+                let valueControl =linecodeInput;
+                let nameControl ="linecode";
+                setKeySearch((prevalue) => {
+                    return {
+                        ...prevalue,   // Spread Operator               
+                        [nameControl]: valueControl
+                    }
+                 })
+         }
+         else 
+         {
+            linecodeInput = obejctSearch.linecode;
+         }
         
         if( fromDateQuery!= null && fromDateQuery !="")
         {
@@ -417,7 +432,7 @@ const User = () => {
         
             if( page!= null && page !="")
             {
-                        let valueControl =page;
+                        let valueControl =page*1;
                         let nameControl ="Page";
                         setKeySearch((prevalue) => {
                             return {
@@ -457,6 +472,7 @@ const User = () => {
                 Token: obejctSearch.tokenSearch,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
+                linecode: linecodeInput, 
             
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,

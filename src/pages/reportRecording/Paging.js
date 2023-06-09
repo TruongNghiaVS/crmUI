@@ -40,7 +40,7 @@ const Paging = (props) => {
 
     const changeCurrentPage = (numPage) => {
        
-
+       
           props.handlePaging(numPage);
          
           // console.log("page", modelPage);

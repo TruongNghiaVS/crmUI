@@ -12,7 +12,7 @@ import EmployeeService from '../../services/MasterDataService';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const UploadFile = (props) => {
+const UploadFile2 = (props) => {
     
     const [fileTran , setfilUPload]=useState({
 
@@ -28,10 +28,6 @@ const UploadFile = (props) => {
      }, []);
 
      const UploadFileServer = () => {
-
-
-
-
 
         
         var file = fileTran;
@@ -57,7 +53,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         // data.append('id', props.idPass);
-        fetch('http://192.168.1.2:8888/api/campagn/skipInfo', {
+        fetch('http://192.168.1.2:8888/api/campagn/importDataSkipInfo', {
             method: 'POST',
             body: data
         })
@@ -128,7 +124,7 @@ const UploadFile = (props) => {
     return (
         <div className="model">
             <div className="header-model">
-                  <h4>Nhập dữ liệu import</h4>
+                  <h4>Nhập dữ liệu skip</h4>
             </div>
             
              <div className="main-model">
@@ -156,4 +152,4 @@ const UploadFile = (props) => {
     );
 };
 
-export default UploadFile;
+export default UploadFile2;

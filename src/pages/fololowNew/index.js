@@ -21,6 +21,7 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UploadFile  from "./UploadFile";
+import UploadFile2  from "./UploadFile2";
 let XLSX = require("xlsx");
 
 
@@ -33,6 +34,9 @@ const Reason = () => {
     const [campagnIdSelect, setCampagnSelect] = useState(-1);
 
     const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+    const [isOPenUploadFile2, setisOPenUploadFile2] = useState(false);
+
+
     const [isseachdpp, setIsseachdpp] = useState(true);
 
 
@@ -59,6 +63,10 @@ const Reason = () => {
     const handleimportRow = ()=> {
 
          setisOPenUploadFile(!isOPenUploadFile);
+   }
+
+   const  handleimportRowList =(skip)=>{
+    setisOPenUploadFile2(!isOPenUploadFile2);
    }
 
    let keyLoop = '';
@@ -141,6 +149,13 @@ const Reason = () => {
         
 
         setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
+
+    const handleShowModelUploadFile2 = () => {
+        
+
+        setisOPenUploadFile2(!isOPenUploadFile2);
         
     }
 
@@ -754,7 +769,8 @@ const Reason = () => {
                     }
                   
                     <div className="search-feature">
-                        {/* <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button> */}
+                    <button  className="btn-search" onClick={()=>handleimportRowList("skip")}>Import danh sách</button>
+                        <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button>
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>
                 </div>
@@ -802,6 +818,14 @@ const Reason = () => {
                     content={<UploadFile
                     idPass = "3333"  
                     handleClose={handleShowModelUploadFile} 
+                />} />
+             }
+
+{                                                                                         
+                isOPenUploadFile2 && <Model                                        
+                    handleClose ={handleShowModelUploadFile2}
+                    content={<UploadFile2
+                    handleClose={handleShowModelUploadFile2} 
                 />} />
              }
 
