@@ -162,11 +162,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                      <div className='btnGroup'>
                                     <button class="button green "  title=" Góp kỳ"  id ="green" onClick={()=>handleClick("green")} ></button>
                                     <button class="button red" id ="red"  title="Thanh lý"   onClick={()=>handleClick("red")}  ></button>
-                                    {
-                                        dataView2.skipData == true ? <button class="button yellow "  title="Đi Skip thông tin"  id ="yellow"  onClick={()=>handleClick("yellow")} ></button>:<></>
-                                        
-                                    }
-                                    
+                                    <button class="button yellow "  title="Đi Skip thông tin"  id ="yellow"  onClick={()=>handleClick("yellow")} ></button>
                                    
                                     <button class="button black " id ="black" title="Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng" onClick={()=>handleClick("black")} ></button>
 
