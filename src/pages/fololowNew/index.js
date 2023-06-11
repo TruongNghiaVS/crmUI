@@ -775,6 +775,7 @@ const Reason = () => {
                     <div className="search-feature">
                          {/* <button  className="btn-search" onClick={()=>handleimportRowList("skip")}>Import danh sách</button>
                         <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button> */}
+                         <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button>
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                     </div>
                 </div>
