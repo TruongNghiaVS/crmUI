@@ -469,7 +469,9 @@ const Reason = () => {
             'Tác động mới nhất',
             'Mã màu',
             'Ngày câp nhật',
-            'Id hệ thống'
+            'Id hệ thống',
+            'Số tiền góp',
+            'Ngày hứa thanh toán'
             ]
         ];
         let workBook = XLSX.utils.book_new();

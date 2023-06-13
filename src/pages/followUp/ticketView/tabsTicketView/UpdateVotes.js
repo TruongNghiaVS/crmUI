@@ -20,7 +20,9 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
             })
             return;
         }
+   
       
+        
         if(dataView1.statusIm  <0)
         {
             Swal.fire({
@@ -31,7 +33,29 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
             })
             return;
         }
+        if(dataView1.placeCode == '' || dataView1.placeCode == '-1')
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chọn chơi nơi liên hệ',
+                text: 'Chọn chơi nơi liên hệ',
+                footer: 'Yêu cầu nghiệp vụ!'
+            })
+            return;
+        }
 
+        if(dataView1.wayContact == '' || dataView1.wayContact == '-1')
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chọn phương thức liên hệ',
+                text: 'Chọn phương thức liên hệ',
+                footer: 'Yêu cầu nghiệp vụ!'
+            })
+            return;
+        }
+
+        
         if(dataView1.statusIm ==215 || dataView1.statusIm ==243 )
         {
 
@@ -155,6 +179,46 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                             
                     </Form.Select>
                 </InputGroup>
+                <InputGroup size="sm" className="mb-1">
+                    <InputGroup.Text id="inputGroup-sizing-sm">Phương thức liên hệ</InputGroup.Text>
+                    <Form.Select aria-label="Default select example" name ="wayContact" value ={dataView1.wayContact}    onChange={handleInputChange}  >
+                    
+                                    <option value = "-1" selected>Chọn phương thức liên hệ</option>
+                                    <option value = "LET">Gửi thư thông báo nợ</option>
+                                    <option value = "PHAP_LY">Thu hồi nợ pháp lý</option>
+                                    <option value = "DIA_BAN">Thu hồi nợ tại địa bàn</option>
+                                    <option value = "DIEN_THOAI">Thu hồi nợ qua điện thoại</option>
+                                    <option value = "SMS">Gửi SMS nhắc nợ</option>
+                                    <option value = "SKIP_CALL">Truy tìm thông tin khách hàng qua điện thoại</option>
+                                    <option value = "SKIP_SOCIAL_NETWORK">Truy tìm thông tin khách hàng qua mạng xã hội</option>
+                                  
+                                   
+                            
+                    </Form.Select>
+                </InputGroup>
+                <InputGroup size="sm" className="mb-1">
+                    <InputGroup.Text id="inputGroup-sizing-sm">Nơi liên hệ</InputGroup.Text>
+                    <Form.Select aria-label="Default select example" name ="placeCode" value ={dataView1.placeCode}    onChange={handleInputChange}  >
+                    
+                                    <option value = "-1" selected>Chọn nơi liên hệ</option>
+                                    <option value = "KHAC">kHÁC</option>
+                                    <option value = "TAM_TRU">TẠM TRÚ</option>
+                                    <option value = "HO_KHAU">HỘ KHẨU</option>
+                                    <option value = "CONG_TY">CÔNG TY</option>
+                                    <option value = "TOA_AN">TÒA ÁN</option>
+                                    <option value = "VIEN_KIEM_SAT">VIỆN KIỂM SÁT</option>
+                                    <option value = "CONG_AN">CÔNG AN</option>
+                                    <option value = "SO_KH">SỐ KHÁCH HÀNG</option>
+                                    <option value = "SO_CONG_TY">SỔ CÔNG TY</option>
+                                    <option value = "SO_NGUOI_THAN1">SỐ NGƯỜI THÂN 1</option>
+                                    <option value = "SO_NGUOI_THAN2">SỐ NGƯỜI THÂN 2</option>
+                                    <option value = "SO_KHAC">SỐ KHÁC</option>
+                                   
+                            
+                    </Form.Select>
+                </InputGroup>
+
+              
 
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Phân loại hồ sơ:</InputGroup.Text>

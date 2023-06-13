@@ -351,6 +351,35 @@ const Reporthistorical = () => {
           });
 
     }
+    const exportData2 =()=> {
+        let fromDate = obejctSearch.from;
+        if(fromDate=="")
+        {
+            fromDate = null;
+        }
+        let bodySearch = {
+            Token: obejctSearch.tokenSearch,
+            Page: obejctPaging.currentPage,
+            Limit: obejctPaging.limt,
+            LineCode: obejctSearch.lineCode,
+            statusSearch: obejctSearch.statusSearch,
+            phoneLog: obejctSearch.phoneLog,
+            Disposition: obejctSearch.status,
+            from:fromDate,
+            to: obejctSearch.to
+
+        };
+  
+        EmployeeService.exportDataImpact2(  bodySearch, (response) => {
+                if (response.statusCode === 200) {
+                    exportDataExcel2(response.value.data);
+                } else {
+                    
+                }
+        }, (error) => {
+
+        });
+    }
 
     const exportData = () => {
     
@@ -451,6 +480,40 @@ const Reporthistorical = () => {
 
 }
 
+
+const exportDataExcel2 = (dataReder) => {
+
+    var DataExport = dataReder;
+      let workBook = XLSX.utils.book_new();
+      const Heading = [
+        [
+         
+           'Ngày tác động',
+           'Mã nhân viên',
+           'Mã KH',
+           'Phương thức liên hệ',
+           'Nơi liên hệ',
+           'Người liên hệ',
+           'Mã liên hệ',
+           'Ngày hứa TT(MM/dd/yyyy)',
+           'Số tiền hứa thanh toán',
+           'Nghi ngờ gian lận',
+           'Ghi chú T12'
+        ]
+    ];
+ 
+      
+    const workSheet = XLSX.utils.json_to_sheet(DataExport,  
+        { origin: 'A2', skipHeader: true }
+        );
+    XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
+    XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
+
+    let exportFileName = `impactHistory.xls`;
+
+     XLSX.writeFile(workBook,exportFileName);
+
+}
     const renderData = (dataReder) => {
 
           
@@ -692,6 +755,7 @@ const Reporthistorical = () => {
                         </div>
                         <div className="search-feature">
                                 {/* <button className="btn-search" onClick={()=>importFile()}>Nhập dữ liệu</button> */}
+                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu 2</button>
                                 <button className="btn-search" onClick={exportData}>Xuất dữ liệu</button>
                                 <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>

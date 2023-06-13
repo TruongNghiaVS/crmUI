@@ -47,6 +47,7 @@ const TicketView = () => {
         campagnName: "Chiến dịch 4",
         shortDescription: "",
         statusIm:"-1",
+        placeCode: "-1",
         noteIm: "",
         noteCode: "-1",
         promiseday: null,

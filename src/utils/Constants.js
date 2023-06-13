@@ -121,6 +121,7 @@ class ConstantData {
      //ReportService
     static URL_ReportService_GetALlOverView = `${ConstantData.DOMAIN}/api/Report/getAllOverView`;
     static  URL_ReportService_getReportImpact = `${ConstantData.DOMAIN}/api/report/exportImpactData`;
+    static  URL_ReportService_ImpactHistory = `${ConstantData.DOMAIN}/api/ImpactHistory/exportFinal`;
     static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;
 
     static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;
