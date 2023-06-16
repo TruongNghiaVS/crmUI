@@ -488,7 +488,7 @@ const exportDataExcel2 = (dataReder) => {
       const Heading = [
         [
          
-           'Ngày tác động',
+           'Ngày tác động(MM/dd/yyyy)',
            'Mã nhân viên',
            'Mã KH',
            'Phương thức liên hệ',
@@ -509,7 +509,7 @@ const exportDataExcel2 = (dataReder) => {
     XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
     XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
 
-    let exportFileName = `impactHistory.xls`;
+    let exportFileName = `impactHistoryFinal.xls`;
 
      XLSX.writeFile(workBook,exportFileName);
 
@@ -755,7 +755,7 @@ const exportDataExcel2 = (dataReder) => {
                         </div>
                         <div className="search-feature">
                                 {/* <button className="btn-search" onClick={()=>importFile()}>Nhập dữ liệu</button> */}
-                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu 2</button>
+                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu BC</button>
                                 <button className="btn-search" onClick={exportData}>Xuất dữ liệu</button>
                                 <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>
