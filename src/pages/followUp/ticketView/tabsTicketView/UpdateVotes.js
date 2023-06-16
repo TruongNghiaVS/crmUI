@@ -44,6 +44,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
             return;
         }
 
+       
         if(dataView1.wayContact == '' || dataView1.wayContact == '-1')
         {
             Swal.fire({
@@ -98,6 +99,26 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
        
         saveImpact();
     }
+
+    const  use_number =(node)=>{
+        var empty_val = false;
+        const value = node.value;
+        if (node.value == '')
+          empty_val = true;
+        node.type = 'number';
+        if (!empty_val)
+          node.value = Number(value.replace(/,/g, '')); // or equivalent per locale
+      }
+      
+    const   use_text = (node) => {
+        var empty_val = false;
+        const value = Number(node.value);
+        if (node.value == '')
+          empty_val = true;
+        node.type = 'text';
+        if (!empty_val)
+          node.value = value.toLocaleString('en');  // or other formatting
+      }
     const dateForPicker = (dateString) => {
          if( dateString == null)
          {
@@ -152,7 +173,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                 </InputGroup>
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Tiền hứa</InputGroup.Text>
-                    <FormControl   onChange={handleInputChange}   name ="moneyPromise" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value ={dataView1.moneyPromise} />
+                    <FormControl onChange={handleInputChange}   name ="moneyPromise" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value ={dataView1.moneyPromise} />
                 </InputGroup>
 
                 <InputGroup size="sm" className="mb-1">
@@ -243,7 +264,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                        value = {dataView1.noteIm}  />
                 </Form.Group>
             </Col>
-            <Col>
+            {/* <Col>
                 <Form.Label htmlFor="basic-url">Hẹn theo dõi</Form.Label>
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Hẹn</InputGroup.Text>
@@ -285,7 +306,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                        
                     </Form.Select>
                 </InputGroup>
-            </Col>
+            </Col> */}
       
            
         </Row>

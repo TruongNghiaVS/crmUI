@@ -16,9 +16,9 @@ const InfoTicketView = ({ dataView , handleInputChange, Save }) => {
             <InfoFinance handleInputChange ={handleInputChange} data = {dataView} />
             <InfoProduct handleInputChange = {handleInputChange} data = {dataView} />
         </Row>
-                <div className="mt-3 text-center">
+                {/* <div className="mt-3 text-center">
                     <Button  variant="outline-primary">Cập nhật hồ sơ</Button>
-                </div>
+                </div> */}
 
 
         </>

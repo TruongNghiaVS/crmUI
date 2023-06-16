@@ -49,6 +49,7 @@ const TicketView = () => {
         statusIm:"-1",
         placeCode: "-1",
         noteIm: "",
+        wayContact: "-1",
         noteCode: "-1",
         promiseday: null,
         moneyPromise: "",

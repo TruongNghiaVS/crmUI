@@ -14,13 +14,14 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
     if(roleUser === "2") {
         isAdmin = true;
     }
- 
+   
     return (
             <Tabs
                 defaultActiveKey="home"
                 transition={false}
                 id="noanim-tab-example"
                 className="mb-3"
+          
               
             >
             <Tab eventKey="home" title="Cập nhật phiếu">
