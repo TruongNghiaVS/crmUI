@@ -56,7 +56,7 @@ const Reason = () => {
         tokenSearch: "",
         dpd: "-1",
         IdPackage: "",
-        fromTime: moment().subtract(20, 'days'),
+        fromTime: moment().subtract(90, 'days'),
         endTime: moment()
     });
    
