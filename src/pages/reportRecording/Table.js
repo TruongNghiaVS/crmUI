@@ -47,13 +47,19 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
     var zone  = "America/New_York";
 
     const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
+    let timeCalText = moment(data.calldate).zone("+7:00").format("DD/MM/YYYY HH:mm:ss");
+    if(data.calldate < "2023-06-19T15:07:50")
+    {
+         timeCalText = moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss");
+    }
 
+    
 
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss")}</td>
+            <td>{timeCalText}</td>
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
             <td>{data.dst}</td>
