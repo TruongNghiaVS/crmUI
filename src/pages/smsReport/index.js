@@ -287,6 +287,7 @@ const User = () => {
     }
     
     const getData = () => {
+        return;
         const search = window.location.search;
         const query = new URLSearchParams(search);
         const page = query.get('page');

@@ -42,6 +42,18 @@ const getShowfile =  (item)=> {
     return <p></p>
 }
 
+const getStatusRecord = (item) => {
+        if(item.isCal)  
+        {
+            return <img className="checkSucess" src ="/checkSucess.png" />
+        }
+        else 
+        {
+            return <img className="checkSucess" src ="/checkError.png" />
+        }
+}
+
+
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
@@ -64,7 +76,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{data.src}</td>
             <td>{data.dst}</td>
             <td>{data.disposition}</td>
-            <td>{data.lastapp}</td>
+            <td>{getStatusRecord(data)}</td>
             <td>{data.durationReal}</td>
              <td>{data.duration}</td>
 

@@ -734,7 +734,7 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
                     </div>
                 </div>
 
-                <Table theadData={DataJson.theadDataReportCDR} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
+                <Table theadData={DataJson.theadDataReportRecording} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
                 <Paging dataPaging={obejctPaging} handlePaging={handlePaging} />
 
             </div>

@@ -76,6 +76,9 @@ const DataJson = {
       "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime"
      ],
 
+     theadDataReportRecording: [
+        "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","Valid/Invalid", "Time_Talking","TotalTime"
+       ],
      theadDataReportCDRWidthNo: [
         "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime" ,"Số hợp đồng"
        ],
