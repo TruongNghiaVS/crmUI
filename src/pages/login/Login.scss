@@ -1,13 +1,13 @@
 .login {
   text-align: center;
   position: absolute;
+  width: 100%;
+  margin: auto;
   top: 50%;
   transform: translateY(-50%);
 
   .logo-login {
-    img {
-      width: 20%;
-    }
+    
   }
 
   .form-login {

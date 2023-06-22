@@ -83,7 +83,7 @@ const DataJson = {
         "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime" ,"Số hợp đồng"
        ],
      theadReportSms: [
-        "STT", "Ngày",  "line",  "Số điện thoại","Nội dung", "Trạng thái","TaskId"
+        "STT", "Ngày",  "line",  "Số điện thoại","Số hợp đồng","Nội dung", "Trạng thái","Nhà mạng"
        ],
   
 

@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://118.69.182.32:7777";
+    static DOMAIN = "http://192.168.1.2:8888";
     static HEADERS = {
         'Accept': 'applcation/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -162,7 +162,9 @@ class ConstantData {
 
     //sms server
 
-    static URL_sms_Send = `${ConstantData.DOMAIN}/api/sms/send`;
+    static URL_sms_Send = `${ConstantData.DOMAIN}/api/sms/add`;
+
+    static URL_sms_getAll = `${ConstantData.DOMAIN}/api/sms/getall`;
 
     //dpd server
     static URL_dpd_GetALl = `${ConstantData.DOMAIN}/api/dpd/getAll`;

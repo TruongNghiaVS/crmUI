@@ -12,7 +12,7 @@ import ModelAddUser from "./ModelUser";
 import "./User.scss";
 import { useEffect, useRef } from 'react';
 import ConstantData from '../../utils/Constants';
-import EmployeeService from '../../services/ReportService';
+import EmployeeService from '../../services/SmsService';
 import Paging from "./Paging";
 import { toast } from 'react-toastify';
 import DateTimePicker from 'react-datetime-picker';
@@ -287,7 +287,7 @@ const User = () => {
     }
     
     const getData = () => {
-        return;
+    
         const search = window.location.search;
         const query = new URLSearchParams(search);
         const page = query.get('page');
@@ -348,7 +348,7 @@ const User = () => {
                 bodySearch.Limit =limit; 
 
             }
-            EmployeeService.GetAllRecordingfile(bodySearch, (response) => {
+            EmployeeService.getAll(bodySearch, (response) => {
                 if (response.statusCode === 200) {
                     renderData(response.value);
                 } else {

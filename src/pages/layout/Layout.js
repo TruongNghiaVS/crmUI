@@ -27,6 +27,9 @@ import Reporthistorical from '../reporthistorical';
 import {ticketView} from '../followUp/ticketView/TicketView';
 import 'react-toastify/dist/ReactToastify.css';
 import ReportCDR from '../reportCDR';
+import DocumentData from '../DocumentData';
+
+
 import ReportTalkTime from '../reportTalkTime';
 import ReportRecording from '../reportRecording';
 
@@ -115,6 +118,13 @@ const Screen = (props) => {
         case 'recording': 
     
         return  <ReportRecording/>
+
+
+        case 'documentData': 
+    
+        return  <DocumentData/>
+
+        
 
         
         case 'recordingNoAgree': 

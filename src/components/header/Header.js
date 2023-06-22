@@ -73,7 +73,7 @@ const Header = ({ classHeader }) => {
         <header className={classHeader}>
             <nav className='nav-header'>
                 <ul className='menu'>
-                    <li className='list-link'><Link className='nav-link link-main' to="/">Vietstar</Link></li>
+                    <li className='list-link'><Link className='nav-link link-main' to="/">HCM</Link></li>
                     <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
@@ -134,6 +134,14 @@ const Header = ({ classHeader }) => {
                            
                         </ul>
                     </li>:<></> } 
+
+
+                  
+
+                    <li className='list-link'>
+                        <Link className='nav-link' to="/document-data">Tài nguyên <FaCaretDown className='nav-icon icon-caret-down' /></Link>
+                     
+                    </li>
 
                     { roleUser == "4"?  <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Vận hành <FaCaretDown className='nav-icon icon-caret-down' /></Link>

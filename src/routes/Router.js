@@ -61,6 +61,9 @@ function Router() {
                               
                          </Route>
 
+                         <Route path="document-data" element={<Layout page="documentData" />}>
+                              
+                              </Route>
                          <Route path="bao-cao-ghi-am-theo-so-hop-dong" element={<Layout page="recordingNoAgree" />}>
                               
                          </Route>

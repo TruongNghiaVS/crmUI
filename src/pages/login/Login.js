@@ -123,7 +123,7 @@ const Login = () => {
   return (
 		<div className='login'>
       {isLoading ? <LoadingSpinner /> : <div></div>}
-      <p className='logo-login'><img alt='logo' src='http://s6.realtime.vn:8082/crm/layout/assets/img/logo.png?fbclid=IwAR1Fdc7PhXTzGXqlIRMRddjzqe8ImFwBcryX_9R7hwmmnAegXIy1vzOs2jY' /></p>
+      <p className='logo-login'><img alt='logo' src='/HCMLawFirm.png' /></p>
       <form className='form-login'>
         <div className='input-container'>
           <InputGroup className="mb-2">

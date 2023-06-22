@@ -9,29 +9,32 @@ const TableHeadItem = ({ item }) => {
         <th title={item}>{item}</th>
     );
 };
-
-const getShowfile =  (item)=> {
-    // return item.recordingfile;
-    let fileUrl = "http://118.69.182.32:7777/api/file/getaudio12?filePath=";
-    if(item.src.startsWith("1"))
-    {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
-    }
-    if(item.src.startsWith("3"))
-    {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio09?filePath=";
-    }
-    fileUrl=fileUrl +''+ item.recordingfile;
-    
-    if(!item.isShow)
-    {   
-        return  <ReactAudioPlayer
-        src={fileUrl}
-        
-        controls
-        />;
-    }
+const renderStatus =  (item)=> {
+   if( item == "0")
+   {
+    return <p> Đang chờ xử lý </p>
+   }
     return <p></p>
+}
+
+const rendernetword = (item) => {
+
+    if(item == "2")
+    {
+        return <p>Viettel </p>
+    }
+    else if(item == "1")
+    {
+        return  <p>Vina</p>
+    }
+    else  if(item =="4")
+    {
+        return <p> Mobi</p>
+    }
+    else 
+    {
+        return <p> Khác</p>
+    }
 }
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
@@ -45,14 +48,16 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss")}</td>
-       
-            <td>{data.src}</td>
-            <td>{data.dst}</td>
-            <td>{data.disposition}</td>
-            <td>Thành công</td>
-            <td>TaskId</td>
+           
+            <td>{moment(data.timeBuisiness).format("DD/MM/YYYY HH:mm:ss")}</td>
 
+            <td>{data.lineCode}</td>
+            <td>{data.phone}</td>
+            <td>{data.profileId}</td>
+            <td>{data.content}</td>
+            <td>{renderStatus(data.status)}</td>
+            <td>{rendernetword(data.netword)}</td>
+       
         </tr>
     );
 };

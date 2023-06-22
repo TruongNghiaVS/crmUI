@@ -80,7 +80,7 @@ const PopupSms = (props) => {
          if (response.statusCode === 200) {
                    
              Swal.fire({
-                 title: 'Thực hiện nhắn tin thành công',
+                 title: 'Ghi nhận thành công, Bộ phận liên quan đang xử lý',
                  width: 600,
                  timer: 3000,
                  showConfirmButton: false,
@@ -97,7 +97,7 @@ const PopupSms = (props) => {
              Swal.fire({
                  icon: 'error',
                  title: 'Có lỗi xảy ra',
-                 text: 'Không gọi được!',
+                 text: 'Không gửi được!',
                  footer: 'Liên hệ IT hỗ trợ'
                })
          }
@@ -107,7 +107,7 @@ const PopupSms = (props) => {
              Swal.fire({
                  icon: 'error',
                  title: 'Có lỗi xảy ra',
-                 text: 'Không gọi được!',
+                 text: 'Không gửi được!',
                  footer: 'Liên hệ IT hỗ trợ'
                })
          
@@ -133,6 +133,8 @@ const PopupSms = (props) => {
                     </InputGroup>
 
                     <Form.Label>Nội dung tin nhắn</Form.Label>
+
+                
                     <InputGroup className="mb-2">
                       
                         <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -141,6 +143,13 @@ const PopupSms = (props) => {
                                     />
                         </Form.Group>
                     </InputGroup>
+
+
+                    <p> Mirae Asset (Việt Nam) đề nghị ông/bà <FormControl   placeholder='Tên ông bà' />
+                    thanh toán khoản nợ quá hạn  <FormControl   placeholder='Quá hạn' />  đồng trước ngày 
+                    <FormControl   placeholder='Quá hạn' />/ <FormControl   placeholder='Quá hạn' /> 2023
+                     để tránh việc bị tố giác về hành vi có dấu hiệu chiếm đoạt tài sản tại Cơ quan Cảnh sát Điều tra Hình sự.
+                     </p>
              </form>
             </div>
 

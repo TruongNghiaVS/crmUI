@@ -181,7 +181,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                     <Form.Select aria-label="Default select example" name ="noteCode" value ={dataView1.noteCode}    onChange={handleInputChange}  >
                     
                                     <option value = "-1" selected>Người liên hệ</option>
-                                    <option value = "DIEN_THOAI">Điện thoại</option>
+                            
                                     <option value = "KHACH_HANG">Khách hàng</option>
                                     <option value = "CON">Con</option>
                                     <option value = "CHA">Cha</option>
@@ -196,7 +196,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                                     <option value = "BAN_BE">Bạn bè</option>
                                     <option value = "DONG_NGHIEP">Đồng nghiệp</option>
                                     <option value = "CHU_SO_HUU">Chủ sở hữu</option>
-                                    <option value = "KHONG_XAC_DINH">Không xác định</option>
+                              
                             
                     </Form.Select>
                 </InputGroup>
