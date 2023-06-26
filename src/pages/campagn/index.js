@@ -5,6 +5,7 @@ import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
 import ModelPopup from "./ModelPopup";
 import UploadFile  from "./UploadFile";
+import DeleteFile  from "./deleteFile";
 import "./User.scss";
 import { useEffect,useRef  } from 'react';
 import ConstantData from '../../utils/Constants';
@@ -21,6 +22,7 @@ const Campagn = () => {
 
     const [campagnIdSelect, setCampagnSelect] = useState(-1);
     const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+    const [isOPenDeleteFile, setisOPenDeleteFile] = useState(false);
     const [isInit, setInit] = useState(false);
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
@@ -38,12 +40,29 @@ const Campagn = () => {
           setisOPenUploadFile(!isOPenUploadFile);
     }
 
+
+    const handleDeleteFie= (id)=> {
+
+        setCampagnSelect(id);
+       
+        handleShowModelDeleteFile(!isOPenDeleteFile);
+   }
+
     const handleShowModelUploadFile = () => {
         
 
         setisOPenUploadFile(!isOPenUploadFile);
         
     }
+
+
+    const handleShowModelDeleteFile = () => {
+        
+
+        setisOPenDeleteFile(!isOPenDeleteFile);
+        
+    }
+    
 
 
     
@@ -376,6 +395,7 @@ const Campagn = () => {
                     <Table
                         theadData={ DataJson.theadDataCampang } 
                         dataDraw={dataEmployee} 
+                        handleDeleteFie = {handleDeleteFie}
                         handleDelete = {handleDeleteEmpl} 
                         handleViewById = {handleViewById}
                         handleUpdateById = {handleUpdateById} 
@@ -405,6 +425,18 @@ const Campagn = () => {
                     handleClose={handleShowModelUploadFile} 
                 />} />
              }
+
+                {
+                    isOPenDeleteFile && <Model                                        
+                        handleClose ={handleShowModelDeleteFile}
+                        content={<DeleteFile
+                        idPass = {campagnIdSelect}   
+                        handleClose={handleShowModelDeleteFile} 
+                    />} />
+                    }
+
+
+
 
 
         </div>

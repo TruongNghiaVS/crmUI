@@ -183,5 +183,6 @@ class ConstantData {
     static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;
     static URL_package_GetById = `${ConstantData.DOMAIN}/api/package/getById`;
 
+
 }
 export default ConstantData;

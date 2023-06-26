@@ -18,7 +18,7 @@ const getStatusText = (isActive)=> {
     return <p>Không hoạt động</p>
 }
 
-const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow,openAssignee }) => {
+const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow,openAssignee,handleDeleteFie }) => {
     rowIndex = rowIndex +1;
     let likUrl = "/thong-tin-chien-dich/" + data.id;
     return (
@@ -52,12 +52,13 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                         <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
                         <FaFileImport onClick={()=>handleimportRow(data.id)} className='icon-tbl' />
                         <MdAssistantNavigation onClick={()=>openAssignee(data.id)} className='icon-tbl'/>
+                        <MdAssistantNavigation onClick={()=>handleDeleteFie(data.id)} className='icon-tbl'/>
                     </td>
         </tr>
     );
 };
 
-const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById, handleimportRow, openAssignee }) => {
+const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById, handleimportRow, openAssignee ,handleDeleteFie}) => {
      
     return (
         <table className={tblClass}>
@@ -85,6 +86,7 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
                                             handleUpdateById ={handleUpdateById}
                                             handleimportRow = {handleimportRow}
                                             openAssignee = {openAssignee}
+                                            handleDeleteFie = {handleDeleteFie}
                                     />;
                         })
                 }
