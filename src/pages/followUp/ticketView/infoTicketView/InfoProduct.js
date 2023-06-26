@@ -82,11 +82,12 @@ const InfoProduct = ({data, handleInputChange}) => {
 
      let valuePhoneClick = "";
 
-   
+    useEffect(() => {
+
+        
+    });
     const displayMobilePhone = (numberPhone) => 
 {   
-
- 
     if(numberPhone == null)
     {
         return ;
@@ -103,7 +104,7 @@ const InfoProduct = ({data, handleInputChange}) => {
      
      const searchandReplace = (str) => {
 
-        return str;
+
 
         if(str == null)
     {
@@ -117,7 +118,7 @@ const InfoProduct = ({data, handleInputChange}) => {
         var re = /(?:[-+() ]*\d){10,13}/gm; 
       
         var res = str.match(re).map(function(s){
-            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " onclick = callToAction("+s+")>" + s+  "</a>")
+            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " onclick = callToAction("+s+")>" + displayMobilePhone(s)+  "</a>")
             // str = str.replace(s, "<a class =" +'"' + "clicktocall" +'"'+  "  onClick={this.callToAction()}>" + displayMobilePhone(s)+  "</a>")
            
             return s +";"
@@ -148,8 +149,8 @@ const InfoProduct = ({data, handleInputChange}) => {
             <Form.Group className="mt-3">
                 <Form.Label>Ghi chú tham chiếu</Form.Label>
                 
-                <div dangerouslySetInnerHTML={{__html: searchandReplace(data.noteRel)}} />
-                {/* <Form.Control as="textarea" rows={7} value ={data.noteRel} name ="noteRel"   onChange={handleInputChange}  /> */}
+                {/* <div dangerouslySetInnerHTML={{__html: searchandReplace(data.noteRel)}} /> */}
+                <Form.Control as="textarea" rows={7} value ={data.noteRel} name ="noteRel"   onChange={handleInputChange}  />
             </Form.Group>
         </Col>
     );

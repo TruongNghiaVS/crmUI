@@ -14,7 +14,6 @@ import { mode } from "crypto-js";
 
 const displayMobilePhone = (numberPhone) => 
 {   
-
     return numberPhone;
     if(numberPhone == null)
     {
