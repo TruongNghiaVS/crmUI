@@ -16,6 +16,20 @@ const openDetailItem = (likUrl) => {
     window.open(likUrl,"_self")
 
 }
+
+const displayMobilePhone = (numberPhone) => 
+{   
+    if(numberPhone)
+    {
+        if(numberPhone.length <7)
+        {
+            return "";
+        }
+        return  numberPhone.substring(0, 3) + 'xxxxxxx';
+    }
+    return "";
+
+}
 const skipTask = (id)=> {
 
     Swal.fire({
@@ -131,7 +145,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             
             <td>
                  <NavLink to={likUrl} >
-                 {data.mobilePhone}
+                 {displayMobilePhone(data.mobilePhone)}
                 </NavLink>
             </td>
 

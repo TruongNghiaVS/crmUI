@@ -508,9 +508,13 @@ const User = () => {
                     
                     <div className="search-feature">
                         <FaFilter />
+                       
+                            <button className="btn-search" onClick={searchData}>Tìm kiếm</button>
                         
-                        <button className="btn-search" onClick={searchData}>Tìm kiếm</button>
-                        <button className="btn-search" onClick={exportData}>Xuất file</button>
+                         {
+                          isAdmin?
+                                <button className="btn-search" onClick={exportData}>Xuất file</button> : <></> 
+                          }
                     </div>
                 </div>
 

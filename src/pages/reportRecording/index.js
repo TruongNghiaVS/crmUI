@@ -728,12 +728,13 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
                 <div className="list-feature">
                     
                     <div className="search-feature">
-                       
-                     <button className="btn-search" onClick={exportData}>Xuất file</button>
+                    { isAdmin?
+                     <button className="btn-search" onClick={exportData}>Xuất file</button> : <></> 
+                     }
                         <button className="btn-search" onClick={SearchData}>Tìm kiếm</button>
                     </div>
                 </div>
-
+               
                 <Table theadData={DataJson.theadDataReportRecording} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
                 <Paging dataPaging={obejctPaging} handlePaging={handlePaging} />
 

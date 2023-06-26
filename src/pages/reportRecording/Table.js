@@ -13,6 +13,19 @@ const TableHeadItem = ({ item }) => {
     );
 };
 
+const displayMobilePhone = (numberPhone) => 
+{   
+    if(numberPhone)
+    {
+        if(numberPhone.length <7)
+        {
+            return "";
+        }
+        return  numberPhone.substring(0, 3) + 'xxxxxxx';
+    }
+    return "";
+
+}
 const onPlay = (id) => {
  
     
@@ -95,7 +108,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{timeCalText}</td>
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
-            <td>{data.dst}</td>
+            <td>{displayMobilePhone(data.dst)}</td>
             <td>{data.disposition}</td>
             <td>{getStatusRecord(data)}</td>
             <td>{data.durationReal}</td>

@@ -4,7 +4,7 @@ const ImpactHistory = ({data}) => {
     return (
         <>
 
-<table className='tbl-custom-data'>
+        <table className='tbl-custom-data'>
           
             <tbody>
 

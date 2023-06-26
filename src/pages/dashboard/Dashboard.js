@@ -354,8 +354,10 @@ const dateForPicker = (dateString) => {
                 <div className="list-feature">
                     
                     <div className="search-feature">
-                      
-                    <button className="btn-search"  onClick={exportData} >Xuất file</button>
+                    { isAdmin?
+                     <button className="btn-search"  onClick={exportData} >Xuất file</button> : <></> 
+                     }
+                    
                         <button className="btn-search"  onClick={searchData} >Tìm kiếm</button>
                     </div>
                 </div>
