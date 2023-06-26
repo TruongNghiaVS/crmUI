@@ -105,7 +105,7 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-talktime">BC talktime</Link></li>
                              { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/reportCDR">BC CDR</Link></li>: <></> }
                             <li className='sub-list-link'><Link className='nav-link' to="/report/login">BC Đăng nhập </Link></li>
-                            
+                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-luot-xem">Báo cáo lượt xem ghi âm</Link></li>
                             <li className='sub-list-link'><Link className='nav-link' to="/dashboard">Dashboard </Link></li>
                         </ul>
                     </li>

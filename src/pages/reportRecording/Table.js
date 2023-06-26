@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import moment from "moment-timezone"; 
 
 import ReactAudioPlayer from 'react-audio-player';
+import { findAllInRenderedTree } from "react-dom/test-utils";
+import ViewRecordingService from '../../services/ViewRecordingService';
+
 
 const TableHeadItem = ({ item }) => {
     return (
@@ -10,8 +13,26 @@ const TableHeadItem = ({ item }) => {
     );
 };
 
-const onPlay = (e) => {
+const onPlay = (id) => {
+ 
     
+    countRecord(id);
+
+}
+
+
+const  countRecord = (id) => { 
+      
+    const modelUpdate = {
+        ProfileId: ''+id
+    };
+    
+    ViewRecordingService.PushCase(
+         modelUpdate,
+        null, 
+        null);
+   
+
 }
 const getShowfile =  (item)=> {
     // return item.recordingfile;
@@ -35,7 +56,7 @@ const getShowfile =  (item)=> {
     {   
         return  <ReactAudioPlayer
         src={fileUrl}
-        onPlay = {onPlay}
+        onPlay = {() => onPlay(item.id)}
         controls
         />;
     }
