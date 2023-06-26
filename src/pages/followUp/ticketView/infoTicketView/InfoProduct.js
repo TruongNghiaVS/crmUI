@@ -82,28 +82,11 @@ const InfoProduct = ({data, handleInputChange}) => {
 
      let valuePhoneClick = "";
 
-    useEffect(() => {
-
-        // $('.clicktocall').click(function(e){
-        //     alert(e);
-        // }) 
-
-      
-
-        var userSelection = document.getElementsByClassName('clicktocall');
-        userSelection[0].addEventListener("click", function(e) {
-            e.preventDefault();
-              var valuePhone =  e.target.getAttribute("valuetemp");
-            alert(valuePhone);
-         })
-  
-// for(var i = 0; i < userSelection.length; i++) {
-//   (function(index) {
-//    )(i);
-// }
-    });
+   
     const displayMobilePhone = (numberPhone) => 
 {   
+
+ 
     if(numberPhone == null)
     {
         return ;
@@ -120,6 +103,8 @@ const InfoProduct = ({data, handleInputChange}) => {
      
      const searchandReplace = (str) => {
 
+        return str;
+
         if(str == null)
     {
         return ;
@@ -132,7 +117,7 @@ const InfoProduct = ({data, handleInputChange}) => {
         var re = /(?:[-+() ]*\d){10,13}/gm; 
       
         var res = str.match(re).map(function(s){
-            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " onclick = callToAction("+s+")>" + displayMobilePhone(s)+  "</a>")
+            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " onclick = callToAction("+s+")>" + s+  "</a>")
             // str = str.replace(s, "<a class =" +'"' + "clicktocall" +'"'+  "  onClick={this.callToAction()}>" + displayMobilePhone(s)+  "</a>")
            
             return s +";"
