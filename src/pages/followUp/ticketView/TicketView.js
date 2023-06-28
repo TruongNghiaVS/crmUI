@@ -241,7 +241,7 @@ const handleSucessUpdateImpact = (data) => {
                 title: 'Lưu thành công',
              
             }).then(function() {
-                window.location.reload();
+                window.open("/follow-up-new/new-list ","_self");
             });
            
     }

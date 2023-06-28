@@ -15,7 +15,7 @@ const openDetailItem = (likUrl) => {
     return;
     window.open(likUrl,"_self")
 
-}
+} 
 
 const displayMobilePhone = (numberPhone) => 
 {   
@@ -131,20 +131,20 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>
-                 <NavLink to={likUrl} >
+                 <NavLink to={likUrl} target="_self"  >
                  {data.customerName}
                 </NavLink>
             </td>
 
             <td>
-                 <NavLink to={likUrl} >
+                 <NavLink to={likUrl}  target="_self" >
                  {data.noAgreement}
                 </NavLink>
             </td>
             <td>{data.dpd}</td>
             
             <td>
-                 <NavLink to={likUrl} >
+                 <NavLink to={likUrl} target="_self" >
                  {displayMobilePhone(data.mobilePhone)}
                 </NavLink>
             </td>
@@ -159,7 +159,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td>{getCaseSkip(data.skipp)}</td>
             <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
             <td>
-                 <NavLink to={likUrl} >
+                 <NavLink to={likUrl} target="_self" >
                     <FaEdit className="icon-edit" />
                 </NavLink>
                {
