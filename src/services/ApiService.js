@@ -11,10 +11,19 @@ static httpPost (url, headers, body, callSuccess, callError) {
         })
         .then((res) => res.json())
         .then((json) => {
-                callSuccess(json);
+                if(callSuccess)
+                {
+                        callSuccess(json);
+                }
+                
         })
         .catch(error => {
-                 callError(error);
+
+                if(callError)
+                {
+                        callError(error);
+                }
+                
         });
     }
 }
