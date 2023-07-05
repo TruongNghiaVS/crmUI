@@ -165,7 +165,7 @@ class ConstantData {
     static URL_sms_Send = `${ConstantData.DOMAIN}/api/sms/add`;
 
     static URL_viewRecording_PushLead = `${ConstantData.DOMAIN}/api/viewRecording/add`;
-
+    static URL_viewRecording_GetAll = `${ConstantData.DOMAIN}/api/viewRecording/getAll`;
     static URL_sms_getAll = `${ConstantData.DOMAIN}/api/sms/getall`;
 
     //dpd server

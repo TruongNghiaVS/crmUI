@@ -61,6 +61,10 @@ function Router() {
                               
                          </Route>
 
+
+                         <Route path="bao-cao-qc" element={<Layout page="viewRecording" />}>
+                              
+                         </Route>
                          <Route path="document-data" element={<Layout page="documentData" />}>
                               
                               </Route>

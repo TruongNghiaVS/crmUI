@@ -176,9 +176,17 @@ const Reason = () => {
     const roleUser = jsonProfile.role;
 
     var isAdmin = false;
+    var isTeamlead = false;
     if(roleUser === "2") {
         isAdmin = true;
+        isTeamlead =true;
     }
+
+  
+    if(roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3" ) {
+        isTeamlead = true;
+    }
+   
     const dateForPicker = (dateString) => {
     
         return moment(new Date(dateString)).format('YYYY-MM-DD')
@@ -776,10 +784,10 @@ const Reason = () => {
                   
                     <div className="search-feature">
                        {
-                           isAdmin?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button>: <></>
+                           isTeamlead?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button>: <></>
                        }
                       
-                        <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
+                        <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>
                     </div>
                 </div>
                 {/* <Tabs

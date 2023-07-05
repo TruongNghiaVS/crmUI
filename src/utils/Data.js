@@ -85,6 +85,12 @@ const DataJson = {
      theadReportSms: [
         "STT", "Ngày",  "line",  "Số điện thoại","Số hợp đồng","Nội dung", "Trạng thái","Nhà mạng"
        ],
+
+
+       theadReportViewRecording: [
+        "STT", "Ngày", "User Id",  "line",  "Số điện thoại","Link file ghi âm"
+       ],
+  
   
 
     theadDataReportTalkTime: [

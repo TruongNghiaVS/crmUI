@@ -8,6 +8,11 @@ class ViewRecordingService   {
 
 
 
+ static  getAll( body, callSuccess, callError) {
+     let url = Constants.URL_viewRecording_GetAll;
+     ApiService.httpPost(url,null, body, callSuccess, callError);
+}
+
 
  
 

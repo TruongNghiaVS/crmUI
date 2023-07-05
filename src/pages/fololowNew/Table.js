@@ -92,6 +92,7 @@ const handleSucessUpdateHandleCase = (data) => {
 const getStatusText = (status)=> {
     if(status==0)
     {
+      
         return (<p>Mới phân</p>);
     }
     else if(status==10)

@@ -36,6 +36,7 @@ import ReportRecording from '../reportRecording';
 import RecordingNoAgree from '../recordingNoAgree';
 
 import SmsReport  from  '../smsReport';
+import ViewRecordingFile  from '../viewRecordingFile';
 import LineManagement from '../lineManagement';
 import DpdManagement from '../dpdManagement';
 import NanagementPackage from '../packageManagement';
@@ -114,6 +115,10 @@ const Screen = (props) => {
         case 'reportCDR': 
     
         return  <ReportCDR/>
+
+        case 'viewRecording': 
+        return  <ViewRecordingFile/>
+
 
         case 'recording': 
     
