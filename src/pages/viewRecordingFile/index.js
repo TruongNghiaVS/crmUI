@@ -333,7 +333,7 @@ const User = () => {
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
 
-                LineCode: obejctSearch.lineCode,
+                LineCode: obejctSearch.linecode,
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,
                 from:fromDate,
@@ -519,6 +519,18 @@ const User = () => {
                                         </InputGroup>
                                     </Form.Group>
                                 </Col>
+                            </Row>
+
+                            <Row>
+                            
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>line gọi:</Form.Label>
+                                            <InputGroup className="mb-2">
+                                            <Form.Control
+                     type="text" name ="linecode"  onChange={handleInputChange} value ={obejctSearch.linecode} 
+          />
+                                            </InputGroup>
+                                        </Form.Group>
                             </Row>
 
                           
