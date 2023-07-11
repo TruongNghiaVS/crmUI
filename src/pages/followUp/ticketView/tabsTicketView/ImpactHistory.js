@@ -5,9 +5,9 @@ const ImpactHistory = ({data}) => {
         <>
 
         <table className='tbl-custom-data'>
-          
+        
             <tbody>
-
+       
             {
                 data.map((item, i) => {    
                     
@@ -26,7 +26,7 @@ const ImpactHistory = ({data}) => {
                         shortDes += "Ghi chú" + item.shortDescription;
                         return (
                             <>  
-                            <tr className={item.colorCode}>
+                                            <tr className={item.colorCode}>
                                             <td >{item.authorName}</td>
                                             <td >{moment(item.createAt).format("DD/MM/YYYY")}</td>
                                             <td >{item.shortDescription}</td>

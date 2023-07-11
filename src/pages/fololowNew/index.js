@@ -96,7 +96,7 @@ const Reason = () => {
            
       };
     MangagementPackageService.GetAllInfo( bodyRequest, (response) => {
-        debugger;
+       
     if (response.statusCode === 200) {
      
         let dataDPD= response.value;
@@ -775,7 +775,7 @@ const Reason = () => {
 
                 <div className="list-feature">
                     {
-                        isAdmin?  <div className="button-feature">
+                        isTeamlead?  <div className="button-feature">
                         
                         <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Import Thông tin thêm</button> 
                          

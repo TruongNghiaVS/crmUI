@@ -22,6 +22,12 @@ const TicketView = () => {
         ],
     });
 
+    const [dataSkip, setdataSkip] = useState( {
+        data: [
+         
+        ],
+    });
+
     const [dataReason, setDataReason] = useState( {
         data: [
          
@@ -312,6 +318,10 @@ const handleErrUpdate = (data) => {
     const handleDisplayData = (data) => {
         let dataItem = data.value.result;
         let dataHistory = data.value.listHistory;
+        let dataSkipExtra =data.value.listSkipNew;
+        
+
+        
         let campangn = data.value.campagn;
 
         let reasonData = data.value.listReason;
@@ -387,6 +397,9 @@ const handleErrUpdate = (data) => {
         }
         })
         setDataImpact(prew=>({...prew,data:dataHistory}));
+        setdataSkip(prew=>({...prew,data:dataSkipExtra}));
+
+        
         }
     };
     const handleDisplayDataErro = (event) => {
@@ -419,6 +432,7 @@ const handleErrUpdate = (data) => {
                      handleClick = {handleClick}
                      saveImpact = {saveImpact} 
                      saveSkip = {saveSkip} 
+                     dataSkip = {dataSkip}
                      
                      />
                 </div>
