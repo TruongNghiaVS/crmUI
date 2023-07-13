@@ -10,9 +10,18 @@ const TableHeadItem = ({ item }) => {
     );
 };
 const renderStatus =  (item)=> {
+   
    if( item == "0")
    {
-    return <p> Đang chờ xử lý </p>
+    return <p className ="processing"> Đang chờ xử lý </p>
+   }
+   if(item =="202")
+   {
+    return <p className="havesent"> Đã gửi </p>
+   }
+   if(item =="2999")
+   {
+    return <p className="notsend"> Không gửi được (không connect được) </p>
    }
     return <p></p>
 }

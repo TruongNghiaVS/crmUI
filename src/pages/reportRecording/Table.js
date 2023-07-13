@@ -49,7 +49,7 @@ const  countRecord = (id) => {
 }
 const getShowfile =  (item)=> {
     // return item.recordingfile;
-    let fileUrl = "http://192.168.1.2:8888/api/file/getaudio12?filePath=";
+    let fileUrl = "http://192.168.1.2:8888/api/file/getaudio10?filePath=";
     if(item.src.startsWith("1"))
     {
         fileUrl = "http://192.168.1.2:8888/api/file/getaudio10?filePath=";

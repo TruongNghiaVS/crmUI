@@ -99,7 +99,7 @@ const User = () => {
     const handlePaging = (data) => {
         // window.location.replace = "/bao-cao-ghi-am?page"+data;
 
-        window.location.replace("/bao-cao-ghi-am?page="+data);
+        window.location.replace("/bao-cao-tin-nhan?page="+data);
 
         return;
         // const key = 'currentPage';
