@@ -26,7 +26,9 @@ const UploadFile = (props) => {
 
       
      }, []);
+     
 
+ 
      const UploadFileServer = () => {
 
 
@@ -57,7 +59,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         // data.append('id', props.idPass);
-        fetch('http://192.168.1.2:8888/api/campagn/importDataSkipInfo', {
+        fetch('http://118.69.182.32:7777/api/campagn/importDataSkipInfo', {
             method: 'POST',
             body: data
         })
@@ -148,7 +150,7 @@ const UploadFile = (props) => {
             </div>
 
             <div className="footer-model">
-
+               
                  <button className="btn-model btn-add" onClick= {UploadFileServer}>Import dữ liệu </button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>

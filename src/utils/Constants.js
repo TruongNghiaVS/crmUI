@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.2:8888";
+    static DOMAIN = "http://118.69.182.32:7777";
     static HEADERS = {
         'Accept': 'applcation/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -96,7 +96,6 @@ class ConstantData {
     //masterDataNew
     static URL_masterDataNew_GetALl = `${ConstantData.DOMAIN}/api/masterdataNew/getAll`;
     static URL_line_GetALl = `${ConstantData.DOMAIN}/api/line/getAll`;
-    
     static URL_masterDataNew_GetAllStatus = `${ConstantData.DOMAIN}/api/groupReason/getAllStatus`;
     static URL_masterDataNew_Add = `${ConstantData.DOMAIN}/api/masterdataNew/add`;
     static URL_masterDataNew_Update = `${ConstantData.DOMAIN}/api/masterdataNew/update`;

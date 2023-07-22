@@ -26,7 +26,90 @@ const UploadFile = (props) => {
 
       
      }, []);
+     
 
+     const UpdateData = () => {
+
+
+        
+        var file = fileTran;
+     
+         Swal.fire({
+            title: 'Đang xử lý!',
+            html: 'Vui lòng <b></b> chờ trong giây lát.',
+            didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+          
+            },
+          
+            })
+            .then((result) => {
+                 if (result.dismiss === Swal.DismissReason.timer) {
+         
+                 }
+            })
+
+    
+        var data = new FormData();
+      
+        data.append('fileData', file)
+        data.append('id', props.idPass);
+        fetch('http://118.69.182.32:7777/api/campagn/importDataFile', {
+            method: 'POST',
+            body: data
+        })
+        .then((response) =>
+        {
+            if(response.status == "200")
+            {
+                return response.json();
+            }
+            else 
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Có lỗi',
+                    text: 'Có lỗi xảy ra!'
+                    // footer: '<a href="">?</a>'
+                  })
+
+            }
+        } )
+        .then((responseJson) => {
+
+                if(responseJson.statusCode == 200)
+                {
+                        Swal.fire(
+                            'Thao tác thành công',
+                            'Đã import thành công.',
+                            'success'
+                        )
+                }
+                else 
+                {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Có lỗi',
+                            text: responseJson.value
+                            // footer: '<a href="">?</a>'
+                        })
+
+
+                }  
+         })
+      
+        .catch((error) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Có lỗi',
+                text: error
+                // footer: '<a href="">?</a>'
+              })
+        });
+        
+
+     }
      const UploadFileServer = () => {
 
 
@@ -54,7 +137,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.2:8888/api/campagn/importDataById', {
+        fetch('http://118.69.182.32:7777/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
@@ -140,7 +223,7 @@ const UploadFile = (props) => {
         var data = new FormData();
         data.append('fileData', file)
         data.append('id', 1);
-        fetch('http://192.168.1.2:8888/api/campagn/importDataById', {
+        fetch('http://118.69.182.32:7777/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
@@ -275,8 +358,8 @@ const UploadFile = (props) => {
             </div>
 
             <div className="footer-model">
-
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import dữ liệu </button>
+            <button className="btn-model btn-add" onClick= {UpdateData}>Cập nhật dữ liệu </button>
+                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import case </button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>
