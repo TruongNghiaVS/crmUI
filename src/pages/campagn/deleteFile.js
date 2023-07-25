@@ -54,7 +54,7 @@ const DeleteFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://118.69.182.32:7777/api/campagn/deleteProfile', {
+        fetch('https://localhost:7098/api/campagn/deleteProfile', {
             method: 'POST',
             body: data
         })
@@ -140,7 +140,7 @@ const DeleteFile = (props) => {
         var data = new FormData();
         data.append('fileData', file)
         data.append('id', 1);
-        fetch('http://118.69.182.32:7777/api/campagn/importDataById', {
+        fetch('https://localhost:7098/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })

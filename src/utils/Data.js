@@ -91,6 +91,9 @@ const DataJson = {
         "STT", "Ngày", "User Id",  "line",  "Số điện thoại","Link file ghi âm"
        ],
   
+       theadReportViewRecordingOVerview: [
+        "STT", "Ngày", "Line gọi",  "Phần trăm", "Số lượt nghe"
+       ],
   
 
     theadDataReportTalkTime: [

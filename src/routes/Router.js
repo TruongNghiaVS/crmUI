@@ -61,7 +61,9 @@ function Router() {
                               
                          </Route>
 
-
+                         <Route path="bao-cao-tong-quan-qc" element={<Layout page="viewRecordingOverviewFile" />}>
+                              
+                              </Route>
                          <Route path="bao-cao-qc" element={<Layout page="viewRecording" />}>
                               
                          </Route>

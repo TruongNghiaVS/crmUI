@@ -9,37 +9,63 @@ const TableHeadItem = ({ item }) => {
         <th title={item}>{item}</th>
     );
 };
-
-const onPlay = (e) => {
-    
+const renderStatus =  (item)=> {
+   if( item == "0")
+   {
+    return <p> Đang chờ xử lý </p>
+   }
+    return <p></p>
 }
+
+
+
 const getShowfile =  (item)=> {
     // return item.recordingfile;
-    let fileUrl = "https://localhost:7098/api/file/getaudio12?filePath=";
-    if(item.src.startsWith("1"))
+    let fileUrl = "https://localhost:7098/api/file/getaudio10?filePath=";
+    if(item.lineCode.startsWith("1"))
     {
         fileUrl = "https://localhost:7098/api/file/getaudio10?filePath=";
     }
-    if(item.src.startsWith("3"))
+    if(item.lineCode.startsWith("3"))
     {
-        fileUrl = "https://localhost:7098/api/file/getaudio09?filePath=";
+        fileUrl = "https://localhost:7098/api/file/getaudio10?filePath=";
     }
 
-    if(item.src.startsWith("4"))
+    if(item.lineCode.startsWith("4"))
     {
         fileUrl = "https://localhost:7098/api/file/getaudio151?filePath=";
     }
-    fileUrl=fileUrl +''+ item.recordingfile;
+    fileUrl=fileUrl +''+ item.fileRecording;
     
     if(!item.isShow)
     {   
         return  <ReactAudioPlayer
         src={fileUrl}
-        onPlay = {onPlay}
+      
         controls
         />;
     }
     return <p></p>
+}
+
+const rendernetword = (item) => {
+
+    if(item == "2")
+    {
+        return <p>Viettel </p>
+    }
+    else if(item == "1")
+    {
+        return  <p>Vina</p>
+    }
+    else  if(item =="4")
+    {
+        return <p> Mobi</p>
+    }
+    else 
+    {
+        return <p> Khác</p>
+    }
 }
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
@@ -51,18 +77,15 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
 
     return (
         <tr>
-            <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
+            <td>
+                <input type="checkbox" name ="selectId" defaultChecked={false} />
+            </td>
             <td>{rowIndex}</td>
-            <td>{moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss")}</td>
+            <td>{moment(data.createAt).format("DD/MM/YYYY HH:mm:ss")}</td>
+            <td>{data.authorName}</td>
+            <td>{data.lineCode}</td>
+            <td>{data.phoneLog}</td>
             <td>{getShowfile(data)}</td>
-            <td>{data.src}</td>
-            <td>{data.dst}</td>
-            <td>{data.disposition}</td>
-            <td>{data.lastapp}</td>
-            <td>{data.durationReal}</td>
-             <td>{data.duration}</td>
-
-             <td>{data.noAgree}</td>
         </tr>
     );
 };

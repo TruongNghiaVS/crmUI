@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://118.69.182.32:7777";
+    static DOMAIN = "https://localhost:7098";
     static HEADERS = {
         'Accept': 'applcation/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -9,7 +9,7 @@ class ConstantData {
     };
     // API URL
 
-    //Login
+//Login
     static URL_LOGIN = `${ConstantData.DOMAIN}/api/user/login`;
     static URL_Employee_GetALl = `${ConstantData.DOMAIN}/api/employee/getAll`;
     static URL_Employee_Add = `${ConstantData.DOMAIN}/api/employee/add`;
