@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "https://localhost:7098";
+    static DOMAIN = "http://192.168.1.2:8888";
     static HEADERS = {
         'Accept': 'applcation/json',
         'Content-type': 'application/json; charset=UTF-8',
@@ -135,10 +135,10 @@ class ConstantData {
     
     // static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;
     static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getOverView`;
-
+    static URL_qc_getDataQC = `${ConstantData.DOMAIN}/api/qc/getData`;
     // static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getOverViewByCall`;
 
-
+    static URL_qc_getcampagnProfileOrginal = `${ConstantData.DOMAIN}/api/campagnProfile/getAllOriginal`;
     static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getDetailOverView`;
 
     static URL_makeCall = `${ConstantData.DOMAIN}/api/MakeCall/TriggerCall`;

@@ -1,122 +1,81 @@
-import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
-import React, { useState } from "react";
 import moment from "moment-timezone"; 
-
-import ReactAudioPlayer from 'react-audio-player';
 
 const TableHeadItem = ({ item }) => {
     return (
         <th title={item}>{item}</th>
     );
 };
-const renderStatus =  (item)=> {
-   if( item == "0")
-   {
-    return <p> Đang chờ xử lý </p>
-   }
-    return <p></p>
+
+// select COUNT(d.calldate), d.disposition  from cdr d where d.src = '9005' and d.lastapp = 'Dial'
+// group by d.disposition
+const percentFix3 = (number) => {
+    if(!isNaN(parseFloat(number)) && isFinite(number))
+    {
+            return number.toFixed(2) +"%";
+    }
+    return "";
 }
-
-
-
-const getShowfile =  (item)=> {
-    // return item.recordingfile;
-    let fileUrl = "https://localhost:7098/api/file/getaudio10?filePath=";
-    if(item.lineCode.startsWith("1"))
+const toHHMMSS = (secs) => {
+    if(!isNaN(parseFloat(secs)) && isFinite(secs))
     {
-        fileUrl = "https://localhost:7098/api/file/getaudio10?filePath=";
-    }
-    if(item.lineCode.startsWith("3"))
-    {
-        fileUrl = "https://localhost:7098/api/file/getaudio10?filePath=";
-    }
-
-    if(item.lineCode.startsWith("4"))
-    {
-        fileUrl = "https://localhost:7098/api/file/getaudio151?filePath=";
-    }
-    fileUrl=fileUrl +''+ item.fileRecording;
-    
-    if(!item.isShow)
-    {   
-        return  <ReactAudioPlayer
-        src={fileUrl}
-      
-        controls
-        />;
-    }
-    return <p></p>
-}
-
-const rendernetword = (item) => {
-
-    if(item == "2")
-    {
-        return <p>Viettel </p>
-    }
-    else if(item == "1")
-    {
-        return  <p>Vina</p>
-    }
-    else  if(item =="4")
-    {
-        return <p> Mobi</p>
+          
     }
     else 
     {
-        return <p> Khác</p>
+        return  "";
     }
+    var sec_num = parseInt(secs, 10)
+    var hours   = Math.floor(sec_num / 3600)
+    var minutes = Math.floor(sec_num / 60) % 60
+    var seconds = sec_num % 60
+
+    return [hours,minutes,seconds]
+        .map(v => v < 10 ? "0" + v : v)
+        .filter((v,i) => v !== "00" || i > 0)
+        .join(":")
 }
-
-const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
-    rowIndex = rowIndex +1;
-    var zone  = "America/New_York";
-
-    const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
-
+function percentage(percent, total) {
+    if(total <1)
+     return 0;
+    return ((percent/ total) * 100).toFixed(2)
+}
+const TableRow = ({ data, totalRe }) => {
+    let timeCalText = moment(data.timeBusiness).format("DD/MM/YYYY");
+    let totalReInput = totalRe;
 
     return (
         <tr>
-            <td>
-                <input type="checkbox" name ="selectId" defaultChecked={false} />
-            </td>
-            <td>{rowIndex}</td>
-            <td>{moment(data.createAt).format("DD/MM/YYYY HH:mm:ss")}</td>
-            <td>{data.authorName}</td>
+            <td><input type="checkbox" defaultChecked={false} /></td>
+            <td>{timeCalText}</td>
             <td>{data.lineCode}</td>
-            <td>{data.phoneLog}</td>
-            <td>{getShowfile(data)}</td>
+            <td>{data.total}</td>
+            <td> {percentage(data.total,totalReInput)} </td>
+            
+          
+          
         </tr>
     );
 };
 
-const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById }) => {
-    
-    
+const Table = ({totalRe, theadData, tbodyData, tblClass }) => {
+
+
+
     return (
         <table className={tblClass}>
             <thead>
                 <tr className='headRow'>
                     <th><input type="checkbox" defaultChecked={false} /></th>
-                    { 
-                      theadData.map((h, index) => {
-                        
+                    {theadData.map((h) => {
                         return <TableHeadItem key={h} item={h} />;
                     })}
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {
-                     dataDraw.tbodyDataUser.map((item, index) => {
-                        return <TableRow 
-                        key={item.id} data={item} 
-                        rowIndex = {index} 
-                        handleDeleteById = {handleDelete} 
-                        handleViewById = {handleViewById}
-                        handleUpdateById ={handleUpdateById}/>;
-                    })
-                }
+                {tbodyData.map((item) => {
+                    return <TableRow key={item.id} totalRe ={totalRe} data={item} />;
+                })}
             </tbody>
         </table>
     );

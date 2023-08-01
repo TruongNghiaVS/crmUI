@@ -8,6 +8,53 @@ const DataJson = {
         "STT", "Tên nhóm", "Mã nhóm","Người quản lý", "Ngày tạo", "Người tạo", "Trạng thái"
      ],
 
+    tbHeadWorkPlace: [
+     "STT", "Thao tác",
+     
+     "CONTRACT NUMBER Hợp đồng", 
+    
+    "Customer name Khách hàng 13",
+    
+    "BOD Ngày sinh 14",
+     "Ngày ký HĐ 31",
+      "Mã sản phẩm", "Tên sản phẩm 54",
+      "Số khung",
+      "Biển số xe",
+      "Giá sản phẩm",
+      "Số tiền trả trước",
+      "Tiền vay 28",
+      "Tổng tiền phải trả 47",
+      "Số kỳ phải trả 51",
+      "Số tiền trả theo kỳ 70",
+      "Ngày trả đầu tiên 33",
+      "Ngày trả cuối cùng",
+      "Số kỳ quá hạn 58",
+      "Tổng tiền phạt ",
+      "Tiền phạt đã trả 42",
+      "Tiền phạt còn lại",
+      "Ngày trả gần nhất 48",
+      "Số tiền đã trả",
+      "Số nợ hiện tại 34",
+      "Current DPD 38",
+      "SDT KH 10",
+      "SDT nhà 82",
+      "SDT người thân 85",
+      "SDT người thân 88",
+      "SDT nơi làm việc",
+      "Đ/c thường trú 73",
+      "Quận thường trú 74",
+      "Khu vực thường trú 75",
+      "Đ/c liên lạc 76",
+      "Quận liên lạc 77",
+      "Khu vực 78",
+      "Nghề nghiệp 17",
+      "Thong tin ban đầu 68 69",
+      "Tham Chiếu Rel info 92",
+      "id 64",
+       "Skip"
+    ],
+
+
     tbodyData: [
         {
             id: 1,
@@ -147,6 +194,9 @@ const DataJson = {
         "Đàm thoại", "Không trả lời", "Hủy", "Bận line", "Kênh lỗi", "Không gọi được", "Lỗi server"
     ],
 
+    theadDataDashboardQC: ["Ngày",
+        "Line gọi", "Tổng lượt nghe(click)","Tỉ lệ (%)"
+    ],
     theadCampagnOverview: ["Line gọi",
     "User name", "Tên", "SL phân", "Đang xử lý", "Chưa tác động", "Đóng", 
     "Số case giữ"

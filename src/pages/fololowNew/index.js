@@ -790,17 +790,14 @@ const Reason = () => {
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>
                     </div>
                 </div>
-                {/* <Tabs
+                          {/* <Tabs
                         // onSelect={(e)=>handleSelect(e)}
                             transition={false}
                             className="mb-3"
                         > */}
                         <div className="packageList">
 
-                        { 
-                                
-
-                                   
+                            { 
                                     packageManagement.packageManagement.map((item, index) => {
                                 
                                         if(item.active)
@@ -811,11 +808,9 @@ const Reason = () => {
                                         {
                                             return (<div className="btnTab"> <button > {item.name} <p> {"(" +item.total+"/"+item.remain + ")"}</p> </button></div>);
                                         }
-                                      
-                                    }
-                        
-                        )
-                    }
+                                        
+                                    } )
+                            }
                         </div>
                             
                        

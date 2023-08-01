@@ -80,6 +80,7 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</Link></li>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/skip-data">Danh sách skip</Link></li>
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
+                            <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/danh-sach-goc">Danh sách gốc</Link></li>
                             { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/data">Danh sách kho</Link></li>: <></> }
                         </ul>
                     </li>

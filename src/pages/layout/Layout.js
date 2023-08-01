@@ -5,6 +5,8 @@ import Home from '../home/Home';
 import Login from '../login/Login';
 import User from '../user/User';
 import GroupUser from '../groupUser/GroupUser';
+import Workplace from '../workplace';
+
 
 import Dashboard from '../dashboard/Dashboard';
 import SmsDashboard from '../smsDashboard/Dashboard';
@@ -37,7 +39,7 @@ import RecordingNoAgree from '../recordingNoAgree';
 
 import SmsReport  from  '../smsReport';
 import ViewRecordingFile  from '../viewRecordingFile';
-import ViewRecordingOverviewFile  from '../ViewRecordingOverviewFile';
+import ViewRecordingOverviewFile  from '../ViewRecordingOverviewFile/ViewRecordingOverviewFile';
 
 import LineManagement from '../lineManagement';
 import DpdManagement from '../dpdManagement';
@@ -87,6 +89,9 @@ const Screen = (props) => {
             return <Login />;
         case 'user':
             return <User />;
+            
+            case 'workplace':
+                return <Workplace />;
        case 'GroupUser':
                 return <GroupUser />;
         case 'dashboard':

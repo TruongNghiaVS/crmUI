@@ -264,50 +264,6 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                        value = {dataView1.noteIm}  />
                 </Form.Group>
             </Col>
-            {/* <Col>
-                <Form.Label htmlFor="basic-url">Hẹn theo dõi</Form.Label>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Hẹn</InputGroup.Text>
-                    <FormControl 
-                        name = "daysuggestTime"
-                        type="date"
-                        aria-label="Small"    onChange={handleInputChange}   value ={dateForPicker(dataView1.daysuggestTime)}/>
-                </InputGroup>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Theo dõi</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name = "statusFollow"  
-                    
-                    onChange={handleInputChange}  value = {dataView1.statusFollow}>
-                         <option  value="15" selected >Theo dõi</option>
-                     
-                        <option value="16">Đóng</option>
-                       
-                    </Form.Select>
-                </InputGroup>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Mối quan hệ</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name ="relationship" 
-                      onChange={handleInputChange} 
-                       value ={dataView1.relationship} >
-
-                    <option value = "-1" selected>Chọn mối quan hệ</option>
-                                {
-                                masterData.data.map((item, i) => {    
-                                        if( item.type == "1")
-                                        {
-                                            return ( <>
-                                                <option value = {item.id}>{item.name}</option>
-           
-                                           </>)
-                                        }
-                               
-                                })
-                            }
-                       
-                    </Form.Select>
-                </InputGroup>
-            </Col> */}
-      
            
         </Row>
 

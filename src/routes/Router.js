@@ -12,6 +12,10 @@ function Router() {
                          <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />}>
                               
                           </Route>
+
+                          <Route path="danh-sach-goc" element={<Layout page="workplace" />}>
+                              
+                           </Route>
                          <Route path="nhom" element={<Layout page="detailGroup" />}>
                                     <Route path=":detail" element={<Layout page="detailGroup" />} />
                          </Route>

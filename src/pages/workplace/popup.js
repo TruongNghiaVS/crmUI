@@ -5,19 +5,18 @@ import moment from "moment";
 import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap';
 import  { useState } from "react";
 import { useEffect } from 'react';
-import ConstantData from '../../utils/Constants';
-import BaseService from '../../services/BaseService';
-
-import EmployeeService from '../../services/MasterDataService';
-import { toast } from 'react-toastify';
+import { Tabs, Tab } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
-const UploadFile = (props) => {
+const Popup = (props) => {
     
     const [fileTran , setfilUPload]=useState({
 
     });
+    const [model , setmodel]=useState({
 
+    });
+  
     const [id , setid]=useState("");
 
 
@@ -26,19 +25,49 @@ const UploadFile = (props) => {
 
       
      }, []);
-     
-
- 
+     const handleInputChange1 =(event)=> {
+       
+        let valueControl = event.target.value;
+        let nameControl = event.target.name;
+        setmodel((prevalue) => {
+            return {
+              ...prevalue,   // Spread Operator               
+              [nameControl]: valueControl
+            }
+         })
+     }
      const UploadFileServer = () => {
-
-
-
-
-
         
-        var file = fileTran;
-     
-         Swal.fire({
+        if(model.noteIm =='')
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chưa điền ghi chú',
+                text: 'Chưa điền ghi chú',
+                footer: 'Yêu cầu thông tin!'
+            })
+            return;
+        }
+   
+      
+        
+      
+       
+        
+     }
+
+    const handleInputChange =(event)=> {
+        
+        var files = event.currentTarget.files;
+        if(files.length < 1)
+        {
+             return;
+        }
+        var file= files[0];
+        setfilUPload(file);
+        return;
+
+        Swal.fire({
             title: 'Đang xử lý!',
             html: 'Vui lòng <b></b> chờ trong giây lát.',
             didOpen: () => {
@@ -47,19 +76,17 @@ const UploadFile = (props) => {
           
             },
           
-            })
-            .then((result) => {
+            }).then((result) => {
                  if (result.dismiss === Swal.DismissReason.timer) {
          
                  }
             })
 
-    
+        var file= files[0];
         var data = new FormData();
-      
         data.append('fileData', file)
-        // data.append('id', props.idPass);
-        fetch('http://192.168.1.2:8888/api/campagn/importDataSkipInfo', {
+        data.append('id', 1);
+        fetch('http://192.168.1.2:8888/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
@@ -67,7 +94,11 @@ const UploadFile = (props) => {
         {
             if(response.status == "200")
             {
+
+              
                 return response.json();
+                       
+                
             }
             else 
             {
@@ -80,6 +111,7 @@ const UploadFile = (props) => {
 
             }
         } )
+
         .then((responseJson) => {
 
                 if(responseJson.statusCode == 200)
@@ -111,51 +143,44 @@ const UploadFile = (props) => {
                 // footer: '<a href="">?</a>'
               })
         });
-        
 
-     }
-
-    const handleInputChange =(event)=> {
-        
-        var files = event.currentTarget.files;
-        if(files.length < 1)
-        {
-             return;
-        }
-        var file= files[0];
-        setfilUPload(file);
-        
       
      }
     return (
         <div className="model">
             <div className="header-model">
-                  <h4>Nhập dữ liệu import</h4>
+                  <h4>Ghi chú thông tin</h4>
             </div>
+
+           
+                <Form.Group className="mb-3">
+                    <Form.Control as="textarea" rows={5}  name ="noteIm" onChange={handleInputChange1} 
+                       value = {model.noteIm}  />
+                </Form.Group>
+                <div className="footer-model">
+
+<button className="btn-model btn-add" onClick= {UploadFileServer}>Thêm ghi chú </button>
+<button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
+</div>
+
+<table id="customers">
+  <tr>
+    <th>STT</th>
+    <th>Ngày</th>
+    <th>Ghi chú</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>28/07/2023</td>
+    <td>Đang tương tác</td>
+  </tr>
+ 
+</table>
+
             
-             <div className="main-model">
-                <form id ="frmElement" className='form-login' noValidate  >
-                  
-
-                    <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Chọn file excel</Form.Label>
-                            <Form.Control type="file" accept=".xlsx, .xls, .csv"  onChange={handleInputChange} />
-                     </Form.Group>
-
-                     <Form.Group  className="mb-3">
-                            <a href='javsacript:void(0)'>Tải file template</a>
-                     </Form.Group>
-                    
-              </form>
-            </div>
-
-            <div className="footer-model">
-               
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import dữ liệu </button>
-                <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
-            </div>
+            
         </div>
     );
 };
 
-export default UploadFile;
+export default Popup;
