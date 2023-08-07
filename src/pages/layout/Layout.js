@@ -5,7 +5,7 @@ import Home from '../home/Home';
 import Login from '../login/Login';
 import User from '../user/User';
 import GroupUser from '../groupUser/GroupUser';
-import Workplace from '../workplace';
+import Workplace2 from '../workplace2';
 
 
 import Dashboard from '../dashboard/Dashboard';
@@ -90,8 +90,9 @@ const Screen = (props) => {
         case 'user':
             return <User />;
             
-            case 'workplace':
-                return <Workplace />;
+        case 'workplace2':
+                return <Workplace2 />;
+        
        case 'GroupUser':
                 return <GroupUser />;
         case 'dashboard':

@@ -22,47 +22,47 @@ const InfoFinance = ({data, handleInputChange}) => {
             <Form.Label>Thông tin tài chính</Form.Label>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Ngày ký</InputGroup.Text>
-                <FormControl  type="date" value ={dateForPicker(data.registerDay)} onChange={handleInputChange}  aria-label="Small"  />
+                <FormControl readOnly type="date" value ={dateForPicker(data.registerDay)} onChange={handleInputChange}  aria-label="Small"  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Nợ Gốc</InputGroup.Text>
-                <FormControl aria-label="Small" value = {numberWithCommas(data.debitOriginal)} name ="debitOriginal" onChange={handleInputChange}  />
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.debitOriginal)} name ="debitOriginal" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tiền vay</InputGroup.Text>
-                <FormControl aria-label="Small" value = {numberWithCommas(data.amountLoan)} name = "amountLoan" onChange={handleInputChange}   />
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.amountLoan)} name = "amountLoan" onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Trả tháng(EMI)</InputGroup.Text>
-                <FormControl aria-label="Small"  value ={numberWithCommas(data.emi)} name ="emi" onChange={handleInputChange}  />
+                <FormControl readOnly aria-label="Small"  value ={numberWithCommas(data.emi)} name ="emi" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng phạt</InputGroup.Text>
-                <FormControl aria-label="Small" value = {numberWithCommas(data.totalFines)} name ="totalFines" onChange={handleInputChange}   />
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalFines)} name ="totalFines" onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng phải trả</InputGroup.Text>
-                <FormControl aria-label="Small" value = {numberWithCommas(data.totalMoneyPaid)} name ="totalMoneyPaid" onChange={handleInputChange}  />
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.totalMoneyPaid)} name ="totalMoneyPaid" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Kỳ hạn TT</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.tenure} name ="tenure" onChange={handleInputChange}  />
+                <FormControl readOnly  aria-label="Small" value = {data.tenure} name ="tenure" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số kỳ đã TT</InputGroup.Text>
-                <FormControl aria-label="Small" value = {data.noTenure} name = "noTenure" onChange={handleInputChange}   />
+                <FormControl readOnly aria-label="Small" value = {data.noTenure} name = "noTenure" onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng TT</InputGroup.Text>
-                <FormControl aria-label="Small" value = {numberWithCommas(data.totalPaid)} name = "totalPaid"  onChange={handleInputChange}  />
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalPaid)} name = "totalPaid"  onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>TT gần nhất</InputGroup.Text>
-                <FormControl aria-label="Small" value = {numberWithCommas(data.lastPaid)} name ="lastPaid" onChange={handleInputChange}  />
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.lastPaid)} name ="lastPaid" onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Ngày TT</InputGroup.Text>
-                <FormControl type ="text" aria-label="Small" value ={dateForPicker(data.lastPadDay)} name ="lastPadDay"  onChange={handleInputChange}  />
+                <FormControl readOnly  type ="text" aria-label="Small" value ={dateForPicker(data.lastPadDay)} name ="lastPadDay"  onChange={handleInputChange}  />
             </InputGroup>
         </Col>
     );

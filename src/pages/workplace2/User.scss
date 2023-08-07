@@ -1,0 +1,15 @@
+.datalist {
+
+    table {
+        width: 100%;
+        
+        
+         tr td:first-child {
+            width: 30%;
+         }
+
+         tr td:nth-child(2) {
+            width: 30%;
+         }
+    }
+}

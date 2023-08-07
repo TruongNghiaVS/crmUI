@@ -49,19 +49,19 @@ const  countRecord = (id) => {
 }
 const getShowfile =  (item)=> {
     // return item.recordingfile;
-    let fileUrl = "http://192.168.1.2:8888/api/file/getaudio10?filePath=";
+    let fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
     if(item.src.startsWith("1"))
     {
-        fileUrl = "http://192.168.1.2:8888/api/file/getaudio10?filePath=";
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
     }
     if(item.src.startsWith("3"))
     {
-        fileUrl = "http://192.168.1.2:8888/api/file/getaudio10?filePath=";
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
     }
 
     if(item.src.startsWith("4"))
     {
-        fileUrl = "http://192.168.1.2:8888/api/file/getaudio151?filePath=";
+        fileUrl = "http://118.69.182.32:7777/api/file/getaudio151?filePath=";
     }
     fileUrl=fileUrl +''+ item.recordingfile;
     

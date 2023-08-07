@@ -1,11 +1,20 @@
+
 import ApiService from './ApiService';
 import Constants from '../utils/Constants';
-class NoteCampagnService {
-    
-    static getALl(bodySearch,callSuccess, callError) {
-       let url =  Constants.URL_qc_getcampagnProfileOrginal;
-       ApiService.httpPost(url, {}, bodySearch, callSuccess, callError);
+class NoteCampagnService   {
+    static GetAll( body, callSuccess, callError) {
+        let url = Constants.URL_qc_getcampagnProfileOrginal;
+        ApiService.httpPost(url, null, body, callSuccess, callError);
     }
+    static add( body, callSuccess, callError) {
+        let url = Constants.URL_qc_getcampagnProfileOrginal_add;
+         ApiService.httpPost(url, null, body, callSuccess, callError);
+   }
+   
 
+    
+    
+  
 }
+
 export default NoteCampagnService;

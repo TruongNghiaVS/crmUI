@@ -20,7 +20,7 @@ const displayMobilePhone = (numberPhone) =>
         {
             return "";
         }
-        return numberPhone;
+       
         return  numberPhone.substring(0, 3) + 'xxxxxxx';
     }
     return "";
@@ -146,7 +146,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
             <Form.Label>Thông tin khách</Form.Label>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text  >Họ tên</InputGroup.Text>
-                <FormControl
+                <FormControl readOnly
                   aria-label="Small" value = {data.customerName} 
                  onChange={handleInputChange} 
                  name = "customerName"
@@ -154,36 +154,36 @@ const InfoCustomer = ({data,handleInputChange}) => {
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số hợp đồng</InputGroup.Text>
-                <FormControl aria-label="Small" readOnly value = {data.noAgreement}  name = "noAgreement"   onChange={handleInputChange}  />
+                <FormControl readOnly  aria-label="Small" readOnly value = {data.noAgreement}  name = "noAgreement"   onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>CMT/CCCD</InputGroup.Text>
-                <FormControl aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
+                <FormControl readOnly  aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Di động</InputGroup.Text>
-                <FormControl aria-label="Small" value =  {displayMobilePhone(data.mobilePhone)}  name = "mobilePhone" />
-                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.mobilePhone)}/></InputGroup.Text>
+                <FormControl readOnly aria-label="Small" value =  {displayMobilePhone(data.mobilePhone)}  name = "mobilePhone" />
+                <InputGroup.Text  className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.mobilePhone)}/></InputGroup.Text>
                 {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.mobilePhone)}/></InputGroup.Text> */}
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
-                <FormControl aria-label="Small" value = {displayMobilePhone(data.phone1)}   name = "phone1"  />
+                <FormControl readOnly  aria-label="Small" value = {displayMobilePhone(data.phone1)}   name = "phone1"  />
                 <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.phone1)}/></InputGroup.Text>
                 {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.phone1)}/></InputGroup.Text> */}
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số nhà</InputGroup.Text>
-                <FormControl aria-label="Small" value = {displayMobilePhone(data.houseNumber)}  name = "houseNumber"  />
+                <FormControl readOnly  aria-label="Small" value = {displayMobilePhone(data.houseNumber)}  name = "houseNumber"  />
                 <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline1(data.houseNumber)} /></InputGroup.Text>
                 {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.houseNumber)}/></InputGroup.Text> */}
                 
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Văn phòng</InputGroup.Text>
-                <FormControl aria-label="Small" value = {displayMobilePhone(data.officeNumber)}   name = "officeNumber"    />
+                <FormControl readOnly  aria-label="Small" value = {displayMobilePhone(data.officeNumber)}   name = "officeNumber"    />
                 <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline1(data.officeNumber)} /></InputGroup.Text>
                 {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.officeNumber)}/></InputGroup.Text> */}
                 
@@ -197,12 +197,12 @@ const InfoCustomer = ({data,handleInputChange}) => {
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Email</InputGroup.Text>
-                <FormControl aria-label="Small" value ={data.email} name = "email"  onChange={handleInputChange} />
+                <FormControl readOnly  aria-label="Small" value ={data.email} name = "email"  onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaEnvelope /></InputGroup.Text>
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text >Năm sinh </InputGroup.Text>
-                <FormControl 
+                <FormControl readOnly 
                 name = "dayOfBirth"
                 type="date"
                 aria-label="Small"  value ={dateForPicker(data.dayOfBirth)} onChange={handleInputChange} />

@@ -108,24 +108,6 @@ const Index = () => {
     }
 
 
-    const handleExportData = ()=> {
-        let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
-
-          };
-            EmployeeService.getALl(ConstantData.URL_qc_getcampagnProfileOrginal, ConstantData.HEADERS, bodySearch, (response) => {
-            if (response.statusCode === 200) {
-                    exportDataExcel(response.value.data);
-            } else {
-
-             }
-          }, (error) => {
-           
-          });
-        
-    }
 
 
 
@@ -143,7 +125,7 @@ const Index = () => {
         if(!isInit)
         {
 
-            document.title = "Danh sách nhóm nhân viên";
+            document.title = "Danh sách gốc";
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const token = params.get('token');
@@ -237,13 +219,24 @@ const Index = () => {
     
     }
     const getDataEmployee = ()=> {
-          let bodySearch = {
-            Token: obejctSearch.tokenSearch, 
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt
+        let bodySearch = {
+            Token: obejctSearch.token, 
 
+            Page:  obejctPaging.currentPage,
+            Limit: obejctPaging.limt,
+            dpd: obejctSearch.dpd,
+       
+            lineCode:  obejctSearch.lineCode,
+            phoneSerach:  obejctSearch.phoneSerach,
+            from: obejctSearch.fromTime,
+            to: obejctSearch.endTime,
+           colorCode: obejctSearch.colorCode
+  
           };
-          EmployeeService.getALl(ConstantData.URL_qc_getcampagnProfileOrginal, ConstantData.HEADERS, bodySearch, (response) => {
+          console.log(bodySearch);
+          return;
+          EmployeeService.getALl(
+            bodySearch, (response) => {
             if (response.statusCode === 200) {
                 renderData(response.value);
             } else {

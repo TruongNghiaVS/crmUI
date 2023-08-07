@@ -1,4 +1,9 @@
 .ticket-view {
+
+    input[readOnly] {
+       font-weight: 500;
+      }
+
     .box-info {
         padding: 25px;
     }
@@ -19,3 +24,4 @@
         }
     }
 }
+

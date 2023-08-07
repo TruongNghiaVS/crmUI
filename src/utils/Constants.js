@@ -1,11 +1,7 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.2:8888";
+    static DOMAIN = "http://118.69.182.32:7777";
     static HEADERS = {
-        'Accept': 'applcation/json',
-        'Content-type': 'application/json; charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
+        
     };
     // API URL
 
@@ -128,12 +124,8 @@ class ConstantData {
     static URL_ReportService_getAllRecordingFileWithNo = `${ConstantData.DOMAIN}/api/report/getAllRecordingFileWithNo`;
     static URL_ReportService_exportRecord = `${ConstantData.DOMAIN}/api/report/exportRecordingFile`;
 
-    
-
     static URL_ReportService_ReportRecordingFile = `${ConstantData.DOMAIN}/api/report/ExportRecordingFile`;
-
-    
-    // static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;
+    //static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getAllOverView`;
     static URL_User_getAllOverView = `${ConstantData.DOMAIN}/api/dashboard/getOverView`;
     static URL_qc_getDataQC = `${ConstantData.DOMAIN}/api/qc/getData`;
     // static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getOverViewByCall`;
@@ -181,6 +173,8 @@ class ConstantData {
     static URL_package_Update = `${ConstantData.DOMAIN}/api/package/update`;
     static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;
     static URL_package_GetById = `${ConstantData.DOMAIN}/api/package/getById`;
+
+    static URL_qc_getcampagnProfileOrginal_add = `${ConstantData.DOMAIN}/api/campagnProfile/addNoted`;
 
 
 }
