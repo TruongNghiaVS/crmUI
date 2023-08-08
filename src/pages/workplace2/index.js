@@ -75,9 +75,9 @@ const Reason = () => {
   
 
    const showpopup = (id)=> {
-    debugger;
+
     setIdData(id);
-    alert(id);
+
     handleShowModelUploadFile(id);
     }
    let keyLoop = '';
@@ -400,7 +400,7 @@ const Reason = () => {
            colorCode: obejctSearch.colorCode
 
          };
-         EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
+          EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
                if (response.statusCode === 200) {
                   exportDataExcel(response.value.data);
                } else {

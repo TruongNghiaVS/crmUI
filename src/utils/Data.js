@@ -18,10 +18,7 @@ const DataJson = {
     "BOD Ngày sinh 14",
      "Ngày ký HĐ 31",
       "Mã sản phẩm", "Tên sản phẩm 54",
-      "Số khung",
-      "Biển số xe",
-      "Giá sản phẩm",
-      "Số tiền trả trước",
+    
       "Tiền vay 28",
       "Tổng tiền phải trả 47",
       "Số kỳ phải trả 51",
@@ -37,10 +34,6 @@ const DataJson = {
       "Số nợ hiện tại 34",
       "Current DPD 38",
       "SDT KH 10",
-      "SDT nhà 82",
-      "SDT người thân 85",
-      "SDT người thân 88",
-      "SDT nơi làm việc",
       "Đ/c thường trú 73",
       "Quận thường trú 74",
       "Khu vực thường trú 75",
@@ -51,7 +44,15 @@ const DataJson = {
       "Thong tin ban đầu 68 69",
       "Tham Chiếu Rel info 92",
       "id 64",
-       "Skip"
+       "Skip",
+       "Số khung",
+       "Biển số xe",
+       "Giá sản phẩm",
+       "Số tiền trả trước",
+       "SDT nhà 82",
+       "SDT người thân 85",
+       "SDT người thân 88",
+       "SDT nơi làm việc"
     ],
 
 

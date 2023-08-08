@@ -1,4 +1,5 @@
-import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
+import { FaEye, FaPen, FaTrashAlt,FaFileImport } from "react-icons/fa";
+// import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import { BsSkipForwardBtnFill} from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
@@ -9,7 +10,7 @@ import { MdAssistantNavigation } from "react-icons/md";
 import CampagnProfileService from '../../services/CampagnProfileService';
 const TableHeadItem = ({ item }) => {
     return (
-        <th title={item}>{item}</th>
+        <th className="colorTableExcel" title={item}>{item}</th>
     );
 };
 const openDetailItem = (likUrl) => {
@@ -136,38 +137,44 @@ const TableRow = ({ data,idPass, rowIndex,handleDeleteById,showpopup, handleUpda
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>  
-                <MdAssistantNavigation onClick={()=>showpopup(data.id)} className='icon-tbl'/>
+                <FaPen onClick={()=>showpopup(data.id)} className='icon-tbl'/>
             </td>
+         
             <td>{data.noAgreement}</td>
             <td>{data.customerName}</td>
             <td>{dateForPicker(data.dayOfBirth)}</td>
             <td>{dateForPicker(data.registerDay)}</td>
             <td>{data.codeProduct}</td>
             <td>{data.nameProduct}</td>
-            <td>{data.codeProduct}</td>
+            
+            <td>{data.amountLoan}</td>
+            <td>{data.totalMoneyPaid}</td>
+            <td>{data.tenure}</td>
+            <td>{data.emi}</td>
+            <td>{data.fristDay}</td>
+            <td>{data.lastDay}</td>
+
+            <td>{data.noTenure}</td>
+            <td>{data.totalFines}</td>
             <td></td>
             <td></td>
+            <td>{data.lastPadDay}</td>
+            <td>{data.totalPaid}</td>
+            
+            <td>{data.debitOriginal}</td>
+            <td>{data.dpd}</td>
+            <td>{data.mobilePhone}</td>
+           
+            <td>{data.road}</td>
+            <td>{data.suburbanDir}</td>
+            <td>{data.provice}</td>
+            <td>{data.road1}</td>
+            <td>{data.suburbanDir1}</td>
+            <td>{data.provice1}</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{data.noteFirstTime}</td>
+            <td>{data.noteRel}</td>
+            <td>{data.assignee}</td>
             <td></td>
             <td></td>
             <td></td>

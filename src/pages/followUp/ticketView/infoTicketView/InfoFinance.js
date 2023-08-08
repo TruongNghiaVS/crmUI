@@ -53,7 +53,7 @@ const InfoFinance = ({data, handleInputChange}) => {
                 <FormControl readOnly aria-label="Small" value = {data.noTenure} name = "noTenure" onChange={handleInputChange}   />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text>Tổng TT</InputGroup.Text>
+                <InputGroup.Text>Tổng đã TT</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalPaid)} name = "totalPaid"  onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">

@@ -15,12 +15,29 @@ import Swal from 'sweetalert2';
 const UploadFile = (props) => {
      const [id , setid]=useState("");
 
-
+     const [ dataNoted , setdataNoted]=useState([]);
      useEffect(() => {
-      
 
+        getDataNoted();
       
      }, []);
+
+     const getDataNoted =(event)=> {
+        const bodySearch = {
+            ProfileId :  props.idPass
+        };
+       
+        EmployeeService.GetAllNoted( bodySearch, (response) => {
+            if (response.statusCode === 200) {
+                debugger;
+                setdataNoted(response.value.data);
+            } else {
+
+            }
+      }, (error) => {
+       
+      });
+     }
 
      const [model , setmodel]=useState({
 
@@ -60,7 +77,7 @@ const UploadFile = (props) => {
           
              Swal.fire(
             {
-                title: 'Bạn có muốn lưu lịch sử tác động',
+                title: 'Thao tác lưu ghi chú thông tin cho hợp đồng này?',
                 text: "",
                 icon: 'info',
                 showCancelButton: true,
@@ -91,7 +108,7 @@ const handleSucessUpdateImpact = (data) => {
                title: 'Lưu thành công',
             
            }).then(function() {
-               window.open("/follow-up-new/new-list ","_self");
+                 getDataNoted();
            });
           
    }
@@ -109,8 +126,6 @@ const handleSucessUpdateImpact = (data) => {
 
 const handleErrUpdateImpact = (data) => {
 
-
-
 }
   
     return (
@@ -118,7 +133,10 @@ const handleErrUpdateImpact = (data) => {
             <div className="header-model">
             <h4>Ghi chú thông tin</h4>
             </div>
-            
+            <div className="footer-model">
+                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Thêm ghi chú </button>
+                <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
+            </div>
              <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate  >
                   
@@ -129,7 +147,7 @@ const handleErrUpdateImpact = (data) => {
                     
               </form>
             </div>
-
+         
             <div className='datalist'>
                     <table>
                     <tr>
@@ -137,43 +155,33 @@ const handleErrUpdateImpact = (data) => {
                     <th>Bởi</th>
                     <th>Nội dung</th>
                     </tr>
-                    <tr>
-                    <td>{props.idPass}</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    </tr>
-                    <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                    </tr>
-                    <tr>
-                    <td>Ernst Handel</td>
-                    <td>Roland Mendel</td>
-                    <td>Austria</td>
-                    </tr>
-                    <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                    <td>UK</td>
-                    </tr>
-                    <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                    <td>Canada</td>
-                    </tr>
-                    <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                    <td>Italy</td>
-                    </tr>
+                    { 
+                            dataNoted.map((item, index) =>
+                             {
+                                var zone  = "America/New_York";
+
+                                const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
+                                let timeCalText = moment(item.createAt).zone("+7:00").format("DD/MM/YYYY HH:mm:ss");
+                                if(item.createAt < "2023-06-19T15:07:50")
+                                {
+                                    timeCalText = moment(item.createAt).zone("+14:00").format("DD/MM/YYYY HH:mm:ss");
+                                }  
+                            return (
+                                    <tr>
+                                        <td>{timeCalText}</td>
+                                        <td>{item.author}</td>
+                                        <td>{item.noted}</td>
+                                    </tr>
+
+                            );
+                            })
+                    }
+                    
+                   
                     </table>
             </div>
 
-            <div className="footer-model">
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Thêm ghi chú </button>
-                <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
-            </div>
+           
 
 
             

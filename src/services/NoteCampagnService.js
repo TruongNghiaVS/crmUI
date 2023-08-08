@@ -10,8 +10,11 @@ class NoteCampagnService   {
         let url = Constants.URL_qc_getcampagnProfileOrginal_add;
          ApiService.httpPost(url, null, body, callSuccess, callError);
    }
+   static GetAllNoted( body, callSuccess, callError) {
+    let url = Constants.URL_qc_getcampagnProfileOrginal_allNote;
+    ApiService.httpPost(url, null, body, callSuccess, callError);
+}
    
-
     
     
   

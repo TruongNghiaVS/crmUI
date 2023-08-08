@@ -59,7 +59,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         // data.append('id', props.idPass);
-        fetch('http://118.69.182.32:7777/api/campagn/importDataSkipInfo', {
+        fetch('http://192.168.1.2:8888/api/campagn/importDataSkipInfo', {
             method: 'POST',
             body: data
         })

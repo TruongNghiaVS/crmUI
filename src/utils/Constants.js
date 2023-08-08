@@ -1,13 +1,13 @@
 class ConstantData {
-    static DOMAIN = "http://118.69.182.32:7777";
+    static DOMAIN = "http://192.168.1.2:8888";
     static HEADERS = {
         
     };
     // API URL
-
-//Login
+    //Login
     static URL_LOGIN = `${ConstantData.DOMAIN}/api/user/login`;
     static URL_Employee_GetALl = `${ConstantData.DOMAIN}/api/employee/getAll`;
+   
     static URL_Employee_Add = `${ConstantData.DOMAIN}/api/employee/add`;
     static URL_Employee_Update = `${ConstantData.DOMAIN}/api/employee/update`;
     static URL_Employee_Delete = `${ConstantData.DOMAIN}/api/employee/delete`;
@@ -131,6 +131,8 @@ class ConstantData {
     // static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getOverViewByCall`;
 
     static URL_qc_getcampagnProfileOrginal = `${ConstantData.DOMAIN}/api/campagnProfile/getAllOriginal`;
+    static URL_qc_getcampagnProfileOrginal_allNote = `${ConstantData.DOMAIN}/api/campagnProfile/getAllNoted`;
+    
     static URL_User_getOverViewByCall = `${ConstantData.DOMAIN}/api/dashboard/getDetailOverView`;
 
     static URL_makeCall = `${ConstantData.DOMAIN}/api/MakeCall/TriggerCall`;
@@ -168,13 +170,11 @@ class ConstantData {
     //package server
     static URL_package_GetALl = `${ConstantData.DOMAIN}/api/package/getAll`;
     static URL_package_GetInfo = `${ConstantData.DOMAIN}/api/package/GetALlInfo`;
-  
     static URL_package_Add = `${ConstantData.DOMAIN}/api/package/add`;
     static URL_package_Update = `${ConstantData.DOMAIN}/api/package/update`;
     static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;
     static URL_package_GetById = `${ConstantData.DOMAIN}/api/package/getById`;
-
-    static URL_qc_getcampagnProfileOrginal_add = `${ConstantData.DOMAIN}/api/campagnProfile/addNoted`;
+     static URL_qc_getcampagnProfileOrginal_add = `${ConstantData.DOMAIN}/api/campagnProfile/addNoted`;
 
 
 }
