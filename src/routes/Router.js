@@ -88,6 +88,11 @@ function Router() {
                          <Route path="quan-ly-dpd" element={<Layout page="quan-ly-dpd" />}>
 
                          </Route>
+
+
+                          <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />}>
+
+                         </Route>
      
                        
                          
