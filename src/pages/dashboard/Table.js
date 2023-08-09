@@ -33,10 +33,10 @@ const toHHMMSS = (secs) => {
         .join(":")
 }
 
-const TableRow = ({ data }) => {
+const TableRow = ({ data, rowindex }) => {
     return (
         <tr>
-            <td><input type="checkbox" defaultChecked={false} /></td>
+            <td>{rowindex+1}</td>
             <td>{data.dayR+"/"+data.monthR + "/" +data.yearR}</td>
             <td>{data.lineCode}</td>
             <td>{data.sumCall}</td>
@@ -71,8 +71,8 @@ const Table = ({ theadData, tbodyData, tblClass }) => {
                 </tr>
             </thead>
             <tbody>
-                {tbodyData.map((item) => {
-                    return <TableRow key={item.id} data={item} />;
+                {tbodyData.map((item,index) => {
+                    return <TableRow key={item.id} rowindex ={index} data={item} />;
                 })}
             </tbody>
         </table>
