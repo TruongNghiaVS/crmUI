@@ -13,7 +13,8 @@ import { mode } from "crypto-js";
 // const process = require('process'); 
 
 const displayMobilePhone = (numberPhone) => 
-{   
+{
+       return numberPhone;
     if(numberPhone)
     {
         if(numberPhone.length <7)
