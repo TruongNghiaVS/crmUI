@@ -125,7 +125,7 @@ const DataJson = {
      ],
 
      theadDataReportRecording: [
-        "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","Valid/Invalid", "Time_Talking","TotalTime"
+        "STT",  "Ngày", "Giờ bắt đầu", "Giờ kết thúc","Talking-Time", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","Valid/Invalid","TotalTime"
        ],
      theadDataReportCDRWidthNo: [
         "STT",  "Call Date", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","App", "Time_Talking","TotalTime" ,"Số hợp đồng"

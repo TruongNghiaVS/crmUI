@@ -15,13 +15,14 @@ const TableHeadItem = ({ item }) => {
 
 const displayMobilePhone = (numberPhone) => 
 {   
+    
     if(numberPhone)
     {
         if(numberPhone.length <7)
         {
             return "";
         }
-        return  numberPhone.substring(0, 3) + 'xxxxxxx';
+        return  numberPhone.substring(0, 6) + 'xxxxx';
     }
     return "";
 
@@ -49,19 +50,19 @@ const  countRecord = (id) => {
 }
 const getShowfile =  (item)=> {
     // return item.recordingfile;
-    let fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
+    let fileUrl = "http://42.115.94.180:7777/api/file/getaudio10?filePath=";
     if(item.src.startsWith("1"))
     {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
+        fileUrl = "http://42.115.94.180:7777/api/file/getaudio10?filePath=";
     }
     if(item.src.startsWith("3"))
     {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio10?filePath=";
+        fileUrl = "http://42.115.94.180:7777/api/file/getaudio10?filePath=";
     }
 
     if(item.src.startsWith("4"))
     {
-        fileUrl = "http://118.69.182.32:7777/api/file/getaudio151?filePath=";
+        fileUrl = "http://42.115.94.180:7777/api/file/getaudio151?filePath=";
     }
     fileUrl=fileUrl +''+ item.recordingfile;
     
@@ -87,17 +88,54 @@ const getStatusRecord = (item) => {
         }
 }
 
+const toHHMMSS = (secs) => {
+    if(!isNaN(parseFloat(secs)) && isFinite(secs))
+    {
+          
+    }
+    else 
+    {
+        return  "";
+    }
+    var sec_num = parseInt(secs, 10)
+    var hours   = Math.floor(sec_num / 3600)
+    var minutes = Math.floor(sec_num / 60) % 60
+    var seconds = sec_num % 60
+
+    return [hours,minutes,seconds]
+        .map(v => v < 10 ? "0" + v : v)
+        .filter((v,i) => v !== "00" || i > 0)
+        .join(":")
+}
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
 
     const timeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
-    let timeCalText = moment(data.calldate).zone("+7:00").format("DD/MM/YYYY HH:mm:ss");
+    let timeCalText = moment(data.calldate).zone("+7:00");
+
+
     if(data.calldate < "2023-06-19T15:07:50")
     {
-         timeCalText = moment(data.calldate).zone("+14:00").format("DD/MM/YYYY HH:mm:ss");
+         timeCalText = moment(data.calldate).zone("+14:00");
     }
+    else if(data.calldate > "2023-09-12T00:00:00")
+    {
+         timeCalText = moment(data.calldate).zone("+14:00");
+    } 
+    
+    var timeCalFull =  timeCalText.format("DD/MM/YYYY HH:mm:ss");
+
+   var  callDateEnd = moment(timeCalText).add(data.duration, 'seconds');
+
+    var dateCall = timeCalText.format("DD/MM/YYYY");
+    var hourCallBegin =  timeCalText.format("HH:mm:ss");
+    var hourCallEnd =  callDateEnd.format("HH:mm:ss");
+    // var  = timeCalText.format("DD/MM/YYYY HH:mm:ss");
+
+
+
 
     
 
@@ -105,14 +143,17 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{timeCalText}</td>
+            <td>{dateCall}</td>
+            <td>{hourCallBegin} </td>
+            <td> {hourCallEnd}</td>
+            <td>{toHHMMSS(data.durationReal)}</td>
+
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
             <td>{displayMobilePhone(data.dst)}</td>
             <td>{data.disposition}</td>
             <td>{getStatusRecord(data)}</td>
-            <td>{data.durationReal}</td>
-             <td>{data.duration}</td>
+             <td>{toHHMMSS(data.duration)}</td>
 
         </tr>
     );
