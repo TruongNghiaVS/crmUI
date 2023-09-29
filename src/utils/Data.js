@@ -249,12 +249,16 @@ const DataJson = {
         "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày",
     ],
 
+    // theadDataFollowUpNew: [
+    //    "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
+    //     "Khác", "Tình trạng", "Trạng thái","Đang giao cho", "Tạo bởi","Giữ case", "Tạo ngày",
+    // ],
+
     theadDataFollowUpNew: [
-       "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
-        "Khác", "Tình trạng", "Trạng thái","Đang giao cho", "Tạo bởi","Giữ case", "Tạo ngày",
-    ],
-
-
+        "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
+         "Khác", "Tình trạng", "Trạng thái","Đang giao cho", "Tạo bởi","Giữ case", "Tạo ngày",
+     ],
+     
     tbodyDataFollowUp: [
         {
             id: 1,

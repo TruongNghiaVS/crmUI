@@ -106,8 +106,8 @@ const Header = ({ classHeader }) => {
                                 </Link>
                             </li>
                            
-                            <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tin-nhan">Báo cáo Sms</Link></li>
-                            <li className='sub-list-link'><Link className='nav-link' to="/tong-quan-tin-nhan">Tổng quan tin nhắn</Link></li>
+                            {/* <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tin-nhan">Báo cáo Sms</Link></li>
+                            <li className='sub-list-link'><Link className='nav-link' to="/tong-quan-tin-nhan">Tổng quan tin nhắn</Link></li> */}
 
                        
                             <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-talktime">BC talktime</Link></li>

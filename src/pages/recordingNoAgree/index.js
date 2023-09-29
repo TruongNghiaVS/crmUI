@@ -59,6 +59,7 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
+        let noAgree = obejctSearch.noAgree;
         let bodySearch = {
             timeTalkBegin: obejctSearch.timeTalkBegin,
             timeTalkEnd: obejctSearch.timeTalkEnd,
@@ -71,10 +72,11 @@ const User = () => {
             phoneLog: obejctSearch.phoneLog,
             Disposition: obejctSearch.status,
             from:fromDate,
+            noAgree: obejctSearch.noAgree,
             to: obejctSearch.endTime
         };
 
-        EmployeeService.exportData(  bodySearch, (response) => {
+        EmployeeService.exportDataNo(  bodySearch, (response) => {
             if (response.statusCode === 200) {
                 exportDataExcel(response.value.data);
             } else {
@@ -191,7 +193,8 @@ const User = () => {
             'Số điện thoại',
             'Time talking',
             'Tổng thời  gian gọi',
-            'File Ghi âm'
+            'File Ghi âm',
+            "Số hợp đồng"
 
 
             ]
