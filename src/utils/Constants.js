@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.2:7676";
+    static DOMAIN = "http://42.115.94.180:7777";
     static HEADERS = {
         
     };

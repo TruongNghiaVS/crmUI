@@ -55,7 +55,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.2:7676/api/campagn/importDataFile', {
+        fetch('http://42.115.94.180:7777/api/campagn/importDataFile', {
             method: 'POST',
             body: data
         })
@@ -137,7 +137,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.2:7676/api/campagn/importDataById', {
+        fetch('http://42.115.94.180:7777/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
@@ -223,7 +223,7 @@ const UploadFile = (props) => {
         var data = new FormData();
         data.append('fileData', file)
         data.append('id', 1);
-        fetch('http://192.168.1.2:7676/api/campagn/importDataById', {
+        fetch('http://42.115.94.180:7777/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
