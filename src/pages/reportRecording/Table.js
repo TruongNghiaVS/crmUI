@@ -121,7 +121,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
     {
          timeCalText = moment(data.calldate).zone("+14:00");
     }
-    else if(data.calldate > "2023-09-12T00:00:00")
+    else if(data.calldate > "2023-09-12T00:00:00" && data.calldate < "2023-10-07T00:00:00")
     {
          timeCalText = moment(data.calldate).zone("+14:00");
     } 
