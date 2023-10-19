@@ -11,6 +11,7 @@ const ImpactHistory = ({data}) => {
             {
                 data.map((item, i) => {    
                     
+                    console.log(item);
                     {
                         let shortDes ="";
                         if(item.moneyPromise )

@@ -5,6 +5,12 @@ class ReportService   {
         let url = Constants.URL_ReportService_GetALlOverView;
         ApiService.httpPost(url, null, body, callSuccess, callError);
     }
+
+    static GetAllFOCall( body, callSuccess, callError) {
+        let url = Constants.URL_ReportService_GetALlFistLastCall;
+        ApiService.httpPost(url, null, body, callSuccess, callError);
+    }
+    
     
     static exportDataImpact( body, callSuccess, callError) {
         let url = Constants.URL_ReportService_getReportImpact;

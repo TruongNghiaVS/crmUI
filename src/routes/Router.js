@@ -8,11 +8,7 @@ function Router() {
                          <Route path="test-line" element={<Layout page="test-line" />}>
                                 <Route path=":detail" element={<Layout page="test-line" />} />
                          </Route>
-                         
-                        
-
-                          <Route path="danh-sach-goc" element={<Layout page="workplace2" />}>
-                              
+                         <Route path="danh-sach-goc" element={<Layout page="workplace2" />}>
                          </Route>
                          <Route path="nhom" element={<Layout page="detailGroup" />}>
                                     <Route path=":detail" element={<Layout page="detailGroup" />} />
@@ -56,7 +52,11 @@ function Router() {
                           <Route path="reportCDR" element={<Layout page="reportCDR" />}>
                               <Route path=":edit" element={<Layout page="reportCDR" />} />
                          </Route>
-                          <Route path="bao-cao-ghi-am" element={<Layout page="recording" />}>
+                         <Route path="bao-cao-ghi-am" element={<Layout page="recording" />}>
+                              
+                         </Route>
+
+                         <Route path="fist-call-last-call" element={<Layout page="fistlastCall" />}>
                               
                          </Route>
 
@@ -88,9 +88,8 @@ function Router() {
                          <Route path="quan-ly-dpd" element={<Layout page="quan-ly-dpd" />}>
 
                          </Route>
-
-
-                          <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />}>
+                         
+                         <Route path="danh-sach-nhom" element={<Layout page="GroupUser" />}>
 
                          </Route>
      

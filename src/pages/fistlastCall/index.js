@@ -37,8 +37,8 @@ const User = () => {
         timeTalkEnd: 600,
         timeFrom1: 21600,
         timeFrom2: 68400,
-        noAgree: "",
-        fromTime: moment().subtract(2, 'months'),
+
+        fromTime: moment(),
         endTime: moment()
     });
 
@@ -58,7 +58,6 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
-        let noAgree = obejctSearch.noAgree;
         let bodySearch = {
             timeTalkBegin: obejctSearch.timeTalkBegin,
             timeTalkEnd: obejctSearch.timeTalkEnd,
@@ -71,11 +70,10 @@ const User = () => {
             phoneLog: obejctSearch.phoneLog,
             Disposition: obejctSearch.status,
             from:fromDate,
-            noAgree: obejctSearch.noAgree,
             to: obejctSearch.endTime
         };
 
-        EmployeeService.exportDataNo(  bodySearch, (response) => {
+        EmployeeService.exportData(  bodySearch, (response) => {
             if (response.statusCode === 200) {
                 exportDataExcel(response.value.data);
             } else {
@@ -192,8 +190,7 @@ const User = () => {
             'Số điện thoại',
             'Time talking',
             'Tổng thời  gian gọi',
-            'File Ghi âm',
-            "Số hợp đồng"
+            'File Ghi âm'
 
 
             ]
@@ -353,7 +350,6 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
-        let noAgree = obejctSearch.noAgree;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -367,17 +363,14 @@ const User = () => {
         {
             endTime = endTime;
         }
-         var urlPag= "/bao-cao-ghi-am-theo-so-hop-dong";
+         var urlPag= "/bao-cao-ghi-am";
       
         urlPag +='?page=' +page;
         if(fromTime !='' && fromTime !='')
         {
             urlPag +='&fromTime=' +fromTime;
         }
-        if(noAgree != null && noAgree !='' && noAgree !='')
-        {
-            urlPag +='&appid=' +noAgree;
-        }
+        
         if(endTime !='' && endTime !='')
         {
             urlPag +='&endTime=' +endTime;
@@ -417,7 +410,6 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
-        let noAgree = obejctSearch.noAgree;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -430,7 +422,7 @@ const User = () => {
         }
 
 
-         var urlPag= "/bao-cao-ghi-am-theo-so-hop-dong";
+         var urlPag= "/bao-cao-ghi-am";
       
         urlPag +='?page=' +data;
         if(fromTime !='' && fromTime !='')
@@ -443,10 +435,6 @@ const User = () => {
             urlPag +='&endTime=' +endTime;
         }
 
-        if(noAgree != null && noAgree !='' && noAgree !='')
-        {
-            urlPag +='&appid=' +noAgree;
-        }
         if(linecode != null && linecode !='' && linecode !='')
         {
             urlPag +='&linecode=' +linecode;
@@ -499,36 +487,10 @@ const User = () => {
         const query = new URLSearchParams(search);
         const page = query.get('page');
         const limit = query.get('limit');
-        let noAgreeInput = query.get('appid');
-        let fromDateQuery = query.get('fromTime');
-        let toDateQuerry = query.get('endTime');
+        const fromDateQuery = query.get('fromTime');
+        const toDateQuerry = query.get('endTime');
 
         let linecodeInput = query.get('linecode');
-        let phoneLogInput = query.get('phoneLog');
-        
-        let timeTalkBeginQuery = query.get('timeTalkBegin');
-        let timeTalkEndQuerry = query.get('timeTalkEnd');
-        
-        let timeFrom1Input = query.get('timeFrom1');
-        let timeFrom2Input = query.get('timeFrom2');
-        // if(typeof num1 == 'number')
-        // {
-        //     let valueControl =linecode;
-        //     let nameControl ="linecode";
-        //     setKeySearch((prevalue) => {
-        //         return {
-        //             ...prevalue,   // Spread Operator               
-        //             [nameControl]: valueControl
-        //         }
-        //         })
-
-            
-        //  }
-        // else {
-           
-        //     linecode = obejctSearch.linecode;
-           
-        // }
         if( linecodeInput!= null && linecodeInput !="")
         {
                 let valueControl =linecodeInput;
@@ -544,114 +506,7 @@ const User = () => {
          {
             linecodeInput = obejctSearch.linecode;
          }
-         
-         if( noAgreeInput!= null && noAgreeInput !="")
-         {
-                 let valueControl =noAgreeInput;
-                 let nameControl ="noAgree";
-                 setKeySearch((prevalue) => {
-                     return {
-                         ...prevalue,   // Spread Operator               
-                         [nameControl]: valueControl
-                     }
-                  })
-          }
-          else 
-          {
-            if( obejctSearch.noAgree)
-            {
-                noAgreeInput = obejctSearch.noAgree;
-            }
-           
-          }
 
-         if( phoneLogInput!= null && phoneLogInput !="")
-         {
-                 let valueControl =phoneLogInput;
-                 let nameControl ="phoneLog";
-                 setKeySearch((prevalue) => {
-                     return {
-                         ...prevalue,   // Spread Operator               
-                         [nameControl]: valueControl
-                     }
-                  })
-          }
-          else 
-          {
-            phoneLogInput = obejctSearch.phoneLog;
-          }
-
-       
-         
-        
-        if( timeTalkBeginQuery!= null && timeTalkBeginQuery > -1)
-         {
-                 let valueControl =timeTalkBeginQuery;
-                 let nameControl ="timeTalkBegin";
-                 setKeySearch((prevalue) => {
-                     return {
-                         ...prevalue,   // Spread Operator               
-                         [nameControl]: valueControl
-                     }
-                  })
-          }
-          else 
-          {
-            timeTalkBeginQuery = obejctSearch.timeTalkBegin;
-          }
-
-
-          if( timeTalkEndQuerry!= null && timeTalkEndQuerry > -1)
-         {
-                 let valueControl =timeTalkEndQuerry;
-                 let nameControl ="timeTalkEnd";
-                 setKeySearch((prevalue) => {
-                     return {
-                         ...prevalue,   // Spread Operator               
-                         [nameControl]: valueControl
-                     }
-                  })
-          }
-          else 
-          {
-            timeTalkEndQuerry = obejctSearch.timeTalkEnd;
-          }
-
-          
-    
-         
-
-          if( timeFrom1Input!= null && timeFrom1Input  > 0)
-         {
-                 let valueControl =timeFrom1Input;
-                 let nameControl ="timeFrom1";
-                 setKeySearch((prevalue) => {
-                     return {
-                         ...prevalue,   // Spread Operator               
-                         [nameControl]: valueControl
-                     }
-                  })
-          }
-          else 
-          {
-            timeFrom1Input = obejctSearch.timeFrom1;
-          }
-         
-          if( timeFrom2Input!= null && timeFrom2Input > 0)
-         {
-                 let valueControl =timeFrom2Input;
-                 let nameControl ="timeFrom2";
-                 setKeySearch((prevalue) => {
-                     return {
-                         ...prevalue,   // Spread Operator               
-                         [nameControl]: valueControl
-                     }
-                  })
-          }
-          else 
-          {
-            timeFrom2Input = obejctSearch.timeFrom2;
-          }
         if( fromDateQuery!= null && fromDateQuery !="")
         {
                 let valueControl =fromDateQuery;
@@ -730,15 +585,9 @@ const User = () => {
                 Token: obejctSearch.tokenSearch,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
-                linecode: linecodeInput, 
-                timeTalkBegin: timeTalkBeginQuery,
-                timeTalkEnd: timeTalkEndQuerry,
-                timeFrom1: timeFrom1Input,
-                timeFrom2: timeFrom2Input, 
-                 phoneLog: phoneLogInput,
-                Disposition: obejctSearch.status,
+                linecode: linecodeInput,
                 from:fromDate,
-                noAgree:  noAgreeInput,
+
                 to: toDateRquest
             };
 
@@ -752,7 +601,7 @@ const User = () => {
                 bodySearch.Limit =limit; 
 
             }
-            EmployeeService.GetllAllByAgree(bodySearch, (response) => {
+            EmployeeService.GetAllFOCall(bodySearch, (response) => {
                 if (response.statusCode === 200) {
                     renderData(response.value);
                 } else {
@@ -882,7 +731,7 @@ const User = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTable className="icon-tit" />
-                    Báo cáo ghi âm
+                    Báo cáo cuộc gọi đầu tiên/ cuối cùng
                 </h4>
 
             
@@ -924,72 +773,8 @@ const User = () => {
                                 </Col>
                             </Row>
 
-                            <strong>Khung giờ: </strong>
-                            <Row>
-                                <Col>
-
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Từ giờ:</Form.Label>
-                                        <InputGroup className="mb-2">
-                                        <TimePicker start="07:00" end="19:00" 
-                                        
-                                        name="timeFrom1"
-                                        value={obejctSearch.timeFrom1}
-                                       
-                                        onChange={SetTimeFrom1Change}
-                                    
-                                        format  ={24} step={30} />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Đến giờ:</Form.Label>
-                                        <InputGroup className="mb-2">
-                                        <TimePicker start="07:00" end="19:00" 
-                                        
-                                        name="timeFrom2"
-                                        value={obejctSearch.timeFrom2}
-                                       
-                                        onChange={SetTimeFrom2Change}
-                                        format  ={24} step={30} />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <strong>Số phút đàm thoại: </strong>
-
-                            <Row>
-                                <Col>
-
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Từ phút (giờ: phút):</Form.Label>
-                                        <InputGroup className="mb-2">
-                                        <TimePicker start="00:00" end="00:10" 
-                                         name="timeTalkBegin"
-                                         value={obejctSearch.timeTalkBegin}
-                                        
-                                         onChange={SetTimeTalk1Change}
-                                        format  ={24} step={1} />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Đến phút (giờ: phút):</Form.Label>
-                                        <InputGroup className="mb-2">
-                                        <TimePicker start="00:00" end="00:10"
-                                        
-                                        name="timeTalkEnd"
-                                        value={obejctSearch.timeTalkEnd}
-                                       
-                                        onChange={SetTimeTalk2Change}
-                                        
-                                        format  ={24} step={1} />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+                       
+                         
 
                           
                             <Row>
@@ -1008,59 +793,12 @@ const User = () => {
                             }
                                
 
-                                <Col>
-
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Số điện thoại:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Control
-type="text"
-name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
-/>
-        </InputGroup>
-    </Form.Group>
-</Col>
 
 
-                                <Col>
-
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Trạng thái gọi:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Select aria-label="Default select example" name ="status" value ={obejctSearch.status}   onChange={handleInputChange} >
-      <option>Chọn trạng thái</option>
-      <option value="FAILED">FAILED</option>
-      <option value="ANSWERED">ANSWERED</option>
-      <option value="NO ANSWER">NO ANSWER</option>
-
-      <option value="BUSY">BUSY</option>
-    </Form.Select >
-        </InputGroup>
-    </Form.Group>
-</Col>
-                                
-                            </Row>
-                            <Row>
-                          
                                
-
-                                <Col>
-
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Số hợp đồng:</Form.Label>
-        <InputGroup className="mb-2">
-        <Form.Control
-type="text"
-name ="noAgree"  value ={obejctSearch.noAgree} onChange={handleInputChange}
-/>
-        </InputGroup>
-    </Form.Group>
-</Col>
-
-
-                           
                                 
                             </Row>
+
                             <Row>
 
 
@@ -1083,7 +821,7 @@ name ="noAgree"  value ={obejctSearch.noAgree} onChange={handleInputChange}
                     </div>
                 </div>
                
-                <Table theadData={DataJson.theadDataReportNoAgree} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
+                <Table theadData={DataJson.theadDataReportFirstCallLastCall} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
                 <Paging dataPaging={obejctPaging} handlePaging={handlePaging} />
 
             </div>

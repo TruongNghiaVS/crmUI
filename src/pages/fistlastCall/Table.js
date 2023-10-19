@@ -48,7 +48,7 @@ const  countRecord = (id) => {
    
 
 }
-const   getShowfile =  (item)=> {
+const getShowfile =  (item)=> {
     // return item.recordingfile;
     let fileUrl = "http://192.168.1.3:7676/api/file/getaudio10?filePath=";
     if(item.src.startsWith("1"))
@@ -71,8 +71,8 @@ const   getShowfile =  (item)=> {
         return  <ReactAudioPlayer
         src={fileUrl}
         onPlay = {() => onPlay(item.id)}
-        controls
         preload = "none"
+        controls
         />;
     }
     return <p></p>
@@ -109,7 +109,7 @@ const toHHMMSS = (secs) => {
         .join(":")
 }
 
-const TableRow =  ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
+const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
 
@@ -121,7 +121,7 @@ const TableRow =  ({ data,rowIndex,handleDeleteById, handleUpdateById, handleVie
     {
          timeCalText = moment(data.calldate).zone("+14:00");
     }
-    else if(data.calldate > "2023-09-12T00:00:00")
+    else if(data.calldate > "2023-09-12T00:00:00" && data.calldate < "2023-10-07T00:00:00")
     {
          timeCalText = moment(data.calldate).zone("+14:00");
     } 
@@ -144,13 +144,12 @@ const TableRow =  ({ data,rowIndex,handleDeleteById, handleUpdateById, handleVie
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
-            <td>{data.noAgree}</td>
             <td>{dateCall}</td>
             <td>{hourCallBegin} </td>
             <td> {hourCallEnd}</td>
             <td>{toHHMMSS(data.durationReal)}</td>
 
-            <td>{  getShowfile(data)}</td>
+            <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
             <td>{displayMobilePhone(data.dst)}</td>
             <td>{data.disposition}</td>

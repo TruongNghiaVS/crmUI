@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://42.115.94.180:7777";
+    static DOMAIN = "http://192.168.1.3:7676";
     static HEADERS = {
         
     };
@@ -115,6 +115,7 @@ class ConstantData {
     static URL_User_Logout = `${ConstantData.DOMAIN}/api/user/logout`;
      //ReportService
     static URL_ReportService_GetALlOverView = `${ConstantData.DOMAIN}/api/Report/getAllOverView`;
+    static URL_ReportService_GetALlFistLastCall = `${ConstantData.DOMAIN}/api/Report/getAllFirstLastCall`;
     static  URL_ReportService_getReportImpact = `${ConstantData.DOMAIN}/api/report/exportImpactData`;
     static  URL_ReportService_ImpactHistory = `${ConstantData.DOMAIN}/api/ImpactHistory/exportFinal`;
     static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;

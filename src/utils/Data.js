@@ -125,7 +125,12 @@ const DataJson = {
      ],
 
      theadDataReportRecording: [
-        "STT",  "Ngày", "Giờ bắt đầu", "Giờ kết thúc","Talking-Time", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","Valid/Invalid","TotalTime"
+        "STT","AppId",  "Ngày", "Giờ bắt đầu", "Giờ kết thúc","Talking-Time", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","Valid/Invalid","TotalTime"
+       ],
+
+       
+     theadDataReportFirstCallLastCall: [
+        "STT",  "Ngày", "FristCall(Dữ liệu gọi)", "lastCall(Dữ liệu gọi)","FistCall(Dữ liệu ghi âm)", "LastCall(Dữ liệu ghi âm)", "FistCall(KL)",  "LastCall<KL>"
        ],
        theadDataReportNoAgree: [
         "STT", "Mã HĐ", "Ngày", "Giờ bắt đầu", "Giờ kết thúc","Talking-Time", "File ghi âm", "line gọi",  "Số điện thoại", "Trạng thái gọi","Valid/Invalid","TotalTime"

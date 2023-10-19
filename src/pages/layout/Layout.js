@@ -34,7 +34,7 @@ import DocumentData from '../DocumentData';
 
 import ReportTalkTime from '../reportTalkTime';
 import ReportRecording from '../reportRecording';
-
+import FistlastCall from '../fistlastCall';
 import RecordingNoAgree from '../recordingNoAgree';
 
 import SmsReport  from  '../smsReport';
@@ -133,6 +133,9 @@ const Screen = (props) => {
         case 'recording': 
     
         return  <ReportRecording/>
+        case 'fistlastCall': 
+    
+        return  <FistlastCall/>
 
 
         case 'documentData': 

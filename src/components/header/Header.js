@@ -12,7 +12,7 @@ const Header = ({ classHeader }) => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const formTime =  moment().format("YYYY-MM-DD");
     const endTime =  moment().format("YYYY-MM-DD");
-    
+    const endTime1 =  moment().subtract(2, 'months').format("YYYY-MM-DD");
     let navigate = useNavigate();
     // navigate('/campangn');
 
@@ -101,11 +101,18 @@ const Header = ({ classHeader }) => {
 
                             <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 
-                                to={"/bao-cao-ghi-am-theo-so-hop-dong?fromTime="+formTime+"&endTime="+endTime}>
+                                to={"/bao-cao-ghi-am-theo-so-hop-dong?fromTime="+endTime1+"&endTime="+formTime}>
                                 BCGhi âm theo HĐ
                                 </Link>
                             </li>
-                           
+
+                            {/* <li className='sub-list-link'>
+                                <Link reloadDocument className='nav-link' 
+                                to={"/fist-call-last-call?fromTime="+formTime+"&endTime="+endTime}>
+                                 FistCall/LastCall
+                                </Link>
+                            </li>
+                            */}
                             {/* <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tin-nhan">Báo cáo Sms</Link></li>
                             <li className='sub-list-link'><Link className='nav-link' to="/tong-quan-tin-nhan">Tổng quan tin nhắn</Link></li> */}
 
