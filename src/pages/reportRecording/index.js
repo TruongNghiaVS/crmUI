@@ -37,7 +37,7 @@ const User = () => {
         timeTalkEnd: 600,
         timeFrom1: 21600,
         timeFrom2: 68400,
-
+        noAgree: "",
         fromTime: moment(),
         endTime: moment()
     });
@@ -58,6 +58,7 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
+        let noAgree = obejctSearch.noAgree;
         let bodySearch = {
             timeTalkBegin: obejctSearch.timeTalkBegin,
             timeTalkEnd: obejctSearch.timeTalkEnd,
@@ -70,7 +71,8 @@ const User = () => {
             phoneLog: obejctSearch.phoneLog,
             Disposition: obejctSearch.status,
             from:fromDate,
-            to: obejctSearch.endTime
+            to: obejctSearch.endTime,
+            noAgree: obejctSearch.noAgree
         };
 
         EmployeeService.exportData(  bodySearch, (response) => {
@@ -184,13 +186,14 @@ const User = () => {
 
         var DataExport = dataReder;
         const Heading = [
-            [
+        [
             'Line gọi',
             'Thời gian gọi',
             'Số điện thoại',
             'Time talking',
             'Tổng thời  gian gọi',
-            'File Ghi âm'
+            'File Ghi âm',
+            'Số HĐ'
 
 
             ]
@@ -350,6 +353,7 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
+        let noAgree = obejctSearch.noAgree;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -370,10 +374,14 @@ const User = () => {
         {
             urlPag +='&fromTime=' +fromTime;
         }
-        
+       
         if(endTime !='' && endTime !='')
         {
             urlPag +='&endTime=' +endTime;
+        }
+        if(noAgree != null && noAgree !='' && noAgree !='')
+        {
+            urlPag +='&appid=' +noAgree;
         }
         if(linecode !='' && linecode !='')
         {
@@ -410,6 +418,7 @@ const User = () => {
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
+        let noAgree = obejctSearch.noAgree;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -438,6 +447,10 @@ const User = () => {
         if(linecode != null && linecode !='' && linecode !='')
         {
             urlPag +='&linecode=' +linecode;
+        }
+        if(noAgree != null && noAgree !='' && noAgree !='')
+        {
+            urlPag +='&appid=' +noAgree;
         }
         if(phoneLog != null && phoneLog !='' && phoneLog !='')
         {
@@ -493,7 +506,7 @@ const User = () => {
         let linecodeInput = query.get('linecode');
         let phoneLogInput = query.get('phoneLog');
 
-
+        let noAgreeInput = query.get('appid');
 
 
 
@@ -555,7 +568,25 @@ const User = () => {
           }
 
        
-         
+          if( noAgreeInput!= null && noAgreeInput !="")
+         {
+                 let valueControl =noAgreeInput;
+                 let nameControl ="noAgree";
+                 setKeySearch((prevalue) => {
+                     return {
+                         ...prevalue,   // Spread Operator               
+                         [nameControl]: valueControl
+                     }
+                  })
+          }
+          else 
+          {
+            if( obejctSearch.noAgree)
+            {
+                noAgreeInput = obejctSearch.noAgree;
+            }
+           
+          }
         
         if( timeTalkBeginQuery!= null && timeTalkBeginQuery > -1)
          {
@@ -711,7 +742,7 @@ const User = () => {
                  phoneLog: phoneLogInput,
                 Disposition: obejctSearch.status,
                 from:fromDate,
-
+                noAgree:  noAgreeInput,
                 to: toDateRquest
             };
 
@@ -1013,6 +1044,27 @@ name ="phoneLog"  value ={obejctSearch.phoneLog} onChange={handleInputChange}
 </Col>
                                 
                             </Row>
+                            <Row>
+                          
+                               
+
+                          <Col>
+
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+  <Form.Label>Số hợp đồng:</Form.Label>
+  <InputGroup className="mb-2">
+  <Form.Control
+type="text"
+name ="noAgree"  value ={obejctSearch.noAgree} onChange={handleInputChange}
+/>
+  </InputGroup>
+</Form.Group>
+</Col>
+
+
+                     
+                          
+                      </Row>
 
                             <Row>
 
