@@ -92,6 +92,13 @@ const Header = ({ classHeader }) => {
                             {/* <li className='sub-list-link'><Link className='nav-link' to="/">BC theo khung giờ</Link></li> */}
                           
                             {/* <li className='sub-list-link'><Link className='nav-link' to="/">Nhập kết quả</Link></li> */}
+
+                            <li className='sub-list-link'>
+                                <Link reloadDocument className='nav-link' 
+                                to={"/bao-cao-du-lieu-goi?fromTime="+formTime+"&endTime="+endTime}>
+                                Báo cáo dữ liệu gọi
+                                </Link>
+                            </li>
                             <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 
                                 to={"/bao-cao-ghi-am?fromTime="+formTime+"&endTime="+endTime}>
@@ -99,12 +106,7 @@ const Header = ({ classHeader }) => {
                                 </Link>
                             </li>
 
-                            <li className='sub-list-link'>
-                                <Link reloadDocument className='nav-link' 
-                                to={"/bao-cao-ghi-am-theo-so-hop-dong?fromTime="+endTime1+"&endTime="+formTime}>
-                                BCGhi âm theo HĐ
-                                </Link>
-                            </li>
+                           
 
                             {/* <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 

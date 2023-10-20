@@ -36,6 +36,7 @@ import ReportTalkTime from '../reportTalkTime';
 import ReportRecording from '../reportRecording';
 import FistlastCall from '../fistlastCall';
 import RecordingNoAgree from '../recordingNoAgree';
+import ReportCall from '../reportCall';
 
 import SmsReport  from  '../smsReport';
 import ViewRecordingFile  from '../viewRecordingFile';
@@ -157,6 +158,10 @@ const Screen = (props) => {
         case 'reportTalkTime': 
     
         return  <ReportTalkTime/>
+
+        case 'reportCall':
+        return  <ReportCall/>
+
         case 'lineManagement':
             return <LineManagement/>;
 
