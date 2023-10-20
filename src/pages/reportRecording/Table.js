@@ -152,7 +152,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
 
             <td>{getShowfile(data)}</td>
             <td>{data.src}</td>
-            <td>{displayMobilePhone(data.dst)}</td>
+            <td>{data.dst}</td>
             <td>{data.disposition}</td>
             <td>{getStatusRecord(data)}</td>
              <td>{toHHMMSS(data.duration)}</td>
