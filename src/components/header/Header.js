@@ -96,7 +96,7 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 
                                 to={"/bao-cao-du-lieu-goi?fromTime="+formTime+"&endTime="+endTime}>
-                                Báo cáo dữ liệu gọi
+                                BC Clik CRM
                                 </Link>
                             </li>
                             <li className='sub-list-link'>
