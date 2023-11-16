@@ -21,7 +21,9 @@ import Swal from 'sweetalert2'
 import { findAllInRenderedTree } from "react-dom/test-utils";
 let XLSX = require("xlsx");
 
-const User = () => {
+const 
+
+User = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
     const [obejctPaging, setObjectPaging] = useState({

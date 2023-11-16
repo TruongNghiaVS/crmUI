@@ -13,6 +13,10 @@ import SmsDashboard from '../smsDashboard/Dashboard';
 
 import FollowUp from '../followUp/FollowUp';
 import FollowUpNew from '../fololowNew';
+import Store from '../store';
+import Search from '../searchStore';
+
+
 import React, { useState, useEffect } from 'react'
 import Reason from '../reason/Reason';
 import DetailGroup from '../DetailGroup/Reason';
@@ -84,6 +88,10 @@ const Screen = (props) => {
             return <CampaignAssign/>;
         case 'follow-up-new':
             return <FollowUpNew />;
+        case 'kho-luu-tru':
+            return <Store />;
+        case 'tra-cuu': 
+            return <Search/>;
         case 'home':
             return <Home />;
         case 'login':

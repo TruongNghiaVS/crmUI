@@ -60,7 +60,7 @@ class ConstantData {
 
       //campagn profile
     static URL_campagnProfile_GetALl = `${ConstantData.DOMAIN}/api/campagnProfile/getAll`;
-
+    static URL_store_GetALl = `${ConstantData.DOMAIN}/api/store/getAll`;
     static URL_campagnProfile_exportFile = `${ConstantData.DOMAIN}/api/campagnProfile/exportData1`;
     static URL_campagnProfile_Add = `${ConstantData.DOMAIN}/api/campagnProfile/add`;
     static URL_campagnProfile_Update = `${ConstantData.DOMAIN}/api/campagnProfile/update`;
@@ -86,6 +86,12 @@ class ConstantData {
     static URL_impactHistory_Update = `${ConstantData.DOMAIN}/api/impacthistory/update`;
     static URL_impactHistory_Delete = `${ConstantData.DOMAIN}/api/impacthistory/delete`;
     static URL_impactHistory_GetById = `${ConstantData.DOMAIN}/api/impacthistory/getById`;
+    static URL_impactHistory_exportData = `${ConstantData.DOMAIN}/api/impacthistory/exportData`;
+
+
+    //store Server
+    static URL_store_GetALl = `${ConstantData.DOMAIN}/api/Store/getAll`;
+    static URL_store_search = `${ConstantData.DOMAIN}/api/Store/getInfo`;
     static URL_impactHistory_exportData = `${ConstantData.DOMAIN}/api/impacthistory/exportData`;
 
 

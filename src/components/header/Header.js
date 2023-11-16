@@ -75,13 +75,24 @@ const Header = ({ classHeader }) => {
                 <ul className='menu'>
                     <li className='list-link'><Link className='nav-link link-main' to="/">HCM</Link></li>
                     <li className='list-link'>
+                        <Link className='nav-link' to="/kho-luu-tru">Kho lưu trữ <FaCaretDown className='nav-icon icon-caret-down' /></Link>
+                        <ul className='sub-menu'>
+                           {(roleUser == 2)&&<li className='sub-list-link'>
+                                <Link reloadDocument  className='nav-link' to="/kho-luu-tru">Quản lý</Link>
+                           </li>}
+                            <li className='sub-list-link'>
+                                <Link reloadDocument  className='nav-link' to="/tra-cuu?keysearch=">Tra cứu</Link>
+                            </li>
+                         </ul>
+                    </li>
+                    <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</Link></li>
-                            <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/skip-data">Danh sách skip</Link></li>
+                            
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
-                            <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/danh-sach-goc">Danh sách gốc</Link></li>
-                            { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/data">Danh sách kho</Link></li>: <></> }
+                            
+                          
                         </ul>
                     </li>
                     <li className='list-link'>

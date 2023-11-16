@@ -27,7 +27,14 @@ function Router() {
                          </Route>
                          <Route path="follow-up-new"  element={<Layout page="follow-up-new" />}>
                          <Route path=":detail" element={<Layout page="follow-up-new" />} />
+                         </Route>
+                         <Route path="kho-luu-tru"  element={<Layout page="kho-luu-tru" />}>
+                         <Route path=":detail" element={<Layout page="kho-luu-tru" />} />
                          
+                         </Route>
+
+                         <Route path="tra-cuu"  element={<Layout page="tra-cuu" />}>
+                       
                          </Route>
                          <Route path="follow-up" element={<Layout page="follow-up" />}>
                               <Route path=":detail" element={<Layout page="follow-up" />} />
