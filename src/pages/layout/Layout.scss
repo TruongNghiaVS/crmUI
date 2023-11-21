@@ -395,8 +395,10 @@ tr:hover {
 
 
 .storeSearch {
+
     margin-top: 50px;
-    width: 100%;
+    width: 80%;
+    margin: auto;
     height: 100vh;
     .headStore {
         font-size: 30px;
@@ -421,6 +423,9 @@ tr:hover {
                 background-color: #dc3545;
                 border: none;
             }
+            button:hover {
+                background-color:red;
+            }
         }
     }
     .bodyStore {
@@ -430,13 +435,7 @@ tr:hover {
         }
         margin: auto;
         max-width: 80%;
-        .titlesection {
-            color: #000000;
-            font-size: 15px;
-            font-weight: bold;
-            text-decoration: none;
-         
-        }
+       
     }
     .bodyNotfound{
         max-width: 80%;
@@ -446,5 +445,82 @@ tr:hover {
         color: #000000;
         text-align: center;
         font-weight:500;
+    }
+}
+
+.dataShow {
+    display: flex;
+    margin-top: 20px;
+
+}
+.tableInfo{
+    
+    width: 50%;
+
+  
+    .rowTable{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px dashed #dbdcdf;
+         p:last-child {
+           font-weight: 500;
+           font-size: 16px;
+        
+          }
+
+          p{
+            font-size: 16px;
+          }
+          
+    }
+
+    .rowTable1{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px dashed #dbdcdf;
+         p:last-child {
+           font-weight: 500;
+           font-size: 16px;
+            text-align: justify;
+          }
+
+          p{
+            font-size: 16px;
+            
+          }
+          p:first-child {
+          width: 200px;
+         
+         }
+          
+    }
+}
+
+.titlesection {
+    color: #dc3545;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+
+   
+ 
+}
+
+.bodyStore {
+    h5 {
+        text-align: center;
+        padding: 10px;
+        font-size: 15px;
+        color: #dc3545;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 }

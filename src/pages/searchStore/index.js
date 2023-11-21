@@ -266,11 +266,9 @@ const Index = () => {
                </div>
                 {
                     (showRessult ==2)&&<div className="bodyStore" > 
-                    <a className="titlesection">Thông tin hợp đồng</a>
+                    <h5> Kết quả trả về: </h5>
                     <Table theadData={ DataJson.theadDataStore } data={dataEmployee.result}  tblClass="tbl-custom-data" />
-                    <a className="titlesection">Thông tin thêm</a>
-
-                    <SkipTable  data= {dataEmployee.listSkipNew} tblClass="tbl-custom-data" />
+                  
                     </div>
     
                 }
@@ -284,6 +282,14 @@ const Index = () => {
 
                 
             </div>
+
+           { (showRessult ==2)&& dataEmployee.listSkipNew !=null && dataEmployee.listSkipNew.length>0 && <>
+            <a className="titlesection">Thông tin thêm</a>
+
+             <SkipTable  data= {dataEmployee.listSkipNew} tblClass="tbl-custom-data" />
+            </>
+            }
+           
       </div>
     );
 };
