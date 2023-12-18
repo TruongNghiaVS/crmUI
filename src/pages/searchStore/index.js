@@ -117,12 +117,10 @@ const Index = () => {
 
     }, [obejctPaging]);
     const getDataEmployee = (PackageKey ='')=> {
-      
         const search = window.location.search;
         const query = new URLSearchParams(search);
-          let tokenInput = query.get('keysearch');
-   
-          if( tokenInput!= null && tokenInput !="")
+        let tokenInput = query.get('keysearch');
+         if( tokenInput!= null && tokenInput !="")
           {
                   let valueControl =tokenInput;
                   let nameControl ="tokenSearch";
@@ -150,9 +148,7 @@ const Index = () => {
    
           EmployeeService.GetAll(ConstantData.URL_store_search, ConstantData.HEADERS, bodySearch, (response) => {
                 if (response.statusCode === 200) {
-
-                    
-                    var datare = response.value;
+                     var datare = response.value;
 
                     if(datare.success)
                     {
@@ -169,8 +165,6 @@ const Index = () => {
                        
                    
                     }
-
-                   
                     var listSkipNew  =datare.listSkipNew;
                     var result = datare.result;
                     setData(prew=>({...prew,result:result}));

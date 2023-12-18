@@ -452,7 +452,8 @@ const Reporthistorical = () => {
                     'Số tiền hứa',
                     'Ngày hẹn',
                     'Ngày tạo',
-                        'Ngày cập nhật'
+                    'Ngày cập nhật',
+                    'Cuộc gọi thứ'
 
 
 
@@ -498,7 +499,8 @@ const exportDataExcel2 = (dataReder) => {
            'Ngày hứa TT(MM/dd/yyyy)',
            'Số tiền hứa thanh toán',
            'Nghi ngờ gian lận',
-           'Ghi chú T12'
+           'Ghi chú T12',
+           'Cuộc gọi thứ'
         ]
     ];
  

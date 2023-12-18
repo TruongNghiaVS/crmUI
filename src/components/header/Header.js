@@ -74,17 +74,23 @@ const Header = ({ classHeader }) => {
             <nav className='nav-header'>
                 <ul className='menu'>
                     <li className='list-link'><Link className='nav-link link-main' to="/">HCM</Link></li>
-                    <li className='list-link'>
+                    {(roleUser == 2)&&<li className='list-link'>
                         <Link className='nav-link' to="/kho-luu-tru">Kho lưu trữ <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
-                           {(roleUser == 2)&&<li className='sub-list-link'>
+                          <li className='sub-list-link'>
                                 <Link reloadDocument  className='nav-link' to="/kho-luu-tru">Quản lý</Link>
-                           </li>}
+                           </li>
                             <li className='sub-list-link'>
                                 <Link reloadDocument  className='nav-link' to="/tra-cuu?keysearch=">Tra cứu</Link>
                             </li>
                          </ul>
                     </li>
+                         }
+                     {(roleUser != 2)&&<li className='list-link'>
+                        <Link className='nav-link' to="/tra-cuu?keysearch=">Tra cứu </Link>
+                        
+                    </li>
+                    }
                     <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>

@@ -152,7 +152,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                               dataReason.data.map((item, i) => {    
                               
                                     return ( <>
-                                        <option value = {item.id}>{item.displayName}</option>
+                                        <option value = {item.id}> {item.code} - {item.displayName}</option>
    
                                    </>)
                               
@@ -208,7 +208,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                                     <option value = "LET">Gửi thư thông báo nợ</option>
                                     <option value = "PHAP_LY">Thu hồi nợ pháp lý</option>
                                     <option value = "DIA_BAN">Thu hồi nợ tại địa bàn</option>
-                                    <option value = "DIEN_THOAI">Thu hồi nợ qua điện thoại</option>
+                                    <option value = "DIEN_THOAI" selected >Thu hồi nợ qua điện thoại</option>
                                     <option value = "SMS">Gửi SMS nhắc nợ</option>
                                     <option value = "SKIP_CALL">Truy tìm thông tin khách hàng qua điện thoại</option>
                                     <option value = "SKIP_SOCIAL_NETWORK">Truy tìm thông tin khách hàng qua mạng xã hội</option>
