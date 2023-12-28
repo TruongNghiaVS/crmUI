@@ -22,6 +22,7 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UploadFile  from "./UploadFile";
 import UploadFile2  from "./UploadFile2";
+import CommonService from "../../services/CommonService";
 let XLSX = require("xlsx");
 
 
@@ -39,7 +40,15 @@ const Reason = () => {
 
     const [isseachdpp, setIsseachdpp] = useState(true);
 
-
+    const [dataGroupMember, setDataGroup] = useState({
+        data: [],
+        
+      });
+    
+      const [dataMember, setDataMember] = useState({
+        data: [],
+        
+      });
     const [obejctPaging, setObjectPaging ] = useState({
         limt: 10, 
         totalRecord : 28,
@@ -68,6 +77,67 @@ const Reason = () => {
          setisOPenUploadFile(!isOPenUploadFile);
    }
 
+   const getDataGroup = () => {
+    let fromDate = obejctSearch.fromTime;
+    if (fromDate == "") {
+      fromDate = null;
+    }
+    let bodySearch = {
+      
+    };
+    CommonService.GetAll(
+      bodySearch,
+      (response) => {
+        if (response.statusCode === 200) {
+            debugger;
+            
+            setDataGroup((prew) => ({ ...prew, data: response.value.data }));
+
+        } else {
+        }
+      },
+      (error) => {}
+    );
+  };
+
+  const handleInputChangeChange = (event) => {
+    let valueControl = event.target.value;
+    let nameControl = event.target.name;
+
+    setKeySearch((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        [nameControl]: valueControl,
+      };
+    });
+
+    getDataMember(valueControl);
+
+
+
+  };
+  const getDataMember = (groupId) => {
+    let fromDate = obejctSearch.fromTime;
+    if (fromDate == "") {
+      fromDate = null;
+    }
+    let bodySearch = {
+        groupId: groupId
+      
+    };
+    CommonService.GetAllMemberByGroup(
+      bodySearch,
+      (response) => {
+        if (response.statusCode === 200) {
+
+            setDataMember((prew) => ({ ...prew, data: response.value.data }));
+
+        } else {
+        }
+      },
+      (error) => {}
+    );
+  };
    const  handleimportRowList =(skip)=>{
     setisOPenUploadFile2(!isOPenUploadFile2);
    }
@@ -302,6 +372,9 @@ const Reason = () => {
             getDataEmployee();
         }
              
+     
+      getDataGroup();
+      getDataMember(-1);
              setInit(true);
         }
       
@@ -455,6 +528,8 @@ const Reason = () => {
             cmnd: obejctSearch.cmnd,
             statusSearch: obejctSearch.statusSearch,
             typegetData: typegetData,
+            memberId: obejctSearch.memberId,
+            groupId: obejctSearch.groupId,
             noAgree: obejctSearch.noAgree,
             colorCode: obejctSearch.colorCode
 
@@ -885,6 +960,62 @@ const Reason = () => {
                     
 
                             </Row>
+
+                            {isAdmin ? (
+                <Row>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Nhóm:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="groupId"
+                          value ={obejctSearch.groupId}
+                          onChange={handleInputChangeChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataGroupMember!=null &&dataGroupMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.name}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Thành viên:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="memberId"
+                          value ={obejctSearch.memberId}
+                          onChange={handleInputChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataMember!=null &&dataMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              ) : (
+                <></>
+              )}
                  </Form>
                 
 

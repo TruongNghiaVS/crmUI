@@ -8,6 +8,15 @@ class CommonService {
           ApiService.httpPost(url, null, body, callSuccess, callError);
       }
 
+      static GetAll( body, callSuccess, callError) {
+        let url = Constants.URL_GroupMember_GetAll;
+        ApiService.httpPost(url, null, body, callSuccess, callError);
+    }
+     static GetAllMemberByGroup( body, callSuccess, callError) {
+        let url = Constants.URL_GetMember_byGroupId;
+        ApiService.httpPost(url, null, body, callSuccess, callError);
+    }
+
 }
 
 export default CommonService;

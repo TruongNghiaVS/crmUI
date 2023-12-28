@@ -511,24 +511,7 @@ const User = () => {
         
         let timeFrom1Input = query.get('timeFrom1');
         let timeFrom2Input = query.get('timeFrom2');
-        // if(typeof num1 == 'number')
-        // {
-        //     let valueControl =linecode;
-        //     let nameControl ="linecode";
-        //     setKeySearch((prevalue) => {
-        //         return {
-        //             ...prevalue,   // Spread Operator               
-        //             [nameControl]: valueControl
-        //         }
-        //         })
-
-            
-        //  }
-        // else {
-           
-        //     linecode = obejctSearch.linecode;
-           
-        // }
+      
         if( linecodeInput!= null && linecodeInput !="")
         {
                 let valueControl =linecodeInput;

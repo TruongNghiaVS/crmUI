@@ -124,7 +124,7 @@ class ConstantData {
     static URL_ReportService_GetALlFistLastCall = `${ConstantData.DOMAIN}/api/Report/getAllFirstLastCall`;
     static  URL_ReportService_getReportImpact = `${ConstantData.DOMAIN}/api/report/exportImpactData`;
     static  URL_ReportService_ImpactHistory = `${ConstantData.DOMAIN}/api/ImpactHistory/exportFinal`;
-    static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;
+  static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;
 
     static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;
     static URL_ReportService_getAllRecordingFile = `${ConstantData.DOMAIN}/api/report/getAllRecordingFile`;
@@ -150,7 +150,8 @@ class ConstantData {
 
     static URL_ReportTalkTime_exportData = `${ConstantData.DOMAIN}/api/ReportTalkTime/exportData`;
     
-    
+    static URL_GroupMember_GetAll = `${ConstantData.DOMAIN}/api/groupEmployee/getAll`;
+    static URL_GetMember_byGroupId = `${ConstantData.DOMAIN}/api/groupEmployee/getMemberByGroup`;
 
     
     //group-reason

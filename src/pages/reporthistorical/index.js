@@ -23,7 +23,7 @@ import moment from "moment";
 import UploadFile  from "./UploadFile";
 
 import MasterDataService from '../../services/MasterDataNewService';
-
+import CommonService from "../../services/CommonService";
 
 let XLSX = require("xlsx");
 
@@ -38,6 +38,15 @@ const Reporthistorical = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
     const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+    const [dataGroupMember, setDataGroup] = useState({
+        data: [],
+        
+      });
+    
+      const [dataMember, setDataMember] = useState({
+        data: [],
+        
+      });
     // let typeMasterData = 5;
 
     const handleShowModelUploadFile = () => {
@@ -118,6 +127,68 @@ const Reporthistorical = () => {
         })
     
     }
+
+    const getDataGroup = () => {
+        let fromDate = obejctSearch.fromTime;
+        if (fromDate == "") {
+          fromDate = null;
+        }
+        let bodySearch = {
+          
+        };
+        CommonService.GetAll(
+          bodySearch,
+          (response) => {
+            if (response.statusCode === 200) {
+                debugger;
+                
+                setDataGroup((prew) => ({ ...prew, data: response.value.data }));
+    
+            } else {
+            }
+          },
+          (error) => {}
+        );
+      };
+    
+      const handleInputChangeChange = (event) => {
+        let valueControl = event.target.value;
+        let nameControl = event.target.name;
+    
+        setKeySearch((prevalue) => {
+          return {
+            ...prevalue, // Spread Operator
+            [nameControl]: valueControl,
+          };
+        });
+    
+        getDataMember(valueControl);
+    
+    
+    
+      };
+      const getDataMember = (groupId) => {
+        let fromDate = obejctSearch.fromTime;
+        if (fromDate == "") {
+          fromDate = null;
+        }
+        let bodySearch = {
+            groupId: groupId
+          
+        };
+        CommonService.GetAllMemberByGroup(
+          bodySearch,
+          (response) => {
+            if (response.statusCode === 200) {
+    
+                setDataMember((prew) => ({ ...prew, data: response.value.data }));
+    
+            } else {
+            }
+          },
+          (error) => {}
+        );
+      };
     
     useEffect(() => {
         if(!isInit)
@@ -143,6 +214,8 @@ const Reporthistorical = () => {
              }
              getData();
              getAllStatus();
+             getDataGroup();
+             getDataMember(-1);
              setInit(true);
         }
     }, [obejctPaging]);
@@ -289,6 +362,8 @@ const Reporthistorical = () => {
             type: numberAss,
             lineCode : obejctSearch.lineCode,
             statusSearch : obejctSearch.statusSearch,
+            memberId: obejctSearch.memberId,
+            groupId: obejctSearch.groupId,
             from: obejctSearch.from,
             to: obejctSearch.to
          };
@@ -739,7 +814,7 @@ const exportDataExcel2 = (dataReder) => {
 </Col>
                             </Row>
                             
-
+         
                            
                         </Form>
 

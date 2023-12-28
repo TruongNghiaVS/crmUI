@@ -12,6 +12,7 @@ import "./Dashboard.scss";
 import DashboardService from '../../services/DashboardService';
 import Services from '../../services/ReportTalkTimeService';
 import { useEffect,useRef  } from 'react';
+import CommonService from "../../services/CommonService";
 let XLSX = require("xlsx");
 const Dashboard = () => {
     const [objectDataOverview, setobjectDataOverview] = useState({
@@ -28,12 +29,24 @@ const Dashboard = () => {
         data: []
 });
 
+const [dataMember, setDataMember] = useState({
+    data: [],
+    
+  });
+  const [dataGroupMember, setDataGroup] = useState({
+    data: [],
+    
+  });
+
 const [obejctSearch, setKeySearch] = useState({
     tokenSearch: "",
     from: moment(),
     endTime: moment()
     
 });
+
+
+
 const handleInputChange = (event) => {
     let valueControl = event.target.value;
     let nameControl = event.target.name;
@@ -140,6 +153,8 @@ const dateForPicker = (dateString) => {
                 phoneLog: obejctSearch.phoneLog,
                 Disposition: obejctSearch.status,
                 from:fromDate,
+                memberId: obejctSearch.memberId,
+                groupId: obejctSearch.groupId,
                 to: obejctSearch.endTime
 
         };
@@ -198,6 +213,70 @@ const dateForPicker = (dateString) => {
 
     }
 
+  
+
+  const handleInputChangeChange = (event) => {
+    let valueControl = event.target.value;
+    let nameControl = event.target.name;
+
+    setKeySearch((prevalue) => {
+      return {
+        ...prevalue, // Spread Operator
+        [nameControl]: valueControl,
+      };
+    });
+
+    getDataMember(valueControl);
+
+
+
+  };
+  const getDataMember = (groupId) => {
+    let fromDate = obejctSearch.fromTime;
+    if (fromDate == "") {
+      fromDate = null;
+    }
+    let bodySearch = {
+        groupId: groupId
+      
+    };
+    CommonService.GetAllMemberByGroup(
+      bodySearch,
+      (response) => {
+        if (response.statusCode === 200) {
+
+            setDataMember((prew) => ({ ...prew, data: response.value.data }));
+
+        } else {
+        }
+      },
+      (error) => {}
+    );
+  };
+
+  const getDataGroup = () => {
+    let fromDate = obejctSearch.fromTime;
+    if (fromDate == "") {
+      fromDate = null;
+    }
+    let bodySearch = {
+      
+    };
+    CommonService.GetAll(
+      bodySearch,
+      (response) => {
+        if (response.statusCode === 200) {
+            debugger;
+            
+            setDataGroup((prew) => ({ ...prew, data: response.value.data }));
+
+        } else {
+        }
+      },
+      (error) => {}
+    );
+  };
+
     const getData = ()=> {
            
 
@@ -211,6 +290,8 @@ const dateForPicker = (dateString) => {
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
                 LineCode: obejctSearch.lineCode,
+                memberId: obejctSearch.memberId,
+                groupId: obejctSearch.groupId,
                 from:fromDate,
                 to: obejctSearch.endTime
 
@@ -259,7 +340,8 @@ const dateForPicker = (dateString) => {
         if(!isInit)
         {
              getData();
-
+             getDataGroup();
+             getDataMember(-1);
              setInit(true);
         }
     }, [objectDataOverview,objectDetail]);
@@ -340,7 +422,61 @@ const dateForPicker = (dateString) => {
                             :<></>
                             }
                             </Row>
+                            {isAdmin ? (
+                <Row>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Nhóm:</Form.Label>
+                      <InputGroup className="mb-2">
                     
+                      <Form.Select
+                          name="groupId"
+                          value ={obejctSearch.groupId}
+                          onChange={handleInputChangeChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataGroupMember!=null &&dataGroupMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.name}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Thành viên:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="memberId"
+                          value ={obejctSearch.memberId}
+                          onChange={handleInputChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataMember!=null &&dataMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              ) : (
+                <></>
+              )}
 
                            
                         </Form>

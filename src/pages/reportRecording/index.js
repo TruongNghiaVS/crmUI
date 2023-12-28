@@ -13,6 +13,7 @@ import "./User.scss";
 import { useEffect, useRef } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/ReportService';
+import CommonService from "../../services/CommonService";
 import Paging from "./Paging";
 import { toast } from 'react-toastify';
 import DateTimePicker from 'react-datetime-picker';
@@ -40,6 +41,8 @@ User = () => {
         timeFrom1: 21600,
         timeFrom2: 68400,
         noAgree: "",
+        groupId: 0,
+        memberId:0,
         fromTime: moment(),
         endTime: moment()
     });
@@ -49,6 +52,77 @@ User = () => {
     const [model, setmodel] = useState({
 
     });
+    const [dataGroupMember, setDataGroup] = useState({
+        data: [],
+        
+      });
+    
+      const [dataMember, setDataMember] = useState({
+        data: [],
+        
+      });
+
+    const getDataGroup = () => {
+        let fromDate = obejctSearch.fromTime;
+        if (fromDate == "") {
+          fromDate = null;
+        }
+        let bodySearch = {
+          
+        };
+        CommonService.GetAll(
+          bodySearch,
+          (response) => {
+            if (response.statusCode === 200) {
+                debugger;
+                
+                setDataGroup((prew) => ({ ...prew, data: response.value.data }));
+    
+            } else {
+            }
+          },
+          (error) => {}
+        );
+      };
+    
+      const handleInputChangeChange = (event) => {
+        let valueControl = event.target.value;
+        let nameControl = event.target.name;
+    
+        setKeySearch((prevalue) => {
+          return {
+            ...prevalue, // Spread Operator
+            [nameControl]: valueControl,
+          };
+        });
+    
+        getDataMember(valueControl);
+    
+    
+    
+      };
+      const getDataMember = (groupId) => {
+        let fromDate = obejctSearch.fromTime;
+        if (fromDate == "") {
+          fromDate = null;
+        }
+        let bodySearch = {
+            groupId: groupId
+          
+        };
+        CommonService.GetAllMemberByGroup(
+          bodySearch,
+          (response) => {
+            if (response.statusCode === 200) {
+    
+                setDataMember((prew) => ({ ...prew, data: response.value.data }));
+    
+            } else {
+            }
+          },
+          (error) => {}
+        );
+      };
     const exportData = () => {
  
         let fromDate = obejctSearch.fromTime;
@@ -61,7 +135,11 @@ User = () => {
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
         let noAgree = obejctSearch.noAgree;
+        let groupId =obejctSearch.groupId;
+        let memberId = obejctSearch.memberId;
         let bodySearch = {
+            groupId: groupId,
+            memberId: memberId,
             timeTalkBegin: obejctSearch.timeTalkBegin,
             timeTalkEnd: obejctSearch.timeTalkEnd,
             timeFrom1: obejctSearch.timeFrom1,
@@ -104,7 +182,7 @@ User = () => {
     }
 
     const handleInputChange = (event) => {
-        debugger;
+   
         let valueControl = event.target.value;
         let nameControl = event.target.name;
 
@@ -305,6 +383,8 @@ User = () => {
 
             }
             getData();
+            getDataGroup();
+            getDataMember(-1);
             setInit(true);
         }
 
@@ -350,7 +430,8 @@ User = () => {
         let fromTime =obejctSearch.fromTime;
         let linecode = obejctSearch.linecode;
         let phoneLog = obejctSearch.phoneLog;
-
+        let groupId = obejctSearch.groupId;
+        let memberId = obejctSearch.memberId;
         let timeTalkBegin =obejctSearch.timeTalkBegin;
         let timeTalkEnd = obejctSearch.timeTalkEnd;
         let timeFrom1 = obejctSearch.timeFrom1;
@@ -409,7 +490,17 @@ User = () => {
         {
             urlPag +='&timeFrom2=' +timeFrom2;
         }
-        window.location.replace(urlPag);
+
+
+        if(groupId > 0)
+        {
+            urlPag +='&groupId=' +groupId;
+        }
+        if(memberId > 0)
+        {
+            urlPag +='&memberId=' +memberId;
+        }
+         window.location.replace(urlPag);
     }
     const handlePaging = (data) => {
            let fromTime =obejctSearch.fromTime;
@@ -421,6 +512,8 @@ User = () => {
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
         let noAgree = obejctSearch.noAgree;
+        let groupId =obejctSearch.groupId;
+        let memberId = obejctSearch.memberId;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -478,6 +571,14 @@ User = () => {
         {
             urlPag +='&timeFrom2=' +timeFrom2;
         }
+        if(groupId > 0)
+        {
+            urlPag +='&groupId=' +groupId;
+        }
+        if(memberId > 0)
+        {
+            urlPag +='&memberId=' +memberId;
+        }
         
          window.location.replace(urlPag);
        
@@ -507,7 +608,8 @@ User = () => {
 
         let linecodeInput = query.get('linecode');
         let phoneLogInput = query.get('phoneLog');
-
+        let groupId = query.get('groupId');
+        let memberId = query.get('memberId');
         let noAgreeInput = query.get('appid');
 
 
@@ -519,24 +621,9 @@ User = () => {
 
         let timeFrom1Input = query.get('timeFrom1');
         let timeFrom2Input = query.get('timeFrom2');
-        // if(typeof num1 == 'number')
-        // {
-        //     let valueControl =linecode;
-        //     let nameControl ="linecode";
-        //     setKeySearch((prevalue) => {
-        //         return {
-        //             ...prevalue,   // Spread Operator               
-        //             [nameControl]: valueControl
-        //         }
-        //         })
+       
 
-            
-        //  }
-        // else {
-           
-        //     linecode = obejctSearch.linecode;
-           
-        // }
+      
         if( linecodeInput!= null && linecodeInput !="")
         {
                 let valueControl =linecodeInput;
@@ -552,6 +639,41 @@ User = () => {
          {
             linecodeInput = obejctSearch.linecode;
          }
+
+        if( memberId!= null && memberId !="")
+        {
+              
+                let nameControl ="memberId";
+                setKeySearch((prevalue) => {
+                    return {
+                        ...prevalue,   // Spread Operator               
+                        [nameControl]: memberId
+                    }
+                 })
+         }
+         else 
+         {
+            memberId = obejctSearch.memberId;
+         }
+
+
+         
+         if( groupId!= null && groupId !="")
+        {
+              
+                let nameControl ="groupId";
+                setKeySearch((prevalue) => {
+                    return {
+                        ...prevalue,   // Spread Operator               
+                        [nameControl]: groupId
+                    }
+                 })
+         }
+         else 
+         {
+            groupId = obejctSearch.groupId;
+         }
+
 
          if( phoneLogInput!= null && phoneLogInput !="")
          {
@@ -730,10 +852,10 @@ User = () => {
             }
             
 
-
-
             let bodySearch = {
                 Token: obejctSearch.tokenSearch,
+                groupId: groupId,
+                memberId: memberId,
                 Page: obejctPaging.currentPage,
                 Limit: obejctPaging.limt,
                 linecode: linecodeInput, 
@@ -741,7 +863,7 @@ User = () => {
                 timeTalkEnd: timeTalkEndQuerry,
                 timeFrom1: timeFrom1Input,
                 timeFrom2: timeFrom2Input, 
-                 phoneLog: phoneLogInput,
+                phoneLog: phoneLogInput,
                 Disposition: obejctSearch.status,
                 from:fromDate,
                 noAgree:  noAgreeInput,
@@ -929,6 +1051,63 @@ User = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
+
+                            
+              {isAdmin ? (
+                <Row>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Nhóm:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="groupId"
+                          value={obejctSearch.groupId}
+                          onChange={handleInputChangeChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataGroupMember!=null &&dataGroupMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.name}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Thành viên:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="memberId"
+                          value={obejctSearch.memberId}
+                          onChange={handleInputChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataMember!=null &&dataMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              ) : (
+                <></>
+              )}
 
                             <strong>Khung giờ: </strong>
                             <Row>
