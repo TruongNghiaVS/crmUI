@@ -184,7 +184,11 @@ class ConstantData {
     static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;
     static URL_package_GetById = `${ConstantData.DOMAIN}/api/package/getById`;
      static URL_qc_getcampagnProfileOrginal_add = `${ConstantData.DOMAIN}/api/campagnProfile/addNoted`;
+    //sms server
 
+    static URL_tracking_getAll = `${ConstantData.DOMAIN}/api/tracking/getAll`;
+
+    static URL_tracking_requestCheck = `${ConstantData.DOMAIN}/api/tracking/requestCheck`;
 
 }
 export default ConstantData;

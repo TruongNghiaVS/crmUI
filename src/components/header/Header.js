@@ -104,11 +104,9 @@ const Header = ({ classHeader }) => {
                     <li className='list-link'>
                         <Link className='nav-link' to="/">Báo cáo <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
-                            {/* <li className='sub-list-link'><Link className='nav-link' to="/">BC chiến dịch gọi ra</Link></li> */}
+                     
                             <li  className='sub-list-link'><Link reloadDocument className='nav-link' to="/historical">BC Lịch sử tác động</Link></li>
-                            {/* <li className='sub-list-link'><Link className='nav-link' to="/">BC theo khung giờ</Link></li> */}
-                          
-                            {/* <li className='sub-list-link'><Link className='nav-link' to="/">Nhập kết quả</Link></li> */}
+                         
 
                             <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 
@@ -158,6 +156,8 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi case</Link></li>
                           
                             <li className='sub-list-link'><Link  className='nav-link' to="/thong-tin-chien-dich">Thông tin chiến dịch</Link></li>
+
+                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/tracking-call">Báo cáo vi phạm gọi</Link></li>
                         </ul>
                     </li> : <></>}
                   { roleUser == "4"?  <li className='list-link'>

@@ -1,4 +1,5 @@
 import './Layout.scss';
+import moment from "moment"; 
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Home from '../home/Home';
@@ -37,6 +38,8 @@ import DocumentData from '../DocumentData';
 
 
 import ReportTalkTime from '../reportTalkTime';
+import Tracking from '../tracking';
+
 import ReportRecording from '../reportRecording';
 import FistlastCall from '../fistlastCall';
 import RecordingNoAgree from '../recordingNoAgree';
@@ -49,6 +52,8 @@ import ViewRecordingOverviewFile  from '../ViewRecordingOverviewFile/ViewRecordi
 import LineManagement from '../lineManagement';
 import DpdManagement from '../dpdManagement';
 import NanagementPackage from '../packageManagement';
+import TrackingService from "../../services/TrackingService";
+import Swal from 'sweetalert2';
 const Layout = (props) => {
     const [heightLayout, setHeightLayout] = useState(0);
     const [heightMain, setHeightMain] = useState(0);
@@ -57,6 +62,23 @@ const Layout = (props) => {
         if(props.page !== '/' || props.page !== 'login') {
             setHeightMain(heightLayout.clientHeight - 130);
         }
+
+
+        let counter = 0;
+
+const interval = setInterval(() => {
+  counter++;
+
+  requestCheck();
+  if (counter >= 500) {
+    // console.log("Interval Stopped");
+    clearInterval(interval);
+  }
+}, 30000);
+
+
+     
+
     }, [props.page, heightLayout.clientHeight])
 
     if(props.page === '/' || props.page === 'login') {
@@ -65,7 +87,8 @@ const Layout = (props) => {
                 <Screen screen={ props.page } />
             </div>
         );
-    } else {
+    } else
+     {
         return (
             <div ref={(height) => { setHeightLayout(height) }} className="layout">
                 <Header classHeader="header" />
@@ -166,6 +189,9 @@ const Screen = (props) => {
         case 'reportTalkTime': 
     
         return  <ReportTalkTime/>
+        case 'tracking': 
+    
+        return  <Tracking/>
 
         case 'reportCall':
         return  <ReportCall/>
@@ -186,5 +212,54 @@ const Screen = (props) => {
             throw new Error('Invalid Screen')
     }
 }
+const toHHMMSS = (secs) => {
+    var sec_num = parseInt(secs, 10)
+    var hours   = Math.floor(sec_num / 3600)
+    var minutes = Math.floor(sec_num / 60) % 60
+    var seconds = sec_num % 60
+
+    return [hours,minutes,seconds]
+        .map(v => v < 10 ? "0" + v : v)
+        .filter((v,i) => v !== "00" || i > 0)
+        .join(":")
+}
+const requestCheck = () => {
+
+  
+  
+    let bodySearch = {
+      
+    };
+    TrackingService.RequestCheck(
+  
+      (response) => {
+        console.log(response);
+        
+    
+        if (response.statusCode === 200) {
+         if(!response.value.sucecss)
+         {
+            var differTime = response.value.differTime;
+            var timeLastCall = response.value.timeLastCall;
+            
+             Swal.fire({
+                icon: "warning",
+                title: "Cảnh báo từ hệ thống gọi",
+                text: "Bạn vui lòng thực hiện cuộc gọi mới. ",
+                footer:  'Bạn chưa thực hiện cuộc gọi nào từ  <strong style ="margin-left:10px">  ' + moment(timeLastCall).format("DD/MM/YYYY hh:mm:ss") +'</strong>',
+                background: "#fff url(/images/trees.png)",
+                confirmButtonText: "Tôi đã hiểu",
+                backdrop: `rgba(0,0,123,0.4) left top no-repeat`
+              });
+         }
+           
+        }
+
+
+
+      },
+      (error) => {}
+    );
+  };
 
 export default Layout;

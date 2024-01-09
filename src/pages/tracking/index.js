@@ -25,7 +25,7 @@ import ModelAddUser from "./ModelUser";
 import "./User.scss";
 import { useEffect, useRef } from "react";
 import ConstantData from "../../utils/Constants";
-import Services from "../../services/ReportTalkTimeService";
+import Services from "../../services/TrackingService";
 import CommonService from "../../services/CommonService";
 import Paging from "./Paging";
 import { toast } from "react-toastify";
@@ -158,11 +158,13 @@ const User = () => {
       LineCode: obejctSearch.lineCode,
       phoneLog: obejctSearch.phoneLog,
       Disposition: obejctSearch.status,
+      Userid: 0,
+
       from: fromDate,
       to: obejctSearch.endTime,
     };
 
-    Services.exportData(
+    Services.GetAll(
       bodySearch,
       (response) => {
         if (response.statusCode === 200) {
@@ -285,7 +287,8 @@ const User = () => {
       bodySearch,
       (response) => {
         if (response.statusCode === 200) {
-   
+            debugger;
+            
             setDataGroup((prew) => ({ ...prew, data: response.value.data }));
 
         } else {
@@ -463,7 +466,7 @@ const User = () => {
       <div className="box-tbl">
         <h4 className="box-tit">
           <FaTable className="icon-tit" />
-          Báo cáo Talktime
+          Báo cáo vi phạm
         </h4>
 
         <form className="form-login">
@@ -613,7 +616,7 @@ const User = () => {
         </div>
 
         <Table
-          theadData={DataJson.theadDataReportTalkTime}
+          theadData={DataJson.theadDataReportVi}
           dataDraw={dataEmployee}
           handleDelete={handleDeleteEmpl}
           handleViewById={handleViewById}

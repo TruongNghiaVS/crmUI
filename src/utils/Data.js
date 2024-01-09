@@ -155,8 +155,14 @@ const DataJson = {
   
 
     theadDataReportTalkTime: [
-    "STT",  "Gọi bởi", "Số HĐ", "Ngày Thống kê","Tổng cuộc gọi", "% kết nối", "Thời gian gọi","Thời gian chờ", "Đàm thoại ", "Trả lời", "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
+    "STT",  "Gọi bởi", "Số HĐ", "Ngày Thống kê","Tổng cuộc gọi", "% kết nối",
+     "Thời gian gọi","Thời gian chờ", "Đàm thoại ", "Trả lời",
+      "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
     ],
+    theadDataReportVi: [
+        "STT", , "Loại","userName", "Nội dung",
+        "thời điểm gọi gần nhất", 
+        "Khoảng thời gian không gọi","Thời điểm kiểm tra" ],
   
      theadDataReason: [
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"

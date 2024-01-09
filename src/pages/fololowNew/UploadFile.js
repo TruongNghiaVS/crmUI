@@ -143,7 +143,7 @@ const UploadFile = (props) => {
                      </Form.Group>
 
                      <Form.Group  className="mb-3">
-                            <a href='javsacript:void(0)'>Tải file template</a>
+                            <a href="/skip_infoTemplate.xlsx" download>Tải file template</a>
                      </Form.Group>
                     
               </form>

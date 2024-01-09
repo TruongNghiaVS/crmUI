@@ -332,26 +332,26 @@ const Reporthistorical = () => {
 
         let numberAss =-1;
         if(edit=="quan-ly-nguoi-than")
-    {
+        {
         document.title = "Danh sách người thân";
         numberAss = 1;
-    }
-    else if(edit=="quan-ly-phong-ban")
-    {
+        }
+        else if(edit=="quan-ly-phong-ban")
+        {
         document.title = "Danh sách phòng ban";
         numberAss = 2;
-    }
+        }
 
-    else if(edit=="quan-ly-trang-thai-follow")
-    {
+        else if(edit=="quan-ly-trang-thai-follow")
+        {
         document.title = "Danh sách trạng thái follow";
         numberAss = 3;
-    }
-    else 
-    {
+        }
+        else 
+        {
         document.title = "danh sách masterdata";
         numberAss = -1;
-    }
+        }
 
     
         // let groupStatus =   window.location.pathname.split("/").pop();
@@ -814,7 +814,61 @@ const exportDataExcel2 = (dataReder) => {
 </Col>
                             </Row>
                             
-         
+                            {1==2 ? (
+                <Row>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Nhóm:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="groupId"
+                          value ={obejctSearch.groupId}
+                          onChange={handleInputChangeChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataGroupMember!=null &&dataGroupMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.name}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Thành viên:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="memberId"
+                          value ={obejctSearch.memberId}
+                          onChange={handleInputChange}
+                        >
+
+                          <option value='0'>Tất cả</option>
+                          {  dataMember!=null &&dataMember.data.map((item, index) => {
+                                return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
+                            })
+                          }
+                          
+                        </Form.Select>
+                      </InputGroup>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              ) : (
+                <></>
+              )}
                            
                         </Form>
 
@@ -857,11 +911,11 @@ const exportDataExcel2 = (dataReder) => {
             </Row>
    
         <div className="user">
-            <div className='box-tbl'>
+            {/* <div className='box-tbl'>
                 <Table theadData={ DataJson.tbheadReportHistory } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
-            </div>
+            </div> */}
 
             { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem} typeMasterData = { obejctPaging.type }  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
 
