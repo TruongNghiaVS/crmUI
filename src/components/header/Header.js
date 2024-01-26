@@ -31,7 +31,12 @@ const Header = ({ classHeader }) => {
     } else {
         isHiddenMenu = false;
     }
- 
+    var isHiddenMenu2 = false;
+    if(roleUser === "2" ||  roleUser === "4" || roleUser === "5" ) {
+        isHiddenMenu2 = true;
+    } else {
+        isHiddenMenu2 = false;
+    }
      const handleChangePass = () => {
        
        
@@ -140,6 +145,9 @@ const Header = ({ classHeader }) => {
                             
                             { isHiddenMenu ? <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tong-quan-qc">Báo cáo QC(Tổng quan)</Link></li>: <></> }
                             { isHiddenMenu ? <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-qc">Báo cáo QC</Link></li>: <></> }
+                            { isHiddenMenu2 ? <li className='sub-list-link'><Link className='nav-link' to="/tracking-call">Báo cáo vi phạm gọi</Link></li>: <></> }
+
+                          
                             <li className='sub-list-link'><Link className='nav-link' to="/dashboard">Dashboard </Link></li>
                         </ul>
                     </li>
@@ -157,7 +165,7 @@ const Header = ({ classHeader }) => {
                           
                             <li className='sub-list-link'><Link  className='nav-link' to="/thong-tin-chien-dich">Thông tin chiến dịch</Link></li>
 
-                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/tracking-call">Báo cáo vi phạm gọi</Link></li>
+                          
                         </ul>
                     </li> : <></>}
                   { roleUser == "4"?  <li className='list-link'>

@@ -150,22 +150,20 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                 </NavLink>
             </td>
 
-            <td>{data.officeNumber}</td>
-            <td>{data.houseNumber}</td>
-            <td>{data.otherPhone}</td>
+        
             <td>{data.reasonstatusText}</td>
             <td>{getStatusText(data.status)}</td>
             <td>{data.assigneeName}</td>
             <td>{data.authorName}</td>
-            <td>{getCaseSkip(data.skipp)}</td>
+       
             <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
             <td>
                  <NavLink to={likUrl} target="_self" >
                     <FaEdit className="icon-edit" />
                 </NavLink>
-               {
+               {/* {
                 (!data.skipp)? ( <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />) : (<p/>)
-               }
+               } */}
             </td>
         </tr>
     );

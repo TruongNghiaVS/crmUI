@@ -152,7 +152,7 @@ class ConstantData {
     
     static URL_GroupMember_GetAll = `${ConstantData.DOMAIN}/api/groupEmployee/getAll`;
     static URL_GetMember_byGroupId = `${ConstantData.DOMAIN}/api/groupEmployee/getMemberByGroup`;
-
+    static URL_DataReason_GetAll = `${ConstantData.DOMAIN}/api/groupEmployee/getAll`;
     
     //group-reason
     static URL_lineReason_GetALl = `${ConstantData.DOMAIN}/api/line/getAll`;
@@ -190,5 +190,7 @@ class ConstantData {
 
     static URL_tracking_requestCheck = `${ConstantData.DOMAIN}/api/tracking/requestCheck`;
 
+    static URL_Allreason_getAll = `${ConstantData.DOMAIN}/api/campagnProfile/getAllReason`;
+    
 }
 export default ConstantData;

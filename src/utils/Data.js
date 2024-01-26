@@ -160,9 +160,10 @@ const DataJson = {
       "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
     ],
     theadDataReportVi: [
-        "STT", , "Loại","userName", "Nội dung",
+        "STT", , "Loại","userName","line", "Nội dung",
         "thời điểm gọi gần nhất", 
-        "Khoảng thời gian không gọi","Thời điểm kiểm tra" ],
+        "Trạng thái",
+        "Khoảng thời gian không gọi","Thời điểm kiểm tra","Lần nhắc thứ" ],
   
      theadDataReason: [
         "STT", "Mã", "Tên trạng thái", "Hiển thị", "Giờ", "Ngày", "Người tạo", "Ngày tạo"
@@ -258,14 +259,12 @@ const DataJson = {
     ],
 
     theadDataFollowUp: [
-        "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
-        "Khác", "Tình trạng", "Trạng thái", "Tạo bởi", "Tạo ngày",
+        "Họ tên", "Số hợp đồng","DPD", "Di động", "Tình trạng(Lý do)", "Trạng thái", "Tạo bởi", "Tạo ngày",
     ],
 
    
     theadDataFollowUpNew: [
-        "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Văn phòng", "Số nhà", 
-         "Khác", "Tình trạng", "Trạng thái","Đang giao cho", "Tạo bởi","Giữ case", "Tạo ngày",
+        "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Tình trạng(Lý do)", "Trạng thái","Đang giao cho", "Tạo bởi", "Tạo ngày",
      ],
      theadDataStore: [
         "Họ tên","CMND","Số hợp đồng","DPD", "Di động",  "Tạo ngày", "Cập nhật lần cuối"

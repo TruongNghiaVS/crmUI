@@ -27,17 +27,22 @@ const toHHMMSS = (secs) => {
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
-    console.log(data);
+  
     return (
         <tr>
             <td><input type="checkbox" name ="selectId" defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>Vi phạm gọi</td>
             <td>{data.userName}</td>
+       
+            
+            <td>{data.lineCode}</td>
             <td>{data.content}</td>
             <td>{moment(data.lastCall).format("DD/MM/YYYY hh:mm:ss")}</td>
+            <td>{data.statusText}</td>
             <td>{toHHMMSS(data.differTime)}</td>
             <td>{moment(data.timeBusiness).format("DD/MM/YYYY HH:mm:ss")}</td>
+            <td>{data.loopAlter}</td>
            
         </tr>
     );
@@ -61,7 +66,7 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
             </thead>
             <tbody>
                 {
-                     dataDraw.tbodyDataUser.map((item, index) => {
+                    dataDraw.tbodyDataUser!=null &&  dataDraw.tbodyDataUser.map((item, index) => {
                         return <TableRow 
                         key={item.id} data={item} 
                         rowIndex = {index} 

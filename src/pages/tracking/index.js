@@ -267,7 +267,9 @@ const User = () => {
     Services.GetAll(
       bodySearch,
       (response) => {
+        console.log("response",response);
         if (response.statusCode === 200) {
+
           renderData(response.value);
         } else {
         }

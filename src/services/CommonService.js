@@ -12,6 +12,11 @@ class CommonService {
         let url = Constants.URL_GroupMember_GetAll;
         ApiService.httpPost(url, null, body, callSuccess, callError);
     }
+
+    static GetAllReason( body, callSuccess, callError) {
+        let url = Constants.URL_Allreason_getAll;
+        ApiService.httpPost(url, null, body, callSuccess, callError);
+    }
      static GetAllMemberByGroup( body, callSuccess, callError) {
         let url = Constants.URL_GetMember_byGroupId;
         ApiService.httpPost(url, null, body, callSuccess, callError);

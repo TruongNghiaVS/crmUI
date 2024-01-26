@@ -44,6 +44,10 @@ const Reason = () => {
         data: [],
         
       });
+      const [dataReson, setdataReson] = useState({
+        data: [],
+        
+      });
     
       const [dataMember, setDataMember] = useState({
         data: [],
@@ -100,6 +104,28 @@ const Reason = () => {
     );
   };
 
+
+
+  const getDataReason = () => {
+ 
+  
+    let bodySearch = {
+      
+    };
+    CommonService.GetAllReason(
+      bodySearch,
+      (response) => {
+
+        if (response.statusCode === 200) {
+          
+            setdataReson((prew) => ({ ...prew, data: response.value.data }));
+        } else{
+
+        }
+      },
+      (error) => {}
+    );
+  };
   const handleInputChangeChange = (event) => {
     let valueControl = event.target.value;
     let nameControl = event.target.name;
@@ -159,7 +185,7 @@ const Reason = () => {
                 [nameControl]: valueControl
             }
         })
-        getDataEmployee(key);
+        loadData(key);
       
     }
 
@@ -188,12 +214,12 @@ const Reason = () => {
 
          if(itemActive)
          {
-            getDataEmployee(itemActive.id);
+            loadData(itemActive.id);
             setIsseachdpp(false);
          }
          else 
          {
-            getDataEmployee();
+            loadData();
          }
          
        
@@ -274,7 +300,7 @@ const Reason = () => {
             [key]: value
             }
             ));
-            getDataEmployee();
+            loadData();
 
             setInit(false);
     }
@@ -369,13 +395,14 @@ const Reason = () => {
         }
         else 
         {
-            getDataEmployee();
+            loadData();
         }
              
      
       getDataGroup();
       getDataMember(-1);
-             setInit(true);
+      getDataReason();
+        setInit(true);
         }
       
         
@@ -397,7 +424,7 @@ const Reason = () => {
             draggable: true,
             progress: undefined,
         });
-        getDataEmployee();
+        loadData();
     }
     
     const handleUpdate = (data) => {
@@ -411,7 +438,7 @@ const Reason = () => {
                 draggable: true,
                 progress: undefined,
         });
-        getDataEmployee();
+        loadData();
     }
 
     const ExportFile = (PackageKey ='')=> {
@@ -481,7 +508,7 @@ const Reason = () => {
     
 
 
-    const getDataEmployee = (PackageKey ='')=> {
+    const loadData = (PackageKey ='')=> {
          let typegetData = "0";
 
 
@@ -531,7 +558,8 @@ const Reason = () => {
             memberId: obejctSearch.memberId,
             groupId: obejctSearch.groupId,
             noAgree: obejctSearch.noAgree,
-            colorCode: obejctSearch.colorCode
+            colorCode: obejctSearch.colorCode,
+            status:  obejctSearch.status
 
           };
           EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
@@ -632,7 +660,7 @@ const Reason = () => {
 
            
 
-            getDataEmployee();
+            loadData();
 
     }
 
@@ -673,7 +701,7 @@ const Reason = () => {
     const handleDeleteSucess = (data) => {
         if(data.statusCode == 200)
         {   
-                getDataEmployee();
+                loadData();
                 Swal.fire(
                 'Đã xóa!',
                 'Đã xóa thành công.',
@@ -787,77 +815,19 @@ const Reason = () => {
 
                             </Row>
                             {  (detail == "watch-list")? <Row>
-                                <Col xs={6} >
-
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Lý do:</Form.Label>
-                                <InputGroup className="mb-2">
-                                <Form.Select aria-label="Default select example" name ="statusSearch" value ={obejctSearch.statusSearch} onChange={handleInputChange} >
-                                    <option value="-1">Chọn lý do</option>
-                                    <option value="290">Giải quyết việc dân sự</option>
-                                    <option value="289">Nộp đơn, chờ thụ lý</option>
-                                    <option value="288">Làm việc với các cơ quan chức năng</option>
-                                    <option value="287">Đã có kết luận điều tra/công văn trả lời của công an</option>
-                                    <option value="286">Làm việc theo triệu tập của công an</option>
-                                    <option value="285">Nộp đơn tố giác</option>
-                                    <option value="284">Làm việc với đơn vị SHB FC</option>
-                                    <option value="283">Khách hàng chưa từng ở địa chỉ cung cấp hoặc chưa từng làm việc tại nơi cung cấp</option>
-                                    <option value="282">Thu được tiền tại địa bàn</option>
-                                    <option value="281">MGL - từ lúc Khách hàng có đơn, và ĐV THN báo về VH THN</option>
-                                    <option value="280">call nhận thông tin khách hàng vẫn ở hộ khẩu . --- Hard call note phục vụ cho Field</option>
-                                    <option value="279">nghi ngờ gian lận từ bên ngoài</option>
-                                    <option value="278">nghi ngờ gian lận từ nội bộ </option>
-                                    <option value="277">Khách hàng bỏ trốn, ko gặp gia đình</option>
-                                    <option value="276">Khách hàng bỏ trốn, gia đình còn ở tại địa phương</option>
-                                    <option value="275">Khách hàng thuê nhà trọ ở nhưng đã dọn đi</option>
-                                    <option value="274">Không tìm thấy nhà</option>
-                                    <option value="272">Khách hàng không có ở nhà, để lại thư báo</option>
-                                    <option value="271">Nhà đã bán</option>
-                                    <option value="270">Tìm được số điện thoại mới của người có liên quan</option>
-                                    <option value="269">Tìm được số điện thoại mới của Người thân</option>
-                                    <option value="268">Tìm được số điện thoại mới của Khách hàng</option>
-                                    <option value="267">Người có liên quan vẫn sử dụng số điện thoại hiện tại</option>
-                                    <option value="266">Người thân vẫn sử dụng số điện thoại hiện tại</option>
-                                    <option value="265">Khách hàng vẫn sử dụng số điện thoại hiện tại</option>
-                                    <option value="264">Không truy tìm được thông tin mới của Khách hàng, Người thân</option>
-                                    <option value="263">Tìm được địa chỉ mới</option>
-                                    <option value="262">Khó khăn_khác</option>
-                                    <option value="261">Khó khăn_Mất mùa thiên tai bão lũ</option>
-                                    <option value="260">Khó khăn_Thất nghiệp</option>
-                                    <option value="259">Khó khăn_Lo cho gia đình</option>
-                                    <option value="258">Khó khăn_Chờ thu nhập</option>
-                                    <option value="257">Không phải số người thân</option>
-                                    <option value="226">RMA - Ngýời thân ốm ðau, tai nạn</option>
-                                    <option value="227">CGI - Khách hàng ði tù, thực hiện nghĩa vụ quân sự, cai nghiện, bị tâm thần</option>
-                                    <option value="223">WAS - Chờ thu nhập, trợ cấp từ ngýời thân</option>
-                                    <option value="224">MCW - Khách hàng bị bệnh, tai nạn</option>
-                                    <option value="225">CTI - Thiên tai (mất mùa, bão, lũ …)</option>
-                                    <option value="219">SME and Voice Blaster are successfully sent - Kết quả gửi SMS, Voice blaster không thành công</option>
-                                    <option value="220">Weak signal - Tín hiệu yếu</option>
-                                    <option value="221">Wait for payment - KH đã thanh toán đang chờ kiểm tra</option>
-                                    <option value="222">LST - Mất việc làm, phá sản, làm ãn thua lỗ</option>
-                                    <option value="217">SME and Voice Blaster are not successfully sent - Kết quả gửi SMS, Voice blaster thành công</option>
-                                    <option value="218">Termination - Thanh lý hợp đồng</option>
-                                    <option value="215">Promise to pay - Hứa thanh toán</option>
-                                    <option value="216">Refuse to pay - Từ chối thanh toán</option>
-                                    <option value="211">Leave a message -  Để lại lời nhắn </option>
-                                    <option value="212">Phone number in not available - Số không liên lạc được, số không tồn tại, số không đúng</option>
-                                    <option value="213">Not customer or other's phone number - Không phải số KH/ số người thân khác</option>
-                                    <option value="214">Has signal but not answer - Không nhấc máy, máy bận, gọi vào hộp thư thoại</option>
-                                    <option value="209">Wait for closing contracts or reducing penalty fees - Đang chờ giảm phí phạt, đóng hợp đồng</option>
-                                    <option value="210">Already paid before allocation - KH đã thanh toán trước khi được allocation</option>
-                                    <option value="206">Not receive the loan - KH chưa nhận khoản vay</option>
-                                    <option value="207">Want to early terminate contracts - KH báo đã hủy hợp đồng</option>
-                                    <option value="208">Wait for adjusting invoices - Đang chờ điều chỉnh hóa đơn</option>
-                                    <option value="203">General suspect fraud - Nghi ngờ gian lận</option>
-                                    <option value="204">Special busIness - Đám cưới, đám tang, về quê, công tác</option>
-                                    <option value="205">Hang up phone - Cúp máy ngang</option>
-                                    <option value="201">Special busIness - KH đứng tên dùm</option>
-                                    <option value="202">Customers are dead - KH chết gia định khó khăn kinh tế</option>
-                                    <option value="200">Call back - Gọi lại </option>
-                                </Form.Select >
-                                </InputGroup>
-                                </Form.Group>
+                                <Col xs={6} >                         
+<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+<Form.Label>Lý do:</Form.Label>
+<InputGroup className="mb-2">
+<Form.Select aria-label="Default select example" name ="statusSearch" value ={obejctSearch.statusSearch} onChange={handleInputChange} >
+                        <option value='-1'>Tất cả</option>
+                          {  dataReson!=null &&dataReson.data.map((item, index) => {
+                                return <option value={item.id}>{item.code}:{item.displayName}</option>;
+                            })
+                          }
+</Form.Select >
+</InputGroup>
+</Form.Group>
                                 </Col>
 
                                
@@ -929,6 +899,8 @@ const Reason = () => {
 
                                 
                             </Row>
+
+                          
                           {  (detail == "watch-list")? <Row>
                                 <Col xs={6} >
 
