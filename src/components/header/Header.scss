@@ -1,0 +1,112 @@
+.header {
+    background-color: #A52A2A;
+
+    .nav-header {
+        .menu {
+            padding: 0 15px;
+            list-style: none;
+
+            .list-link {
+                display: inline-block;
+                padding-right: 5px;
+                position: relative;
+
+                &:hover {
+                    .sub-menu {
+                        display: block;
+                    }
+                }
+
+                .nav-link {
+                    color: #ffffff;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    display: inline-block;
+                    line-height: 30px;
+                    padding: 10px;
+
+                    &.link-main {
+                        font-size: 18px;
+                        padding-right: 30px;
+                    }
+                }
+            }
+
+            .nav-profile {
+                float: right;
+                position: relative;
+
+                .list-link {
+                    cursor: pointer;
+
+                    &.link-icon {
+                        padding: 10px;
+                    } 
+
+                    .nav-link {
+                        text-transform: none;
+                    }
+                
+                    .nav-icon {
+                        color: #ffffff;
+                    }
+                }
+
+                .box-profile {
+                    background-color: #ffffff;
+                    box-shadow: 1px 1px 4px #888888;
+                    border-radius: 4px;
+                    position: absolute;
+                    right: 6px;
+                    z-index: 1000;
+
+                    span {
+                        display: block;
+                        line-height: 24px;
+                        padding: 10px 20px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #f7f7f7;
+                        }
+                    }
+
+                    .logout {
+                        text-decoration: none;
+                        border-top: 1px solid #d8d2d2;
+                    }
+                }
+            }
+
+            .sub-menu {
+                background-color: #d75858;
+                list-style: none;
+                display: none;
+                padding: 0;
+                width: 200px;
+                position: absolute;
+                z-index: 10;
+
+                .sub-list-link {
+                    border-bottom: 1px solid #ffffff;
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    &:hover {
+                        background-color: #A52A2A;
+                    }
+                    
+                    .nav-link {
+                        line-height: 24px;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        display: block;
+                        text-transform: none;
+                    }
+                }
+            }
+        }
+    }
+}

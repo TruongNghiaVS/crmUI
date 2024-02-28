@@ -1,0 +1,1 @@
+start  cmd.exe /k cd /d c:\dev\tool /k node index.js
