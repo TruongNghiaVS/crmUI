@@ -8,7 +8,7 @@ var CronJob = require('cron').CronJob;
 new CronJob('*/3 * * * *', function() {
     console.log('You will see this message four minute');
 
-    request('https://localhost:8098/api/job/CalculatingTalktime', function(error, response, body) {
+    request('http://192.168.1.3:7676/api/job/CalculatingTalktime', function(error, response, body) {
 		
 		
         if (!error && response.statusCode == 200) {
