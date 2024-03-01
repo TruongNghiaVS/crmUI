@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 // import Pagination from "react-pagination-library";
 // import "react-pagination-library/build/css/index.css"; 
 const Chartsection = (props) => {
-  console.log(props.dataRaw);
+
     
   const data = {
     labels: props.dataRaw.arrayLable,

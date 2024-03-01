@@ -18,7 +18,7 @@ const ModelChangePassword1 = (props) => {
     const handleInputChange =(event)=> {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
+        
         setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
@@ -39,7 +39,7 @@ const ModelChangePassword1 = (props) => {
             role: "",
             isLogin: 201
         };
-        console.log(dataJson);
+        
         EmployeeService.ResetPassword( dataJson, (response) => {
              if (response.statusCode === 200) {
                     localStorage.setItem('user-info', JSON.stringify(dataJson1));
@@ -62,7 +62,7 @@ const ModelChangePassword1 = (props) => {
                 })
         }
       }, (error) => {
-         console.log(error);
+         
         // setIsLoading(false);
       });
         

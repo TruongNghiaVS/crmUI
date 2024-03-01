@@ -119,7 +119,7 @@ const CampaignAssign = () => {
             document.title = "Phân case cho sale";
             const search = window.location.search;
             const params = new URLSearchParams(search);
-            console.log(params);
+            
             const token = params.get('token');
 
            if( token!= null && token !="")

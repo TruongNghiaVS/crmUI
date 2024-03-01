@@ -44,7 +44,7 @@ const ReportMaster = () => {
             const params = new URLSearchParams(search);
             const token = params.get('token');
            
-            //  console.log(token)//123
+            
             if( token!= null && token !="")
              {
                   let valueControl =token;

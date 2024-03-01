@@ -36,7 +36,7 @@ const ModelPopup = (props) => {
         if(data.statusCode == 200)
     
         {
-            console.log( dataItem);
+            
             
             setmodel((prevalue) => {
             return {

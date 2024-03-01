@@ -266,7 +266,7 @@ const dateForPicker = (dateString) => {
       bodySearch,
       (response) => {
         if (response.statusCode === 200) {
-            debugger;
+            
             
             setDataGroup((prew) => ({ ...prew, data: response.value.data }));
 

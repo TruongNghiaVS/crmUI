@@ -139,7 +139,7 @@ const Index = () => {
              }
             
            }
-           console.log(obejctSearch);
+           
 
           let bodySearch = {
             Token: tokenInput  

@@ -64,7 +64,7 @@ const Header = ({ classHeader }) => {
 
         }
       }, (error) => {
-         console.log(error);
+         
         // setIsLoading(false);
       });
 
@@ -145,7 +145,7 @@ const Header = ({ classHeader }) => {
                             
                             { isHiddenMenu ? <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tong-quan-qc">Báo cáo QC(Tổng quan)</Link></li>: <></> }
                             { isHiddenMenu ? <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-qc">Báo cáo QC</Link></li>: <></> }
-                            { isHiddenMenu2 ? <li className='sub-list-link'><Link className='nav-link' to="/tracking-call">Báo cáo vi phạm gọi</Link></li>: <></> }
+                            {/* { isHiddenMenu2 ? <li className='sub-list-link'><Link className='nav-link' to="/tracking-call">Báo cáo vi phạm gọi</Link></li>: <></> } */}
 
                           
                             <li className='sub-list-link'><Link className='nav-link' to="/dashboard">Dashboard </Link></li>

@@ -130,7 +130,7 @@ const Index = () => {
             const params = new URLSearchParams(search);
             const token = params.get('token');
            
-            //  console.log(token)//123
+            
             if( token!= null && token !="")
              {
                   let valueControl =token;
@@ -233,7 +233,7 @@ const Index = () => {
            colorCode: obejctSearch.colorCode
   
           };
-          console.log(bodySearch);
+          
           return;
           EmployeeService.getALl(
             bodySearch, (response) => {

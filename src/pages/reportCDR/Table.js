@@ -32,7 +32,7 @@ const getShowfile = (item)=> {
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     var zone  = "America/New_York";
-    console.log(data);
+    
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>

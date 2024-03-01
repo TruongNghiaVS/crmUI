@@ -42,7 +42,7 @@ const Paging = (props) => {
 
           props.handlePaging(numPage);
          
-          // console.log("page", modelPage);
+          
       };
     
     return (

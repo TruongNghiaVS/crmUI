@@ -93,7 +93,7 @@ const Reason = () => {
       bodySearch,
       (response) => {
         if (response.statusCode === 200) {
-            debugger;
+            
             
             setDataGroup((prew) => ({ ...prew, data: response.value.data }));
 
@@ -372,7 +372,7 @@ const Reason = () => {
             const params = new URLSearchParams(search);
             const token = params.get('token');
            
-            //  console.log(token)//123
+            
             if( token!= null && token !="")
              {
                   let valueControl =token;

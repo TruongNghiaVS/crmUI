@@ -245,8 +245,8 @@ const ModelPopup = (props) => {
       
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
-        debugger;
+        
+        
 
         setmodel((prevalue) => {
             return {
@@ -261,8 +261,8 @@ const ModelPopup = (props) => {
       
 
       let nameControl ="value";
-      // console.log( valueControl);
-      // debugger;
+      // 
+      // 
 
       setmodel((prevalue) => {
           return {
@@ -279,8 +279,8 @@ const ModelPopup = (props) => {
       
 
     let nameControl ="idUser";
-    // console.log( valueControl);
-    // debugger;
+    // 
+    // 
 
     setmodel((prevalue) => {
         return {

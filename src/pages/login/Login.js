@@ -45,7 +45,7 @@ const Login = () => {
     setErrorUsername("");
     setErrorLogin("");
      var userInfo = jwt_decode(data);
-    console.log(userInfo);
+
     var dataJson = {
       role: userInfo.RoleUser,
       name: userInfo.Name,
@@ -114,7 +114,7 @@ const Login = () => {
           setIsLoading(false);
         }
       }, (error) => {
-        console.log(error);
+        
         setIsLoading(false);
       });
     }

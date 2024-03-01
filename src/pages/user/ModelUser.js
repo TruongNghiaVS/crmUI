@@ -172,7 +172,7 @@ const ModelAddUser = (props) => {
     const handleInputChange =(event)=> {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
+        
         setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
@@ -184,7 +184,7 @@ const ModelAddUser = (props) => {
 
     const  AddEmploy = (event) => { 
 
-        debugger;
+        
         const employeeAdd = {
             UserName:  model.userName,
             RoleId:  model.roleEm,

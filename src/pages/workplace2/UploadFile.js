@@ -29,7 +29,7 @@ const UploadFile = (props) => {
        
         EmployeeService.GetAllNoted( bodySearch, (response) => {
             if (response.statusCode === 200) {
-                debugger;
+                
                 setdataNoted(response.value.data);
             } else {
 

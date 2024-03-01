@@ -70,7 +70,7 @@ const ModelPopup = (props) => {
             enbaleView(true);
         }
 
-        console.log(dataItem);
+        ;
         if(dataItem.id =="-1")
         {
             setmodel((prevalue) => {
@@ -121,7 +121,7 @@ const ModelPopup = (props) => {
     const handleInputChange =(event)=> {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
+        
         setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               

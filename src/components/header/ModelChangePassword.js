@@ -16,7 +16,7 @@ const ModelChangePassword = (props) => {
     const handleInputChange =(event)=> {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
+        
         setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               
@@ -37,7 +37,7 @@ const ModelChangePassword = (props) => {
             role: "",
             isLogin: 201
         };
-        console.log(dataJson);
+        
         EmployeeService.ChangePassword( dataJson, (response) => {
 
             
@@ -64,7 +64,7 @@ const ModelChangePassword = (props) => {
               })
         }
       }, (error) => {
-         console.log(error);
+         
         // setIsLoading(false);
       });
         

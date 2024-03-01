@@ -12,7 +12,7 @@ import {GiSightDisabled} from 'react-icons/gi';
 const ModelAddUser = (props) => {
     
 
-   console.log("3333",props.listManager);
+
     const [model  , setmodel]=useState({
        
         
@@ -76,7 +76,7 @@ const ModelAddUser = (props) => {
             enbaleView(true);
         }
 
-        console.log(dataItem);
+        ;
         if(dataItem.id =="-1")
         {
             
@@ -136,7 +136,7 @@ const ModelAddUser = (props) => {
     const handleInputChange =(event)=> {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
-        console.log( valueControl);
+        
         setmodel((prevalue) => {
             return {
               ...prevalue,   // Spread Operator               

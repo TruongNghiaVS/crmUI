@@ -79,7 +79,6 @@ const RowAssigee = (props) => {
     const handleInputChange =(event)=> {
         
         let valueControl = event.target.value;
-        console.log(valueControl);
         let nameControl = event.target.name;
         setmodel((prevalue) => {
             return {

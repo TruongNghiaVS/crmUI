@@ -8,7 +8,7 @@ const TableHeadItem = ({ item }) => {
 };
 
 const getStatusText = (isActive)=> {
-    console.log(isActive);
+
     if(isActive)
     {
         return (<p>Hoạt động</p>);
