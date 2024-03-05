@@ -264,7 +264,7 @@ const DataJson = {
 
    
     theadDataFollowUpNew: [
-        "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Tình trạng(Lý do)", "Trạng thái","Đang giao cho", "Tạo bởi", "Tạo ngày",
+        "STT", "Họ tên", "Số hợp đồng","DPD", "Di động", "Tình trạng(Lý do)","Đang giao cho", "Tạo bởi", "Tạo ngày",
      ],
      theadDataStore: [
         "Họ tên","CMND","Số hợp đồng","DPD", "Di động",  "Tạo ngày", "Cập nhật lần cuối"

@@ -55,7 +55,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.3:7676/api/campagn/importDataFile', {
+        fetch('https://localhost:8098/api/campagn/importDataFile', {
             method: 'POST',
             body: data
         })
@@ -137,7 +137,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.3:7676/api/campagn/importDataById', {
+        fetch('https://localhost:8098/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
@@ -223,7 +223,7 @@ const UploadFile = (props) => {
         var data = new FormData();
         data.append('fileData', file)
         data.append('id', 1);
-        fetch('http://192.168.1.3:7676/api/campagn/importDataById', {
+        fetch('https://localhost:8098/api/campagn/importDataById', {
             method: 'POST',
             body: data
         })
@@ -358,8 +358,8 @@ const UploadFile = (props) => {
             </div>
 
             <div className="footer-model">
-            <button className="btn-model btn-add" onClick= {UpdateData}>Cập nhật dữ liệu </button>
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import case </button>
+            {/* <button className="btn-model btn-add" onClick= {UpdateData}>Cập nhật dữ liệu </button> */}
+                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import hoặc cập nhật </button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>

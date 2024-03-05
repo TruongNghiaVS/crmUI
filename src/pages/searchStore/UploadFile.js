@@ -55,7 +55,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         // data.append('id', props.idPass);
-        fetch('http://192.168.1.3:7676/api/store/importDataById', {
+        fetch('https://localhost:8098/api/store/importDataById', {
             method: 'POST',
             body: data
         })

@@ -31,10 +31,6 @@ const UploadFile = (props) => {
  
      const UploadFileServer = () => {
 
-
-
-
-
         
         var file = fileTran;
      
@@ -59,7 +55,7 @@ const UploadFile = (props) => {
       
         data.append('fileData', file)
         // data.append('id', props.idPass);
-        fetch('http://192.168.1.3:7676/api/campagn/importDataSkipInfo', {
+        fetch('https://localhost:8098/api/campagn/importDataSkipInfo', {
             method: 'POST',
             body: data
         })
@@ -130,7 +126,7 @@ const UploadFile = (props) => {
     return (
         <div className="model">
             <div className="header-model">
-                  <h4>Nhập dữ liệu import</h4>
+                  <h4>Nhập thông tin thêm</h4>
             </div>
             
              <div className="main-model">
@@ -151,7 +147,7 @@ const UploadFile = (props) => {
 
             <div className="footer-model">
                
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import dữ liệu </button>
+                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Cập nhật </button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>

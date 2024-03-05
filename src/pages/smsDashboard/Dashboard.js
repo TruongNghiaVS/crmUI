@@ -218,7 +218,7 @@ const dateForPicker = (dateString) => {
             
             DashboardService.getInformationOverviewDashboard(bodySearch, (response) => {
                         if (response.statusCode === 200) {
-                            console.log(response.value);
+                            
 
                             setobjectDataOverview((prevalue) => {
                                 return {

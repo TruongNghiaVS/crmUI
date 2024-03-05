@@ -328,7 +328,7 @@ const handleErrUpdate = (data) => {
         let userList = data.value.listUser;
 
        
-        console.log(data);
+      
       
         if(data.statusCode == 200)
         {

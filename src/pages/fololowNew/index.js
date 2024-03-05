@@ -72,7 +72,7 @@ const Reason = () => {
         cmnd:  "",
         statusSearch: "-1",
         IdPackage: "",
-        fromTime: moment().subtract(90, 'days'),
+        fromTime: moment().subtract(37, 'days'),
         endTime: moment()
     });
    
@@ -442,12 +442,24 @@ const Reason = () => {
     }
 
     const ExportFile = (PackageKey ='')=> {
+     
+      Swal.fire({
+         title: 'Đang xử lý!',
+         html: 'Vui lòng <b></b> chờ ít phút.',
+         didOpen: () => {
+         Swal.showLoading()
+         const b = Swal.getHtmlContainer().querySelector('b')
+       
+         },
+       
+         })
+         .then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+      
+              }
+         })
+
         let typegetData = "0";
-       
-
-
-        
-       
         var idpackageserach = obejctSearch.IdPackage;
         var skipData  = false;
         if(PackageKey != '')
@@ -497,6 +509,8 @@ const Reason = () => {
          EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
                if (response.statusCode === 200) {
                   exportDataExcel(response.value.data);
+
+
                } else {
 
                }
@@ -578,19 +592,32 @@ const Reason = () => {
         var DataExport = dataReder;
         const Heading = [
             [
+            'STT',
             'Số hợp đồng',
             'Tên khách hàng',
             'SĐT',
             'Ngày sinh nhật',
             'CCCD',
-            'Người xử lý',
-            'Trạng thái',
-            'Tác động mới nhất',
-            'Mã màu',
-            'Ngày câp nhật',
-            'Id hệ thống',
-            'Số tiền góp',
-            'Ngày hứa thanh toán'
+            'Tên sản phẩm',
+            'Mã sản phẩm',
+            'Số tiền vay',
+            'Ngày ký',
+            'Kỳ hạn',
+            'Số kỳ đã trả',
+            'số tiền trả theo kỳ',
+            'Tổng tiền phạt',
+            'Ngày trả gần nhất',
+            'Tổng phải trả',
+            'Số tiền đã thanh toán',
+            'Số nợ hiện tại ',
+            'Current DPD',
+            'Đ/c thường trú ',
+            'Quận thường trú ',
+            'Khu vực thường trú',
+            'Đang phân công cho',
+            'Trạng thái gọi',
+            'Cập nhật gần nhất'
+
             ]
         ];
         let workBook = XLSX.utils.book_new();
@@ -604,6 +631,15 @@ const Reason = () => {
         XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
         let exportFileName = `DataExport.xls`;
         XLSX.writeFile(workBook, exportFileName);
+
+        setTimeout(() => {
+          Swal.fire(
+            'Thao tác thành công',
+            'Đã xuất thành công',
+            'success'
+        )
+          
+         },2000);
 
 
 }
@@ -993,7 +1029,7 @@ const Reason = () => {
 
                 <div className="list-feature">
                     {
-                        isTeamlead?  <div className="button-feature">
+                        isAdmin?  <div className="button-feature">
                         
                         <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Import Thông tin thêm</button> 
                          
@@ -1002,7 +1038,7 @@ const Reason = () => {
                   
                     <div className="search-feature">
                        {
-                           isTeamlead?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file</button>: <></>
+                           isTeamlead?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file </button>: <></>
                        }
                       
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>

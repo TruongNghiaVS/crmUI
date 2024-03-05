@@ -30,6 +30,18 @@ const displayMobilePhone = (numberPhone) =>
     return "";
 
 }
+
+const getLastUpdate = (item) => 
+{   let itemDay =  item.createAt;
+    if(item.UpdateAt >= item.createAt)
+    {
+        itemDay  =  item.UpdateAt;
+    }
+    let dataDisplayText= moment(itemDay).format("DD/MM/YYYY");
+    return dataDisplayText;
+    
+
+}
 const skipTask = (id)=> {
 
     Swal.fire({
@@ -93,19 +105,19 @@ const getStatusText = (status)=> {
     if(status==0)
     {
       
-        return (<p>Mới phân</p>);
+        return ("Mới phân");
     }
     else if(status==10)
     {
-        return (<p>Mới import</p>);
+        return ("Mới import");
     }
     else if(status==20)
     {
-        return (<p>Thu case</p>);
+        return ("Thu case");
     }
     else 
     {
-        return (<p>Đang xử lý</p>);
+        return ("Đang xử lý");
     }
     
 }
@@ -151,19 +163,24 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             </td>
 
         
-            <td>{data.reasonstatusText}</td>
-            <td>{getStatusText(data.status)}</td>
+            <td> 
+                 <p> Trạng thái: {getStatusText(data.status)}</p>
+                 { (data.reasonstatusText != null &&  data.reasonstatusText != '')
+                  ? <p> Trạng thái gọi:  {data.reasonstatusText}</p> 
+                : <></>
+      }
+               
+            </td>
+       
             <td>{data.assigneeName}</td>
             <td>{data.authorName}</td>
        
-            <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
+            <td> { getLastUpdate(data)}</td>
             <td>
                  <NavLink to={likUrl} target="_self" >
                     <FaEdit className="icon-edit" />
                 </NavLink>
-               {/* {
-                (!data.skipp)? ( <BsSkipForwardBtnFill className='icon-tbl' onClick={()=>skipTask(data.id)}  />) : (<p/>)
-               } */}
+             
             </td>
         </tr>
     );
