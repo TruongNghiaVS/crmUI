@@ -746,7 +746,7 @@ const Reason = () => {
                 <div className="list-feature">
                     <div className="button-feature">
                         
-                        <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Import Data</button> 
+                        <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Cập nhật case</button> 
                         <button className="btn-ft btn-export" onClick={()=>handleimportRowList()}  >Import Thông tin thêm</button> 
                          
                     </div>

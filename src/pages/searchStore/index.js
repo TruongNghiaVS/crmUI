@@ -9,6 +9,7 @@ import {
 import moment from "moment";
 import Table from "./Table";
 import SkipTable from "./SkipTable";
+import ImpactHistory from "./ImpactHistory";
 import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
 import ModelPopup from "./ModelPopup";
@@ -98,6 +99,7 @@ const Index = () => {
     const [dataEmployee, setData] = useState( {
         result: {},
         listSkipNew:  [],
+        listImpact:  [],
         tbodyDataUser: [
          
         ],
@@ -124,6 +126,7 @@ const Index = () => {
           {
                   let valueControl =tokenInput;
                   let nameControl ="tokenSearch";
+                 
                   setKeySearch((prevalue) => {
                       return {
                           ...prevalue,   // Spread Operator               
@@ -145,12 +148,15 @@ const Index = () => {
             Token: tokenInput  
           };
 
+      
    
           EmployeeService.GetAll(ConstantData.URL_store_search, ConstantData.HEADERS, bodySearch, (response) => {
                 if (response.statusCode === 200) {
-                     var datare = response.value;
-
-                    if(datare.success)
+                     var dataRe = response.value;
+                     var listSkipNew  =dataRe.listSkipNew.data;
+                     var listHistory  =dataRe.listHistory;
+                     var result = dataRe.result;
+                    if(dataRe.result.id >0 )
                     {
                         
                        
@@ -165,11 +171,10 @@ const Index = () => {
                        
                    
                     }
-                    var listSkipNew  =datare.listSkipNew;
-                    var result = datare.result;
                     setData(prew=>({...prew,result:result}));
                     setData(prew=>({...prew,listSkipNew:listSkipNew}));
-                 
+                    setData(prew=>({...prew,listImpact:listHistory}));
+                  
                     // renderData(response.value);
                 } else {
                    
@@ -183,6 +188,8 @@ const Index = () => {
                             [nameControl]: valueControl
                         }
                     })
+
+                  
                 }, 1000);
           });
 
@@ -190,6 +197,7 @@ const Index = () => {
 
   
     const searchData =()=> {
+
         if(obejctSearch.tokenSearch.length <1)
         {
             Swal.fire({
@@ -199,9 +207,11 @@ const Index = () => {
                 
               })
         }
+
+      
     
         if(!obejctSearch.isActive)
-          return;
+             return;
         let valueControl =false;
         let nameControl ="isActive";
         setKeySearch((prevalue) => {
@@ -276,13 +286,15 @@ const Index = () => {
 
                 
             </div>
-
+        
            { (showRessult ==2)&& dataEmployee.listSkipNew !=null && dataEmployee.listSkipNew.length>0 && <>
-            <a className="titlesection">Thông tin thêm</a>
+                <a className="titlesection">Thông tin thêm</a>
 
-             <SkipTable  data= {dataEmployee.listSkipNew} tblClass="tbl-custom-data" />
-            </>
+                <SkipTable  data= {dataEmployee.listSkipNew} tblClass="tbl-custom-data" />
+                </>
             }
+
+           
            
       </div>
     );

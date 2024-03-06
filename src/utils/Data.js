@@ -270,7 +270,7 @@ const DataJson = {
         "Họ tên","CMND","Số hợp đồng","DPD", "Di động",  "Tạo ngày", "Cập nhật lần cuối"
      ],
      theadDataStore2: [
-       "STT", "Họ tên","CMND","Số hợp đồng","DPD", "Di động",  "Tạo ngày", "Cập nhật lần cuối"
+       "STT", "Họ tên_ Số ĐT","Số HĐ _ CMND","DPD",  "Tạo ngày", "Cập nhật lần cuối"
      ],
     tbodyDataFollowUp: [
         {

@@ -118,43 +118,46 @@ const getCaseSkip = (flag)=> {
     return <p></p>
 }
 
+const getDateTime = (dayTime, createat = null )=>
+{
+  if(dayTime == null)
+  {
+     if(createat)
+     {
+        return moment(createat).format("DD/MM/YYYY");
+     }
+  }
+  return moment(dayTime).format("DD/MM/YYYY");
+
+}
+
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
     rowIndex = rowIndex +1;
     let likUrl = "/tra-cuu?keysearch=" + data.noAgreement;
-    let colorcode = data.colorCode;
-
-    if(colorcode =="" || colorcode == null)
-    {
-        colorcode ="white";
-    }
+    let colorcode ='';
     return (
-        <tr onClick={()=>openDetailItem(likUrl)} className={colorcode}>
+        <tr onClick={()=>openDetailItem(likUrl)}>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>
                  <NavLink to={likUrl} target="_self"  >
                  {data.customerName}
                 </NavLink>
+                <p> {data.mobilePhone} </p> 
             </td>
-
             <td>
-                 <NavLink to={likUrl} target="_self"  >
-                 {data.nationalId}
-                </NavLink>
-            </td>
-
-            <td>
-                 <NavLink to={likUrl}  target="_self" >
-                 {data.noAgreement}
-                </NavLink>
+                 
+                 <p>{data.noAgreement} </p> 
+                 <p>{data.nationalId}  </p> 
+               
+             
+            
             </td>
             <td>{data.dpd}</td>
             
-            <td>
-                {data.mobilePhone}
-            </td>
-            <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
-            <td>{moment(data.updateAt).format("DD/MM/YYYY")}</td>
+           
+            <td>{getDateTime(data.createAt,data.createAt)}</td>
+            <td>{getDateTime(data.updateAt,data.createAt)}</td>
             <td>
                  <NavLink to={likUrl} target="_self" >
                     <FaEdit className="icon-edit" />

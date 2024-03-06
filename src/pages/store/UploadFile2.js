@@ -124,7 +124,7 @@ const UploadFile2 = (props) => {
     return (
         <div className="model">
             <div className="header-model">
-                  <h4>Nhập dữ liệu skip</h4>
+                  <h4>Nhập thông tin thêm </h4>
             </div>
             
              <div className="main-model">
@@ -145,7 +145,7 @@ const UploadFile2 = (props) => {
 
             <div className="footer-model">
 
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Import dữ liệu </button>
+                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Nhập </button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>
