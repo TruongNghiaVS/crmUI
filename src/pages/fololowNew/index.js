@@ -72,7 +72,7 @@ const Reason = () => {
         cmnd:  "",
         statusSearch: "-1",
         IdPackage: "",
-        fromTime: moment().subtract(37, 'days'),
+        fromTime: moment().subtract(33, 'days'),
         endTime: moment()
     });
    
@@ -448,9 +448,9 @@ const Reason = () => {
          html: 'Vui lòng <b></b> chờ ít phút.',
          didOpen: () => {
          Swal.showLoading()
-         const b = Swal.getHtmlContainer().querySelector('b')
-       
-         },
+            const b = Swal.getHtmlContainer().querySelector('b')
+          
+            },
        
          })
          .then((result) => {
@@ -520,9 +520,7 @@ const Reason = () => {
 
    }
     
-
-
-    const loadData = (PackageKey ='')=> {
+   const loadData = (PackageKey ='')=> {
          let typegetData = "0";
 
 
@@ -587,7 +585,7 @@ const Reason = () => {
           });
 
     }
-
+    
     const exportDataExcel = (dataReder) => {
         var DataExport = dataReder;
         const Heading = [
@@ -1038,7 +1036,7 @@ const Reason = () => {
                   
                     <div className="search-feature">
                        {
-                           isTeamlead?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file </button>: <></>
+                           2 == 1 ?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file </button>: <></>
                        }
                       
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>

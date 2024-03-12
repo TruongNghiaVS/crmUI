@@ -115,6 +115,12 @@ const Reporthistorical = () => {
     if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
         isAdmin = true;
     }
+
+    var isTeamlead = false;
+
+    if(isTeamlead === "3" ) {
+        isTeamlead = true;
+    }
     const handleInputChange = (event) => {
         let valueControl = event.target.value;
         let nameControl = event.target.name;
@@ -856,7 +862,8 @@ const exportDataExcel2 = (dataReder) => {
                         >
 
                           <option value='0'>Tất cả</option>
-                          {  dataMember!=null &&dataMember.data.map((item, index) => {
+                          { 
+                             dataMember!=null &&dataMember.data.map((item, index) => {
                                 return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
                             })
                           }
@@ -885,8 +892,14 @@ const exportDataExcel2 = (dataReder) => {
                            
                         </div>
                         <div className="search-feature">
-                                {/* <button className="btn-search" onClick={()=>importFile()}>Nhập dữ liệu</button> */}
+                             {
+                                isAdmin && isTeamlead==false? 
+
                                 <button className="btn-search" onClick={exportData2}>Xuất dữ liệu BC</button>
+                                
+                              :<></>
+                            }
+                            
                                 <button className="btn-search" onClick={exportData}>Xuất dữ liệu</button>
                                 <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>
