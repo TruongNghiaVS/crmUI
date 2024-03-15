@@ -7,7 +7,7 @@ import './TicketView.scss';
 import Swal from 'sweetalert2'
 import CampagnProfileService from '../../../services/CampagnProfileService';
 import ImpactHistoryService from '../../../services/ImpactHistoryService';
-
+import $ from 'jquery';
 const TicketView = () => {
 
     const [model , setmodel]=useState({
@@ -106,7 +106,9 @@ const TicketView = () => {
         CampagnProfileService.getAllInfo( bodyMassterInfo,
         loaddingMasterData, 
         handleDisplayDataErro);
-        }, []);
+    
+        
+      }, []);
 
     const handleInputChange =(event)=> {
        
@@ -239,16 +241,32 @@ const saveSkip = () => {
 } 
 
 const handleSucessUpdateImpact = (data) => {
+    debugger;
      if(data.statusCode == 200)
     {
-            Swal.fire({
+            if(data.value.isSave ==false)
+            {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Lưu không thành công",
+                    confirmButtonText: "Đã hiểu",
+                    text: data.value.message ,
+                    footer: 'Vui lòng thực hiện cuộc gọi trước khi lưu tác động'
+                  });
+
+            }
+            else 
+            {
+                Swal.fire({
                 
-                icon: 'success',
-                title: 'Lưu thành công',
-             
-            }).then(function() {
-                window.open("/follow-up-new/new-list ","_self");
-            });
+                    icon: 'success',
+                    title: 'Lưu thành công',
+                 
+                }).then(function() {
+                    window.open("/follow-up-new/new-list ","_self");
+                });
+            }
+      
            
     }
     else 

@@ -61,7 +61,7 @@ class ConstantData {
       //campagn profile
     static URL_campagnProfile_GetALl = `${ConstantData.DOMAIN}/api/campagnProfile/getAll`;
     static URL_store_GetALl = `${ConstantData.DOMAIN}/api/store/getAll`;
-    static URL_campagnProfile_exportFile = `${ConstantData.DOMAIN}/api/campagnProfile/exportData1`;
+    static URL_campagnProfile_exportFile = `${ConstantData.DOMAIN}/api/dailyReport/exportFile`;
     static URL_campagnProfile_Add = `${ConstantData.DOMAIN}/api/campagnProfile/add`;
     static URL_campagnProfile_Update = `${ConstantData.DOMAIN}/api/campagnProfile/update`;
     static URL_campagnProfile_updateskip = `${ConstantData.DOMAIN}/api/campagnProfile/updateskip`;

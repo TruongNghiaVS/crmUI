@@ -14,7 +14,7 @@ import { mode } from "crypto-js";
 
 const displayMobilePhone = (numberPhone) => 
 {
-       return numberPhone;
+   
     if(numberPhone)
     {
         if(numberPhone.length <7)
@@ -113,7 +113,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
      const smsToMessage =(valueCall)=> {
 
 
-        // let inputValue = e.target.parentElement.parentElement.getElementsByTagName("input");
+      
         let PhoneLog = valueCall;
   
    
@@ -208,10 +208,10 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 type="date"
                 aria-label="Small"  value ={dateForPicker(data.dayOfBirth)} onChange={handleInputChange} />
             </InputGroup>
-            <InputGroup size="sm" className="mb-1">
+            {/* <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text >Trạng thái hồ sơ </InputGroup.Text>
                 <FormControl aria-label="Small" readOnly value = {data.statusProfile}   />
-            </InputGroup>
+            </InputGroup> */}
 
             { isOpenModel && <Model handleClose ={handleShowModel}  content={<PopupSms handleShowModel ={handleShowModel}  modelsms = {modelsms} />} /> }
 

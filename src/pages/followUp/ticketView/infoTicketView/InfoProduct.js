@@ -2,14 +2,15 @@ import {Col, InputGroup, FormControl, Form } from 'react-bootstrap';
 import { useEffect,useRef  } from 'react';
 import Swal from 'sweetalert2';
 import ProcessingCall from '../../../../services/ProcessingCall';
-
+import $ from 'jquery';
 const InfoProduct = ({data, handleInputChange}) => {
-    let allowCall = true;
-    const callToline2 =(valueCall)=> {
 
-        if(!allowCall)
-          return;
     
+
+
+     const callToline1 =(valueCall)=> {
+
+
         // let inputValue = e.target.parentElement.parentElement.getElementsByTagName("input");
         let PhoneLog = valueCall;
   
@@ -32,12 +33,9 @@ const InfoProduct = ({data, handleInputChange}) => {
             
           };
      
-          allowCall = false;
-
-       
-
+     
           
-     ProcessingCall.MakeCall( bodySearch, (response) => {
+       ProcessingCall.MakeCall( bodySearch, (response) => {
          if (response.statusCode === 200) {
                    
              Swal.fire({
@@ -54,7 +52,6 @@ const InfoProduct = ({data, handleInputChange}) => {
                    no-repeat
                  `
                });
-               allowCall  =true;
          } else{
              Swal.fire({
                  icon: 'error',
@@ -62,7 +59,6 @@ const InfoProduct = ({data, handleInputChange}) => {
                  text: 'Không gọi được!',
                  footer: 'Liên hệ IT hỗ trợ'
                })
-               allowCall  =true;
          }
          }, (error) => {
  
@@ -73,18 +69,40 @@ const InfoProduct = ({data, handleInputChange}) => {
                  text: 'Không gọi được!',
                  footer: 'Liên hệ IT hỗ trợ'
                })
-               allowCall  =true;
          
          });
 
 
      }
-
-     let valuePhoneClick = "";
-
     useEffect(() => {
-
         
+        
+        $('.clicktocall').unbind().click(function(e){
+            
+         
+            var phoneNumber = e.target.getAttribute("valuetemp");
+            callToline1(phoneNumber);
+          
+            // Swal.fire({
+            //     title: 'Đang thực hiện gọi. Đang chuyển phần mềm gọi',
+            //     width: 600,
+            //     timer: 4000,
+            //     showConfirmButton: false,
+            //     padding: '3em',
+            //     color: '#716add',
+            //     background: '#fff',
+            //     backdrop: `
+            //       rgba(0,0,123,0.4)
+            //       left top
+            //       no-repeat
+            //     `
+            //   });
+            
+        })
+    
+    
+        
+
     });
     const displayMobilePhone = (numberPhone) => 
 {   
@@ -101,6 +119,15 @@ const InfoProduct = ({data, handleInputChange}) => {
  
 
 }
+
+    const callToAction = (str) => {
+
+        alert(str);
+
+    }
+
+
+
      
      const searchandReplace = (str) => {
 
@@ -117,10 +144,9 @@ const InfoProduct = ({data, handleInputChange}) => {
     }
         var re = /(?:[-+() ]*\d){10,13}/gm; 
       
-        var res = str.match(re).map(function(s){
-            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " onclick = callToAction("+s+")>" + displayMobilePhone(s)+  "</a>")
-            // str = str.replace(s, "<a class =" +'"' + "clicktocall" +'"'+  "  onClick={this.callToAction()}>" + displayMobilePhone(s)+  "</a>")
-           
+        var res = str.match(re).map(function(s)
+        {
+            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " >" + displayMobilePhone(s)+  "</a>")
             return s +";"
         
         });
@@ -149,8 +175,8 @@ const InfoProduct = ({data, handleInputChange}) => {
             <Form.Group className="mt-3">
                 <Form.Label>Ghi chú tham chiếu</Form.Label>
                 
-                {/* <div dangerouslySetInnerHTML={{__html: searchandReplace(data.noteRel)}} /> */}
-                <Form.Control readOnly as="textarea" rows={7} value ={data.noteRel} name ="noteRel"   onChange={handleInputChange}  />
+                <div dangerouslySetInnerHTML={{__html:  searchandReplace(data.noteRel) }} />
+                {/* <Form.Control readOnly as="textarea" rows={7} value ={data.noteRel} name ="noteRel"   onChange={handleInputChange}  /> */}
             </Form.Group>
         </Col>
     );

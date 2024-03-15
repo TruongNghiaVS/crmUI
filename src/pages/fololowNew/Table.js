@@ -102,14 +102,15 @@ const handleSucessUpdateHandleCase = (data) => {
 }
 
 const getStatusText = (status)=> {
+    return;
     if(status==0)
     {
       
-        return ("Mới phân");
+        return ("Mới");
     }
     else if(status==10)
     {
-        return ("Mới import");
+        return ("Mới");
     }
     else if(status==20)
     {
@@ -144,37 +145,43 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>
+                 <p> 
                  <NavLink to={likUrl} target="_self"  >
                  {data.customerName}
                 </NavLink>
+                 </p>
+
+                 <p> 
+                 <NavLink to={likUrl}  target="_self" >
+                 {data.noAgreement}
+                </NavLink>
+                 </p>
+                
+              
+                 <p> 
+                 {displayMobilePhone(data.mobilePhone)}
+                 </p>
+               
+                
             </td>
 
             <td>
                  <NavLink to={likUrl}  target="_self" >
-                 {data.noAgreement}
+                 {data.dpd}
                 </NavLink>
             </td>
-            <td>{data.dpd}</td>
-            
-            <td>
-                 <NavLink to={likUrl} target="_self" >
-                 {displayMobilePhone(data.mobilePhone)}
-                </NavLink>
-            </td>
-
-        
+          
             <td> 
-                 <p> Trạng thái: {getStatusText(data.status)}</p>
+                 
                  { (data.reasonstatusText != null &&  data.reasonstatusText != '')
-                  ? <p> Trạng thái gọi:  {data.reasonstatusText}</p> 
-                : <></>
+                  ? <p> {data.reasonstatusText}</p> 
+                : <><p> Mới</p></>
       }
                
             </td>
-       
-            <td>{data.assigneeName}</td>
-            <td>{data.authorName}</td>
-       
+            
+             <td>{data.assigneeName}</td>
+        
             <td> { getLastUpdate(data)}</td>
             <td>
                  <NavLink to={likUrl} target="_self" >
@@ -204,6 +211,7 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
                 {
                 
                 dataDraw.tbodyDataUser.map((item, index) => {
+                    
                     return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
                     handleViewById = {handleViewById}
                     handleUpdateById ={handleUpdateById}/>;

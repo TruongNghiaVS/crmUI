@@ -33,20 +33,9 @@ const TabsTicketView = ({handleInputChange1,handleInputChange,dataHistory, dataV
             <Tab  eventKey="profile" title="Lịch sử tác động">
                 <ImpactHistory data = {dataHistory} />
             </Tab>
-            <Tab  eventKey="skipnew" title="Thông tin thêm(mới)">
+            <Tab  eventKey="skipnew" title="Thông tin thêm">
                 <SkipExtra data = {dataSkip} />
             </Tab>
-
-            <Tab eventKey="skip" title="Thông tin thêm">
-                <Skip data = {dataView2}  saveSkip = {saveSkip}  handleInputChange = {handleInputChange} />
-            </Tab>
-            {
-             isAdmin? 
-            <Tab eventKey="assignee" title="Phân công">
-                <Assigee data = {dataView2} listUser ={listUser} masterData = {masterData}  handleInputChange = {handleInputChange} />
-            </Tab>: <></>
-            }
-
     
         </Tabs>
     );

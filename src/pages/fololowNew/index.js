@@ -276,6 +276,8 @@ const Reason = () => {
 
     var isAdmin = false;
     var isTeamlead = false;
+    var isExportFile = false;
+    var isTc = false;
     if(roleUser === "2") {
         isAdmin = true;
         isTeamlead =true;
@@ -284,7 +286,13 @@ const Reason = () => {
   
     if(roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3" ) {
         isTeamlead = true;
+        isExportFile = true;
     }
+
+   if(roleUser == "1")
+   {
+      isTc =true;
+   }
    
     const dateForPicker = (dateString) => {
     
@@ -444,8 +452,8 @@ const Reason = () => {
     const ExportFile = (PackageKey ='')=> {
      
       Swal.fire({
-         title: 'Đang xử lý!',
-         html: 'Vui lòng <b></b> chờ ít phút.',
+         title: 'Đang chuẩn bị dữ liệu!',
+         html: 'Vui lòng <b></b> chờ trong ít phút.',
          didOpen: () => {
          Swal.showLoading()
             const b = Swal.getHtmlContainer().querySelector('b')
@@ -453,12 +461,9 @@ const Reason = () => {
             },
        
          })
-         .then((result) => {
-              if (result.dismiss === Swal.DismissReason.timer) {
       
-              }
-         })
 
+   
         let typegetData = "0";
         var idpackageserach = obejctSearch.IdPackage;
         var skipData  = false;
@@ -507,13 +512,35 @@ const Reason = () => {
 
          };
          EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
-               if (response.statusCode === 200) {
-                  exportDataExcel(response.value.data);
+              if(response == "")
+              {
 
+              }
+              else 
+              {
+                   Swal.fire({
+                    title: 'Đã có thông tin file hồ sơ',
+                    text: "",
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: "Huỷ bỏ",
+                    confirmButtonText: 'Tải file'
+                    })
+                    .then((result) => {
+                    if (result.isConfirmed) {
+                      var link = document.createElement('a');
+                      link.href = 'http://192.168.1.3:7777'+ response;
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }
+                  })
+               
+              }
+               
 
-               } else {
-
-               }
          }, (error) => {
           
          });
@@ -785,7 +812,7 @@ const Reason = () => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                 <FaTable className="icon-tit" />
-                     Hồ sơ theo dõi
+                    Danh sách hồ sơ
                 </h4>
                 <Form>
                             <Row>
@@ -1026,17 +1053,11 @@ const Reason = () => {
                 
 
                 <div className="list-feature">
-                    {
-                        isAdmin?  <div className="button-feature">
-                        
-                        <button className="btn-ft btn-export" onClick={()=>handleimportRow()}  >Import Thông tin thêm</button> 
-                         
-                    </div>:<></>
-                    }
+                   
                   
                     <div className="search-feature">
                        {
-                           2 == 1 ?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file </button>: <></>
+                           isExportFile == true ?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file(toàn bộ) </button>: <></>
                        }
                       
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>
@@ -1068,7 +1089,7 @@ const Reason = () => {
                        
          
 
-                <Table theadData={ DataJson.theadDataFollowUpNew } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                <Table theadData={ DataJson.theadDataFollowUp2 } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>

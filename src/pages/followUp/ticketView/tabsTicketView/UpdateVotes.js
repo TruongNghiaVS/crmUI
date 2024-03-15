@@ -152,7 +152,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                               dataReason.data.map((item, i) => {    
                               
                                     return ( <>
-                                        <option value = {item.id}> {item.code} - {item.displayName}</option>
+                                        <option value = {item.id}> {item.code} </option>
    
                                    </>)
                               
