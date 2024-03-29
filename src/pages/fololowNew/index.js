@@ -275,6 +275,7 @@ const Reason = () => {
     const roleUser = jsonProfile.role;
 
     var isAdmin = false;
+    var isShowPhoneMobile =true;
     var isTeamlead = false;
     var isExportFile = false;
     var isTc = false;
@@ -292,6 +293,12 @@ const Reason = () => {
    if(roleUser == "1")
    {
       isTc =true;
+   }
+
+   if(isAdmin ==true || roleUser === "5"   )
+   {
+    isShowPhoneMobile  = false;
+ 
    }
    
     const dateForPicker = (dateString) => {
@@ -1089,7 +1096,7 @@ const Reason = () => {
                        
          
 
-                <Table theadData={ DataJson.theadDataFollowUp2 } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
+                <Table allowDisplayphone = {isShowPhoneMobile} theadData={ DataJson.theadDataFollowUp2 } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
                 <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
             
             </div>

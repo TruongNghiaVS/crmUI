@@ -15,14 +15,29 @@ const TableHeadItem = ({ item }) => {
 
 const displayMobilePhone = (numberPhone) => 
 {   
-    
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+
+    const roleUser = jsonProfile.role;
+   
+    var isShowPhoneMobile =false;
+
+    if( roleUser === "2" || roleUser === "5"   )
+    {
+     isShowPhoneMobile  = true;
+  
+    }
+   if(isShowPhoneMobile == true)
+   {
+    return numberPhone;
+   }
+
     if(numberPhone)
     {
         if(numberPhone.length <7)
         {
             return "";
         }
-        return  numberPhone.substring(0, 6) + 'xxxxx';
+        return  numberPhone.substring(0, 3) + 'xxxxxxx';
     }
     return "";
 

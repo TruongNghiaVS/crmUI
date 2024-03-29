@@ -17,8 +17,25 @@ const openDetailItem = (likUrl) => {
 
 } 
 
-const displayMobilePhone = (numberPhone) => 
+const displayMobilePhone = (numberPhone, allowDisplayphone =false) => 
 {   
+ 
+    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+
+    const roleUser = jsonProfile.role;
+   
+    var isShowPhoneMobile =false;
+
+    if( roleUser === "2" || roleUser === "5"   )
+    {
+     isShowPhoneMobile  = true;
+  
+    }
+   if(isShowPhoneMobile == true)
+   {
+    return numberPhone;
+   }
+
     if(numberPhone)
     {
         if(numberPhone.length <7)
@@ -131,7 +148,8 @@ const getCaseSkip = (flag)=> {
     return <p></p>
 }
 
-const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
+const TableRow = ({ allowDisplayphone ,data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
+    console.log(allowDisplayphone);
     rowIndex = rowIndex +1;
     let likUrl = "/follow-up/" + data.id;
     let colorcode = data.colorCode;
@@ -159,7 +177,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                 
               
                  <p> 
-                 {displayMobilePhone(data.mobilePhone)}
+                 {displayMobilePhone(data.mobilePhone,allowDisplayphone)}
                  </p>
                
                 
@@ -193,7 +211,7 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
     );
 };
 
-const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById }) => {
+const Table = ({ isShowPhoneMobile,  theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById }) => {
     return (
         <table className={tblClass}>
             <thead>
@@ -212,7 +230,7 @@ const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpd
                 
                 dataDraw.tbodyDataUser.map((item, index) => {
                     
-                    return <TableRow key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
+                    return <TableRow isShowPhoneMobile= {isShowPhoneMobile} key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
                     handleViewById = {handleViewById}
                     handleUpdateById ={handleUpdateById}/>;
                 })}
