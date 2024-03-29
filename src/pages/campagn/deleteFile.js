@@ -32,6 +32,17 @@ const DeleteFile = (props) => {
 
         
         var file = fileTran;
+    
+        if(Object.keys(file).length === 0)
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Chưa có file',
+                text: 'Vui lòng chọn lại file!'
+                // footer: '<a href="">?</a>'
+              })
+        }
+      
      
          Swal.fire({
             title: 'Đang xử lý!',
@@ -49,12 +60,14 @@ const DeleteFile = (props) => {
                  }
             })
 
+
+
     
         var data = new FormData();
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://118.69.182.32:7777/api/campagn/deleteProfile', {
+        fetch('https://localhost:8098/api/campagn/deleteProfile', {
             method: 'POST',
             body: data
         })
@@ -81,7 +94,7 @@ const DeleteFile = (props) => {
                 {
                         Swal.fire(
                             'Thao tác thành công',
-                            'Đã import thành công.',
+                            'Xoá thành công.',
                             'success'
                         )
                 }
@@ -89,7 +102,7 @@ const DeleteFile = (props) => {
                 {
                         Swal.fire({
                             icon: 'error',
-                            title: 'Có lỗi',
+                            title: 'Không xoá được, vui lòng liên hệ IT',
                             text: responseJson.value
                             // footer: '<a href="">?</a>'
                         })
@@ -203,64 +216,12 @@ const DeleteFile = (props) => {
     return (
         <div className="model">
             <div className="header-model">
-                  <h4>Nhập dữ liệu import</h4>
+                  <h4>Nhập file excel dữ liệu cần xoá</h4>
             </div>
             
              <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate  >
-                    {/* <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="displayName" placeholder="Tên chiến dịch" 
-                        onChange={handleInputChange} value = {model.displayName} required />
-                        <Form.Control.Feedback type="invalid">
-                                Trường bặt buộc
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
-                          placeholder="Mã chiến dịch"   
-                           onChange={handleInputChange} 
-                           value = {model.code} required />
-                    </InputGroup>
-                    
-                   <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                         <Form.Control
-                            type="date"
-                            name="beginTime"
-                            value ={dateForPicker(model.beginTime)}
-                            placeholder="Ngày bắt đầu"
-                            onChange={handleInputChange} 
-                        
-                             />
-
-                    </InputGroup>
-                    
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <Form.Control
-                        type="date"
-                        name="endTime"
-                        value ={dateForPicker(model.endTime)}
-                        placeholder="Ngày kết thúc"
-                        onChange={handleInputChange} 
-                     />
-                    </InputGroup>
-
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaEnvelope />
-                        </InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Mô tả"  name ="shortDes"  onChange={handleInputChange}  value = {model.shortDes}   />
-                    </InputGroup>
-
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon">
-                             <FaEnvelope />
-                        </InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Độ ưu tiên"  name ="priority"  onChange={handleInputChange}  value = {model.priority}   />
-                    </InputGroup> */}
+                  
 
                     <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Chọn file excel</Form.Label>
@@ -268,7 +229,7 @@ const DeleteFile = (props) => {
                      </Form.Group>
 
                      <Form.Group  className="mb-3">
-                            <a href='javsacript:void(0)'>Tải file template</a>
+                            <a href='/template/campagn/deleteCase.xlsx' download >Tải file template</a>
                      </Form.Group>
                     
               </form>
@@ -276,7 +237,7 @@ const DeleteFile = (props) => {
 
             <div className="footer-model">
 
-                 <button className="btn-model btn-add" onClick= {UploadFileServer}>xóa dữ liệu </button>
+                 <button className="btn-model btn-add" onClick= {UploadFileServer}>Xoá case </button>
                 <button className="btn-model btn-closes" onClick={props.handleClose}>Đóng</button>
             </div>
         </div>

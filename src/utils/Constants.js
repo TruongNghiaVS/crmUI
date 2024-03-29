@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.3:7777";
+    static DOMAIN = "https://localhost:8098";
     static HEADERS = {
         
     };
@@ -54,6 +54,7 @@ class ConstantData {
      static URL_campagn_Add = `${ConstantData.DOMAIN}/api/campagn/add`;
      static URL_campagn_Update = `${ConstantData.DOMAIN}/api/campagn/update`;
      static URL_campagn_Delete = `${ConstantData.DOMAIN}/api/campagn/delete`;
+     static URL_campagn_Close = `${ConstantData.DOMAIN}/api/campagn/closeByid`;
      static URL_campagn_GetById = `${ConstantData.DOMAIN}/api/campagn/getById`;
      static URL_campagn_exportData = `${ConstantData.DOMAIN}/api/campagn/exportData`;
 
@@ -183,6 +184,7 @@ class ConstantData {
     static URL_package_Update = `${ConstantData.DOMAIN}/api/package/update`;
     static URL_package_Delete = `${ConstantData.DOMAIN}/api/package/delete`;
     static URL_package_GetById = `${ConstantData.DOMAIN}/api/package/getById`;
+
      static URL_qc_getcampagnProfileOrginal_add = `${ConstantData.DOMAIN}/api/campagnProfile/addNoted`;
     //sms server
 

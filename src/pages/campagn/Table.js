@@ -1,8 +1,10 @@
 import { FaEye, FaPen, FaTrashAlt,FaFileImport } from "react-icons/fa";
 import { MdAssistantNavigation } from "react-icons/md";
-
+import { IoLockClosed } from "react-icons/io5";
 import React, { useState } from "react";
 import { NavLink } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import { FaList } from "react-icons/fa";
 import moment from "moment"; 
 const TableHeadItem = ({ item }) => {
     return (
@@ -10,7 +12,18 @@ const TableHeadItem = ({ item }) => {
     );
 };
 
-const getStatusText = (isActive)=> {
+const getStatusText = (dataItem)=> {
+    let isActive = dataItem.status;
+
+    let isClose = dataItem.isClose;
+    if( isClose == true ||  isClose ==null)
+    {
+        return <p>Đã đóng</p>;
+    }
+    else 
+    {
+        return <p>Đang hoạt động</p>;
+    }
     if(isActive)
     {
         return (<p>Hoạt động</p>);
@@ -32,27 +45,23 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
                  {data.displayName}
                 </NavLink>
             </td>
-                    <td>{getStatusText(data.status)}</td>
+                    <td>{getStatusText(data)}</td>
                     <td>{data.sumCount}</td>
                     <td>{data.processingCount}</td>
                     <td>{data.closedCount}</td>
                     <td> {data.noSkippCase}</td>
                     <td>{moment(data.beginTime).format("DD/MM/YYYY")}</td>
                     <td>{moment(data.endTime).format("DD/MM/YYYY")}</td>
-                   
                     <td>{moment(data.createAt).format("DD/MM/YYYY")}</td>
                     <td>{data.authorName}</td>
-                    <td>Vietbank</td>
-                    <td>{data.updateByName} </td>
-                    <td>{moment(data.updateAt).format("DD/MM/YYYY")} </td>
-                    <td>{data.priority}</td>
+          
                     <td>
-                        <FaEye className='icon-tbl' onClick={()=>handleViewById(data.id)} />
+                      
                         <FaPen className='icon-tbl' onClick={()=>handleUpdateById(data.id)}   />
-                        <FaTrashAlt onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
+                        <IoLockClosed onClick={()=>handleDeleteById(data.id)} className='icon-tbl' />
                         <FaFileImport onClick={()=>handleimportRow(data.id)} className='icon-tbl' />
-                        <MdAssistantNavigation onClick={()=>openAssignee(data.id)} className='icon-tbl'/>
-                        <MdAssistantNavigation onClick={()=>handleDeleteFie(data.id)} className='icon-tbl'/>
+                        <FaList onClick={()=>openAssignee(data.id)} className='icon-tbl'/>
+                        <MdDelete onClick={()=>handleDeleteFie(data.id)} className='icon-tbl'/>
                     </td>
         </tr>
     );

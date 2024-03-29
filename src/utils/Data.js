@@ -183,8 +183,7 @@ const DataJson = {
      ],
      theadDataCampang: [
         "STT", "Mã trạng thái","Tên chiến dịch", "Trạng thái", "Tổng", "Xử lý", "Đóng",
-        "Số case giữ", "Ngày chạy","Ngày kết thúc", "Ngày tạo", "Nguời tạo",'C.ty' , "Người cập nhật", 
-        "Ngày cập nhật", "Ưu tiên"
+        "Số case giữ", "Ngày chạy","Ngày kết thúc", "Ngày tạo", "Nguời tạo"
      ],
      theadDataCampangAssi: [
         "STT", "Tên người dùng","SL phân", "Thêm", "Rút", "Đã phân", "Đang Xử lý", "Chưa xử lý", 

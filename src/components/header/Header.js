@@ -187,7 +187,7 @@ const Header = ({ classHeader }) => {
                      
                     </li>
 
-                    { roleUser == "4"?  <li className='list-link'>
+                    { roleUser == "4"  ?  <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Vận hành <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/campangn">Chuyển case</Link></li>
@@ -210,7 +210,8 @@ const Header = ({ classHeader }) => {
                             
                             {!isHiddenMenu?<span className="change-pass">Line gọi: {lineCode}</span>: <></>} 
                             <span className="logout" onClick={() => handleLogout()}>Đăng xuất</span>
-                        </div> : <></>}
+                        </div> : <></>
+                        }
                     </div>
                 </ul>
             </nav>

@@ -300,11 +300,25 @@ const Campagn = () => {
     window.open("/campaignAssign/"+id);
     }
 
-    const  deleteEmploy = (idEmp) => { 
+    const  closeCampagn = (idEmp) => { 
+            Swal.fire({
+            title: 'Đang thực hiện thao tác!',
+            html: 'Vui lòng <b></b> chờ trong giây lát.',
+            didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+
+            },
+
+            })
+            .then((result) => {
+
+            })
+
         const deleteIdModel = {
         Id:  idEmp
         };
-        EmployeeService.delete(ConstantData.URL_campagn_Delete,ConstantData.HEADERS,
+        EmployeeService.delete(ConstantData.URL_campagn_Close,ConstantData.HEADERS,
         deleteIdModel,
         handleDeleteSucess, 
         handleDeleteError);
@@ -315,14 +329,16 @@ const Campagn = () => {
         {   
                 getDataEmployee();
                 Swal.fire(
-                'Đã xóa!',
-                'Đã xóa thành công.',
+                'Đóng chiến dịch!',
+                'Đã đóng thành công.',
                 'success'
-                )
+                ).then(function () {
+                    window.location.reload(); 
+                });
         }
         else 
         {
-                toast.error('Có lỗi khi xóa:'+ data.value, {
+                toast.error('Đóng chiến dịch thất bại:'+ data.value, {
                        position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: true,
@@ -342,8 +358,8 @@ const Campagn = () => {
     const handleDeleteEmpl = (id)=> {
 
         Swal.fire({
-            title: 'Bạn chắc chắn xóa',
-            text: "Bạn sẽ không lấy lại được dữ liệu",
+            title: 'Đóng chiến dịch',
+            text: "Cân nhắc trước khi đóng chiến dịch",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -352,7 +368,8 @@ const Campagn = () => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                deleteEmploy(id);
+
+                closeCampagn(id);
             }
         })
 
