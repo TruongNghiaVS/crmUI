@@ -275,6 +275,7 @@ const Reason = () => {
     const roleUser = jsonProfile.role;
 
     var isAdmin = false;
+    var isshowGroup = false;
     var isShowPhoneMobile =true;
     var isTeamlead = false;
     var isExportFile = false;
@@ -288,7 +289,10 @@ const Reason = () => {
     if(roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3" ) {
         isTeamlead = true;
         isExportFile = true;
+        isshowGroup = true;
     }
+
+
 
    if(roleUser == "1")
    {
@@ -456,7 +460,7 @@ const Reason = () => {
         loadData();
     }
 
-    const ExportFile = (PackageKey ='')=> {
+    const ExportFile = (exportAll = false,PackageKey ='')=> {
      
       Swal.fire({
          title: 'Đang chuẩn bị dữ liệu!',
@@ -501,6 +505,11 @@ const Reason = () => {
            typegetData = "3";
         }
 
+        if (exportAll)
+        {
+          typegetData= "-1";
+        }
+
         let bodySearch = {
            Token: obejctSearch.token, 
            IdPackage: idpackageserach,
@@ -509,6 +518,8 @@ const Reason = () => {
            dpd: obejctSearch.dpd,
            lineCode:  obejctSearch.lineCode,
            phoneSerach:  obejctSearch.phoneSerach,
+           memberId: obejctSearch.memberId,
+           groupId: obejctSearch.groupId,
            from: obejctSearch.fromTime,
            skipData: skipData, 
            cmnd: obejctSearch.cmnd,
@@ -538,7 +549,7 @@ const Reason = () => {
                     .then((result) => {
                     if (result.isConfirmed) {
                       var link = document.createElement('a');
-                      link.href = 'https://localhost:8098'+ response;
+                      link.href = 'http://192.168.1.3:7777'+ response;
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);
@@ -733,9 +744,15 @@ const Reason = () => {
     }
 
     const exportfileAll =()=> {
-           ExportFile();
+           ExportFile(true);
 
 }
+
+const exportfileAll2 =()=> {
+  ExportFile();
+
+}
+
 
 
     
@@ -1001,7 +1018,7 @@ const Reason = () => {
 
                             </Row>
 
-                            {isAdmin ? (
+                            {isshowGroup ? (
                 <Row>
                   <Col>
                     <Form.Group
@@ -1064,7 +1081,10 @@ const Reason = () => {
                   
                     <div className="search-feature">
                        {
-                           isExportFile == true ?    <button  className="btn-search"  onClick= {exportfileAll}>Xuất file(toàn bộ) </button>: <></>
+                           isExportFile == true ?   <>  <button  className="btn-search"  onClick= {exportfileAll2}> Xuất file </button>
+                            <button  className="btn-search"  onClick= {exportfileAll}>Xuất file(toàn bộ) </button> </>
+                           
+                           : <></>
                        }
                       
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>

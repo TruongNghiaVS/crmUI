@@ -38,6 +38,7 @@ const TableRow = ({ data, rowindex }) => {
         <tr>
             <td>{rowindex+1}</td>
             <td>{data.dayR+"/"+data.monthR + "/" +data.yearR}</td>
+            <td>{data.userName}</td>
             <td>{data.lineCode}</td>
             <td>{data.sumCall}</td>
             <td>{data.sumNoAgree}</td>

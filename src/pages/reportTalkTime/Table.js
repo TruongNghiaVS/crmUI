@@ -50,6 +50,9 @@ const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleView
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
             <td>{rowIndex}</td>
             <td>{data.lineCode}</td>
+            <td>{data.userName}</td>
+
+            
             <td>{data.sumNoAgree}</td>
             <td>{data.dayR +'-'+data.monthR + '-'+data.yearR}</td>
             <td>{data.sumAn+ data.sumNOAswer+ data.sumNOCancel + data.sumNoBussy +data.sumNoFail }</td>

@@ -125,7 +125,7 @@ const DataJson = {
      ],
 
      theadDataReportRecording: [
-        "STT","AppId",  "Ngày", "Giờ bắt đầu", "Giờ kết thúc", "Số điện thoại","Talking-Time", "File ghi âm", "line gọi","Valid/Invalid"
+        "STT","AppId",  "Ngày", "Giờ bắt đầu", "Giờ kết thúc", "Số điện thoại","Talking-Time", "File ghi âm", "line gọi","tên đăng nhập","Valid/Invalid"
        ],
        theadDataCall: [
         "STT","Số HĐ",  "Ngày", "Giờ gọi", "Số điện thoại", "line gọi"
@@ -155,7 +155,7 @@ const DataJson = {
   
 
     theadDataReportTalkTime: [
-    "STT",  "Gọi bởi", "Số HĐ", "Ngày Thống kê","Tổng cuộc gọi", "% kết nối",
+    "STT",  "Gọi bởi","Tên đăng nhập", "Số HĐ", "Ngày Thống kê","Tổng cuộc gọi", "% kết nối",
      "Thời gian gọi","Thời gian chờ", "Đàm thoại ", "Trả lời",
       "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
     ],
@@ -207,7 +207,7 @@ const DataJson = {
        
     ],
       theadDataDashboard: ["Ngày",
-        "Gọi bởi", "Tổng", "Số HĐ", "% Kết nối", "Trả lời", "Thời gian gọi", "Thời gian chờ",
+        "Gọi bởi", "line gọi", "Tổng", "Số HĐ", "% Kết nối", "Trả lời", "Thời gian gọi", "Thời gian chờ",
         "Đàm thoại", "Không trả lời", "Hủy", "Bận line", "Kênh lỗi", "Không gọi được", "Lỗi server"
     ],
 
