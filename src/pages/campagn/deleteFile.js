@@ -67,7 +67,7 @@ const DeleteFile = (props) => {
       
         data.append('fileData', file)
         data.append('id', props.idPass);
-        fetch('http://192.168.1.3:7777/api/campagn/deleteProfile', {
+        fetch('https://localhost:8098/api/campagn/deleteProfile', {
             method: 'POST',
             body: data
         })

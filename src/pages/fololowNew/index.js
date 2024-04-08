@@ -549,7 +549,7 @@ const Reason = () => {
                     .then((result) => {
                     if (result.isConfirmed) {
                       var link = document.createElement('a');
-                      link.href = 'http://192.168.1.3:7777'+ response;
+                      link.href = 'https://localhost:8098'+ response;
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);
@@ -1077,15 +1077,18 @@ const exportfileAll2 =()=> {
                 
 
                 <div className="list-feature">
-                   
-                  
-                    <div className="search-feature">
-                       {
+                    
+                        <div className="search-feature leftLayout">
+                      
+                        {
                            isExportFile == true ?   <>  <button  className="btn-search"  onClick= {exportfileAll2}> Xuất file </button>
-                            <button  className="btn-search"  onClick= {exportfileAll}>Xuất file(toàn bộ) </button> </>
+                            <button  className="btn-search"  onClick= {exportfileAll}>Xuất file(tất cả) </button> </>
                            
                            : <></>
                        }
+                  </div>
+                  
+                    <div className="search-feature">
                       
                         <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>
                     </div>

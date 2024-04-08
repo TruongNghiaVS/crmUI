@@ -144,12 +144,21 @@ const InfoProduct = ({data, handleInputChange}) => {
     }
         var re = /(?:[-+() ]*\d){10,13}/gm; 
       
-        var res = str.match(re).map(function(s)
+        var res = str.match(re);
+        if( res )
         {
-            str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " >" + displayMobilePhone(s)+  "</a>")
-            return s +";"
-        
-        });
+            res.map(function(s)
+            {
+                str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " >" + displayMobilePhone(s)+  "</a>")
+                return s +";"
+            
+            });
+        }
+        else 
+        {
+            return;
+        }
+  
         return str;
      }
     return (
