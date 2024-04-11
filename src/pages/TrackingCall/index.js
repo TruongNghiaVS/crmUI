@@ -467,7 +467,7 @@ const User = () => {
       <div className="box-tbl">
         <h4 className="box-tit">
           <FaTable className="icon-tit" />
-          Báo cáo Talktime
+           Theo dõi cuộC gọi
         </h4>
 
         <form className="form-login">
