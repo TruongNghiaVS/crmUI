@@ -149,7 +149,7 @@ const getCaseSkip = (flag)=> {
 }
 
 const TableRow = ({ allowDisplayphone ,data,rowIndex,handleDeleteById, handleUpdateById, handleViewById }) => {
-    console.log(allowDisplayphone);
+  
     rowIndex = rowIndex +1;
     let likUrl = "/follow-up/" + data.id;
     let colorcode = data.colorCode;
@@ -230,7 +230,8 @@ const Table = ({ isShowPhoneMobile,  theadData, tbodyData, tblClass,dataDraw, ha
                 
                 dataDraw.tbodyDataUser.map((item, index) => {
                     
-                    return <TableRow isShowPhoneMobile= {isShowPhoneMobile} key={item.id} data={item} rowIndex = {index} handleDeleteById = {handleDelete} 
+                    return <TableRow isShowPhoneMobile= {isShowPhoneMobile} key={item.id} data={item}
+                     rowIndex = {index} handleDeleteById = {handleDelete} 
                     handleViewById = {handleViewById}
                     handleUpdateById ={handleUpdateById}/>;
                 })}

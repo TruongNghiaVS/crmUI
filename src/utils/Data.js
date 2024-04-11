@@ -159,6 +159,10 @@ const DataJson = {
      "Thời gian gọi","Thời gian chờ", "Đàm thoại ", "Trả lời",
       "Không trả lời","Hủy", "Bận line","Kênh lỗi", "Không gọi được","Lỗi serve"
     ],
+    theadDataReportTrackingCall: [
+    "STT",  "Ngày thống kê","User", "Team", "Tổng call","Trạng thái ( thể hiện đang gọi hay kết thúc)", "Thông tin",
+     "Tổng thời gian chờ","Tổng thời gian có kết nối", "Total time "
+    ],
     theadDataReportVi: [
         "STT", , "Loại","userName","line", "Nội dung",
         "thời điểm gọi gần nhất", 
@@ -186,8 +190,7 @@ const DataJson = {
         "Số case giữ", "Ngày chạy","Ngày kết thúc", "Ngày tạo", "Nguời tạo"
      ],
      theadDataCampangAssi: [
-        "STT", "Tên người dùng","SL phân", "Thêm", "Rút", "Đã phân", "Đang Xử lý", "Chưa xử lý", 
-        "Đóng", "Giữ case"
+        "STT", "Tên người dùng","SL phân", "Đang xử lý", "Chưa xử lý", "Case rút", "Thao tác"
      ],
      theadDataGroupReason: [
         "STT", "Mã", "Nhóm trạng thái", "Mô tả", "Trạng thái", "Thư mục","Thuộc công ty", 

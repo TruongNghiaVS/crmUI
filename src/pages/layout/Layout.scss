@@ -542,3 +542,64 @@ tr:hover {
 .leftLayout  {
     float: left !important;
 }
+.greenTalk {
+    background-color: #008000;
+    color: #ffffff;
+}
+.processCall {
+    background-color: #c85858;
+    color: #ffffff;
+}
+.justCall {
+    background-color: blue;
+    color: #ffffff;
+}
+.callEnd {
+}
+
+.warmingColor {
+  
+   
+}
+
+.redWarning {
+  
+   
+}
+.warnigLevel3 {
+    background-color: rgb(243, 82, 82);
+}
+
+.warnigLevel4 {
+    background-color: rgb(241, 34, 34);
+}
+
+.icon-tbl1 {
+    color: blue;
+    margin: 0 4px;
+    cursor: pointer;
+
+    &.icon-exclamation, &.icon-trash {
+        color: #f90707;
+    }
+}
+
+.icon-tbl1 {
+    color: green;
+    margin: 0 4px;
+    cursor: pointer;
+
+    &.icon-exclamation, &.icon-trash {
+        color: #f90707;
+    }
+}
+
+.icon-tbl4 {
+    color: gray;
+    margin: 0 4px;
+    cursor: pointer;
+
+    &.icon-exclamation, &.icon-trash {
+        color: #f90707;
+    }
+}

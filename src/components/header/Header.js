@@ -104,6 +104,11 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
                             
                           
+
+                            {
+                            (roleUser != 1)
+                            && <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/theo-doi-goi">Theo dõi gọi</Link></li>
+                          }
                         </ul>
                     </li>
                     <li className='list-link'>

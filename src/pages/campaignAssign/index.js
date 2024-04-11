@@ -46,7 +46,6 @@ const CampaignAssign = () => {
     });
     const handleimportRow = (id)=> {
 
-         setCampagnSelect(id);
         
           setisOPenUploadFile(!isOPenUploadFile);
     }
@@ -66,7 +65,12 @@ const CampaignAssign = () => {
     }
 
 
-    
+    const handleShowModelUploadFile = () => {
+        
+
+        setisOPenUploadFile(!isOPenUploadFile);
+        
+    }
     const updateDataSelect = (dataItem)=> {
        
          if(dataItem)
@@ -352,18 +356,19 @@ const CampaignAssign = () => {
                 <div className="list-feature">
                     
                 <div className="search-feature">
-                    <FaFilter />
+                 
                     <input className="input-search" name ="tokenSearch" onChange={handleInputChangesearch} value= {obejctSearch.tokenSearch}  type="text" placeholder="Tìm kiếm" />
                     <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                 </div>
                 </div>
                 <div className='navAssignee'>
-                    <Button variant="outline-primary">Chiến dịch </Button>
+                  
                     <Button variant="outline-primary">Tổng ({modelCampagnOverview.total }) </Button>
                     <Button variant="outline-info">Chưa phân({modelCampagnOverview.numberHaveNotAssigee})</Button>
                     <Button variant="outline-info">Đã phân({modelCampagnOverview.numberHasAssigee})</Button>
                     <Button variant="outline-info">Đóng({modelCampagnOverview.numberHasClose})</Button>
-                    <Button variant="outline-info">Giữ case({modelCampagnOverview.numberHasSkip})</Button>
+                    <Button variant="outline-info">Rút về({modelCampagnOverview.numberHaveNotAssigee})</Button>
+
                      </div>
                 <Table theadData={ DataJson.theadDataCampangAssi } dataDraw={dataEmployee} 
                  tbodyData={ DataJson.tbodyDataUser }
@@ -376,15 +381,15 @@ const CampaignAssign = () => {
             
             </div>
 
-            <div className="list-feature">
-                <div className="search-feature">
-                    <button  className="btn-search"  onClick= {searchData}>Tiến hành phân</button>
-                
-            </div>
-
-         
-            </div>
-
+       
+            {                                                                                         
+                isOPenUploadFile && <Model                                        
+                    handleClose ={handleShowModelUploadFile}
+                    content={<UploadFile
+                    idPass = "3333"  
+                    handleClose={handleShowModelUploadFile} 
+                />} />
+             }
         </div>
     );
 };

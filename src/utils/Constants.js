@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "https://localhost:8098";
+    static DOMAIN = "http://192.168.1.3:7777";
     static HEADERS = {
         
     };
@@ -193,6 +193,8 @@ class ConstantData {
     static URL_tracking_requestCheck = `${ConstantData.DOMAIN}/api/tracking/requestCheck`;
 
     static URL_Allreason_getAll = `${ConstantData.DOMAIN}/api/campagnProfile/getAllReason`;
+
+    static URL_TrackingCall_GetAll = `${ConstantData.DOMAIN}/api/trackingCall/getAll`;
     
 }
 export default ConstantData;

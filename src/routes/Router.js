@@ -83,6 +83,9 @@ function Router() {
                          <Route path="bao-cao-talktime"
                              element={<Layout page="reportTalkTime" />}>
                          </Route>
+                         <Route path="theo-doi-goi"
+                             element={<Layout page="tracking-call" />}>
+                         </Route>
 
                          <Route path="tracking-call"
                              element={<Layout page="tracking" />}>

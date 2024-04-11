@@ -193,75 +193,85 @@ const UploadFile = (props) => {
     return (
         <div className="model">
             <div className="header-model">
-                  <h4>Nhập dữ liệu import</h4>
+                  <h4> Hoạt động</h4>
             </div>
-            
+             <div> 
+                <storng> Chuyển case</storng>
+                <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Chọn nhân viên chuyển đến:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Select
+                          name="groupId"
+                      
+                        >
+                            
+                              <option value='0'>Nguyễn Trường Nghĩa_ nghiaNT15</option>
+                         
+                          
+                        </Form.Select>
+                      </InputGroup>
+               </Form.Group>
+               <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                     
+                      <InputGroup className="mb-2">
+                         <Form.Check // prettier-ignore
+                        type="switch"
+                        id="custom-switch"
+                        label="Làm mới lại case"
+                        />
+                      </InputGroup>
+               </Form.Group>
+
+
+               <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Phân bổ lại case:</Form.Label>
+                      <InputGroup className="mb-6">
+                      <Form.Check type="radio"  name ="randomradio" label="Ngẫu nhiên" />
+                            <Form.Check type="radio" name ="randomradio" label="Chọn" />
+                      </InputGroup>
+                    
+                       
+                     
+               </Form.Group>
+
+               <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Số lượng case:</Form.Label>
+                      <InputGroup className="mb-2">
+                    
+                      <Form.Control
+                          type="number" name ="token" placeholder="Số lượng case" 
+                      />
+                      </InputGroup>
+               </Form.Group>
+               
+               
+
+
+             </div>
+
+             <div> 
+                <storng> Rút case</storng>
+
+             </div>
              <div className="main-model">
                 <form id ="frmElement" className='form-login' noValidate  >
-                    {/* <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaUser /></InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                        name ="displayName" placeholder="Tên chiến dịch" 
-                        onChange={handleInputChange} value = {model.displayName} required />
-                        <Form.Control.Feedback type="invalid">
-                                Trường bặt buộc
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <FormControl  aria-label="Small" aria-describedby="inputGroup-sizing-sm" disabled ={isEdit} name = "code"
-                          placeholder="Mã chiến dịch"   
-                           onChange={handleInputChange} 
-                           value = {model.code} required />
-                    </InputGroup>
+                  
+                   
                     
-                   <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                         <Form.Control
-                            type="date"
-                            name="beginTime"
-                            value ={dateForPicker(model.beginTime)}
-                            placeholder="Ngày bắt đầu"
-                            onChange={handleInputChange} 
-                        
-                             />
-
-                    </InputGroup>
-                    
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                        <Form.Control
-                        type="date"
-                        name="endTime"
-                        value ={dateForPicker(model.endTime)}
-                        placeholder="Ngày kết thúc"
-                        onChange={handleInputChange} 
-                     />
-                    </InputGroup>
-
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon"><FaEnvelope />
-                        </InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Mô tả"  name ="shortDes"  onChange={handleInputChange}  value = {model.shortDes}   />
-                    </InputGroup>
-
-                    <InputGroup className="mb-2">
-                        <InputGroup.Text className="input-group-icon">
-                             <FaEnvelope />
-                        </InputGroup.Text>
-                        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Độ ưu tiên"  name ="priority"  onChange={handleInputChange}  value = {model.priority}   />
-                    </InputGroup> */}
-
-                    <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Chọn file excel</Form.Label>
-                            <Form.Control type="file" accept=".xlsx, .xls, .csv"  onChange={handleInputChange} />
-                     </Form.Group>
-
-                     <Form.Group  className="mb-3">
-                            <a href='javsacript:void(0)'>Tải file template</a>
-                     </Form.Group>
-                    
-              </form>
+                </form>
             </div>
 
             <div className="footer-model">

@@ -6,7 +6,10 @@ import { Row, Form, InputGroup, Col, FormControl,Button } from 'react-bootstrap'
 
 import { IoAddOutline } from "react-icons/io5";
 import { GrSubtractCircle } from "react-icons/gr";
-
+import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
+import { BsSkipForwardBtnFill} from "react-icons/bs";
+import { FaEdit } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 
 import RowAssigee from "./RowAssigee"
 
@@ -34,16 +37,34 @@ const getStatusText = (isActive)=> {
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow, updateDataSelect }) => {
 
-    var objectModel = {
-        sumCounted: data.sumCount,
-        key: data.id, 
-        id:data.id
-    };
-    updateDataSelect(objectModel);
 
+    rowIndex = rowIndex +1;
+   
+    let colorcode = data.colorCode;
+    let likUrl = "";
+
+    if(colorcode =="" || colorcode == null)
+    {
+        colorcode ="white";
+    }
     return (
-        <RowAssigee rowstt = {rowIndex} dataDraw = {data} updateDataSelect = {updateDataSelect}  />
+        <tr className={colorcode}>
+            <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
+            <td>{rowIndex}</td>
+            <td>Nguyễn Trường Nghĩa</td>
+            <td>1000</td>
+            <td>200</td>   
+            <td>400</td> 
+            <td>400</td> 
+            <td>
+              
+                    <FaEdit onClick={()=>handleimportRow()} className="icon-edit" />
+              
+             
+            </td>
+        </tr>
     );
+   
 };
 
 const Table = ({ theadData, tbodyData, tblClass,dataDraw, handleDelete,handleUpdateById,handleViewById, handleimportRow, updateDataSelect }) => {

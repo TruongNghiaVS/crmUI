@@ -35,6 +35,8 @@ import ReportCDR from "../reportCDR";
 import DocumentData from "../DocumentData";
 
 import ReportTalkTime from "../reportTalkTime";
+import TrackingCall from "../TrackingCall";
+
 import Tracking from "../tracking";
 
 import ReportRecording from "../reportRecording";
@@ -175,6 +177,8 @@ const Screen = (props) => {
 
     case "reportTalkTime":
       return <ReportTalkTime />;
+    case "tracking-call":
+      return <TrackingCall />;
     case "tracking":
       return <Tracking />;
 
