@@ -603,3 +603,16 @@ tr:hover {
         color: #f90707;
     }
 }
+.greencolor{
+    background-color: #008000;
+    color: #dbdcdf;
+}
+.icon-tbl12 {
+    color: blue;
+    margin: 0 4px;
+    cursor: pointer;
+
+    &.icon-exclamation, &.icon-trash {
+        color: #f90707;
+    }
+}

@@ -48,10 +48,9 @@ const getInfoMationViewDetail = (LastCall, data = null) => {
 
     if(data.isCalling)
     {   
-        return
-       <div>
-       <FaCheckCircle className='icon-tbl12'> </FaCheckCircle>
-                <span  > {data.durationRealTime} </span>
+        return  <div>
+               <FaCheckCircle className='icon-tbl12'> </FaCheckCircle>
+                <span   className="greencolor"  > {data.durationRealTime} </span>
        
               </div>
     }
