@@ -48,7 +48,7 @@ const User = () => {
     memberId:0,
     groupId:0,
 
-        fromTime: moment(),
+   fromTime: moment(),
     endTime: moment(),
   });
 
@@ -72,6 +72,12 @@ const User = () => {
   ) {
     isAdmin = true;
   }
+
+
+  var isExportFile = false;
+if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
+  isExportFile = true;
+}
 
   const handleInputChange = (event) => {
     let valueControl = event.target.value;
@@ -144,6 +150,145 @@ const User = () => {
     setIsOpenModel(!isOpenModel);
   };
 
+
+  const exportDataReport2 = () => {
+      
+    Swal.fire({
+        title: 'Đang chuẩn bị dữ liệu!',
+        html: 'Vui lòng <b></b> chờ trong ít phút.',
+        didOpen: () => {
+        Swal.showLoading()
+           const b = Swal.getHtmlContainer().querySelector('b')
+         
+           },
+      
+        })
+     
+    let fromDate = obejctSearch.fromTime;
+    if(fromDate=="")
+    {
+        fromDate = null;
+    }
+    let bodySearch = {
+
+            Token: obejctSearch.tokenSearch,
+            Page: obejctPaging.currentPage,
+            Limit: obejctPaging.limt,
+            LineCode: obejctSearch.lineCode,
+            phoneLog: obejctSearch.phoneLog,
+            Disposition: obejctSearch.status,
+            from:fromDate,
+            memberId: obejctSearch.memberId,
+            groupId: obejctSearch.groupId,
+            to: obejctSearch.endTime
+
+    };
+
+    Services.exportSumupTalktime(  bodySearch, (response) => {
+ 
+
+
+        if (response.success == true) {
+
+            Swal.fire({
+                title: 'Đã có thông tin file báo cáo',
+                text: "",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "Huỷ bỏ",
+                confirmButtonText: 'Tải file'
+                })
+                .then((result) => {
+                if (result.isConfirmed) {
+                  var link = document.createElement('a');
+                  link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }
+              })
+
+        } else {
+
+
+
+        }
+    }, (error) => {
+
+    });
+
+}
+const exportDataReport = () => {
+  
+    Swal.fire({
+        title: 'Đang chuẩn bị dữ liệu!',
+        html: 'Vui lòng <b></b> chờ trong ít phút.',
+        didOpen: () => {
+        Swal.showLoading()
+           const b = Swal.getHtmlContainer().querySelector('b')
+         
+           },
+      
+        })
+     
+    let fromDate = obejctSearch.fromTime;
+    if(fromDate=="")
+    {
+        fromDate = null;
+    }
+    let bodySearch = {
+
+            Token: obejctSearch.tokenSearch,
+            Page: obejctPaging.currentPage,
+            Limit: obejctPaging.limt,
+            LineCode: obejctSearch.lineCode,
+            phoneLog: obejctSearch.phoneLog,
+            Disposition: obejctSearch.status,
+            from:fromDate,
+            memberId: obejctSearch.memberId,
+            groupId: obejctSearch.groupId,
+            to: obejctSearch.endTime,
+        
+
+    };
+
+    Services.exportDataTalktime(  bodySearch, (response) => {
+ 
+
+        if (response.success == true) {
+
+            Swal.fire({
+                title: 'Đã có thông tin file báo cáo',
+                text: "",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "Huỷ bỏ",
+                confirmButtonText: 'Tải file'
+                })
+                .then((result) => {
+                if (result.isConfirmed) {
+                  var link = document.createElement('a');
+                  link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }
+              })
+
+        } else {
+
+
+
+        }
+    }, (error) => {
+
+    });
+
+}
   const exportData = () => {
     let fromDate = obejctSearch.fromTime;
     if (fromDate == "") {
@@ -595,6 +740,20 @@ const User = () => {
           </div>
         </form>
         <div className="list-feature">
+
+        <div className="search-feature leftLayout">
+                  
+                  {  isExportFile?
+                        <button className="btn-search"  onClick={exportDataReport} >Xuất file báo cáo(Mới)</button> : <></> 
+                   }
+
+                  {  isExportFile?
+                        <button className="btn-search"  onClick={exportDataReport2} >Xuất BC phần trăm cuộc gọi(Mới)</button> : <></> 
+                   }  
+
+                
+            </div>
+            
           <div className="search-feature">
             <FaFilter />
 

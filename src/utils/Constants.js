@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.3:7777";
+    static DOMAIN = "https://localhost:8098";
     static HEADERS = {
         
     };
@@ -125,8 +125,9 @@ class ConstantData {
     static URL_ReportService_GetALlFistLastCall = `${ConstantData.DOMAIN}/api/Report/getAllFirstLastCall`;
     static  URL_ReportService_getReportImpact = `${ConstantData.DOMAIN}/api/report/exportImpactData`;
     static  URL_ReportService_ImpactHistory = `${ConstantData.DOMAIN}/api/ImpactHistory/exportFinal`;
+    static  URL_crmReportStatusOverview = `${ConstantData.DOMAIN}/api/reportCrm/GetReportByStatus`;
   static URL_ReportService_getAllImpact = `${ConstantData.DOMAIN}/api/Report/getAllImpact`;
-
+  
     static URL_ReportService_getAllReportCDR = `${ConstantData.DOMAIN}/api/report/getAllCDR`;
     static URL_ReportService_getAllRecordingFile = `${ConstantData.DOMAIN}/api/report/getAllRecordingFile`;
     static URL_ReportService_getAllDataCall = `${ConstantData.DOMAIN}/api/report/getAllCall`;
@@ -150,7 +151,9 @@ class ConstantData {
     static URL_ReportTalkTime_GetAll = `${ConstantData.DOMAIN}/api/ReportTalkTime/getAll`;
 
     static URL_ReportTalkTime_exportData = `${ConstantData.DOMAIN}/api/ReportTalkTime/exportData`;
-    
+    static URL_ReportCrm_exportTalktime = `${ConstantData.DOMAIN}/api/reportCrm/GetFileReportTalktime`;
+    static URL_ReportCrm_exportSumoffTalktime = `${ConstantData.DOMAIN}/api/reportCrm/GetsumoffTalktime`;
+
     static URL_GroupMember_GetAll = `${ConstantData.DOMAIN}/api/groupEmployee/getAll`;
     static URL_GetMember_byGroupId = `${ConstantData.DOMAIN}/api/groupEmployee/getMemberByGroup`;
     static URL_DataReason_GetAll = `${ConstantData.DOMAIN}/api/groupEmployee/getAll`;

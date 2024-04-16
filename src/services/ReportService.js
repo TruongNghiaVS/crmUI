@@ -21,6 +21,11 @@ class ReportService   {
         let url = Constants.URL_ReportService_ImpactHistory;
         ApiService.httpPost(url, null, body, callSuccess, callError);
     }
+
+    static exportDataImpact3( body, callSuccess, callError) {
+        let url = Constants.URL_crmReportStatusOverview;
+        ApiService.httpPost(url, null, body, callSuccess, callError);
+    }
     static exportData( body, callSuccess, callError) {
         let url = Constants.URL_ReportService_exportRecord;
         ApiService.httpPost(url, null, body, callSuccess, callError);

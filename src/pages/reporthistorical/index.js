@@ -1,4 +1,5 @@
 
+
 import React, { useState } from "react";
 import { FaTable, FaFilter } from "react-icons/fa";
 import {
@@ -116,6 +117,11 @@ const Reporthistorical = () => {
         isAdmin = true;
     }
 
+
+    var isExportFile = false;
+    if(roleUser === "3" || roleUser === "5" || roleUser === "2"  ) {
+        isExportFile = true;
+    }
     var isTeamlead = false;
 
     if(isTeamlead === "3" ) {
@@ -461,6 +467,69 @@ const Reporthistorical = () => {
 
         });
     }
+
+    const exportData3 =()=> {
+
+        
+        Swal.fire({
+            title: 'Đang chuẩn bị dữ liệu!',
+            html: 'Vui lòng <b></b> chờ trong ít phút.',
+            didOpen: () => {
+            Swal.showLoading()
+               const b = Swal.getHtmlContainer().querySelector('b')
+             
+               },
+          
+            })
+         
+
+
+        let fromDate = obejctSearch.from;
+        if(fromDate=="")
+        {
+            fromDate = null;
+        }
+        let bodySearch = {
+            Token: obejctSearch.tokenSearch,
+            Page: obejctPaging.currentPage,
+            Limit: obejctPaging.limt,
+            LineCode: obejctSearch.lineCode,
+            statusSearch: obejctSearch.statusSearch,
+            phoneLog: obejctSearch.phoneLog,
+            Disposition: obejctSearch.status,
+            from:fromDate,
+            to: obejctSearch.to
+
+        };
+  
+        EmployeeService.exportDataImpact3(  bodySearch, (response) => {
+               
+            Swal.fire({
+                title: 'Đã có thông tin file báo cáo',
+                text: "",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "Huỷ bỏ",
+                confirmButtonText: 'Tải file'
+                })
+                .then((result) => {
+                if (result.isConfirmed) {
+                  var link = document.createElement('a');
+                  link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }
+              })
+
+        }, (error) => {
+
+        });
+    }
+
+
 
     const exportData = () => {
     
@@ -899,9 +968,20 @@ const exportDataExcel2 = (dataReder) => {
                                 
                               :<></>
                             }
-                            
-                                <button className="btn-search" onClick={exportData}>Xuất dữ liệu</button>
-                                <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
+
+                            {
+                                isExportFile==true? 
+                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu</button>
+                              :<></>
+                            }
+                                {
+                                isExportFile==true? 
+                                <button className="btn-search" onClick={exportData3}>Xuất dữ liệu(mới)</button>
+                              :<></>
+                            }
+
+
+                              <button  className="btn-search"  onClick= {searchData}>Tìm kiếm</button>
                         </div>
                 </div>
 
