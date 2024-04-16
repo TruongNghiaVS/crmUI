@@ -232,7 +232,7 @@ const dateForPicker = (dateString) => {
                     .then((result) => {
                     if (result.isConfirmed) {
                       var link = document.createElement('a');
-                      link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                      link.href = 'http://192.168.1.3:7777/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);
@@ -302,7 +302,7 @@ const dateForPicker = (dateString) => {
                     .then((result) => {
                     if (result.isConfirmed) {
                       var link = document.createElement('a');
-                      link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                      link.href = 'http://192.168.1.3:7777/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);
