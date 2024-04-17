@@ -28,7 +28,7 @@ const ContactAddress = ({data,handleInputChange}) => {
                 <InputGroup.Text>Tỉnh/TP(tạm)</InputGroup.Text>
                 <FormControl aria-label="Small" readOnly  onChange={handleInputChange} name ="provice1"   value ={data.provice1} />
             </InputGroup>
-            <InputGroup size="sm" className="mb-1">
+            {/* <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Đường</InputGroup.Text>
                 <FormControl aria-label="Small" readOnly onChange={handleInputChange} name = "road2"  value ={data.road2} />
             </InputGroup>
@@ -40,7 +40,7 @@ const ContactAddress = ({data,handleInputChange}) => {
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tỉnh/TP</InputGroup.Text>
                 <FormControl aria-label="Small" readOnly  onChange={handleInputChange}  name ="provice2" value ={data.provice2} />
-            </InputGroup>
+            </InputGroup> */}
             
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Đã thanh toán</InputGroup.Text>

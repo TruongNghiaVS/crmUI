@@ -8,6 +8,7 @@ import { SimpleUser, SimpleUserOptions } from "sip.js/lib/platform/web";
 import moment from "moment";
 import Swal from 'sweetalert2';
 import { mode } from "crypto-js";
+import { TbPhoneCall } from "react-icons/tb";
 // var ami = new require('asterisk-manager')('5038','127.0.0.1','admin','BdqYzZCXXOHB', true);
 
 // const process = require('process'); 
@@ -157,19 +158,34 @@ const InfoCustomer = ({data,handleInputChange}) => {
          })
          setIsOpenModel(true);
      }
+
+     const checkEmptystring = ( str)  =>  {
+
+                if(str ==null || str == undefined)
+                {
+                    return true;
+                }
+        
+                if( str.length  < 1 )
+
+                {
+                    return true;
+                }
+                return false;
+     }
      return (
          <Col>
-            <Form.Label>Thông tin khách</Form.Label>
-            <InputGroup size="sm" className="mb-1">
+            <Form.Label> {data.customerName} </Form.Label>
+            {/* <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text  >Họ tên</InputGroup.Text>
                 <FormControl readOnly
                   aria-label="Small" value = {data.customerName} 
                  onChange={handleInputChange} 
                  name = "customerName"
                 />
-            </InputGroup>
+            </InputGroup> */}
             <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text>Số hợp đồng</InputGroup.Text>
+                <InputGroup.Text>Số HĐ</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" readOnly value = {data.noAgreement}  name = "noAgreement"   onChange={handleInputChange}  />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
@@ -177,45 +193,60 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <FormControl readOnly  aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text>Di động</InputGroup.Text>
+                <InputGroup.Text>Số điện thoại</InputGroup.Text>
                 <FormControl readOnly aria-label="Small" value =  {displayMobilePhone(data.mobilePhone)}  name = "mobilePhone" />
                 <InputGroup.Text  className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.mobilePhone)}/></InputGroup.Text>
                 {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.mobilePhone)}/></InputGroup.Text> */}
                 
             </InputGroup>
-            <InputGroup size="sm" className="mb-1">
+
+            { checkEmptystring(data.phone1) == false  ?   <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value = {displayMobilePhone(data.phone1)}   name = "phone1"  />
-                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.phone1)}/></InputGroup.Text>
-                {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.phone1)}/></InputGroup.Text> */}
-                
-            </InputGroup>
-            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text className="input-group-icon"><TbPhoneCall  onClick  = {(e)=>callToline1(data.phone1)}/></InputGroup.Text>
+              
+            </InputGroup>: <> </> }
+           
+
+
+            { 
+            checkEmptystring(data.houseNumber) ==false   ?  <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số nhà</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value = {displayMobilePhone(data.houseNumber)}  name = "houseNumber"  />
-                <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline1(data.houseNumber)} /></InputGroup.Text>
-                {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.houseNumber)}/></InputGroup.Text> */}
-                
-            </InputGroup>
-            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text className="input-group-icon"><TbPhoneCall onClick  = {(e)=>callToline1(data.houseNumber)} /></InputGroup.Text>
+               
+            </InputGroup>: <> </> 
+            }
+
+
+
+
+            { 
+               checkEmptystring(data.officeNumber) == false   ?    <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Văn phòng</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value = {displayMobilePhone(data.officeNumber)}   name = "officeNumber"    />
-                <InputGroup.Text className="input-group-icon"><FaPhone onClick  = {(e)=>callToline1(data.officeNumber)} /></InputGroup.Text>
-                {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.officeNumber)}/></InputGroup.Text> */}
+                <InputGroup.Text className="input-group-icon"><TbPhoneCall onClick  = {(e)=>callToline1(data.officeNumber)} /></InputGroup.Text>
+         
                 
-            </InputGroup>
+              </InputGroup>: <> </> 
+            }
+            
+           
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
                 <FormControl aria-label="Small" value ={data.otherPhone} name = "otherPhone"  onChange={handleInputChange} />
-                <InputGroup.Text className="input-group-icon"><FaPhone  onClick  = {(e)=>callToline1(data.otherPhone)} /></InputGroup.Text>
-                {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.otherPhone)}/></InputGroup.Text> */}
+                <InputGroup.Text className="input-group-icon"><TbPhoneCall  onClick  = {(e)=>callToline1(data.otherPhone)} /></InputGroup.Text>
+             
                 
             </InputGroup>
-            <InputGroup size="sm" className="mb-1">
+
+
+            { checkEmptystring(data.email) ==false     ?  <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Email</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value ={data.email} name = "email"  onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><FaEnvelope /></InputGroup.Text>
-            </InputGroup>
+            </InputGroup>: <> </> }
+            
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text >Năm sinh </InputGroup.Text>
                 <FormControl readOnly 

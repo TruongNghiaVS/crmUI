@@ -431,7 +431,7 @@ const handleErrUpdate = (data) => {
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTicketAlt className="icon-tit" />
-                    Phiếu xử lý
+                    Thông tin khách hàng
                 </h4>
                 <div className="box-info">
 

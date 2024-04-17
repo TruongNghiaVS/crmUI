@@ -3,8 +3,11 @@ svg:hover {
     cursor: pointer;
 }
 tr:hover {
-    background-color: #c85858;
+    background-color: #1461b9;
     color: hsl(0, 0%, 100%);
+    a {
+        color: #ffffff !important;
+    }
 }
 .layout {
     position: relative;
@@ -315,10 +318,14 @@ tr:hover {
 
 .yellow {
     background-color: rgb(247, 247, 133) !important;
-    color: black;
+
+    color:  red !important;
     a {
-        color: black !important;
+        color: red !important;
     }
+}
+.yellow :hover {
+    color:  red !important;
 }
 .black {
     background-color: rgba(0, 0, 0, 0.826) !important;
@@ -374,7 +381,7 @@ tr:hover {
     height: 20px;
   }
   .clicktocall{
-    color: #c85858;
+    color: #1461b9;
     cursor:pointer;
     font-weight: bold;
   }
@@ -547,7 +554,7 @@ tr:hover {
     color: #ffffff;
 }
 .processCall {
-    background-color: #c85858;
+    background-color: #1461b9;
     color: #ffffff;
 }
 .justCall {
