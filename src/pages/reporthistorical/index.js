@@ -113,13 +113,13 @@ const Reporthistorical = () => {
     const roleUser = jsonProfile.role;
     
     var isAdmin = false;
-    if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
+    if(roleUser === "2" || roleUser === "5" || roleUser === "4"  || roleUser === "3" ) {
         isAdmin = true;
     }
 
 
     var isExportFile = false;
-    if(roleUser === "3" || roleUser === "5" || roleUser === "2"  ) {
+    if(roleUser === "3" || roleUser === "5" || roleUser === "4" || roleUser === "2"  ) {
         isExportFile = true;
     }
     var isTeamlead = false;
