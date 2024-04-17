@@ -22,6 +22,7 @@ const Login = () => {
 
   let navigate = useNavigate();
 
+
   useEffect(() => {
     let isUseEffect = true;
 
@@ -37,6 +38,7 @@ const Login = () => {
 
     return () => { isUseEffect = false };
   }, [navigate]);
+
 
   const handleChange = (event) => {
     setValueSelect(event.target.value);
@@ -56,25 +58,10 @@ const Login = () => {
     };
     localStorage.setItem('authorizeKey', JSON.stringify(data));
     localStorage.setItem('user-info', JSON.stringify(dataJson));
-
+  
     navigate('/follow-up-new/new-list');
   };
-  // function LoginSucess(data)
-  // {
-
-  //   setErrorUsername("");
-  //   setErrorLogin("");
-  //    var userInfo = jwt_decode(data.token);
-
-  //   var dataJson = {
-  //     role: userInfo.role,
-  //     isLogin: data.status
-  //   };
-  //   localStorage.setItem('user-info', JSON.stringify(dataJson));
-
-  //   navigate('/follow-up');
-
-  // }
+  
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -103,11 +90,13 @@ const Login = () => {
 
 
       LoginService.login(ConstantData.URL_LOGIN, ConstantData.HEADERS, body, (response) => {
+        debugger;
     
         if (response.statusCode === 200) {
+       
           LoginSucess(response.value);
         } else {
-
+         
           setErrorUsername("");
           setErrorLogin("");
           setErrorLogin("Đăng nhập thất bại");

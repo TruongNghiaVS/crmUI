@@ -1,3 +1,6 @@
+
+
+import { Link, useNavigate,useParams  } from 'react-router-dom';
 import React, { useState } from "react";
 import { Tabs, Tab } from 'react-bootstrap';
 import { FaTable, FaFilter } from "react-icons/fa";
@@ -18,7 +21,7 @@ import EmployeeService from '../../services/EmployeeService';
 import MangagementPackageService from '../../services/PackageService';
 import Paging from  "./Paging";
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
 import UploadFile  from "./UploadFile";
 import UploadFile2  from "./UploadFile2";
@@ -31,7 +34,7 @@ const Reason = () => {
     let { detail } = useParams();
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isInit, setInit] = useState(false);
-
+    let navigate = useNavigate();
     const [campagnIdSelect, setCampagnSelect] = useState(-1);
 
     const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
@@ -75,6 +78,53 @@ const Reason = () => {
         fromTime: moment().subtract(33, 'days'),
         endTime: moment()
     });
+
+
+    let  jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+    if( jsonProfile ==null)
+    {
+   
+     
+      jsonProfile  =   {
+        role: "",
+        isLogin: 201
+      };
+
+      window.location.href ="/login"; 
+    }
+
+    const roleUser = jsonProfile.role;
+
+    var isAdmin = false;
+    var isshowGroup = false;
+    var isShowPhoneMobile =true;
+    var isTeamlead = false;
+    var isExportFile = false;
+    var isTc = false;
+    if(roleUser === "2") {
+        isAdmin = true;
+        isTeamlead =true;
+    }
+
+  
+    if(roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3" ) {
+        isTeamlead = true;
+        isExportFile = true;
+        isshowGroup = true;
+    }
+
+
+
+   if(roleUser == "1")
+   {
+      isTc =true;
+   }
+
+   if(isAdmin ==true || roleUser === "5"   )
+   {
+    isShowPhoneMobile  = false;
+ 
+   }
    
     const handleimportRow = ()=> {
 
@@ -270,40 +320,7 @@ const Reason = () => {
         })
 
     }
-    const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
-
-    const roleUser = jsonProfile.role;
-
-    var isAdmin = false;
-    var isshowGroup = false;
-    var isShowPhoneMobile =true;
-    var isTeamlead = false;
-    var isExportFile = false;
-    var isTc = false;
-    if(roleUser === "2") {
-        isAdmin = true;
-        isTeamlead =true;
-    }
-
-  
-    if(roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3" ) {
-        isTeamlead = true;
-        isExportFile = true;
-        isshowGroup = true;
-    }
-
-
-
-   if(roleUser == "1")
-   {
-      isTc =true;
-   }
-
-   if(isAdmin ==true || roleUser === "5"   )
-   {
-    isShowPhoneMobile  = false;
- 
-   }
+    
    
     const dateForPicker = (dateString) => {
     

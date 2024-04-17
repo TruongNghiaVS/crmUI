@@ -2,6 +2,26 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from '../pages/layout/Layout';
 
 function Router() {
+     
+     let  jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
+    if( jsonProfile ==null)
+    {
+   
+     
+      jsonProfile  =   {
+        role: "",
+        isLogin: 201
+      };
+
+     if( window.location.href.includes("login") ==false)
+     {
+          window.location.href ="/login"; 
+     }
+
+  
+    }
+     
+
     return (
           <Routes>
                         <Route path="/" element={<Layout page="login" />} />

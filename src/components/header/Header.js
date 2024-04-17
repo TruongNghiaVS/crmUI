@@ -8,6 +8,9 @@ import LoginService from '../../services/LoginService';
 import moment from "moment";
 
 const Header = ({ classHeader }) => {
+
+  
+   
     const [isHiddenProfile, setIsHiddenProfile] = useState(false);
     const [isOpenModel, setIsOpenModel] = useState(false);
     const formTime =  moment().format("YYYY-MM-DD");
@@ -17,8 +20,12 @@ const Header = ({ classHeader }) => {
     // navigate('/campangn');
 
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
-
-
+   if( jsonProfile ==null)
+   {
+    navigate('/login');
+  
+    return <> </>; 
+   }
    
     const roleUser = jsonProfile.role;
     const fullName = jsonProfile.name;
@@ -118,12 +125,12 @@ const Header = ({ classHeader }) => {
                             <li  className='sub-list-link'><Link reloadDocument className='nav-link' to="/historical">BC Lịch sử tác động</Link></li>
                          
 
-                            <li className='sub-list-link'>
+                            {/* <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 
                                 to={"/bao-cao-du-lieu-goi?fromTime="+formTime+"&endTime="+endTime}>
                                 BC Clik CRM
                                 </Link>
-                            </li>
+                            </li> */}
                             <li className='sub-list-link'>
                                 <Link reloadDocument className='nav-link' 
                                 to={"/bao-cao-ghi-am?fromTime="+formTime+"&endTime="+endTime}>
@@ -145,7 +152,7 @@ const Header = ({ classHeader }) => {
 
                        
                             <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-talktime">BC talktime</Link></li>
-                             { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/reportCDR">BC CDR</Link></li>: <></> }
+                             {/* { isHiddenMenu ? <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/reportCDR">BC CDR</Link></li>: <></> } */}
                             <li className='sub-list-link'><Link className='nav-link' to="/report/login">BC Đăng nhập </Link></li>
                             
                             { isHiddenMenu ? <li className='sub-list-link'><Link className='nav-link' to="/bao-cao-tong-quan-qc">Báo cáo QC(Tổng quan)</Link></li>: <></> }
@@ -164,16 +171,16 @@ const Header = ({ classHeader }) => {
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/quan-ly-nguoi-dung">Người dùng</Link></li>
                             <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/danh-sach-nhom">Nhóm người dùng</Link></li>
 
-                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</Link></li>
-                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</Link></li>
-                            <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi case</Link></li>
+                            {/* <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-phong-ban">Phòng Ban</Link></li> */}
+                            {/* <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-nguoi-than">Mối quan hệ</Link></li> */}
+                            {/* <li className='sub-list-link'><Link reloadDocument className='nav-link' to="/masterData/quan-ly-trang-thai-follow">Trạng thái theo dõi case</Link></li> */}
                           
                             <li className='sub-list-link'><Link  className='nav-link' to="/thong-tin-chien-dich">Thông tin chiến dịch</Link></li>
 
                           
                         </ul>
                     </li> : <></>}
-                  { roleUser == "4"?  <li className='list-link'>
+                  { 1 == "4"?  <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Chương trình <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/quan-ly-goi">Quản lý gói</Link></li>
@@ -197,7 +204,7 @@ const Header = ({ classHeader }) => {
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/campangn">Chuyển case</Link></li>
                             <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/xoa-case">Xóa case</Link></li>
-                            <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/hoat-dong-chien-dich">Hoạt động chiến dịch</Link></li>
+                            {/* <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/hoat-dong-chien-dich">Hoạt động chiến dịch</Link></li> */}
                             <li className='sub-list-link'><Link  className='nav-link' to="/quan-ly-line">Quản lý line</Link></li>
                         
                         </ul>
