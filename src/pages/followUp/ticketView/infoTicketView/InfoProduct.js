@@ -120,11 +120,6 @@ const InfoProduct = ({data, handleInputChange}) => {
 
 }
 
-    const callToAction = (str) => {
-
-        alert(str);
-
-    }
 
 
 

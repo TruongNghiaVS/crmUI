@@ -185,7 +185,7 @@ const TableRow = ({ allowDisplayphone ,data,rowIndex,handleDeleteById, handleUpd
 
             <td>
                  <NavLink to={likUrl}  target="_self" >
-                 {data.dpd}
+                     {data.dpd}
                 </NavLink>
             </td>
           

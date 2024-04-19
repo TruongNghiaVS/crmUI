@@ -648,61 +648,7 @@ const Reason = () => {
 
     }
     
-    const exportDataExcel = (dataReder) => {
-        var DataExport = dataReder;
-        const Heading = [
-            [
-            'STT',
-            'Số hợp đồng',
-            'Tên khách hàng',
-            'SĐT',
-            'Ngày sinh nhật',
-            'CCCD',
-            'Tên sản phẩm',
-            'Mã sản phẩm',
-            'Số tiền vay',
-            'Ngày ký',
-            'Kỳ hạn',
-            'Số kỳ đã trả',
-            'số tiền trả theo kỳ',
-            'Tổng tiền phạt',
-            'Ngày trả gần nhất',
-            'Tổng phải trả',
-            'Số tiền đã thanh toán',
-            'Số nợ hiện tại ',
-            'Current DPD',
-            'Đ/c thường trú ',
-            'Quận thường trú ',
-            'Khu vực thường trú',
-            'Đang phân công cho',
-            'Trạng thái gọi',
-            'Cập nhật gần nhất'
-
-            ]
-        ];
-        let workBook = XLSX.utils.book_new();
-        const workSheet = XLSX.utils.json_to_sheet(DataExport,  
-        { origin: 'A2', skipHeader: true }
-        );
-        XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
    
-        // const workSheet = XLSX.utils.json_to_sheet(DataExport);
-
-        XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
-        let exportFileName = `DataExport.xls`;
-        XLSX.writeFile(workBook, exportFileName);
-
-        setTimeout(() => {
-          Swal.fire(
-            'Thao tác thành công',
-            'Đã xuất thành công',
-            'success'
-        )
-          
-         },2000);
-
-
-}
 
     const renderData = (dataReder) => {
 
@@ -749,16 +695,12 @@ const Reason = () => {
             }
             })
       setIsOpenModel(!isOpenModel);
-        // setIsOpenModel(!isOpenModel);
+      
     }
 
     const searchData =()=> {
-
-           
-
-            loadData();
-
-    }
+       loadData();
+     }
 
     const exportfileAll =()=> {
            ExportFile(true);
@@ -773,19 +715,6 @@ const exportfileAll2 =()=> {
 
 
     
-   
-    const handleInputChangesearch =(event)=> {
-        let valueControl = event.target.value;
-        let nameControl = event.target.name;
-       
-        setKeySearch((prevalue) => {
-            return {
-              ...prevalue,   // Spread Operator               
-              [nameControl]: valueControl
-            }
-          })
-     
-    }
 
     
     const  deleteEmploy = (idEmp) => { 

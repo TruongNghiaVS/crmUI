@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect,useRef  } from 'react';
 import { FaEnvelope, FaPhone, FaSms } from "react-icons/fa";
 import { Col, InputGroup, FormControl, Form } from 'react-bootstrap';
 import ProcessingCall from '../../../../services/ProcessingCall';
@@ -12,6 +13,7 @@ import { TbPhoneCall } from "react-icons/tb";
 // var ami = new require('asterisk-manager')('5038','127.0.0.1','admin','BdqYzZCXXOHB', true);
 
 // const process = require('process'); 
+import $ from 'jquery';
 
 const displayMobilePhone = (numberPhone) => 
 {
@@ -43,6 +45,8 @@ const displayMobilePhone = (numberPhone) =>
     return "";
 
 }
+
+
 const InfoCustomer = ({data,handleInputChange}) => {
     const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD');
@@ -59,6 +63,9 @@ const InfoCustomer = ({data,handleInputChange}) => {
     const handleShowModel = ()=> {
          setIsOpenModel(!isOpenModel);
     }
+    
+
+    
     const callToline1 =(valueCall)=> {
 
 
@@ -126,38 +133,23 @@ const InfoCustomer = ({data,handleInputChange}) => {
 
      }
   
-     const smsToMessage =(valueCall)=> {
+    
 
 
-      
-        let PhoneLog = valueCall;
-  
-   
-        if(PhoneLog.length <1)
+     const dateForPicker1 = (dateString) => {
+        return moment(new Date(dateString)).format('YYYY-MM-DD');
+
+    };
+
+
+    function numberWithCommas(x) {
+
+        if(x =='' || x == null)
         {
-             Swal.fire({
-                 icon: 'error',
-                 title: 'Không có số điện thoại',
-                 text: 'Không có số điện thoại',
-                 footer: 'Yêu cầu thông tin!'
-             })
-             return;
+            return '';
         }
-        
-        let PhoneNumber = valueCall;
-        let NoAgree =data.noAgreement;
-   
-        
-        setModelsms((prevalue) => {
-            return {
-              ...prevalue,   // Spread Operator               
-              "PhoneNumber": PhoneNumber,
-              "NoAgree":  NoAgree
-              
-            }
-         })
-         setIsOpenModel(true);
-     }
+        return x.toLocaleString();
+    }
 
      const checkEmptystring = ( str)  =>  {
 
@@ -173,24 +165,55 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 }
                 return false;
      }
+
+
+     const searchandReplace = (str) => {
+
+
+
+        if(str == null)
+    {
+        return ;
+    }
+    if(str.length <1)
+    {
+        return;
+
+    }
+        var re = /(?:[-+() ]*\d){10,13}/gm; 
+      
+        var res = str.match(re);
+        if( res )
+        {
+            res.map(function(s)
+            {
+                str = str.replace(s, "<a valueTemp ="+s+" class =" +'"' + "clicktocall" +'"'+  " >" + displayMobilePhone(s)+  "</a>")
+                return s +";"
+            
+            });
+        }
+        else 
+        {
+            return;
+        }
+  
+        return str;
+     }
      return (
-         <Col>
-            <Form.Label> {data.customerName} </Form.Label>
-            {/* <InputGroup size="sm" className="mb-1">
+         <Col className="rowInfoCustomer">
+         
+            <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text  >Họ tên</InputGroup.Text>
                 <FormControl readOnly
                   aria-label="Small" value = {data.customerName} 
                  onChange={handleInputChange} 
                  name = "customerName"
                 />
-            </InputGroup> */}
-            <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text>Số HĐ</InputGroup.Text>
-                <FormControl readOnly  aria-label="Small" readOnly value = {data.noAgreement}  name = "noAgreement"   onChange={handleInputChange}  />
             </InputGroup>
+         
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>CMT/CCCD</InputGroup.Text>
-                <FormControl readOnly  aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
+                <FormControl   aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
             </InputGroup>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số điện thoại</InputGroup.Text>
@@ -199,6 +222,8 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 {/* <InputGroup.Text className="input-group-icon"><FaSms  onClick  = {(e)=>smsToMessage(data.mobilePhone)}/></InputGroup.Text> */}
                 
             </InputGroup>
+
+
 
             { checkEmptystring(data.phone1) == false  ?   <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Khác</InputGroup.Text>
@@ -252,12 +277,111 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <FormControl readOnly 
                 name = "dayOfBirth"
                 type="date"
-                aria-label="Small"  value ={dateForPicker(data.dayOfBirth)} onChange={handleInputChange} />
+                aria-label="Small"  value ={dateForPicker1(data.dayOfBirth)} onChange={handleInputChange} />
             </InputGroup>
+       
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>DPD</InputGroup.Text>
+                <FormControl aria-label="Small"  readOnly onChange={handleInputChange} name ="dpd"  value ={data.dpd} />
+            </InputGroup>
+
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Ngày ký</InputGroup.Text>
+                <FormControl readOnly type="date" value ={dateForPicker1(data.registerDay)} onChange={handleInputChange}  aria-label="Small"  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Nợ Gốc</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.debitOriginal)} name ="debitOriginal" onChange={handleInputChange}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tiền vay</InputGroup.Text>
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.amountLoan)} name = "amountLoan" onChange={handleInputChange}   />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Trả tháng(EMI)</InputGroup.Text>
+                <FormControl readOnly aria-label="Small"  value ={numberWithCommas(data.emi)} name ="emi" onChange={handleInputChange}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tổng phạt</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalFines)} name ="totalFines" onChange={handleInputChange}   />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tổng phải trả</InputGroup.Text>
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.totalMoneyPaid)} name ="totalMoneyPaid" onChange={handleInputChange}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Kỳ hạn TT</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value = {data.tenure} name ="tenure" onChange={handleInputChange}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Số kỳ đã TT</InputGroup.Text>
+                <FormControl readOnly aria-label="Small" value = {data.noTenure} name = "noTenure" onChange={handleInputChange}   />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tổng đã TT</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalPaid)} name = "totalPaid"  onChange={handleInputChange}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>TT gần nhất</InputGroup.Text>
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.lastPaid)} name ="lastPaid" onChange={handleInputChange}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Ngày TT</InputGroup.Text>
+                <FormControl readOnly  type ="text" aria-label="Small" value ={dateForPicker(data.lastPadDay)} name ="lastPadDay"  onChange={handleInputChange}  />
+            </InputGroup>
+
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tên hàng (SP)</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value ={data.nameProduct} name ="nameProduct"  onChange={handleInputChange}   />
+           
+            </InputGroup>
+
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Mã SP (code)</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value ={data.codeProduct} name ="codeProduct" onChange={handleInputChange}  />
+            </InputGroup> 
+
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Giá SP</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value ={data.priceProduct} name ="priceProduct"  onChange={handleInputChange}  />
+            </InputGroup>
+
+            <Form.Group className="mt-3">
+                <Form.Label>Ghi chú ban đầu <strong>(tham chiếu)</strong></Form.Label>
+                {/* <Form.Control readOnly as="textarea" rows={5} value ={data.noteFirstTime} name ="noteFirstTime"   onChange={handleInputChange}  /> */}
+
+                <div dangerouslySetInnerHTML={{__html:  searchandReplace( '' + data.noteFirstTime + ' ' +data.noteRel) }} />
+            </Form.Group>
             {/* <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text >Trạng thái hồ sơ </InputGroup.Text>
                 <FormControl aria-label="Small" readOnly value = {data.statusProfile}   />
             </InputGroup> */}
+
+            <br></br>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Đường(chính)</InputGroup.Text>
+                <FormControl aria-label="Small" readOnly onChange={handleInputChange} name = "road"  value = {data.road} />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Quận/Huyện(c)</InputGroup.Text>
+                <FormControl aria-label="Small" readOnly  onChange={handleInputChange}  name ="suburbanDir" value ={data.suburbanDir}  />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tỉnh/TP(chính)</InputGroup.Text>
+                <FormControl aria-label="Small" readOnly  onChange={handleInputChange} name = "provice"  value ={data.provice} />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Đường(tạm)</InputGroup.Text>
+                <FormControl aria-label="Small" readOnly   onChange={handleInputChange} name ="road1"   value ={data.road1} />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Quận/Huyện(t)</InputGroup.Text>
+                <FormControl aria-label="Small" readOnly  onChange={handleInputChange}  name = "suburbanDir1" value ={data.suburbanDir1} />
+            </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tỉnh/TP(tạm)</InputGroup.Text>
+                <FormControl aria-label="Small" readOnly  onChange={handleInputChange} name ="provice1"   value ={data.provice1} />
+            </InputGroup>
 
             { isOpenModel && <Model handleClose ={handleShowModel}  content={<PopupSms handleShowModel ={handleShowModel}  modelsms = {modelsms} />} /> }
 

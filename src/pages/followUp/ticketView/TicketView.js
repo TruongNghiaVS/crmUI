@@ -7,7 +7,11 @@ import './TicketView.scss';
 import Swal from 'sweetalert2'
 import CampagnProfileService from '../../../services/CampagnProfileService';
 import ImpactHistoryService from '../../../services/ImpactHistoryService';
+
+
 import $ from 'jquery';
+
+import ProcessingCall from '../../../services/ProcessingCall';
 const TicketView = () => {
 
     const [model , setmodel]=useState({
@@ -21,6 +25,7 @@ const TicketView = () => {
          
         ],
     });
+    const [isInit, setInit] = useState(false);
 
     const [dataSkip, setdataSkip] = useState( {
         data: [
@@ -87,9 +92,104 @@ const TicketView = () => {
        
     
     };
+    const callToline1 =(valueCall)=> {
+
+
+        // let inputValue = e.target.parentElement.parentElement.getElementsByTagName("input");
+        let PhoneLog = valueCall;
+  
+        if(PhoneLog.length <1)
+        {
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Không có số điện thoại',
+                 text: 'Không có số điện thoại',
+                 footer: 'Yêu cầu thông tin!'
+             })
+             return;
+        }
+         let NoAgree =  model.noAgreement;
+ 
+         let bodySearch = {
+             phoneNumber: PhoneLog, 
+             noAgree:  NoAgree, 
+             profileId: window.location.pathname.split("/").pop()
+            
+          };
+     
+     
+          
+     ProcessingCall.MakeCall( bodySearch, (response) => {
+         if (response.statusCode === 200) {
+                   
+             Swal.fire({
+                 title: 'Đang thực hiện gọi. Đang chuyển phần mềm gọi',
+                 width: 600,
+                 timer: 4000,
+                 showConfirmButton: false,
+                 padding: '3em',
+                 color: '#716add',
+                 background: '#fff',
+                 backdrop: `
+                   rgba(0,0,123,0.4)
+                   left top
+                   no-repeat
+                 `
+               });
+         } else{
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Có lỗi xảy ra',
+                 text: 'Không gọi được!',
+                 footer: 'Liên hệ IT hỗ trợ'
+               })
+         }
+         }, (error) => {
+ 
+ 
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Có lỗi xảy ra',
+                 text: 'Không gọi được!',
+                 footer: 'Liên hệ IT hỗ trợ'
+               })
+         
+         });
+
+
+     }
+
     useEffect(() => {
+
+              
+    $('.clicktocall').unbind().click(function(e){
+        
+      
+        var phoneNumber = e.target.getAttribute("valuetemp");
+        callToline1(phoneNumber);
+      
+      
+        
+    })
+
+
+    if(!isInit)
+    {
+        loadDataCase();
+    }
        
-        let profileId =   window.location.pathname.split("/").pop();
+    
+        
+      });
+
+      const loadDataCase =(id = 1)=> {
+       
+        let profileId =  id;
+
+        if( id < 2)
+        {
+            profileId =  window.location.pathname.split("/").pop();
+        }
         const bodyRequest = {
             id: profileId
         };
@@ -106,9 +206,9 @@ const TicketView = () => {
         CampagnProfileService.getAllInfo( bodyMassterInfo,
         loaddingMasterData, 
         handleDisplayDataErro);
-    
-        
-      }, []);
+        setInit(true);
+     }
+
 
     const handleInputChange =(event)=> {
        
@@ -241,7 +341,7 @@ const saveSkip = () => {
 } 
 
 const handleSucessUpdateImpact = (data) => {
-    debugger;
+
      if(data.statusCode == 200)
     {
             if(data.value.isSave ==false)
@@ -263,7 +363,8 @@ const handleSucessUpdateImpact = (data) => {
                     title: 'Lưu thành công',
                  
                 }).then(function() {
-                    window.open("/follow-up-new/new-list ","_self");
+                    // window.open("/follow-up-new/new-list ","_self");
+                    showOrHide();
                 });
             }
       
@@ -425,34 +526,40 @@ const handleErrUpdate = (data) => {
         
     };
 
+    const [isOPenUploadFile3, setisOPenUploadFile3] = useState(false);
+
+    const showOrHide = ()=> {
+
+        setisOPenUploadFile3(!isOPenUploadFile3);
+  }
 
     return (
         <div className="ticket-view">
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTicketAlt className="icon-tit" />
-                    Thông tin khách hàng
+                    Thông tin hợp đồng số:   <span className='bold-text'> {model.noAgreement}</span> 
                 </h4>
                 <div className="box-info">
 
 
-                    <InfoTicketView handleInputChange = {handleInputChange}  Save = {Save} dataView = {model} />
-                    <TabsTicketView 
-                     handleInputChange = {handleInputChange}  
-                     handleInputChange1 = {handleInputChangeImpact} 
-                     handleInputChangeColor = {handleInputChangeColor}
-                     dataHistory ={dataImpact.data}
-                     masterData = {masterData}
-                     dataView = {modelImpact} 
-                     dataReason = {dataReason}
-                     listUser = {listUser} 
-                     dataView2 = {model} 
-                     handleClick = {handleClick}
-                     saveImpact = {saveImpact} 
-                     saveSkip = {saveSkip} 
-                     dataSkip = {dataSkip}
-                     
-                     />
+                    <InfoTicketView handleInputChange = {handleInputChange} 
+                    handleInputChangeImpact = {handleInputChangeImpact} 
+                    handleInputChangeColor=  {handleInputChangeColor}
+                    masterData = {masterData} 
+                    modelImpact= {modelImpact}
+                    dataImpact ={dataImpact}
+                    dataReason= {dataReason} 
+                    listUser= {listUser} 
+                    saveImpact= {saveImpact} 
+                    saveSkip= {saveSkip} 
+                    showOrHide = {showOrHide}
+                    isOPenUploadFile3 = {isOPenUploadFile3}
+                    dataSkip= {dataSkip}
+                    handleClick = {handleClick}
+
+                    Save = {Save} dataView = {model} />
+                  
                 </div>
                 
                

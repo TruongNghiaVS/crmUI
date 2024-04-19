@@ -46,10 +46,7 @@ const ContactAddress = ({data,handleInputChange}) => {
                 <InputGroup.Text>Đã thanh toán</InputGroup.Text>
                 <FormControl aria-label="Small" readOnly  onChange={handleInputChange} name ="statusPayMent"  value ={data.statusPayMent} />
             </InputGroup>
-            <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text>DPD</InputGroup.Text>
-                <FormControl aria-label="Small"  readOnly onChange={handleInputChange} name ="dpd"  value ={data.dpd} />
-            </InputGroup>
+           
         </Col>
     );
 };
