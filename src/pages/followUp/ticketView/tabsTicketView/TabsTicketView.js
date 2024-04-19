@@ -37,14 +37,35 @@ const TabsTicketView = ({showOrHide,handleInputChange1,handleInputChange,dataHis
         showOrHide();   
       
     }
+
+    const ProcessOtherCase2 = () => {
+        
+        Swal.fire({
+            title: 'Bạn có muốn tiếp tục thao tác? ',
+            text: "",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xem HĐ khác'
+            })
+            .then((result) => {
+            if (result.isConfirmed) {
+               
+            }
+        })
+        
+      
+    }
     return (
         <Col>
 
                 <div className="mt-3 text-right">
-                            <a className='viewcase' variant="outline-primary"  onClick={ ()=> ProcessOtherCase()} >Xem hợp đồng khác</a>
+                            <a className='viewcase' variant="outline-primary"  onClick={ ()=> ProcessOtherCase()} >Xem hợp đồng khác</a> <br></br>
+                            {/* <a className='viewcase' variant="outline-primary"  onClick={ ()=> ProcessOtherCase2()} >Hệ thống chọn hợp đồng </a> */}
                  </div>
             <Tabs
-                defaultActiveKey="home"
+                defaultActiveKey="profile"
                 transition={false}
                 id="noanim-tab-example"
                 className="mb-3"
