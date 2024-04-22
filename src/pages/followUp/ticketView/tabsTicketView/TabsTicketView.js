@@ -1,5 +1,5 @@
 import { Tabs, Tab } from 'react-bootstrap';
-import { Col, InputGroup, FormControl, Button,Form } from 'react-bootstrap';
+import { Col,Row, InputGroup, FormControl, Button,Form } from 'react-bootstrap';
 import UpdateVotes from './UpdateVotes';
 import ImpactHistory from './ImpactHistory';
 import SkipExtra from './SkipExtra';
@@ -59,11 +59,12 @@ const TabsTicketView = ({showOrHide,handleInputChange1,handleInputChange,dataHis
     }
     return (
         <Col>
-
-                <div className="mt-3 text-right">
+         <div className="mt-3 text-right">
                             <a className='viewcase' variant="outline-primary"  onClick={ ()=> ProcessOtherCase()} >Xem hợp đồng khác</a> <br></br>
                             {/* <a className='viewcase' variant="outline-primary"  onClick={ ()=> ProcessOtherCase2()} >Hệ thống chọn hợp đồng </a> */}
-                 </div>
+        </div>
+          
+
             <Tabs
                 defaultActiveKey="profile"
                 transition={false}

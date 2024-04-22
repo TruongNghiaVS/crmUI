@@ -10,22 +10,18 @@ const ImpactHistory = ({data}) => {
                <th>
                 Gọi bởi
             </th>
-            <th>
-               Thời điểm gọi
-            </th>
+       
             <th className='fomatth'>
                 Note
             </th>
             <th>
-               Mã lý do
+               Code
             </th>
             <th>
                Cuộc gọi thứ
             </th>
 
-            <th>
-               Thông tin thêm
-            </th>
+        
             </tr>
             </thead>
             <tbody>
@@ -45,10 +41,10 @@ const ImpactHistory = ({data}) => {
                         
                         if(item.promiseday)
                         {
-                            shortDes += "Ngày hứa:" + item.promiseday + "\n";
+                            shortDes += "Ngày hứa:" +  item.promiseday + "\n";
                         }
               
-                        shortDes += "Ghi chú" + item.shortDescription;
+                        shortDes += " " + item.shortDescription;
 
                         let  orderedCallText = item.orderedCall;
                         if(orderedCallText == null || orderedCallText =="" )
@@ -58,19 +54,17 @@ const ImpactHistory = ({data}) => {
                         return (
                             <>  
                                             <tr className={item.colorCode}>
-                                            <td >{item.authorName}</td>
-                                            <td >{moment(item.createAt).format("HH:mm:ss DD/MM/YYYY")}</td>
-                                            <td >{item.shortDescription}</td>
+                                            <td >{item.authorName} <br></br>
+                                            {moment(item.createAt).format("DD/MM/YYYY HH:mm:ss")} 
+                                            
+                                            </td>
+                                           
+                                            <td >
+                                            
+                                               {shortDes}</td>
                                             <td >{item.statusCode}</td>
                                             <td >{orderedCallText}</td>
-                                            <td >
-                                                    <p className='statusName'>
-                                                        { item.statusName }
-                                                    </p>
-                                                    <textarea  >
-                                                        { shortDes }
-                                                    </textarea>
-                                           </td>
+                                     
                               </tr>
                           
                             </>

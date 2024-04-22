@@ -53,6 +53,7 @@ saveImpact, saveSkip, dataSkip ,showOrHide, isOPenUploadFile3
                      saveImpact = {saveImpact} 
                      saveSkip = {saveSkip} 
                      dataSkip = {dataSkip}
+                     dataCustomer = {dataView}
                      
                      />
                 </Row>
