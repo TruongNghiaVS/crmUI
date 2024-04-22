@@ -280,7 +280,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
            
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Gọi SĐT khác</InputGroup.Text>
-                <FormControl aria-label="Small" value ={data.otherPhone} name = "otherPhone"  onChange={handleInputChange} />
+                <FormControl aria-label="Small" value ={data.otherPhone}  placeholder="Nhập số điện thoại liên quan KH để gọi" name = "otherPhone"  onChange={handleInputChange} />
                 <InputGroup.Text className="input-group-icon"><TbPhoneCall  onClick  = {(e)=>callToline1(data.otherPhone)} /></InputGroup.Text>
              
                 
