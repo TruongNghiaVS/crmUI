@@ -140,7 +140,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
         
         <Row>
             <Col>
-                <Form.Label htmlFor="basic-url">Tác động</Form.Label>
+                <strong>Tác động mớI </strong>
            
                 <InputGroup size="sm" className="mb-1">
                 
@@ -201,7 +201,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                     </Form.Select>
                 </InputGroup>
                 <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Phương thức liên hệ</InputGroup.Text>
+                    <InputGroup.Text id="inputGroup-sizing-sm">PT liên hệ</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="wayContact" value ={dataView1.wayContact}    onChange={handleInputChange}  >
                     
                                     <option value = "-1" selected>Chọn phương thức liên hệ</option>
@@ -263,13 +263,16 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                     <Form.Control as="textarea" rows={5}  name ="noteIm" onChange={handleInputChange} 
                        value = {dataView1.noteIm}  />
                 </Form.Group>
+
+                <div className="mt-3">
+                            <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button>
+                 </div>
             </Col>
+       
            
         </Row>
 
-                <div className="mt-3 text-center">
-                            <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button>
-                 </div>
+               
         </>
     );
 };

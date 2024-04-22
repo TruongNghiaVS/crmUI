@@ -66,7 +66,7 @@ const TabsTicketView = ({showOrHide,handleInputChange1,handleInputChange,dataHis
           
 
             <Tabs
-                defaultActiveKey="profile"
+                defaultActiveKey="home"
                 transition={false}
                 id="noanim-tab-example"
                 className="mb-3"
@@ -75,19 +75,21 @@ const TabsTicketView = ({showOrHide,handleInputChange1,handleInputChange,dataHis
             >
             <Tab eventKey="home" title="Cập nhật phiếu">
                 <UpdateVotes handleClick= {handleClick} dataView2 ={dataView2} dataView1 = {dataView} handleInputChangeColor = {handleInputChangeColor}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
-            </Tab>
 
+                <strong> Lịch sử tác động </strong>
 
-            <Tab  eventKey="profile" title="Lịch sử tác động">
                 <ImpactHistory data = {dataHistory} />
             </Tab>
+
+
+           
             <Tab  eventKey="skipnew" title="Thông tin thêm">
                 <SkipExtra data = {dataSkip} />
             </Tab>
     
         </Tabs>
 
-          
+      
         </Col>
     );
 };
