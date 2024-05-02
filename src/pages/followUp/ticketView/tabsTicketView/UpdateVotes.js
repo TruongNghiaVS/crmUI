@@ -3,13 +3,65 @@ import { useEffect,useState } from 'react';
 import moment from "moment"; 
 import Swal from 'sweetalert2';
 import { FaTicketAlt } from "react-icons/fa";
-const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataReason,listUser,saveImpact, handleInputChangeColor, handleClick}) => {
+const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, masterData, dataReason,listUser,saveImpact, handleInputChangeColor, handleClick}) => {
 
 
     const SaveIpactTry =() =>
     {
-       
-       
+      
+
+        if( dataCustomer2.status == 215)
+        {
+
+            if(dataView1.statusIm ==   dataCustomer2.status  )
+            {
+                 return;
+            }
+             
+            if( dataView1.statusIm != 291 && dataView1.statusIm  !=292 )
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Không cho chuyển đổi trạng thái',
+                    text: 'Đang ở trạng thái thanh toán (PTP), sẽ không được chuyển đôi sang trạng thái  không thanh toán',
+                    footer: 'Yêu cầu nghiệp vụ! , liên hệ QC để biết rõ thông tin'
+                })
+                return;
+
+            }
+        }
+
+        if( dataView1.statusIm == 215  )
+        {
+
+
+            if(dataView1.moneyPromise =='')
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Bạn chưa nhập số tiền hứa thanh toán',
+                        text: 'Ràng buộc nghiệp vụ',
+                        footer: 'Yêu cầu điền số tiền hứa thanh toán!'
+                    })
+                    return;
+                }
+
+                if(dataView1.promiseday == null || dataView1.promiseday =="")
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Bạn chưa nhập thông tin ngày thanh toán',
+                        text: 'Ràng buộc nghiệp vụ',
+                        footer: 'Yêu cầu thông tin ngày thanh toán!'
+                    })
+                    return;
+                }
+               
+
+        }
+
+
+       //291 292 215
         if(dataView1.colorCode == '' || dataView1.colorCode == '-1' ||  dataView1.colorCode =='white')
         {
             Swal.fire({
@@ -22,6 +74,7 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
         }
    
       
+        // 215 291 292
         
         if(dataView1.statusIm  <0)
         {

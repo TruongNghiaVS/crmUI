@@ -57,6 +57,7 @@ const TicketView = () => {
         code : "",
         campagnName: "Chiến dịch 4",
         shortDescription: "",
+  
         statusIm:"-1",
         placeCode: "-1",
         noteIm: "",
@@ -470,6 +471,7 @@ const handleErrUpdate = (data) => {
           ...prevalue,
             campangnName: "Chiến dịch 4",
             customerName:  dataItem.customerName  ,
+            status: dataItem.status,
             noAgreement: dataItem.noAgreement,
             nationalId: dataItem.nationalId,
             mobilePhone: dataItem.mobilePhone,

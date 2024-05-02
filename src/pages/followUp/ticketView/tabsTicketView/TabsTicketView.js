@@ -6,7 +6,7 @@ import SkipExtra from './SkipExtra';
 import Skip from './Skip';
 import Assigee from './Assigee';
 import Swal from 'sweetalert2';
-const TabsTicketView = ({showOrHide,handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact,saveSkip, masterData,handleClick, listUser, handleInputChangeColor,dataSkip}) => {
+const TabsTicketView = ({dataCustomer,showOrHide,handleInputChange1,handleInputChange,dataHistory, dataView, dataView2,dataReason,saveImpact,saveSkip, masterData,handleClick, listUser, handleInputChangeColor,dataSkip}) => {
     
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
 
@@ -74,7 +74,9 @@ const TabsTicketView = ({showOrHide,handleInputChange1,handleInputChange,dataHis
               
             >
             <Tab eventKey="home" title="Cập nhật phiếu">
-                <UpdateVotes handleClick= {handleClick} dataView2 ={dataView2} dataView1 = {dataView} handleInputChangeColor = {handleInputChangeColor}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
+                <UpdateVotes handleClick= {handleClick} 
+                dataCustomer2= {dataCustomer}
+                dataView2 ={dataView2} dataView1 = {dataView} handleInputChangeColor = {handleInputChangeColor}  handleInputChange = {handleInputChange1} masterData = {masterData} dataReason = {dataReason} listUser = {listUser} saveImpact = {saveImpact} />
                 <br>
                 </br>
                 <br>
