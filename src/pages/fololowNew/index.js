@@ -1,13 +1,13 @@
 
 
-import { Link, useNavigate,useParams  } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import React, { useState } from "react";
 import { Tabs, Tab } from 'react-bootstrap';
 import { FaTable, FaFilter } from "react-icons/fa";
 import { Row, Form, InputGroup, Col, FormControl, Button } from 'react-bootstrap';
 
 import {
-    FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
+  FaUser, FaAt, FaLock, FaBuilding, FaPhone, FaEnvelope, FaPortrait
 } from 'react-icons/fa';
 import moment from "moment";
 import Table from "./Table";
@@ -15,165 +15,162 @@ import DataJson from "../../utils/Data";
 import Model from "../../components/model/Model";
 import ModelPopup from "./ModelPopup";
 import "./User.scss";
-import { useEffect,useRef  } from 'react';
+import { useEffect, useRef } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
 import MangagementPackageService from '../../services/PackageService';
-import Paging from  "./Paging";
+import Paging from "./Paging";
 import { toast } from 'react-toastify';
 
 import Swal from 'sweetalert2';
-import UploadFile  from "./UploadFile";
-import UploadFile2  from "./UploadFile2";
+import UploadFile from "./UploadFile";
+import UploadFile2 from "./UploadFile2";
 import CommonService from "../../services/CommonService";
 let XLSX = require("xlsx");
 
 
 
 const Reason = () => {
-    let { detail } = useParams();
-    const [isOpenModel, setIsOpenModel] = useState(false);
-    const [isInit, setInit] = useState(false);
-    let navigate = useNavigate();
-    const [campagnIdSelect, setCampagnSelect] = useState(-1);
+  let { detail } = useParams();
+  const [isOpenModel, setIsOpenModel] = useState(false);
+  const [isInit, setInit] = useState(false);
+  let navigate = useNavigate();
+  const [campagnIdSelect, setCampagnSelect] = useState(-1);
 
-    const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
-    const [isOPenUploadFile2, setisOPenUploadFile2] = useState(false);
-
-
-    const [isseachdpp, setIsseachdpp] = useState(true);
-
-    const [dataGroupMember, setDataGroup] = useState({
-        data: [],
-        
-      });
-      const [dataReson, setdataReson] = useState({
-        data: [],
-        
-      });
-    
-      const [dataMember, setDataMember] = useState({
-        data: [],
-        
-      });
-    const [obejctPaging, setObjectPaging ] = useState({
-        limt: 10, 
-        totalRecord : 28,
-        totalPage: 3,
-        currentPage: 1,
-      
-    });
-
-    const [packageManagement, setPackageManagement ] = useState({
-         packageManagement:[]
-    });
-
-    const [obejctSearch, setKeySearch] = useState({
-        tokenSearch: "",
-        dpd: "-1",
-        noAgree: "", 
-        cmnd:  "",
-        statusSearch: "-1",
-        IdPackage: "",
-        fromTime: moment().subtract(33, 'days'),
-        endTime: moment()
-    });
+  const [isOPenUploadFile, setisOPenUploadFile] = useState(false);
+  const [isOPenUploadFile2, setisOPenUploadFile2] = useState(false);
 
 
-    let  jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
-    if( jsonProfile ==null)
-    {
-   
-     
-      jsonProfile  =   {
-        role: "",
-        isLogin: 201
-      };
+  const [isseachdpp, setIsseachdpp] = useState(true);
 
-      window.location.href ="/login"; 
-    }
+  const [dataGroupMember, setDataGroup] = useState({
+    data: [],
 
-    const roleUser = jsonProfile.role;
+  });
+  const [dataReson, setdataReson] = useState({
+    data: [],
 
-    var isAdmin = false;
-    var isshowGroup = false;
-    var isShowPhoneMobile =true;
-    var isTeamlead = false;
-    var isExportFile = false;
-    var isTc = false;
-    if(roleUser === "2") {
-        isAdmin = true;
-        isTeamlead =true;
-    }
+  });
 
-  
-    if(roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3" ) {
-        isTeamlead = true;
-        isExportFile = true;
-        isshowGroup = true;
-    }
+  const [dataMember, setDataMember] = useState({
+    data: [],
+
+  });
+  const [obejctPaging, setObjectPaging] = useState({
+    limt: 10,
+    totalRecord: 28,
+    totalPage: 3,
+    currentPage: 1,
+
+  });
+
+  const [packageManagement, setPackageManagement] = useState({
+    packageManagement: []
+  });
+
+  const [obejctSearch, setKeySearch] = useState({
+    tokenSearch: "",
+    dpd: "-1",
+    noAgree: "",
+    cmnd: "",
+    statusSearch: "-1",
+    IdPackage: "",
+    fromTime: moment().subtract(33, 'days'),
+    endTime: moment()
+  });
+
+
+  let jsonProfile = JSON.parse(localStorage.getItem('user-info'));
+  if (jsonProfile == null) {
+
+
+    jsonProfile = {
+      role: "",
+      isLogin: 201
+    };
+
+    window.location.href = "/login";
+  }
+
+  const roleUser = jsonProfile.role;
+
+  var isAdmin = false;
+  var isshowGroup = false;
+  var isShowPhoneMobile = true;
+  var isTeamlead = false;
+  var isExportFile = false;
+  var isTc = false;
+  if (roleUser === "2") {
+    isAdmin = true;
+    isTeamlead = true;
+  }
+
+
+  if (roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3") {
+    isTeamlead = true;
+    isExportFile = true;
+    isshowGroup = true;
+  }
 
 
 
-   if(roleUser == "1")
-   {
-      isTc =true;
-   }
+  if (roleUser == "1") {
+    isTc = true;
+  }
 
-   if(isAdmin ==true || roleUser === "5"   )
-   {
-    isShowPhoneMobile  = false;
- 
-   }
-   
-    const handleimportRow = ()=> {
+  if (isAdmin == true || roleUser === "5") {
+    isShowPhoneMobile = false;
 
-         setisOPenUploadFile(!isOPenUploadFile);
-   }
+  }
 
-   const getDataGroup = () => {
+  const handleimportRow = () => {
+
+    setisOPenUploadFile(!isOPenUploadFile);
+  }
+
+  const getDataGroup = () => {
     let fromDate = obejctSearch.fromTime;
     if (fromDate == "") {
       fromDate = null;
     }
     let bodySearch = {
-      
+
     };
     CommonService.GetAll(
       bodySearch,
       (response) => {
         if (response.statusCode === 200) {
-            
-            
-            setDataGroup((prew) => ({ ...prew, data: response.value.data }));
+
+
+          setDataGroup((prew) => ({ ...prew, data: response.value.data }));
 
         } else {
         }
       },
-      (error) => {}
+      (error) => { }
     );
   };
 
 
 
   const getDataReason = () => {
- 
-  
+
+
     let bodySearch = {
-      
+
     };
     CommonService.GetAllReason(
       bodySearch,
       (response) => {
 
         if (response.statusCode === 200) {
-          
-            setdataReson((prew) => ({ ...prew, data: response.value.data }));
-        } else{
+
+          setdataReson((prew) => ({ ...prew, data: response.value.data }));
+        } else {
 
         }
       },
-      (error) => {}
+      (error) => { }
     );
   };
   const handleInputChangeChange = (event) => {
@@ -198,82 +195,78 @@ const Reason = () => {
       fromDate = null;
     }
     let bodySearch = {
-        groupId: groupId
-      
+      groupId: groupId
+
     };
     CommonService.GetAllMemberByGroup(
       bodySearch,
       (response) => {
         if (response.statusCode === 200) {
 
-            setDataMember((prew) => ({ ...prew, data: response.value.data }));
+          setDataMember((prew) => ({ ...prew, data: response.value.data }));
 
         } else {
         }
       },
-      (error) => {}
+      (error) => { }
     );
   };
-   const  handleimportRowList =(skip)=>{
+  const handleimportRowList = (skip) => {
     setisOPenUploadFile2(!isOPenUploadFile2);
-   }
+  }
 
-   let keyLoop = '';
-    const handleSelect =(key)=>{
-     
-        if(keyLoop == key)
-        {
-            return;
-        }
-        keyLoop =key;
+  let keyLoop = '';
+  const handleSelect = (key) => {
 
-        let valueControl = key;
-        let nameControl = "IdPackage";
-        setKeySearch((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                [nameControl]: valueControl
-            }
-        })
-        loadData(key);
-      
+    if (keyLoop == key) {
+      return;
     }
+    keyLoop = key;
 
-   const getAllPackage = ()=> {
-        
+    let valueControl = key;
+    let nameControl = "IdPackage";
+    setKeySearch((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        [nameControl]: valueControl
+      }
+    })
+    loadData(key);
+
+  }
+
+  const getAllPackage = () => {
+
     let bodyRequest = {
-           
-      };
-    MangagementPackageService.GetAllInfo( bodyRequest, (response) => {
-       
-    if (response.statusCode === 200) {
-     
-        let dataDPD= response.value;
 
-        let items =[]
-        
+    };
+    MangagementPackageService.GetAllInfo(bodyRequest, (response) => {
+
+      if (response.statusCode === 200) {
+
+        let dataDPD = response.value;
+
+        let items = []
+
         let itemActive;
         dataDPD.forEach(dataDPD => {
-          
-            if(dataDPD.active)
-            {
-                itemActive = dataDPD;
-            }
-            items.push(dataDPD);
-         });
 
-         if(itemActive)
-         {
-            loadData(itemActive.id);
-            setIsseachdpp(false);
-         }
-         else 
-         {
-            loadData();
-         }
-         
-       
-       
+          if (dataDPD.active) {
+            itemActive = dataDPD;
+          }
+          items.push(dataDPD);
+        });
+
+        if (itemActive) {
+          loadData(itemActive.id);
+          setIsseachdpp(false);
+        }
+        else {
+          loadData();
+        }
+
+
+
         setPackageManagement((prevalue) => {
           return {
             ...prevalue,   // Spread Operator               
@@ -284,7 +277,7 @@ const Reason = () => {
 
 
 
-    } else {
+      } else {
 
 
 
@@ -293,678 +286,591 @@ const Reason = () => {
 
     });
 
+  }
+  const handleShowModelUploadFile = () => {
+
+
+    setisOPenUploadFile(!isOPenUploadFile);
+
+  }
+
+  const handleShowModelUploadFile2 = () => {
+
+
+    setisOPenUploadFile2(!isOPenUploadFile2);
+
+  }
+
+  const handleInputChange = (event) => {
+
+    let valueControl = event.target.value;
+    let nameControl = event.target.name;
+    setKeySearch((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        [nameControl]: valueControl
+      }
+    })
+
+  }
+
+
+  const dateForPicker = (dateString) => {
+
+    return moment(new Date(dateString)).format('YYYY-MM-DD')
+  };
+
+  const handlePaging = (data) => {
+
+    const key = 'currentPage';
+    const value = data;
+    setObjectPaging(prevState => ({
+      ...prevState,
+      [key]: value
     }
-    const handleShowModelUploadFile = () => {
-        
+    ));
+    loadData();
 
-        setisOPenUploadFile(!isOPenUploadFile);
-        
-    }
+    setInit(false);
+  }
 
-    const handleShowModelUploadFile2 = () => {
-        
+  const [employeeItem, setDataItem] = useState({
+    "id": "-1",
+    "fullName": "",
+    "code": "",
+    "displayName": "",
+    "hour": 0,
+    "day": 0
+  });
 
-        setisOPenUploadFile2(!isOPenUploadFile2);
-        
-    }
 
-    const handleInputChange = (event) => {
-     
-        let valueControl = event.target.value;
-        let nameControl = event.target.name;
+
+  const handleUpdateById = (id) => {
+    setDataItem((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        id: id
+      }
+    });
+    setDataItem((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        isView: false
+      }
+    });
+    setIsOpenModel(!isOpenModel);
+  }
+
+  const handleViewById = (id) => {
+    setDataItem((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        id: id
+      }
+    });
+    setDataItem((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        isView: true
+      }
+    })
+
+
+    setIsOpenModel(!isOpenModel);
+  }
+
+
+
+
+
+
+  const [dataEmployee, setData] = useState({
+    tbodyDataUser: [
+
+    ],
+  });
+
+
+  useEffect(() => {
+
+    if (!isInit) {
+
+      document.title = "Danh sách hồ sơ";
+      const search = window.location.search;
+      const params = new URLSearchParams(search);
+      const token = params.get('token');
+
+
+      if (token != null && token != "") {
+        let valueControl = token;
+        let nameControl = "tokenSearch";
+
         setKeySearch((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                [nameControl]: valueControl
-            }
+          return {
+            ...prevalue,   // Spread Operator               
+            [nameControl]: valueControl
+          }
         })
 
-    }
-    
-   
-    const dateForPicker = (dateString) => {
-    
-        return moment(new Date(dateString)).format('YYYY-MM-DD')
-    };
 
-    const handlePaging = (data)=> {
-
-            const key = 'currentPage';
-            const value = data;
-            setObjectPaging(prevState => ({
-            ...prevState,
-            [key]: value
-            }
-            ));
-            loadData();
-
-            setInit(false);
-    }
-
-    const [employeeItem, setDataItem] = useState({
-        "id": "-1",
-        "fullName": "",
-        "code": "",
-        "displayName": "",
-        "hour": 0,
-        "day": 0
-    });
+      }
 
 
-    
-    const handleUpdateById = (id)=> {
-            setDataItem((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                id:id
-            }
-            });
-            setDataItem((prevalue) => {
-                return {
-                    ...prevalue,   // Spread Operator               
-                    isView:false
-                }
-                });
-            setIsOpenModel(!isOpenModel);
-    }
-
-    const handleViewById = (id)=> {
-        setDataItem((prevalue) => {
-        return {
-            ...prevalue,   // Spread Operator               
-            id:id
-        }
-        });
-        setDataItem((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                    isView:true
-            }
-            })
+      if (detail == "new-list" && roleUser == "1") {
+        getAllPackage();
+      }
+      else {
+        loadData();
+      }
 
 
-            setIsOpenModel(!isOpenModel);
-    }
-
-
-    
-
-    
-
-    const [dataEmployee, setData] = useState( {
-        tbodyDataUser: [
-         
-        ],
-    }  );
-
-
-    useEffect(() => {
-
-        if(!isInit)
-        {
-
-            document.title = "Danh sách hồ sơ";
-            const search = window.location.search;
-            const params = new URLSearchParams(search);
-            const token = params.get('token');
-           
-            
-            if( token!= null && token !="")
-             {
-                  let valueControl =token;
-                  let nameControl ="tokenSearch";
-                 
-                  setKeySearch((prevalue) => {
-                      return {
-                        ...prevalue,   // Spread Operator               
-                        [nameControl]: valueControl
-                      }
-                    })
-                    
-    
-             }
-           
-     
-            if(detail== "new-list" && roleUser =="1")
-        {
-             getAllPackage();
-        }
-        else 
-        {
-            loadData();
-        }
-             
-     
       getDataGroup();
       getDataMember(-1);
       getDataReason();
-        setInit(true);
-        }
-      
-        
-        
-
-    }, [obejctPaging]);
-
-    const btnSerachKey = useRef(null);
-
-    const handleAddUser = (data) => {
-        
-        setIsOpenModel(!isOpenModel);
-        toast.success('Thêm thành công!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        loadData();
-    }
-    
-    const handleUpdate = (data) => {
-        
-        toast.success('Câp nhật thành công!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-        });
-        loadData();
-    }
-
-    const ExportFile = (exportAll = false,PackageKey ='')=> {
-     
-      Swal.fire({
-         title: 'Đang chuẩn bị dữ liệu!',
-         html: 'Vui lòng <b></b> chờ trong ít phút.',
-         didOpen: () => {
-         Swal.showLoading()
-            const b = Swal.getHtmlContainer().querySelector('b')
-          
-            },
-       
-         })
-      
-
-   
-        let typegetData = "0";
-        var idpackageserach = obejctSearch.IdPackage;
-        var skipData  = false;
-        if(PackageKey != '')
-        {
-           idpackageserach = PackageKey; 
-        }
-
-        if(detail== "new-list")
-        {
-           typegetData = "0";
-        }
-        else if( detail == "watch-list")
-        {
-           typegetData = "1";
-        }
-        else if( detail == "data")
-        {
-           typegetData = "10";
-        }
-        else if( detail == "skip-data")
-        {
-         
-            skipData  = true; 
-        }
-        else 
-        {
-           typegetData = "3";
-        }
-
-        if (exportAll)
-        {
-          typegetData= "-1";
-        }
-
-        let bodySearch = {
-           Token: obejctSearch.token, 
-           IdPackage: idpackageserach,
-           Page:  obejctPaging.currentPage,
-           Limit: obejctPaging.limt,
-           dpd: obejctSearch.dpd,
-           lineCode:  obejctSearch.lineCode,
-           phoneSerach:  obejctSearch.phoneSerach,
-           memberId: obejctSearch.memberId,
-           groupId: obejctSearch.groupId,
-           from: obejctSearch.fromTime,
-           skipData: skipData, 
-           cmnd: obejctSearch.cmnd,
-           statusSearch: obejctSearch.statusSearch,
-           to: obejctSearch.endTime,
-           typegetData: typegetData,
-           colorCode: obejctSearch.colorCode
-
-         };
-         EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
-              if(response == "")
-              {
-
-              }
-              else 
-              {
-                   Swal.fire({
-                    title: 'Đã có thông tin file hồ sơ',
-                    text: "",
-                    icon: 'info',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    cancelButtonText: "Huỷ bỏ",
-                    confirmButtonText: 'Tải file'
-                    })
-                    .then((result) => {
-                    if (result.isConfirmed) {
-                      var link = document.createElement('a');
-                      link.href = 'http://192.168.1.3:7777'+ response;
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }
-                  })
-               
-              }
-               
-
-         }, (error) => {
-          
-         });
-
-   }
-    
-   const loadData = (PackageKey ='')=> {
-         let typegetData = "0";
-
-
-         var skipData  = false;
-        
-         var idpackageserach = obejctSearch.IdPackage;
-         if(PackageKey != '')
-         {
-            idpackageserach = PackageKey; 
-         }
-
-         if(detail== "new-list")
-         {
-            typegetData = "0";
-         }
-         else if( detail == "watch-list")
-         {
-            typegetData = "1";
-         }
-         else if( detail == "data")
-         {
-            typegetData = "10";
-         }
-         else if( detail == "skip-data")
-         {
-            skipData = true;
-         }
-         else 
-         {
-            typegetData = "3";
-         }
-
-         let bodySearch = {
-            Token: obejctSearch.token, 
-            IdPackage: idpackageserach,
-            Page:  obejctPaging.currentPage,
-            Limit: obejctPaging.limt,
-            dpd: obejctSearch.dpd,
-            skipData: skipData,
-            lineCode:  obejctSearch.lineCode,
-            phoneSerach:  obejctSearch.phoneSerach,
-            from: obejctSearch.fromTime,
-            to: obejctSearch.endTime,
-            cmnd: obejctSearch.cmnd,
-            statusSearch: obejctSearch.statusSearch,
-            typegetData: typegetData,
-            memberId: obejctSearch.memberId,
-            groupId: obejctSearch.groupId,
-            noAgree: obejctSearch.noAgree,
-            colorCode: obejctSearch.colorCode,
-            status:  obejctSearch.status
-
-          };
-          EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
-                if (response.statusCode === 200) {
-                    renderData(response.value);
-                } else {
-
-                }
-          }, (error) => {
-           
-          });
-
-    }
-    
-   
-
-    const renderData = (dataReder) => {
-
-          
-            let totalPage = 1;
-
-            if(dataReder.total <1 )
-            {
-                totalPage = 1;
-            }
-            if( obejctPaging.limt <1)
-            {
-                totalPage = 1;
-               
-
-            }
-            else 
-            {
-                totalPage = Math.floor(dataReder.total/obejctPaging.limt ) +1;
-
-    
-            }
-           
-            setData(prew=>({...prew,tbodyDataUser:dataReder.data}));
-
-            setObjectPaging((prevalue) => {
-                return {
-                  ...prevalue,
-                  totalRecord:dataReder.total,
-                  totalPage: totalPage
-
-                }
-              })
-
+      setInit(true);
     }
 
 
-    const handleShowModel = () => {
 
-        setDataItem((prevalue) => {
-            return {
-                ...prevalue,   // Spread Operator               
-                id:"-1"
-            }
-            })
-      setIsOpenModel(!isOpenModel);
-      
+
+  }, [obejctPaging]);
+
+  const btnSerachKey = useRef(null);
+
+  const handleAddUser = (data) => {
+
+    setIsOpenModel(!isOpenModel);
+    toast.success('Thêm thành công!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    loadData();
+  }
+
+  const handleUpdate = (data) => {
+
+    toast.success('Câp nhật thành công!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    loadData();
+  }
+
+  const ExportFile = (exportAll = false, PackageKey = '') => {
+
+    Swal.fire({
+      title: 'Đang chuẩn bị dữ liệu!',
+      html: 'Vui lòng <b></b> chờ trong ít phút.',
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+
+      },
+
+    })
+
+
+
+    let typegetData = "0";
+    var idpackageserach = obejctSearch.IdPackage;
+    var skipData = false;
+    if (PackageKey != '') {
+      idpackageserach = PackageKey;
     }
 
-    const searchData =()=> {
-       loadData();
-     }
-
-    const exportfileAll =()=> {
-           ExportFile(true);
-
-}
-
-const exportfileAll2 =()=> {
-  ExportFile();
-
-}
-
-
-
-    
-
-    
-    const  deleteEmploy = (idEmp) => { 
-       
-    
-        const deleteIdModel = {
-            Id:  idEmp,
-           
-          };
-          EmployeeService.delete(ConstantData.URL_campagnProfile_Delete,ConstantData.HEADERS,
-            deleteIdModel,
-            handleDeleteSucess, 
-            handleDeleteError);
+    if (detail == "new-list") {
+      typegetData = "0";
     }
-    const handleDeleteSucess = (data) => {
-        if(data.statusCode == 200)
-        {   
-                loadData();
-                Swal.fire(
-                'Đã xóa!',
-                'Đã xóa thành công.',
-                'success'
-                )
-        }
-        else 
-        {
-                toast.error('Có lỗi khi xóa:'+ data.value, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-                });
-        }
+    else if (detail == "watch-list") {
+      typegetData = "1";
+    }
+    else if (detail == "data") {
+      typegetData = "10";
+    }
+    else if (detail == "skip-data") {
 
+      skipData = true;
+    }
+    else {
+      typegetData = "3";
     }
 
-    const handleDeleteError = (data) => {
-
+    if (exportAll) {
+      typegetData = "-1";
     }
-    var isActive = false;
-    const handleDeleteEmpl = (id)=> {
-         Swal.fire({
-            title: 'Bạn chắc chắn xóa',
-            text: "Bạn sẽ không lấy lại được dữ liệu",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Đồng ý!'
-          }).then((result) => {
-             if (result.isConfirmed) {
-                deleteEmploy(id);
-                 
+
+    let bodySearch = {
+      Token: obejctSearch.token,
+      IdPackage: idpackageserach,
+      Page: obejctPaging.currentPage,
+      Limit: obejctPaging.limt,
+      dpd: obejctSearch.dpd,
+      lineCode: obejctSearch.lineCode,
+      phoneSerach: obejctSearch.phoneSerach,
+      memberId: obejctSearch.memberId,
+      groupId: obejctSearch.groupId,
+      from: obejctSearch.fromTime,
+      skipData: skipData,
+      cmnd: obejctSearch.cmnd,
+      statusSearch: obejctSearch.statusSearch,
+      to: obejctSearch.endTime,
+      typegetData: typegetData,
+      colorCode: obejctSearch.colorCode
+
+    };
+    EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFile, ConstantData.HEADERS, bodySearch, (response) => {
+      if (response == "") {
+
+      }
+      else {
+        Swal.fire({
+          title: 'Đã có thông tin file hồ sơ',
+          text: "",
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Huỷ bỏ",
+          confirmButtonText: 'Tải file'
+        })
+          .then((result) => {
+            if (result.isConfirmed) {
+              var link = document.createElement('a');
+              link.href = 'http://192.168.1.3:7777' + response;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
             }
           })
 
+      }
+
+
+    }, (error) => {
+
+    });
+
+  }
+
+  const loadData = (PackageKey = '') => {
+    let typegetData = "0";
+
+
+    var skipData = false;
+
+    var idpackageserach = obejctSearch.IdPackage;
+    if (PackageKey != '') {
+      idpackageserach = PackageKey;
     }
 
+    if (detail == "new-list") {
+      typegetData = "0";
+    }
+    else if (detail == "watch-list") {
+      typegetData = "1";
+    }
+    else if (detail == "data") {
+      typegetData = "10";
+    }
+    else if (detail == "skip-data") {
+      skipData = true;
+    }
+    else {
+      typegetData = "3";
+    }
 
-    return (
-        <div className="user">
-            <div className='box-tbl'>
-                <h4 className='box-tit'>
-                <FaTable className="icon-tit" />
-                    Danh sách hồ sơ
-                </h4>
-                <Form>
-                            <Row>
-                                <Col>
+    let bodySearch = {
+      Token: obejctSearch.token,
+      IdPackage: idpackageserach,
+      Page: obejctPaging.currentPage,
+      Limit: obejctPaging.limt,
+      dpd: obejctSearch.dpd,
+      skipData: skipData,
+      lineCode: obejctSearch.lineCode,
+      phoneSerach: obejctSearch.phoneSerach,
+      from: obejctSearch.fromTime,
+      to: obejctSearch.endTime,
+      cmnd: obejctSearch.cmnd,
+      statusSearch: obejctSearch.statusSearch,
+      typegetData: typegetData,
+      memberId: obejctSearch.memberId,
+      groupId: obejctSearch.groupId,
+      noAgree: obejctSearch.noAgree,
+      colorCode: obejctSearch.colorCode,
+      status: obejctSearch.status
 
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Từ ngày:</Form.Label>
-                                        <InputGroup className="mb-2">
-                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                                            <Form.Control
-                                                type="date"
-                                                name="fromTime"
-                                                value={dateForPicker(obejctSearch.fromTime)}
-                                                placeholder="Từ ngày"
-                                                onChange={handleInputChange}
-                                            />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Đến ngày:</Form.Label>
-                                        <InputGroup className="mb-2">
-                                            <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
-                                            <Form.Control
-                                                type="date"
-                                                name="endTime"
-                                                value={dateForPicker(obejctSearch.endTime)}
-                                                placeholder="Đến ngày"
-                                                onChange={handleInputChange}
-                                            />
-                                        </InputGroup>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
+    };
+    EmployeeService.GetAll(ConstantData.URL_campagnProfile_GetALl, ConstantData.HEADERS, bodySearch, (response) => {
+      if (response.statusCode === 200) {
+        renderData(response.value);
+      } else {
 
-                            <Row>
-                            <Col>
+      }
+    }, (error) => {
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-   <Form.Label>CMND:</Form.Label>
-   <InputGroup className="mb-2">
-   <Form.Control
-   type="text" name ="cmnd" placeholder="CMND"  onChange={handleInputChange} value ={obejctSearch.cmnd} 
-   />
-   </InputGroup>
+    });
+
+  }
+
+
+
+  const renderData = (dataReder) => {
+
+
+    let totalPage = 1;
+
+    if (dataReder.total < 1) {
+      totalPage = 1;
+    }
+    if (obejctPaging.limt < 1) {
+      totalPage = 1;
+
+
+    }
+    else {
+      totalPage = Math.floor(dataReder.total / obejctPaging.limt) + 1;
+
+
+    }
+
+    setData(prew => ({ ...prew, tbodyDataUser: dataReder.data }));
+
+    setObjectPaging((prevalue) => {
+      return {
+        ...prevalue,
+        totalRecord: dataReder.total,
+        totalPage: totalPage
+
+      }
+    })
+
+  }
+
+
+  const handleShowModel = () => {
+
+    setDataItem((prevalue) => {
+      return {
+        ...prevalue,   // Spread Operator               
+        id: "-1"
+      }
+    })
+    setIsOpenModel(!isOpenModel);
+
+  }
+
+  const searchData = () => {
+    loadData();
+  }
+
+  const exportfileAll = () => {
+    ExportFile(true);
+
+  }
+
+  const exportfileAll2 = () => {
+    ExportFile();
+
+  }
+
+
+
+
+
+
+  const deleteEmploy = (idEmp) => {
+
+
+    const deleteIdModel = {
+      Id: idEmp,
+
+    };
+    EmployeeService.delete(ConstantData.URL_campagnProfile_Delete, ConstantData.HEADERS,
+      deleteIdModel,
+      handleDeleteSucess,
+      handleDeleteError);
+  }
+  const handleDeleteSucess = (data) => {
+    if (data.statusCode == 200) {
+      loadData();
+      Swal.fire(
+        'Đã xóa!',
+        'Đã xóa thành công.',
+        'success'
+      )
+    }
+    else {
+      toast.error('Có lỗi khi xóa:' + data.value, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+    }
+
+  }
+
+  const handleDeleteError = (data) => {
+
+  }
+  var isActive = false;
+  const handleDeleteEmpl = (id) => {
+    Swal.fire({
+      title: 'Bạn chắc chắn xóa',
+      text: "Bạn sẽ không lấy lại được dữ liệu",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteEmploy(id);
+
+      }
+    })
+
+  }
+
+
+  return (
+    <div className="user">
+      <div className='box-tbl'>
+        <h4 className='box-tit'>
+          <FaTable className="icon-tit" />
+          Danh sách hồ sơ
+        </h4>
+        <Form>
+        <Row>
+        <Col xs={8} > 
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>CMND:</Form.Label>
+                    <InputGroup className="mb-2">
+                      <Form.Control
+                        type="text" name="cmnd" placeholder="CMND" onChange={handleInputChange} value={obejctSearch.cmnd}
+                      />
+                    </InputGroup>
+                  </Form.Group>
+                </Col>
+                <Col>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Số điện thoại:</Form.Label>
+                <InputGroup className="mb-2">
+                  <Form.Control
+                    type="text"
+                    name="phoneSerach" value={obejctSearch.phoneSerach} onChange={handleInputChange}
+                  />
+                </InputGroup>
+              </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Số HĐ:</Form.Label>
+                    <InputGroup className="mb-2">
+                      <Form.Control
+                        type="text" name="noAgree" placeholder="Số HĐ" onChange={handleInputChange} value={obejctSearch.noAgree}
+                      />
+                    </InputGroup>
+                  </Form.Group>
+
+                </Col>
+
+                <Col>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Từ khóa:</Form.Label>
+                <InputGroup className="mb-2">
+                  <Form.Control
+                    type="text" name="token" placeholder="Họ tên" onChange={handleInputChange} value={obejctSearch.token}
+                  />
+                </InputGroup>
+              </Form.Group>
+                </Col>
+                <Col>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+  <Form.Label>DPD:</Form.Label>
+  <InputGroup className="mb-2">
+    <Form.Select aria-label="Default select example" name="dpd" value={obejctSearch.dpd} onChange={handleInputChange} >
+      <option value="-1">Chọn DPD</option>
+      <option value="0">DPD ~30</option>
+      <option value="1">DPD 31 ~60</option>
+      <option value="2">DPD 61 ~90</option>
+      <option value="3">DPD 91 ~ 180</option>
+      <option value="4">DPD 181 ~ 360</option>
+      <option value="5">DPD 361 ~ 1000</option>
+      <option value="6">DPD 1001 ~</option>
+    </Form.Select >
+  </InputGroup>
 </Form.Group>
-</Col>
+                </Col>
+             
+              </Row>
 
-<Col>
+            </Col>
 
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-   <Form.Label>Số HĐ:</Form.Label>
-   <InputGroup className="mb-2">
-   <Form.Control
-   type="text" name ="noAgree" placeholder="Số HĐ"  onChange={handleInputChange} value ={obejctSearch.noAgree} 
-   />
-   </InputGroup>
-</Form.Group>
-</Col>
+            <Col xs={4} > 
 
-                            </Row>
-                            {  (detail == "watch-list")? <Row>
-                                <Col xs={6} >                         
-<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-<Form.Label>Lý do:</Form.Label>
-<InputGroup className="mb-2">
-<Form.Select aria-label="Default select example" name ="statusSearch" value ={obejctSearch.statusSearch} onChange={handleInputChange} >
-                        <option value='-1'>Tất cả</option>
-                          {  dataReson!=null &&dataReson.data.map((item, index) => {
-                                return <option value={item.id}>{item.code}:{item.displayName}</option>;
-                            })
-                          }
-</Form.Select >
-</InputGroup>
-</Form.Group>
-                                </Col>
+            <Row>
+                <Col>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Từ ngày:</Form.Label>
+                    <InputGroup className="mb-2">
+                      <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                      <Form.Control
+                        type="date"
+                        name="fromTime"
+                        value={dateForPicker(obejctSearch.fromTime)}
+                        placeholder="Từ ngày"
+                        onChange={handleInputChange}
+                      />
+                    </InputGroup>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Đến ngày:</Form.Label>
+                    <InputGroup className="mb-2">
+                      <InputGroup.Text className="input-group-icon"><FaAt /></InputGroup.Text>
+                      <Form.Control
+                        type="date"
+                        name="endTime"
+                        value={dateForPicker(obejctSearch.endTime)}
+                        placeholder="Đến ngày"
+                        onChange={handleInputChange}
+                      />
+                    </InputGroup>
+                  </Form.Group>
+                </Col>
 
-                               
+              </Row>
+            </Col>
 
+          </Row>
+        
 
+      
 
+         
+          {(detail == "watch-list") ?  <Row>
+            
+          {isshowGroup ? (
+         
+              <Col>
 
-                                
-                            </Row>: <></> }
-                            <Row>
-                                <Col>
-
-                                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Từ khóa:</Form.Label>
-                                        <InputGroup className="mb-2">
-                                        <Form.Control
-                                        type="text" name ="token" placeholder="Họ tên"  onChange={handleInputChange} value ={obejctSearch.token} 
-                                        />
-                                        </InputGroup>
-                                     </Form.Group>
-                                </Col>
-
-                                <Col>
-
-                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                            <Form.Label>Số điện thoại:</Form.Label>
-                                            <InputGroup className="mb-2">
-                                            <Form.Control
-                                            type="text"
-                                            name ="phoneSerach"  value ={obejctSearch.phoneSerach} onChange={handleInputChange}
-                                            />
-                                            </InputGroup>
-                                        </Form.Group>
-                                </Col>
-
-
-                             {  isseachdpp ==true ?   <Col>
-
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>DPD:</Form.Label>
-                                <InputGroup className="mb-2">
-                                <Form.Select aria-label="Default select example" name ="dpd" value ={obejctSearch.dpd} onChange={handleInputChange} >
-                                        <option value ="-1">Chọn DPD</option>
-                                        <option value="0">DPD ~30</option>
-                                        <option value="1">DPD 31 ~60</option>
-                                        <option value="2">DPD 61 ~90</option>
-                                        <option value="3">DPD 91 ~ 180</option>
-                                        <option value="4">DPD 181 ~ 360</option>
-                                        <option value="5">DPD 361 ~ 1000</option>
-                                        <option value="6">DPD 1001 ~</option>
-                                </Form.Select >
-                                </InputGroup>
-                                </Form.Group>
-                                </Col> : <></> }
-
-{
-    isAdmin?<Col>
-
-    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>tài khoản:</Form.Label>
-            <InputGroup className="mb-2">
-            <Form.Control
-            type="text" name ="lineCode"  onChange={handleInputChange} value ={obejctSearch.lineCode} 
-            />
-            </InputGroup>
-    </Form.Group>
-    </Col>:<></>
-}
-
-                                
-                            </Row>
-
-                          
-                          {  (detail == "watch-list")? <Row>
-                                <Col xs={6} >
-
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Phân loại hồ sơ:</Form.Label>
-                                <InputGroup className="mb-2">
-                                <Form.Select aria-label="Default select example" name ="colorCode" value ={obejctSearch.colorCode} onChange={handleInputChange} >
-                                        <option selected value ="-1">Tất cả</option>
-                                        
-                                        <option className="green" value="green">Góp kỳ</option>
-                                        <option className="yellow"  value="yellow">Đi Skip thông tin</option>
-                                        <option className="red"  value="red">Thanh lý</option>
-                                        <option className="greenBlude" value="greenBlude">Thông tin kết nối được với khách hàng</option>
-                                        <option className="black"  value="black">Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng</option>
-                                        
-                                </Form.Select >
-                                </InputGroup>
-                                </Form.Group>
-                                </Col>
-
-                               
-
-
-
-
-                                
-                            </Row>: <></> }
-                            <Row>
-                    
-
-                            </Row>
-
-                            {isshowGroup ? (
                 <Row>
                   <Col>
                     <Form.Group
@@ -973,19 +879,19 @@ const exportfileAll2 =()=> {
                     >
                       <Form.Label>Nhóm:</Form.Label>
                       <InputGroup className="mb-2">
-                    
-                      <Form.Select
+
+                        <Form.Select
                           name="groupId"
-                          value ={obejctSearch.groupId}
+                          value={obejctSearch.groupId}
                           onChange={handleInputChangeChange}
                         >
 
                           <option value='0'>Tất cả</option>
-                          {  dataGroupMember!=null &&dataGroupMember.data.map((item, index) => {
-                                return <option value={item.id}>{item.name}</option>;
-                            })
+                          {dataGroupMember != null && dataGroupMember.data.map((item, index) => {
+                            return <option value={item.id}>{item.name}</option>;
+                          })
                           }
-                          
+
                         </Form.Select>
                       </InputGroup>
                     </Form.Group>
@@ -998,99 +904,151 @@ const exportfileAll2 =()=> {
                     >
                       <Form.Label>Thành viên:</Form.Label>
                       <InputGroup className="mb-2">
-                    
-                      <Form.Select
+
+                        <Form.Select
                           name="memberId"
-                          value ={obejctSearch.memberId}
+                          value={obejctSearch.memberId}
                           onChange={handleInputChange}
                         >
 
                           <option value='0'>Tất cả</option>
-                          {  dataMember!=null &&dataMember.data.map((item, index) => {
-                                return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
-                            })
+                          {dataMember != null && dataMember.data.map((item, index) => {
+                            return <option value={item.id}>{item.lineCode}:{item.userName}</option>;
+                          })
                           }
-                          
+
                         </Form.Select>
                       </InputGroup>
                     </Form.Group>
                   </Col>
                 </Row>
-              ) : (
-                <></>
-              )}
-                 </Form>
-                
 
-                <div className="list-feature">
-                    
-                        <div className="search-feature leftLayout">
-                      
-                        {
-                           isExportFile == true ?   <>  <button  className="btn-search"  onClick= {exportfileAll2}> Xuất file </button>
-                            <button  className="btn-search"  onClick= {exportfileAll}>Xuất file(tất cả) </button> </>
-                           
-                           : <></>
-                       }
-                  </div>
-                  
-                    <div className="search-feature">
-                      
-                        <button  className="btn-search"  onClick= {searchData}>Tìm kiếm </button>
-                    </div>
-                </div>
-                          {/* <Tabs
+              </Col>
+
+            
+          ) : (
+            <></>
+          )}
+            
+             <Col >                         
+
+                    <Row>
+                    <Col>
+
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Lý do:</Form.Label>
+                <InputGroup className="mb-2">
+                  <Form.Select aria-label="Default select example" name="statusSearch" value={obejctSearch.statusSearch} onChange={handleInputChange} >
+                    <option value='-1'>Tất cả</option>
+                    {dataReson != null && dataReson.data.map((item, index) => {
+                      return <option value={item.id}>{item.code}</option>;
+                    })
+                    }
+                  </Form.Select >
+                </InputGroup>
+              </Form.Group>
+              
+                    </Col>
+                    <Col>
+
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Phân loại hồ sơ:</Form.Label>
+                <InputGroup className="mb-2">
+                  <Form.Select aria-label="Default select example" name="colorCode" value={obejctSearch.colorCode} onChange={handleInputChange} >
+                    <option selected value="-1">Tất cả</option>
+
+                    <option className="green" value="green">Góp kỳ</option>
+                    <option className="yellow" value="yellow">Đi Skip thông tin</option>
+                    <option className="red" value="red">Thanh lý</option>
+                    <option className="greenBlude" value="greenBlude">Thông tin kết nối được với khách hàng</option>
+                    <option className="black" value="black">Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng</option>
+
+                  </Form.Select >
+                </InputGroup>
+              </Form.Group>
+                    </Col>
+                    </Row>
+              
+              </Col>
+        
+
+          </Row> : <></>}
+      
+
+
+
+
+        
+        </Form>
+
+
+        <div className="list-feature">
+
+          <div className="search-feature leftLayout">
+
+            {
+              isExportFile == true ? <>  <button className="btn-search" onClick={exportfileAll2}> Xuất file </button>
+                <button className="btn-search" onClick={exportfileAll}>Xuất file(tất cả) </button> </>
+
+                : <></>
+            }
+          </div>
+
+          <div className="search-feature">
+
+            <button className="btn-search" onClick={searchData}>Tìm kiếm </button>
+          </div>
+        </div>
+        {/* <Tabs
                         // onSelect={(e)=>handleSelect(e)}
                             transition={false}
                             className="mb-3"
                         > */}
-                        <div className="packageList">
+        <div className="packageList">
 
-                            { 
-                                    packageManagement.packageManagement.map((item, index) => {
-                                
-                                        if(item.active)
-                                        {
-                                            return (<div className="btnTab"> <button  className="actvie"> {item.name} <a > {"(" +item.total+"/"+item.remain + ")"}</a> </button></div>);
-                                        }
-                                        else 
-                                        {
-                                            return (<div className="btnTab"> <button > {item.name} <p> {"(" +item.total+"/"+item.remain + ")"}</p> </button></div>);
-                                        }
-                                        
-                                    } )
-                            }
-                        </div>
-                            
-                       
-         
+          {
+            packageManagement.packageManagement.map((item, index) => {
 
-                <Table allowDisplayphone = {isShowPhoneMobile} theadData={ DataJson.theadDataFollowUp2 } dataDraw={dataEmployee} handleDelete = {handleDeleteEmpl} handleViewById = {handleViewById} handleUpdateById = {handleUpdateById} tbodyData={ DataJson.tbodyDataUser } tblClass="tbl-custom-data" />
-                <Paging dataPaging = {obejctPaging} handlePaging = {handlePaging}/>
-            
-            </div>
+              if (item.active) {
+                return (<div className="btnTab"> <button className="actvie"> {item.name} <a > {"(" + item.total + "/" + item.remain + ")"}</a> </button></div>);
+              }
+              else {
+                return (<div className="btnTab"> <button > {item.name} <p> {"(" + item.total + "/" + item.remain + ")"}</p> </button></div>);
+              }
 
-            { isOpenModel && <Model handleClose ={handleShowModel} content={<ModelPopup dataItem= {employeeItem}  handleAdd={handleAddUser}  handleUpdate={handleUpdate}  handleClose={handleShowModel} />} /> }
-
-            {                                                                                         
-                isOPenUploadFile && <Model                                        
-                    handleClose ={handleShowModelUploadFile}
-                    content={<UploadFile
-                    idPass = "3333"  
-                    handleClose={handleShowModelUploadFile} 
-                />} />
-             }
-
-{                                                                                         
-                isOPenUploadFile2 && <Model                                        
-                    handleClose ={handleShowModelUploadFile2}
-                    content={<UploadFile2
-                    handleClose={handleShowModelUploadFile2} 
-                />} />
-             }
-
+            })
+          }
         </div>
-    );
+
+
+
+
+        <Table allowDisplayphone={isShowPhoneMobile} theadData={DataJson.theadDataFollowUp2} dataDraw={dataEmployee} handleDelete={handleDeleteEmpl} handleViewById={handleViewById} handleUpdateById={handleUpdateById} tbodyData={DataJson.tbodyDataUser} tblClass="tbl-custom-data" />
+        <Paging dataPaging={obejctPaging} handlePaging={handlePaging} />
+
+      </div>
+
+      {isOpenModel && <Model handleClose={handleShowModel} content={<ModelPopup dataItem={employeeItem} handleAdd={handleAddUser} handleUpdate={handleUpdate} handleClose={handleShowModel} />} />}
+
+      {
+        isOPenUploadFile && <Model
+          handleClose={handleShowModelUploadFile}
+          content={<UploadFile
+            idPass="3333"
+            handleClose={handleShowModelUploadFile}
+          />} />
+      }
+
+      {
+        isOPenUploadFile2 && <Model
+          handleClose={handleShowModelUploadFile2}
+          content={<UploadFile2
+            handleClose={handleShowModelUploadFile2}
+          />} />
+      }
+
+    </div>
+  );
 };
 
 export default Reason;

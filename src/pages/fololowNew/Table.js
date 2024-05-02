@@ -175,12 +175,14 @@ const TableRow = ({ allowDisplayphone ,data,rowIndex,handleDeleteById, handleUpd
                 </NavLink>
                  </p>
                 
-              
-                 <p> 
-                 {displayMobilePhone(data.mobilePhone,allowDisplayphone)}
-                 </p>
-               
+             
                 
+            </td>
+            <td>
+             
+                 {displayMobilePhone(data.mobilePhone,allowDisplayphone)}
+                
+               
             </td>
 
             <td>

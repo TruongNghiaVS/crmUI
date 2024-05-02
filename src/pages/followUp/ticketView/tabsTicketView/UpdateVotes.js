@@ -169,7 +169,8 @@ const UpdateVotes = ({dataView1,dataView2, handleInputChange, masterData, dataRe
                     <FormControl 
                         name = "promiseday"
                         type="date"
-                        aria-label="Small"  value ={dateForPicker(dataView1.promiseday)}   onChange={handleInputChange} />
+                        aria-label="Small"  value ={dateForPicker(dataView1.promiseday)}   
+                        onChange={handleInputChange} />
                 </InputGroup>
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Tiền hứa</InputGroup.Text>
