@@ -17,8 +17,9 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
             {
                  return;
             }
+        
              
-            if( dataView1.statusIm != 291 && dataView1.statusIm  !=292 )
+            if( dataView1.statusIm != 291 && dataView1.statusIm  !=292 &&  dataView1.statusIm !=293  )
             {
                 Swal.fire({
                     icon: 'error',
@@ -29,7 +30,9 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 return;
 
             }
+           
         }
+   
 
         if( dataView1.statusIm == 215  )
         {
@@ -149,7 +152,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
             return;
         }
 
-       
+      
         saveImpact();
     }
 
