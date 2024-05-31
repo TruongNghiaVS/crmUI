@@ -99,6 +99,7 @@ const Reason = () => {
   var isShowPhoneMobile = true;
   var isTeamlead = false;
   var isExportFile = false;
+  var isExportFileQC = false;
   var isTc = false;
   if (roleUser === "2") {
     isAdmin = true;
@@ -108,10 +109,14 @@ const Reason = () => {
 
   if (roleUser === "2" || roleUser === "5" || roleUser === "4" || roleUser === "3") {
     isTeamlead = true;
-    isExportFile = true;
+    isExportFile = true; 
+
     isshowGroup = true;
   }
 
+  if (roleUser === "6") {
+    isExportFileQC =true;
+  }
 
 
   if (roleUser == "1") {
@@ -466,6 +471,105 @@ const Reason = () => {
     loadData();
   }
 
+
+
+
+  const ExportFileQC = (exportAll = false, PackageKey = '') => {
+
+    Swal.fire({
+      title: 'Đang chuẩn bị dữ liệu!',
+      html: 'Vui lòng <b></b> chờ trong ít phút.',
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+
+      },
+
+    })
+
+
+
+    let typegetData = "0";
+    var idpackageserach = obejctSearch.IdPackage;
+    var skipData = false;
+    if (PackageKey != '') {
+      idpackageserach = PackageKey;
+    }
+
+    if (detail == "new-list") {
+      typegetData = "0";
+    }
+    else if (detail == "watch-list") {
+      typegetData = "1";
+    }
+    else if (detail == "data") {
+      typegetData = "10";
+    }
+    else if (detail == "skip-data") {
+
+      skipData = true;
+    }
+    else {
+      typegetData = "3";
+    }
+
+    if (exportAll) {
+      typegetData = "-1";
+    }
+
+    let bodySearch = {
+      Token: obejctSearch.token,
+      IdPackage: idpackageserach,
+      Page: obejctPaging.currentPage,
+      Limit: obejctPaging.limt,
+      dpd: obejctSearch.dpd,
+      lineCode: obejctSearch.lineCode,
+      phoneSerach: obejctSearch.phoneSerach,
+      memberId: obejctSearch.memberId,
+      groupId: obejctSearch.groupId,
+      from: obejctSearch.fromTime,
+      skipData: skipData,
+      cmnd: obejctSearch.cmnd,
+      statusSearch: obejctSearch.statusSearch,
+      to: obejctSearch.endTime,
+      typegetData: typegetData,
+      colorCode: obejctSearch.colorCode
+
+    };
+    EmployeeService.GetAll(ConstantData.URL_campagnProfile_exportFileQC, ConstantData.HEADERS, bodySearch, (response) => {
+      if (response == "") {
+
+      }
+      else {
+        Swal.fire({
+          title: 'Đã có thông tin file hồ sơ',
+          text: "",
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: "Huỷ bỏ",
+          confirmButtonText: 'Tải file'
+        })
+          .then((result) => {
+            if (result.isConfirmed) {
+              var link = document.createElement('a');
+              link.href = 'http://192.168.1.3:7777' + response;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }
+          })
+
+      }
+
+
+    }, (error) => {
+
+    });
+
+  }
+
   const ExportFile = (exportAll = false, PackageKey = '') => {
 
     Swal.fire({
@@ -677,6 +781,13 @@ const Reason = () => {
     ExportFile(true);
 
   }
+
+  const exportfileAllQC = () => {
+    ExportFileQC(true);
+
+  }
+
+  
 
   const exportfileAll2 = () => {
     ExportFile();
@@ -992,6 +1103,13 @@ const Reason = () => {
 
                 : <></>
             }
+ {
+              isExportFileQC == true ? <>  <button className="btn-search" onClick={exportfileAllQC}> Xuất file </button>
+               </>
+
+                : <></>
+            }
+
           </div>
 
           <div className="search-feature">

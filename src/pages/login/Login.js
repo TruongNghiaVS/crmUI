@@ -31,7 +31,16 @@ const Login = () => {
       if (userInfo === null || userInfo.isLogin === 201) {
         return;
       } else {
-        navigate('/follow-up-new/new-list');
+      
+        if(userInfo.role != "6")
+          {
+            navigate('/follow-up-new/new-list');
+          }
+          else 
+          {
+            navigate('/follow-up-new/watch-list');
+          }
+      
         setIsLoading(false);
       }
     }
@@ -58,8 +67,16 @@ const Login = () => {
     };
     localStorage.setItem('authorizeKey', JSON.stringify(data));
     localStorage.setItem('user-info', JSON.stringify(dataJson));
+    
+    if(dataJson.role != "6")
+      {
+        navigate('/follow-up-new/new-list');
+      }
+      else 
+      {
+        navigate('/follow-up-new/watch-list');
+      }
   
-    navigate('/follow-up-new/new-list');
   };
   
   const handleSubmit = (event) => {

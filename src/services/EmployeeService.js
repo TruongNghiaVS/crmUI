@@ -2,7 +2,9 @@ import ApiService from './ApiService';
 import Constants from '../utils/Constants';
 class EmployeeService   {
 
-  
+    static getAll2(url, headers, body, callSuccess, callError) {
+        ApiService.httpGet(url, headers, body, callSuccess, callError);
+    }
     static GetAll(url, headers, body, callSuccess, callError) {
         ApiService.httpPost(url, headers, body, callSuccess, callError);
     }

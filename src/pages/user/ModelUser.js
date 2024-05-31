@@ -362,7 +362,8 @@ const ModelAddUser = (props) => {
 
                         <Form.Select aria-label="Role nhân viên" name ="roleEm" onChange={handleInputChange} value = {model.roleEm} >
                             <option selected value="1">Điện thoại viên</option>
-                            <option value="2">Admin</option>
+                            <option value="2">Admin </option>
+                            <option value="6">QC </option>
                             <option value="3">Quản lý</option>
 
                             <option value="4">Dự án</option>

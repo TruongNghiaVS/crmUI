@@ -107,13 +107,12 @@ const Header = ({ classHeader }) => {
                         <Link className='nav-link' to="/follow-up-new">Trang làm việc <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                             <li className='sub-list-link'><Link reloadDocument  className='nav-link' to="/follow-up-new/watch-list">Danh sách theo dõi</Link></li>
-                            
-                            <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
-                            
-                          
-
                             {
-                            (roleUser != 1)
+                            (roleUser != 6) &&  <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/follow-up-new/new-list">Danh sách mới phân</Link></li>
+                            }
+                            
+                            {
+                            (roleUser != 1 &&  roleUser != 6 )
                             && <li className='sub-list-link'><Link  reloadDocument className='nav-link' to="/theo-doi-goi">Theo dõi gọi</Link></li>
                           }
                         </ul>
@@ -194,10 +193,7 @@ const Header = ({ classHeader }) => {
 
                   
 
-                    <li className='list-link'>
-                        <Link className='nav-link' to="/document-data">Tài nguyên <FaCaretDown className='nav-icon icon-caret-down' /></Link>
-                     
-                    </li>
+              
 
                     { roleUser == "4"  ?  <li className='list-link'>
                         <Link className='nav-link' to="/follow-up-new">Vận hành <FaCaretDown className='nav-icon icon-caret-down' /></Link>
@@ -220,7 +216,7 @@ const Header = ({ classHeader }) => {
                         { isHiddenProfile ? <div className="box-profile">
                             <span className="change-pass" onClick={() => handleShowModel()}>Đổi mật khẩu</span>
                             
-                            {!isHiddenMenu?<span className="change-pass">Line gọi: {lineCode}</span>: <></>} 
+                            {!isHiddenMenu && lineCode !="" ?<span className="change-pass">Line gọi: {lineCode}</span>: <></>} 
                             <span className="logout" onClick={() => handleLogout()}>Đăng xuất</span>
                         </div> : <></>
                         }
