@@ -5,7 +5,341 @@ import Swal from 'sweetalert2';
 import { FaTicketAlt } from "react-icons/fa";
 const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, masterData, dataReason,listUser,saveImpact, handleInputChangeColor, handleClick}) => {
 
+    const handleActivetype  = (e) => {
 
+    }
+
+    const datalist = [
+        {
+          text: "RPC - Authorized Representative",
+          value: "RPC - Authorized Representative",
+          dataDraw: [
+                {
+                    text: "Callback",
+                    value: 302
+                 },
+                 {
+                    text: "Claim - BKY",
+                    value: 303
+                 }, 
+                 {
+                    text: "Claim - DCD",
+                    value: 304
+                 }, 
+                 {
+                    text: "Claim - FP",
+                    value: 305
+                 }, 
+                 {
+                    text: "Claim - NC",
+                    value: 306
+                 }, 
+                 {
+                    text: "PP - Approved",
+                    value: 307
+                 },
+                 {
+                    text: "PP - Pending",
+                    value: 308
+                 },  
+                 {
+                    text: "PP - Reminder",
+                    value: 309
+                 },
+                 {
+                    text: "RTP - BKY",
+                    value: 310
+                 },
+                 {
+                    text: "RTP - DC",
+                    value: 311
+                 },
+                 {
+                    text: "RTP - Financial Difficulty",
+                    value: 312
+                 }
+          ]   
+        },
+        {
+            text: "RPC - Customer",
+            value: "RPC - Customer",
+            dataDraw: [
+                {
+                    text: "Callback",
+                    value: 302
+                 },
+                 {
+                    text: "Claim - BKY",
+                    value: 303
+                 }, 
+                 {
+                    text: "Claim - DCD",
+                    value: 304
+                 }, 
+                 {
+                    text: "Claim - FP",
+                    value: 305
+                 }, 
+                 {
+                    text: "Claim - NC",
+                    value: 306
+                 }, 
+                 {
+                    text: "PP - Approved",
+                    value: 307
+                 },
+                 {
+                    text: "PP - Pending",
+                    value: 308
+                 },  
+                 {
+                    text: "PP - Reminder",
+                    value: 309
+                 },
+                 {
+                    text: "RTP - BKY",
+                    value: 310
+                 },
+                 {
+                    text: "RTP - DC",
+                    value: 311
+                 },
+                 {
+                    text: "RTP - Financial Difficulty",
+                    value: 312
+                 }
+            ]   
+          },
+          {
+            text: "PTP",
+            value: "PTP",
+            dataDraw: [
+                {
+                    text: "RTP - BKY",
+                    value: 310
+                 },
+                 {
+                    text: "RTP - DC",
+                    value: 311
+                 },
+                 {
+                    text: "RTP - Financial Difficulty",
+                    value: 312 
+                 }
+               
+            ]   
+          },
+          {
+            text: "Third Party Contact",
+            value: "Third Party Contact",
+            dataDraw: [
+                {
+                    text: "Third Party Contact",
+                    value: 313
+                 }
+               
+            ]   
+          },
+          {
+            text: "Wrong Party Contact",
+            value: "Wrong Party Contact",
+            dataDraw: [
+                {
+                    text: "Wrong Party Contact",
+                    value: 314
+                 }
+               
+            ]   
+          },
+          {
+            text: "RTP",
+            value: "RTP",
+            dataDraw: [
+                {
+                    text: "RTP - BKY",
+                    value: 310
+                 },
+                 {
+                    text: "RTP - DC",
+                    value: 311
+                 },
+                 {
+                    text: "RTP - Financial Difficulty",
+                    value: 312
+                 }
+               
+            ]   
+          },
+          {
+            text: "Busy",
+            value: "Busy",
+            dataDraw: [
+                {
+                    text: "Busy",
+                    value: 315
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Drop",
+            value: "Drop",
+            dataDraw: [
+                {
+                    text: "Drop",
+                    value: 316
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Invalid Number",
+            value: "Invalid Number",
+            dataDraw: [
+                {
+                    text: "Invalid Number",
+                    value: 317
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "No Answer",
+            value: "No Answer",
+            dataDraw: [
+                {
+                    text: "No Answer",
+                    value: 318
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Not In Service",
+            value: "Not In Service",
+            dataDraw: [
+                {
+                    text: "Not In Service",
+                    value: 319
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Not Reached",
+            value: "Not Reached",
+            dataDraw: [
+                {
+                    text: "Not Reached",
+                    value: 320
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "System Hang Up",
+            value: "System Hang Up",
+            dataDraw: [
+                {
+                    text: "System Hang Up",
+                    value: 321
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "UC",
+            value: "UC",
+            dataDraw: [
+                {
+                    text: "UC",
+                    value: 322
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Unknown Contact",
+            value: "Unknown Contact",
+            dataDraw: [
+                {
+                    text: "Unknown Contact",
+                    value: 323
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Voice Message / Operator",
+            value: "Voice Message / Operator",
+            dataDraw: [
+                {
+                    text: "Voice Message / Operator",
+                    value: 324
+                 }
+                 
+               
+            ]   
+          },
+          {
+            text: "Invalid Address",
+            value: "Invalid Address",
+            dataDraw: [
+                {
+                    text: "Invalid Address",
+                    value: 325
+                 }
+                 
+               
+            ]   
+          }
+          
+
+    ];
+
+    const handleCallDispositon  = (e) => {
+
+        handleInputChange(e);
+
+        var callDis = e.target.value;
+        let arrayDraw = [];
+        for (let index = 0; index < datalist.length; index++) {
+            const itemis = datalist[index];
+            if(itemis.value == callDis)
+                {
+                    arrayDraw = itemis.dataDraw;
+                }
+            
+        }
+
+        document.getElementById("callOUtCome").innerHTML ="";
+
+        var optionSelect1 = document.createElement("option");
+        optionSelect1.text = "Chọn";
+        optionSelect1.value = -1;
+        document.getElementById("callOUtCome").appendChild(optionSelect1);
+        for (let index = 0; index < arrayDraw.length; index++) {
+            const itemDraw = arrayDraw[index];
+           
+
+            var optionSelect = document.createElement("option");
+            optionSelect.text = itemDraw.text;
+            optionSelect.value = itemDraw.value;
+            document.getElementById("callOUtCome").appendChild(optionSelect);
+            
+        }
+
+        
+    }
     const SaveIpactTry =() =>
     {
       
@@ -75,9 +409,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
             })
             return;
         }
-   
-      
-        // 215 291 292
+         // 215 291 292
         
         if(dataView1.statusIm  <0)
         {
@@ -155,7 +487,98 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
       
         saveImpact();
     }
-
+    const SaveIpactTry2 =() =>
+        {
+            if( dataCustomer2.status == 215)
+            {
+    
+                if(dataView1.statusIm ==   dataCustomer2.status  )
+                {
+                     return;
+                }
+            
+                 
+                
+               
+            }
+       
+    
+    
+           //291 292 215
+          
+             // 215 291 292
+            
+            if(dataView1.activetype  <0)
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Chưa chọn Activetype',
+                    text: 'Chưa chọn Activetype',
+                    footer: 'Yêu cầu thông tin!'
+                })
+                return;
+            }
+            if(dataView1.callDisposition == '' || dataView1.callDisposition == '-1')
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Chọn Call_Disposition',
+                        text: 'Chọn Call_Disposition',
+                        footer: 'Yêu cầu nghiệp vụ!'
+                    })
+                    return;
+                }
+            if(dataView1.callOutcome == '' || dataView1.callOutcome == '-1')
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Chọn chơi Call_Outcome',
+                        text: 'Chọn chơi Call_Outcome',
+                        footer: 'Yêu cầu nghiệp vụ!'
+                    })
+                    return;
+                }
+    
+           
+                if(dataView1.noteCode == '' || dataView1.noteCode == '-1')
+                    {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Chọn chơi ngườI liên hệ',
+                            text: 'Chọn chơi ngườI liên hệ',
+                            footer: 'Yêu cầu nghiệp vụ!'
+                        })
+                        return;
+                    }
+        
+            if(dataView1.colorCode == '' || dataView1.colorCode == '-1' ||  dataView1.colorCode =='white')
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Chưa phân loại hồ sơ',
+                        text: 'Chưa phân loại hồ sơ',
+                        footer: 'Yêu cầu nghiệp vụ!'
+                    })
+                    return;
+                }
+            
+         
+           
+        
+            if(dataView1.noteIm =='')
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Chưa điền ghi chú',
+                    text: 'Chưa điền ghi chú',
+                    footer: 'Yêu cầu thông tin!'
+                })
+                return;
+            }
+    
+          
+            saveImpact();
+        }
     const  use_number =(node)=>{
         var empty_val = false;
         const value = node.value;
@@ -196,11 +619,13 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
         
         <Row>
             <Col>
-                <strong>Tác động mớI </strong>
+                <strong>Tác động mớI { dataCustomer2.campaignId }    </strong>
+
            
-                <InputGroup size="sm" className="mb-1">
-                
-                    <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
+               
+                {dataCustomer2.campaignId !=1050? <>
+                 <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="statusIm" value ={dataView1.statusIm}    onChange={handleInputChange}  >
                     
                     <option value = "-1" selected>Chọn lý do</option>
@@ -209,8 +634,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                               
                                     return ( <>
                                         <option value = {item.id}> {item.code} </option>
-   
-                                   </>)
+                                         </>)
                               
                        
                         })
@@ -219,6 +643,66 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                     </Form.Select>
                 </InputGroup>
 
+                </> : <></> }
+                    
+
+                
+
+                 {dataCustomer2.campaignId ==1050? <>
+                 
+                 
+                <InputGroup size="sm" className="mb-1">   <InputGroup.Text >Activetype</InputGroup.Text>
+                <Form.Select aria-label="Default select example" name ="activetype" value ={dataView1.activetype}    onChange={handleInputChange}  >
+                <option value = "-1" selected>Chọn lý do</option>
+                <option value = "Phone Call"> Phone Call </option>
+                <option value = "SMS"> SMS </option>
+                <option value = "Email"> Email </option>
+                <option value = "WA"> WA </option>
+                <option value = "Viber"> Viber </option>
+                <option value = "Social Media"> Social Media </option>
+                <option value = "Field Visit"> Field Visit</option>
+                </Form.Select>
+                   </InputGroup>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text >Call_Disposition</InputGroup.Text>
+                <Form.Select aria-label="Default select example"   name ="callDisposition" value ={dataView1.callDisposition}   onChange={handleCallDispositon}  >
+                <option value = "-1" selected>Chọn</option>
+
+                <option value = "RPC - Customer"> RPC - Customer </option>
+                <option value = "RPC - Authorized Representative"> RPC - Authorized Representative </option>
+                <option value = "PTP"> PTP </option>
+                <option value = "Third Party Contact"> Third Party Contact </option>
+                <option value = "Wrong Party Contact"> Wrong Party Contact </option>
+                <option value = "RTP"> RTP </option>
+                <option value = "Busy"> Busy</option>
+                <option value = "Drop"> Drop</option>
+                <option value = "Invalid Number"> Invalid Number</option>  
+
+                 <option value = "No Answer"> No Answer</option>   
+                 <option value = "Not In Service">Not In Service</option> 
+                 <option value = "Not Reached">Not Reached</option>  
+                 <option value = "System Hang Up">System Hang Up</option> 
+                 <option value = "UC">UC</option>      
+                 <option value = "Unknown Contact">Unknown Contact</option>          
+                 <option value = "Voice Message / Operator">Voice Message / Operator</option> 
+                 <option value = "Invalid Address">Invalid Address</option>          
+                </Form.Select>
+              </InputGroup>
+
+
+               <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text >Call_Outcome</InputGroup.Text>
+                <Form.Select aria-label="Default select example" id ="callOUtCome" name ="callOutcome" value ={dataView1.callOutcome}    onChange={handleInputChange}   >
+                <option value = "-1" selected>Chọn</option>
+              
+                </Form.Select>
+              </InputGroup>
+                </>: <></>
+                }
+           
+                
+
+              
 
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Ngày hứa(TT)</InputGroup.Text>
@@ -257,7 +741,10 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                             
                     </Form.Select>
                 </InputGroup>
-                <InputGroup size="sm" className="mb-1">
+              
+
+              {dataCustomer2.campaignId !=1050? <>
+                  <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">PT liên hệ</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="wayContact" value ={dataView1.wayContact}    onChange={handleInputChange}  >
                     
@@ -296,7 +783,8 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                     </Form.Select>
                 </InputGroup>
 
-              
+                </> : <></> }
+                    
 
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Phân loại hồ sơ:</InputGroup.Text>
@@ -322,7 +810,11 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 </Form.Group>
 
                 <div className="mt-3">
-                            <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button>
+                     {dataCustomer2.campaignId !=1050? 
+                     <> <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button></>: <> <Button variant="outline-primary" onClick={ SaveIpactTry2}>Lưu tác động</Button></> }
+                           
+                           
+                           
                  </div>
             </Col>
        

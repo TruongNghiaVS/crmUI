@@ -62,7 +62,7 @@ const ImpactHistory = ({data}) => {
                                             <td >
                                             
                                                {shortDes}</td>
-                                            <td >{item.statusCode}</td>
+                                            <td >{item.statusName}</td>
                                             <td >{orderedCallText}</td>
                                      
                               </tr>

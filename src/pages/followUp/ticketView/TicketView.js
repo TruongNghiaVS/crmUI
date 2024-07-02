@@ -212,7 +212,7 @@ const TicketView = () => {
 
 
     const handleInputChange =(event)=> {
-       
+      
         let valueControl = event.target.value;
         let nameControl = event.target.name;
         setmodel((prevalue) => {
@@ -246,6 +246,7 @@ const TicketView = () => {
      }
 
      const handleInputChangeImpact =(event)=> {
+        debugger;
        
         let valueControl = event.target.value;
         let nameControl = event.target.name;
@@ -259,6 +260,10 @@ const TicketView = () => {
     }
 
     const saveImpact = ()=> {
+        console.log(modelImpact);
+
+      
+     
         Swal.fire({
             title: 'Bạn có muốn lưu lịch sử tác động',
             text: "",
@@ -270,7 +275,7 @@ const TicketView = () => {
             })
             .then((result) => {
             if (result.isConfirmed) {
-                const modelUpdate = modelImpact;
+                const modelUpdate = modelImpact; 
                 let profileId =   window.location.pathname.split("/").pop();
                 modelUpdate.ProfileId = profileId;
                 ImpactHistoryService.add(
@@ -471,6 +476,7 @@ const handleErrUpdate = (data) => {
           ...prevalue,
             campangnName: "Chiến dịch 4",
             customerName:  dataItem.customerName  ,
+            campaignId: dataItem.campaignId,
             status: dataItem.status,
             noAgreement: dataItem.noAgreement,
             nationalId: dataItem.nationalId,
