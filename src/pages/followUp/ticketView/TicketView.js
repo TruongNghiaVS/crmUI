@@ -260,9 +260,6 @@ const TicketView = () => {
     }
 
     const saveImpact = ()=> {
-        console.log(modelImpact);
-
-      
      
         Swal.fire({
             title: 'Bạn có muốn lưu lịch sử tác động',

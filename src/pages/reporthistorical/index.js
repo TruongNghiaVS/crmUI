@@ -459,7 +459,23 @@ const Reporthistorical = () => {
   
         EmployeeService.exportDataImpact2(  bodySearch, (response) => {
                 if (response.statusCode === 200) {
-                    exportDataExcel2(response.value.data);
+                    var userInfo =  JSON.parse( localStorage.getItem("user-info"));
+
+                    var idUser = userInfo .userId;
+                 
+                  
+                      if(idUser != 3614)
+                        {
+                  
+                          exportDataExcel2(response.value.data);
+                        }
+                        else 
+                        {
+                          exportDataExcel2VP(response.value.data);
+
+                        }
+                
+                   
                 } else {
                     
                 }
@@ -633,9 +649,12 @@ const Reporthistorical = () => {
 
 
 const exportDataExcel2 = (dataReder) => {
-
-    var DataExport = dataReder;
-      let workBook = XLSX.utils.book_new();
+     
+  debugger;
+   
+  var DataExport = dataReder;
+  let workBook = XLSX.utils.book_new();
+        
       const Heading = [
         [
          
@@ -660,8 +679,52 @@ const exportDataExcel2 = (dataReder) => {
         );
     XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
     XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
+    var datetime = new Date().getTime();
 
-    let exportFileName = `impactHistoryFinal.xls`;
+    let exportFileName =  `impactHistoryFinal` +  datetime  + `.xls`;
+
+     XLSX.writeFile(workBook,exportFileName);
+
+}
+
+const exportDataExcel2VP = (dataReder) => {
+     
+
+  var DataExport = dataReder;
+    let workBook = XLSX.utils.book_new();
+
+
+        
+      const Heading = [
+        [
+         
+           'Activity_Date',
+           "Account_Number",
+           "Invoice_Number",
+           "Agent_Name",
+           "Activity_Type",
+           "Phone_Number",
+           "Call_Disposition",
+           "Call_Outcome",
+           'Người liên hệ',
+           "Notes",
+          
+           'Ngày hứa TT(MM/dd/yyyy)',
+           'Số tiền hứa thanh toán',
+        
+        
+           
+        ]
+    ];
+ 
+      
+    const workSheet = XLSX.utils.json_to_sheet(DataExport,  
+        { origin: 'A2', skipHeader: true }
+        );
+    XLSX.utils.sheet_add_aoa(workSheet, Heading, { origin: 'A1' });
+    XLSX.utils.book_append_sheet(workBook, workSheet, `data`);
+    var datetime = new Date().getTime();
+    let exportFileName =  `impactHistoryFinal` +  datetime  + `.xls`;
 
      XLSX.writeFile(workBook,exportFileName);
 
@@ -971,7 +1034,7 @@ const exportDataExcel2 = (dataReder) => {
 
                             {
                                 isExportFile==true? 
-                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu</button>
+                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu </button>
                               :<></>
                             }
                                 {

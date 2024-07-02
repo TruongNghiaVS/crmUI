@@ -1052,7 +1052,7 @@ const Reason = () => {
                   <Form.Select aria-label="Default select example" name="statusSearch" value={obejctSearch.statusSearch} onChange={handleInputChange} >
                     <option value='-1'>Tất cả</option>
                     {dataReson != null && dataReson.data.map((item, index) => {
-                      return <option value={item.id}>{item.code}</option>;
+                      return <option value={item.id}>{item.displayName}</option>;
                     })
                     }
                   </Form.Select >

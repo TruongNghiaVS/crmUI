@@ -9,6 +9,12 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
 
     }
 
+    const changePhoneNumber = (e) => {
+        handleInputChange(e);
+
+
+    }
+
     const datalist = [
         {
           text: "RPC - Authorized Representative",
@@ -487,28 +493,29 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
       
         saveImpact();
     }
+
+    function checknull  (itemcheck)  {
+        
+        if(itemcheck == null ||  itemcheck == undefined ||  itemcheck == "")
+            {
+                return true;
+            }
+
+        if(itemcheck <  1) 
+            {
+                return true;
+            }
+
+        return false;
+    }   
     const SaveIpactTry2 =() =>
         {
-            if( dataCustomer2.status == 215)
-            {
-    
-                if(dataView1.statusIm ==   dataCustomer2.status  )
-                {
-                     return;
-                }
-            
-                 
-                
-               
-            }
-       
-    
-    
            //291 292 215
           
              // 215 291 292
+             debugger;
             
-            if(dataView1.activetype  <0)
+            if( checknull (dataView1.activetype)  == true)
             {
                 Swal.fire({
                     icon: 'error',
@@ -518,7 +525,8 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 })
                 return;
             }
-            if(dataView1.callDisposition == '' || dataView1.callDisposition == '-1')
+        
+            if( checknull (dataView1.callDisposition)  == true  || dataView1.callDisposition == '' || dataView1.callDisposition == '-1')
                 {
                     Swal.fire({
                         icon: 'error',
@@ -528,8 +536,8 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                     })
                     return;
                 }
-            if(dataView1.callOutcome == '' || dataView1.callOutcome == '-1')
-                {
+            if( checknull (dataView1.callOutcome)  == true ||  dataView1.callOutcome == '' || dataView1.callOutcome == '-1')
+               {
                     Swal.fire({
                         icon: 'error',
                         title: 'Chọn chơi Call_Outcome',
@@ -540,7 +548,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 }
     
            
-                if(dataView1.noteCode == '' || dataView1.noteCode == '-1')
+                if( checknull (dataView1.noteCode)  == true ||   dataView1.noteCode == '' || dataView1.noteCode == '-1')
                     {
                         Swal.fire({
                             icon: 'error',
@@ -551,7 +559,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                         return;
                     }
         
-            if(dataView1.colorCode == '' || dataView1.colorCode == '-1' ||  dataView1.colorCode =='white')
+            if(  checknull (dataView1.noteCode)  == true || dataView1.colorCode == '' || dataView1.colorCode == '-1' ||  dataView1.colorCode =='white')
                 {
                     Swal.fire({
                         icon: 'error',
@@ -563,9 +571,22 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 }
             
          
-           
+             if(dataView1.phoneSelect ==2)
+                {
+                     if(  checknull (dataView1.phoneNumber)  == true || dataView1.phoneNumber == null ||dataView1.phoneNumber == "" )    
+                        {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Bạn chưa nhập số điện thoại đã gọi',
+                                text: 'yêu  cầu số điện thoại đã gọi',
+                                footer: 'Yêu cầu nghiệp vụ!'
+                            })
+                            return;
+
+                        }
+                }
         
-            if(dataView1.noteIm =='')
+            if(checknull (dataView1.noteIm) || dataView1.noteIm =='')
             {
                 Swal.fire({
                     icon: 'error',
@@ -575,8 +596,6 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 })
                 return;
             }
-    
-          
             saveImpact();
         }
     const  use_number =(node)=>{
@@ -697,7 +716,36 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
               
                 </Form.Select>
               </InputGroup>
+
+           
+              <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text >Số điện thoại đang gọi</InputGroup.Text>
+                <Form.Select aria-label="Default select example" name ="phoneSelect" value ={dataView1.phoneSelect}    onChange={changePhoneNumber}    >
+                    <option value = "1" selected>Hệ thống tự chọn (lần gọi mới nhất)</option>
+                    <option value = "2" >Số khác (nhập tay) </option>
+              
+                </Form.Select>
+              </InputGroup>
+
+                {
+                    dataView1.phoneSelect == 2 ? <>  
+                     <InputGroup size="sm" className="mb-1">
+                     <InputGroup.Text >Nhập SĐT</InputGroup.Text>
+                    <FormControl 
+                    aria-label="phoneNumber" value = {dataView1.phoneNumber}
+                   onChange={handleInputChange} 
+                   name = "phoneNumber"
+
+                  />
+                  
+                  </InputGroup>
+                   </>  : <> </>
+                }
+
+              
                 </>: <></>
+
+
                 }
            
                 
@@ -812,10 +860,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 <div className="mt-3">
                      {dataCustomer2.campaignId !=1050? 
                      <> <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button></>: <> <Button variant="outline-primary" onClick={ SaveIpactTry2}>Lưu tác động</Button></> }
-                           
-                           
-                           
-                 </div>
+                </div>
             </Col>
        
            
