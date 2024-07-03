@@ -313,9 +313,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
     ];
 
     const handleCallDispositon  = (e) => {
-
         handleInputChange(e);
-
         var callDis = e.target.value;
         let arrayDraw = [];
         for (let index = 0; index < datalist.length; index++) {
@@ -324,27 +322,32 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 {
                     arrayDraw = itemis.dataDraw;
                 }
-            
-        }
-
+         }
         document.getElementById("callOUtCome").innerHTML ="";
-
         var optionSelect1 = document.createElement("option");
         optionSelect1.text = "Chọn";
         optionSelect1.value = -1;
         document.getElementById("callOUtCome").appendChild(optionSelect1);
         for (let index = 0; index < arrayDraw.length; index++) {
             const itemDraw = arrayDraw[index];
-           
-
             var optionSelect = document.createElement("option");
             optionSelect.text = itemDraw.text;
             optionSelect.value = itemDraw.value;
+            
             document.getElementById("callOUtCome").appendChild(optionSelect);
             
         }
+       
+        if(arrayDraw.length  < 2 )
+            {
+              
+                // var fristSelected = document.getElementById("callOUtCome").getElementsByTagName('option')[1];
+                // fristSelected.selected = true;
+                
+                
+            }
 
-        
+   
     }
     const SaveIpactTry =() =>
     {

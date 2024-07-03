@@ -464,7 +464,7 @@ const Reporthistorical = () => {
                     var idUser = userInfo .userId;
                  
                   
-                      if(idUser != 3614)
+                      if(idUser != 3614 && idUser != 3640 )
                         {
                   
                           exportDataExcel2(response.value.data);
@@ -1024,17 +1024,17 @@ const exportDataExcel2VP = (dataReder) => {
                            
                         </div>
                         <div className="search-feature">
-                             {
-                                isAdmin && isTeamlead==false? 
+                             {/* {
+                                isAdmin && isTeamlead==false ? 
 
                                 <button className="btn-search" onClick={exportData2}>Xuất dữ liệu BC</button>
                                 
                               :<></>
-                            }
+                            } */}
 
                             {
                                 isExportFile==true? 
-                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu </button>
+                                <button className="btn-search" onClick={exportData2}>Xuất dữ liệu(BC) </button>
                               :<></>
                             }
                                 {
