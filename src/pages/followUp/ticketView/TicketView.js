@@ -73,8 +73,7 @@ const TicketView = () => {
         colorCode: "-1",
         assignee:"-1",
         department: "-1",
-        phoneSelect: 1,
-        activetype : "Phone Call"
+        phoneSelect: 1
 
     });
 
