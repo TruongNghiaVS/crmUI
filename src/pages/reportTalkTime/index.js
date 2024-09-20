@@ -75,7 +75,7 @@ const User = () => {
 
 
   var isExportFile = false;
-if(roleUser === "2" || roleUser === "5" || roleUser === "3" ) {
+if(roleUser === "2" || roleUser === "5" || roleUser === "3" || roleUser ==="6" ) {
   isExportFile = true;
 }
 

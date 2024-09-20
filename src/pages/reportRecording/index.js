@@ -43,6 +43,7 @@ User = () => {
         noAgree: "",
         groupId: 0,
         memberId:0,
+        projectId: -1,
         fromTime: moment(),
         endTime: moment()
     });
@@ -437,6 +438,8 @@ User = () => {
         let timeFrom1 = obejctSearch.timeFrom1;
         let timeFrom2 = obejctSearch.timeFrom2;
         let noAgree = obejctSearch.noAgree;
+        let projectId = obejctSearch.projectId;
+
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -500,6 +503,12 @@ User = () => {
         {
             urlPag +='&memberId=' +memberId;
         }
+
+
+        if(projectId > 0)
+        {
+            urlPag +='&projectId=' +projectId;
+        }
          window.location.replace(urlPag);
     }
     const handlePaging = (data) => {
@@ -514,6 +523,7 @@ User = () => {
         let noAgree = obejctSearch.noAgree;
         let groupId =obejctSearch.groupId;
         let memberId = obejctSearch.memberId;
+        let projectId = obejctSearch.projectId;
         if(fromTime !='' && fromTime != null)
         {
             fromTime = fromTime;
@@ -579,21 +589,17 @@ User = () => {
         {
             urlPag +='&memberId=' +memberId;
         }
+
+        if(projectId > 0)
+            {
+                urlPag +='&memberId=' +projectId;
+            }
         
          window.location.replace(urlPag);
        
 
         return;
-        // const key = 'currentPage';
-        // const value = data;
-        // setObjectPaging(prevState => ({
-        //     ...prevState,
-        //     [key]: value
-        // }
-        // ));
-        // getData();
-
-        // setInit(false);
+      
     }
 
 
@@ -1242,6 +1248,26 @@ name ="noAgree"  value ={obejctSearch.noAgree} onChange={handleInputChange}
 </Form.Group>
 </Col>
 
+
+
+
+{ (roleUser == 2 ||   roleUser ==7 || roleUser ==5 )
+                   && <Col>
+
+                            <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Dự án:</Form.Label>
+                            <InputGroup className="mb-2">
+                            <Form.Select aria-label="Default select example" name="projectId" value={obejctSearch.projectId} onChange={handleInputChange} >
+                        
+                                    <option selected value='-1'>Tất cả</option>
+                                    <option value='8'>Mirae</option>
+                                    <option value='3614'>VP bank</option>
+
+                            </Form.Select >
+                            </InputGroup>
+                            </Form.Group>
+
+                        </Col> }
 
                      
                           

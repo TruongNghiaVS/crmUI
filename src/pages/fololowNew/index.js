@@ -709,6 +709,7 @@ const Reason = () => {
       typegetData: typegetData,
       memberId: obejctSearch.memberId,
       groupId: obejctSearch.groupId,
+      projectId :  obejctSearch.projectId,
       noAgree: obejctSearch.noAgree,
       colorCode: obejctSearch.colorCode,
       status: obejctSearch.status
@@ -868,8 +869,8 @@ const Reason = () => {
         <Row>
         <Col xs={8} > 
               <Row>
-                <Col>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                {/* <Col>
+                  <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
                     <Form.Label>CMND:</Form.Label>
                     <InputGroup className="mb-2">
                       <Form.Control
@@ -877,11 +878,11 @@ const Reason = () => {
                       />
                     </InputGroup>
                   </Form.Group>
-                </Col>
+                </Col> */}
                 <Col>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
                 <Form.Label>Số điện thoại:</Form.Label>
-                <InputGroup className="mb-2">
+                <InputGroup className="mb-1">
                   <Form.Control
                     type="text"
                     name="phoneSerach" value={obejctSearch.phoneSerach} onChange={handleInputChange}
@@ -967,8 +968,28 @@ const Reason = () => {
                   </Form.Group>
                 </Col>
 
+
+                { (roleUser == 1 ||   roleUser ==7 )
+                   && <Col>
+
+                            <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Dự án:</Form.Label>
+                            <InputGroup className="mb-2">
+                            <Form.Select aria-label="Default select example" name="projectId" value={obejctSearch.projectId} onChange={handleInputChange} >
+                        
+                                    <option selected value='-1'>Tất cả</option>
+                                    <option value='1'>Mirae</option>
+                                    <option value='2'>VP bank</option>
+
+                            </Form.Select >
+                            </InputGroup>
+                            </Form.Group>
+
+                        </Col> }
               </Row>
             </Col>
+
+            
 
           </Row>
         
@@ -1078,6 +1099,8 @@ const Reason = () => {
                 </InputGroup>
               </Form.Group>
                     </Col>
+
+                    
                     </Row>
               
               </Col>

@@ -86,7 +86,7 @@ const Header = ({ classHeader }) => {
             <nav className='nav-header'>
                 <ul className='menu'>
                     <li className='list-link'><Link className='nav-link link-main' to="/">HCM</Link></li>
-                    {(roleUser == 2)&&<li className='list-link'>
+                    {(1 == 2)&&<li className='list-link'>
                         <Link className='nav-link' to="/kho-luu-tru">Kho lưu trữ <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>
                           <li className='sub-list-link'>
@@ -98,7 +98,7 @@ const Header = ({ classHeader }) => {
                          </ul>
                     </li>
                          }
-                     {(roleUser != 2)&&<li className='list-link'>
+                     {(2 != 2)&&<li className='list-link'>
                         <Link className='nav-link' to="/tra-cuu?keysearch=">Tra cứu </Link>
                         
                     </li>

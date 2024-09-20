@@ -645,7 +645,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
 
            
                
-                {dataCustomer2.campaignId !=1052? <>
+                {dataCustomer2.campaignId !=1053? <>
                  <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="statusIm" value ={dataView1.statusIm}    onChange={handleInputChange}  >
@@ -670,7 +670,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
 
                 
 
-                 {(dataCustomer2.campaignId ==1052)  ? <>
+                 {(dataCustomer2.campaignId ==1053)  ? <>
                  
                  
                 <InputGroup size="sm" className="mb-1">   <InputGroup.Text >Activetype</InputGroup.Text>
@@ -794,7 +794,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 </InputGroup>
               
 
-              {dataCustomer2.campaignId !=1052? <>
+              {dataCustomer2.campaignId !=1053? <>
                   <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">PT liên hệ</InputGroup.Text>
                     <Form.Select aria-label="Default select example" name ="wayContact" value ={dataView1.wayContact}    onChange={handleInputChange}  >
@@ -861,7 +861,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 </Form.Group>
 
                 <div className="mt-3">
-                     {dataCustomer2.campaignId !=1052? 
+                     {dataCustomer2.campaignId !=1053? 
                      <> <Button variant="outline-primary" onClick={SaveIpactTry}>Lưu tác động</Button></>: <> <Button variant="outline-primary" onClick={ SaveIpactTry2}>Lưu tác động</Button></> }
                 </div>
             </Col>

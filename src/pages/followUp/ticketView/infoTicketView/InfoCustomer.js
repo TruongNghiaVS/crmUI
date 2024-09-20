@@ -47,6 +47,14 @@ const displayMobilePhone = (numberPhone) =>
 }
 
 
+const jsonProfileTemp =  JSON.parse(localStorage.getItem('user-info'));
+
+const roleUserTemp = jsonProfileTemp.role;
+
+
+
+
+
 const InfoCustomer = ({data,handleInputChange}) => {
     const dateForPicker = (dateString) => {
         return moment(new Date(dateString)).format('YYYY-MM-DD');
@@ -228,11 +236,12 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 </Col>
             </Row>
        
-         
-            <InputGroup size="sm" className="mb-1">
+          {  ( roleUserTemp === "2" || roleUserTemp === "5" || roleUserTemp === "6"   ) &&  <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>CMT/CCCD</InputGroup.Text>
                 <FormControl   aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
-            </InputGroup>
+              </InputGroup>
+
+          }
 
             <strong>Tương tác gọi </strong>
 

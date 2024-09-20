@@ -369,7 +369,7 @@ const ModelAddUser = (props) => {
                             <option value="4">Dự án</option>
 
                             <option value="5">Sup</option>
-
+                            <option value="7">ASup</option>
                         </Form.Select>
 
                     </InputGroup>
