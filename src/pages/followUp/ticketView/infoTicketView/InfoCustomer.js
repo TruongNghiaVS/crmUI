@@ -48,8 +48,16 @@ const displayMobilePhone = (numberPhone) =>
 
 
 const jsonProfileTemp =  JSON.parse(localStorage.getItem('user-info'));
+let roleUserTemp = "-1";
+if(jsonProfileTemp == null)
+{
+    
+}
+else {
+    roleUserTemp =  jsonProfileTemp.role;
+}
 
-const roleUserTemp = jsonProfileTemp.role;
+
 
 
 
