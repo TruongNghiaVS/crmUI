@@ -244,12 +244,11 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 </Col>
             </Row>
        
-          {  ( roleUserTemp === "2" || roleUserTemp === "5" || roleUserTemp === "6"   ) &&  <InputGroup size="sm" className="mb-1">
+            <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>CMT/CCCD</InputGroup.Text>
                 <FormControl   aria-label="Small" readOnly value = {data.nationalId} name = "nationalId" onChange={handleInputChange} />
               </InputGroup>
 
-          }
 
             <strong>Tương tác gọi </strong>
 
