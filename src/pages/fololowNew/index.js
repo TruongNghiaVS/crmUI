@@ -18,6 +18,7 @@ import "./User.scss";
 import { useEffect, useRef } from 'react';
 import ConstantData from '../../utils/Constants';
 import EmployeeService from '../../services/EmployeeService';
+import AutoCallService from '../../services/AutoCallService';
 import MangagementPackageService from '../../services/PackageService';
 import Paging from "./Paging";
 import { toast } from 'react-toastify';
@@ -761,9 +762,7 @@ const Reason = () => {
 
   }
 
-
   const handleShowModel = () => {
-
     setDataItem((prevalue) => {
       return {
         ...prevalue,   // Spread Operator               
@@ -776,6 +775,99 @@ const Reason = () => {
 
   const searchData = () => {
     loadData();
+  }
+
+  let myInterval = null;
+
+  const autocall = () => {
+    isBreak = false;
+    Swal.fire({
+      title: "Đang chờ cuộc gọi từ hệ thóng",
+      width: 600,
+      padding: "3em",
+      color: "#716add",
+      background: "#fff url(/images/trees.png)",
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `
+    });
+   
+    myInterval = setInterval(getInfomationCall, 1000);
+    function getInfomationCall() {
+      getInfomation();
+  }
+   
+  }
+  var isBreak = false;
+
+
+
+
+
+
+function stopRequestAutoCall() {
+  clearInterval(myInterval);
+}
+let index =0;
+
+  const getInfomation = () => {
+    index ++;
+
+    // if(index ==5)
+    // {
+    
+    //   isBreak = true;
+    // }
+   
+    if(isBreak)
+    {
+      stopRequestAutoCall();
+      return;
+    }
+    AutoCallService.GetProfile((response) => {
+
+      if (response.value == "") {
+   
+      }
+      else {
+
+        window.open(response.value , '_blank');
+        stopRequestAutoCall();
+        isBreak = true;
+        Swal.close();
+
+      }
+
+
+    }, (error) => {
+           
+    });
+  }
+  const acd = () => {
+      let timerInterval;
+      Swal.fire({
+        title: "Đã nhận cuộc gọi thành công",
+        html: "Vui lòng chờ trong <b></b> giây lát.",
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+       
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
+
+    
   }
 
   const exportfileAll = () => {
@@ -1136,6 +1228,8 @@ const Reason = () => {
           </div>
 
           <div className="search-feature">
+
+            <button className="btn-search" onClick={autocall}>Sẵn sàng nhận cuộc gọi </button>
 
             <button className="btn-search" onClick={searchData}>Tìm kiếm </button>
           </div>

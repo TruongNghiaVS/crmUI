@@ -84,7 +84,11 @@ static httpPost (url, headers, body, callSuccess, callError) {
         
               })
               .catch((err) => {
-                callError(err);
+                if(callError)
+                {
+                        callError(err);
+                }
+               
           })
         
         // .then((res) => {res.json()})

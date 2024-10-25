@@ -162,11 +162,8 @@ const TicketView = () => {
      }
 
     useEffect(() => {
-
-              
     $('.clicktocall').unbind().click(function(e){
         
-      
         var phoneNumber = e.target.getAttribute("valuetemp");
         callToline1(phoneNumber);
       

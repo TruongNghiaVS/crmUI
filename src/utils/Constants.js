@@ -5,7 +5,7 @@ class ConstantData {
     };
     // API URL
     //Login
-    static URL_LOGIN = `${ConstantData.DOMAIN}/api/user/login`;
+    static URL_LOGIN = `${ConstantData.DOMAIN }/api/user/login`;
     static URL_Employee_GetALl = `${ConstantData.DOMAIN}/api/employee/getAll`;
    
     static URL_Employee_Add = `${ConstantData.DOMAIN}/api/employee/add`;
@@ -200,6 +200,8 @@ class ConstantData {
     static URL_Allreason_getAll = `${ConstantData.DOMAIN}/api/campagnProfile/getAllReason`;
 
     static URL_TrackingCall_GetAll = `${ConstantData.DOMAIN}/api/trackingCall/getAll`;
+
+    static URL_GetProfileInfomation = `${ConstantData.DOMAIN}/api/ACD/GetInfomationCall`;
     
 }
 export default ConstantData;
