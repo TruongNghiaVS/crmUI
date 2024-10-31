@@ -3,7 +3,7 @@ svg:hover {
     cursor: pointer;
 }
 tr:hover {
-    background-color: #1461b9;
+    background-color: #93C66A;
     color: hsl(0, 0%, 100%);
     a {
         color: #ffffff !important;
@@ -381,7 +381,7 @@ tr:hover {
     height: 20px;
   }
   .clicktocall{
-    color: #1461b9;
+    color: #93C66A;
     cursor:pointer;
     font-weight: bold;
   }
@@ -554,7 +554,7 @@ tr:hover {
     color: #ffffff;
 }
 .processCall {
-    background-color: #1461b9;
+    background-color: #93C66A;
     color: #ffffff;
 }
 .justCall {
@@ -652,10 +652,29 @@ tr:hover {
     
     
 
-    color: #0E4A8F;
+    color: #00883C;
  
 }
 
 .noteImportant {
     background-color: #e7e0e0;
+}
+
+
+.phone_name {
+    font-weight: bold;
+    color: #1c7bd5;
+    font-size: 1.3rem;
+}
+
+.phone_number {
+    font-weight: bold;
+    color: black;
+    font-size: 1.3rem;
+}
+
+.time-talking {
+    font-weight: bold;
+    color: rgb(124, 0, 128);
+    font-size: 2rem;
 }

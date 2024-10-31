@@ -235,10 +235,8 @@ const TicketView = () => {
 
      const handleClick =(value)=> {
        
-        document.getElementById("red").classList.remove("activebutton");
-        document.getElementById("black").classList.remove("activebutton");
         document.getElementById("green").classList.remove("activebutton");
-        document.getElementById("yellow").classList.remove("activebutton");
+        document.getElementById("black").classList.remove("activebutton");
         document.getElementById(value).classList.add("activebutton");
         handleInputChangeColor(value);
      }
@@ -542,6 +540,10 @@ const handleErrUpdate = (data) => {
                 <h4 className='box-tit'>
                     <FaTicketAlt className="icon-tit" />
                     Thông tin hợp đồng số:   <span className='bold-text'> {model.noAgreement}</span> 
+                </h4>
+                <h4 className='box-tit'>
+                    <FaTicketAlt className="icon-tit" />
+                     Đang gọi cho anh:  <span className='phone_name'>Nguyễn Trường Nghĩa </span>  SĐT:  <span className='phone_number'>0383338840 </span> Thời gian đàm thoại:  <span className='time-talking'>00:00:00 </span>  
                 </h4>
                 <div className="box-info">
 

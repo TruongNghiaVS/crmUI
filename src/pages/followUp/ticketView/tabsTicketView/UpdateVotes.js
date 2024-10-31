@@ -12,7 +12,24 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
     const changePhoneNumber = (e) => {
         handleInputChange(e);
 
+      
 
+    }
+
+    const changeReason = (e)=> {
+
+        if( e.target.value !="335")
+        {
+            document.getElementById("hide1").style.display ="none";
+            document.getElementById("hide2").style.display ="none";
+        }
+        else 
+        {
+            document.getElementById("hide1").style.display ="inline-flex";
+            document.getElementById("hide2").style.display ="inline-flex";
+        }
+
+        handleInputChange(e);
     }
 
     const datalist = [
@@ -430,31 +447,31 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
             })
             return;
         }
-        if(dataView1.placeCode == '' || dataView1.placeCode == '-1')
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Chọn chơi nơi liên hệ',
-                text: 'Chọn chơi nơi liên hệ',
-                footer: 'Yêu cầu nghiệp vụ!'
-            })
-            return;
-        }
+        // if(dataView1.placeCode == '' || dataView1.placeCode == '-1')
+        // {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Chọn chơi nơi liên hệ',
+        //         text: 'Chọn chơi nơi liên hệ',
+        //         footer: 'Yêu cầu nghiệp vụ!'
+        //     })
+        //     return;
+        // }
 
        
-        if(dataView1.wayContact == '' || dataView1.wayContact == '-1')
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Chọn phương thức liên hệ',
-                text: 'Chọn phương thức liên hệ',
-                footer: 'Yêu cầu nghiệp vụ!'
-            })
-            return;
-        }
+        // if(dataView1.wayContact == '' || dataView1.wayContact == '-1')
+        // {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Chọn phương thức liên hệ',
+        //         text: 'Chọn phương thức liên hệ',
+        //         footer: 'Yêu cầu nghiệp vụ!'
+        //     })
+        //     return;
+        // }
 
         
-        if(dataView1.statusIm ==215 || dataView1.statusIm ==243 )
+        if(dataView1.statusIm ==335  )
         {
 
             if(dataView1.moneyPromise =='')
@@ -467,6 +484,8 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                 })
                 return;
             }
+
+
 
             if(dataView1.promiseday == null || dataView1.promiseday =="")
             {
@@ -641,132 +660,7 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
         
         <Row>
             <Col>
-                <strong>Tác động mớI { dataCustomer2.campaignId }    </strong>
-
-           
-               
-                {dataCustomer2.campaignId !=1055? <>
-                 <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name ="statusIm" value ={dataView1.statusIm}    onChange={handleInputChange}  >
-                    
-                    <option value = "-1" selected>Chọn lý do</option>
-                    {
-                              dataReason.data.map((item, i) => {    
-                              
-                                    return ( <>
-                                        <option value = {item.id}> {item.code} </option>
-                                         </>)
-                              
-                       
-                        })
-                        }
-                
-                    </Form.Select>
-                </InputGroup>
-
-                </> : <></> }
-                    
-
-                
-
-                 {(dataCustomer2.campaignId ==1055)  ? <>
-                 
-                 
-                <InputGroup size="sm" className="mb-1">   <InputGroup.Text >Activetype</InputGroup.Text>
-                <Form.Select aria-label="Default select example" name ="activetype" value ={dataView1.activetype}    onChange={handleInputChange}  >
-                <option value = "-1" selected>Chọn lý do</option>
-                <option value = "Phone Call"> Phone Call </option>
-                <option value = "SMS"> SMS </option>
-                <option value = "Email"> Email </option>
-                <option value = "WA"> WA </option>
-                <option value = "Viber"> Viber </option>
-                <option value = "Social Media"> Social Media </option>
-                <option value = "Field Visit"> Field Visit</option>
-                </Form.Select>
-                   </InputGroup>
-            <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text >Call_Disposition</InputGroup.Text>
-                <Form.Select aria-label="Default select example"   name ="callDisposition" value ={dataView1.callDisposition}   onChange={handleCallDispositon}  >
-                <option value = "-1" selected>Chọn</option>
-
-                <option value = "RPC - Customer"> RPC - Customer </option>
-                <option value = "RPC - Authorized Representative"> RPC - Authorized Representative </option>
-                <option value = "PTP"> PTP </option>
-                <option value = "Third Party Contact"> Third Party Contact </option>
-                <option value = "Wrong Party Contact"> Wrong Party Contact </option>
-                <option value = "RTP"> RTP </option>
-                <option value = "Busy"> Busy</option>
-                <option value = "Drop"> Drop</option>
-                <option value = "Invalid Number"> Invalid Number</option>  
-
-                 <option value = "No Answer"> No Answer</option>   
-                 <option value = "Not In Service">Not In Service</option> 
-                 <option value = "Not Reached">Not Reached</option>  
-                 <option value = "System Hang Up">System Hang Up</option> 
-                 <option value = "UC">UC</option>      
-                 <option value = "Unknown Contact">Unknown Contact</option>          
-                 <option value = "Voice Message / Operator">Voice Message / Operator</option> 
-                 <option value = "Invalid Address">Invalid Address</option>          
-                </Form.Select>
-              </InputGroup>
-
-
-               <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text >Call_Outcome</InputGroup.Text>
-                <Form.Select aria-label="Default select example" id ="callOUtCome" name ="callOutcome" value ={dataView1.callOutcome}    onChange={handleInputChange}   >
-                <option value = "-1" selected>Chọn</option>
-              
-                </Form.Select>
-              </InputGroup>
-
-           
-              <InputGroup size="sm" className="mb-1">
-                <InputGroup.Text >Số điện thoại đang gọi</InputGroup.Text>
-                <Form.Select aria-label="Default select example" name ="phoneSelect" value ={dataView1.phoneSelect}    onChange={changePhoneNumber}    >
-                    <option value = "1" selected>Hệ thống tự chọn (lần gọi mới nhất)</option>
-                    <option value = "2" >Số khác (nhập tay) </option>
-              
-                </Form.Select>
-              </InputGroup>
-
-                {
-                    dataView1.phoneSelect == 2 ? <>  
-                     <InputGroup size="sm" className="mb-1">
-                     <InputGroup.Text >Nhập SĐT</InputGroup.Text>
-                    <FormControl 
-                    aria-label="phoneNumber" value = {dataView1.phoneNumber}
-                   onChange={handleInputChange} 
-                   name = "phoneNumber"
-
-                  />
-                  
-                  </InputGroup>
-                   </>  : <> </>
-                }
-
-              
-                </>: <></>
-
-
-                }
-           
-                
-
-              
-
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Ngày hứa(TT)</InputGroup.Text>
-                    <FormControl 
-                        name = "promiseday"
-                        type="date"
-                        aria-label="Small"  value ={dateForPicker(dataView1.promiseday)}   
-                        onChange={handleInputChange} />
-                </InputGroup>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Tiền hứa</InputGroup.Text>
-                    <FormControl onChange={handleInputChange}   name ="moneyPromise" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value ={dataView1.moneyPromise} />
-                </InputGroup>
+                <strong>Tác động mớI    </strong>
 
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Liên hệ</InputGroup.Text>
@@ -792,62 +686,58 @@ const UpdateVotes = ({dataView1,dataCustomer2,dataView2, handleInputChange, mast
                             
                     </Form.Select>
                 </InputGroup>
-              
-
-              {dataCustomer2.campaignId !=1055? <>
-                  <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">PT liên hệ</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name ="wayContact" value ={dataView1.wayContact}    onChange={handleInputChange}  >
+               
+                {dataCustomer2.campaignId !=1055? <>
+                 <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text id="inputGroup-sizing-sm">Tình trạng</InputGroup.Text>
+                    <Form.Select aria-label="Default select example" name ="statusIm" value ={dataView1.statusIm}    onChange={changeReason}  >
                     
-                                    <option value = "-1" selected>Chọn phương thức liên hệ</option>
-                                    <option value = "LET">Gửi thư thông báo nợ</option>
-                                    <option value = "PHAP_LY">Thu hồi nợ pháp lý</option>
-                                    <option value = "DIA_BAN">Thu hồi nợ tại địa bàn</option>
-                                    <option value = "DIEN_THOAI" selected >Thu hồi nợ qua điện thoại</option>
-                                    <option value = "SMS">Gửi SMS nhắc nợ</option>
-                                    <option value = "SKIP_CALL">Truy tìm thông tin khách hàng qua điện thoại</option>
-                                    <option value = "SKIP_SOCIAL_NETWORK">Truy tìm thông tin khách hàng qua mạng xã hội</option>
-                                  
-                                   
-                            
-                    </Form.Select>
-                </InputGroup>
-                <InputGroup size="sm" className="mb-1">
-                    <InputGroup.Text id="inputGroup-sizing-sm">Nơi liên hệ</InputGroup.Text>
-                    <Form.Select aria-label="Default select example" name ="placeCode" value ={dataView1.placeCode}    onChange={handleInputChange}  >
-                    
-                                    <option value = "-1" selected>Chọn nơi liên hệ</option>
-                                    <option value = "KHAC">kHÁC</option>
-                                    <option value = "TAM_TRU">TẠM TRÚ</option>
-                                    <option value = "HO_KHAU">HỘ KHẨU</option>
-                                    <option value = "CONG_TY">CÔNG TY</option>
-                                    <option value = "TOA_AN">TÒA ÁN</option>
-                                    <option value = "VIEN_KIEM_SAT">VIỆN KIỂM SÁT</option>
-                                    <option value = "CONG_AN">CÔNG AN</option>
-                                    <option value = "SO_KH">SỐ KHÁCH HÀNG</option>
-                                    <option value = "SO_CONG_TY">SỔ CÔNG TY</option>
-                                    <option value = "SO_NGUOI_THAN1">SỐ NGƯỜI THÂN 1</option>
-                                    <option value = "SO_NGUOI_THAN2">SỐ NGƯỜI THÂN 2</option>
-                                    <option value = "SO_KHAC">SỐ KHÁC</option>
-                                   
-                            
+                    <option value = "-1" selected>Chọn lý do</option>
+                    {
+                              dataReason.data.map((item, i) => {    
+                              
+                                    return ( <>
+                                        <option value = {item.id}> {item.code} </option>
+                                         </>)
+                              
+                       
+                        })
+                        }
+                
                     </Form.Select>
                 </InputGroup>
 
                 </> : <></> }
                     
 
+                
+
+           
+                
+
+              
+
+                <InputGroup size="sm" className="mb-1" id ="hide1">
+                    <InputGroup.Text id="inputGroup-sizing-sm">Ngày hứa(TT)</InputGroup.Text>
+                    <FormControl 
+                        name = "promiseday"
+                        type="date"
+                        aria-label="Small"  value ={dateForPicker(dataView1.promiseday)}   
+                        onChange={handleInputChange} />
+                </InputGroup>
+                <InputGroup size="sm" className="mb-1" id ="hide2" >
+                    <InputGroup.Text id="inputGroup-sizing-sm">Tiền hứa</InputGroup.Text>
+                    <FormControl onChange={handleInputChange}   name ="moneyPromise" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value ={dataView1.moneyPromise} />
+                </InputGroup>
+
+                    
+
                 <InputGroup size="sm" className="mb-1">
                     <InputGroup.Text id="inputGroup-sizing-sm">Phân loại hồ sơ:</InputGroup.Text>
                    
                      <div className='btnGroup'>
-                                    <button class="button green "  title=" Góp kỳ"  id ="green" onClick={()=>handleClick("green")} ></button>
-                                    <button class="button red" id ="red"  title="Thanh lý"   onClick={()=>handleClick("red")}  ></button>
-                                    <button class="button yellow "  title="Đi Skip thông tin"  id ="yellow"  onClick={()=>handleClick("yellow")} ></button>
-                                   
-                                    <button class="button black " id ="black" title="Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng" onClick={()=>handleClick("black")} ></button>
-
-                                    <button class="button greenBlude " id ="greenBlude" title="Thông tin kết nối được với khách hàng" onClick={()=>handleClick("greenBlude")} ></button>
+                        <button class="button green "  title=" Góp kỳ"  id ="green" onClick={()=>handleClick("green")} ></button>
+                        <button class="button black " id ="black" title="Hồ sơ ko thể skip được thông tin và sẽ trả lại cuối tháng" onClick={()=>handleClick("black")} ></button>
                                     
                      </div>
                 </InputGroup>

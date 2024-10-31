@@ -363,10 +363,17 @@ const InfoCustomer = ({data,handleInputChange}) => {
                     </InputGroup>
                 </Col>
 
-                <Col>
+                {/* <Col>
                 <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng đã TT</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalPaid)} name = "totalPaid"  onChange={handleInputChange}  />
+            </InputGroup>
+                </Col> */}
+
+                    <Col>
+                <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Gốc + lãi</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.totalMoneyPaid)} name = "totalPaid"  onChange={handleInputChange}  />
             </InputGroup>
                 </Col>
             </Row>
@@ -377,10 +384,17 @@ const InfoCustomer = ({data,handleInputChange}) => {
                 <FormControl readOnly  aria-label="Small" value = {data.tenure} name ="tenure" onChange={handleInputChange}  />
             </InputGroup>
             </Col>
-            <Col>
+            {/* <Col>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Số kỳ đã TT</InputGroup.Text>
                 <FormControl readOnly aria-label="Small" value = {data.noTenure} name = "noTenure" onChange={handleInputChange}   />
+            </InputGroup>   
+                </Col> */}
+
+            <Col>
+            <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tổng tiền lãi</InputGroup.Text>
+                <FormControl readOnly aria-label="Small" value = {data.totalFines} name = "noTenure" onChange={handleInputChange}   />
             </InputGroup>   
                 </Col>
              
@@ -395,9 +409,16 @@ const InfoCustomer = ({data,handleInputChange}) => {
             </InputGroup>
                 </Col>
 
-                <Col>
+                {/* <Col>
                 <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Nợ Gốc</InputGroup.Text>
+                <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.debitOriginal)} name ="debitOriginal" onChange={handleInputChange}  />
+            </InputGroup>
+                </Col> */}
+
+                <Col>
+                <InputGroup size="sm" className="mb-1">
+                <InputGroup.Text>Tổng tiền gốc</InputGroup.Text>
                 <FormControl readOnly  aria-label="Small" value = {numberWithCommas(data.debitOriginal)} name ="debitOriginal" onChange={handleInputChange}  />
             </InputGroup>
                 </Col>

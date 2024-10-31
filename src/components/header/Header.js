@@ -8,9 +8,6 @@ import LoginService from '../../services/LoginService';
 import moment from "moment";
 
 const Header = ({ classHeader }) => {
-
-  
-   
     const [isHiddenProfile, setIsHiddenProfile] = useState(false);
     const [isOpenModel, setIsOpenModel] = useState(false);
     const formTime =  moment().format("YYYY-MM-DD");
@@ -18,7 +15,6 @@ const Header = ({ classHeader }) => {
     const endTime1 =  moment().subtract(2, 'months').format("YYYY-MM-DD");
     let navigate = useNavigate();
     // navigate('/campangn');
-
     const jsonProfile =  JSON.parse(localStorage.getItem('user-info'));
    if( jsonProfile ==null)
    {
@@ -55,7 +51,6 @@ const Header = ({ classHeader }) => {
         setIsHiddenProfile(false);
         setIsOpenModel(!isOpenModel);
     }
-
     const handleLogout = () => {
         var dataJson = {
             role: "",
@@ -72,20 +67,16 @@ const Header = ({ classHeader }) => {
         }
       }, (error) => {
          
-        // setIsLoading(false);
+      
       });
 
   
 };
-
-
     return (
-
-
         <header className={classHeader}>
             <nav className='nav-header'>
                 <ul className='menu'>
-                    <li className='list-link'><Link className='nav-link link-main' to="/">HCM</Link></li>
+                    <li className='list-link'><Link className='nav-link link-main' to="/">SMART BANK</Link></li>
                     {(1 == 2)&&<li className='list-link'>
                         <Link className='nav-link' to="/kho-luu-tru">Kho lưu trữ <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>

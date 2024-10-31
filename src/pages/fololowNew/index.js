@@ -31,7 +31,7 @@ let XLSX = require("xlsx");
 
 
 
-const Reason = () => {
+const  Reason = () => {
   let { detail } = useParams();
   const [isOpenModel, setIsOpenModel] = useState(false);
   const [isInit, setInit] = useState(false);
@@ -555,7 +555,7 @@ const Reason = () => {
           .then((result) => {
             if (result.isConfirmed) {
               var link = document.createElement('a');
-              link.href = 'http://192.168.1.3:7777' + response;
+              link.href = 'http://192.168.1.141:8888' + response;
               document.body.appendChild(link);
               link.click();
               document.body.removeChild(link);
@@ -651,7 +651,7 @@ const Reason = () => {
           .then((result) => {
             if (result.isConfirmed) {
               var link = document.createElement('a');
-              link.href = 'http://192.168.1.3:7777' + response;
+              link.href = 'http://192.168.1.141:8888' + response;
               document.body.appendChild(link);
               link.click();
               document.body.removeChild(link);
