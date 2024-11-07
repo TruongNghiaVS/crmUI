@@ -27,11 +27,13 @@ import Swal from 'sweetalert2';
 import UploadFile from "./UploadFile";
 import UploadFile2 from "./UploadFile2";
 import CommonService from "../../services/CommonService";
+import { BsDisplay } from 'react-icons/bs';
 let XLSX = require("xlsx");
 
 
 
-const  Reason = () => {
+const  Reason = ( {triggerAutocall}) => {
+
   let { detail } = useParams();
   const [isOpenModel, setIsOpenModel] = useState(false);
   const [isInit, setInit] = useState(false);
@@ -777,75 +779,14 @@ const  Reason = () => {
     loadData();
   }
 
-  let myInterval = null;
-
+  
   const autocall = () => {
-    isBreak = false;
-    Swal.fire({
-      title: "Đang chờ cuộc gọi từ hệ thóng",
-      width: 600,
-      padding: "3em",
-      color: "#716add",
-      background: "#fff url(/images/trees.png)",
-      backdrop: `
-        rgba(0,0,123,0.4)
-        url("/images/nyan-cat.gif")
-        left top
-        no-repeat
-      `
-    });
    
-    myInterval = setInterval(getInfomationCall, 1000);
-    function getInfomationCall() {
-      getInfomation();
+      triggerAutocall();
+
   }
-   
-  }
-  var isBreak = false;
+  
 
-
-
-
-
-
-function stopRequestAutoCall() {
-  clearInterval(myInterval);
-}
-let index =0;
-
-  const getInfomation = () => {
-    index ++;
-
-    // if(index ==5)
-    // {
-    
-    //   isBreak = true;
-    // }
-   
-    if(isBreak)
-    {
-      stopRequestAutoCall();
-      return;
-    }
-    AutoCallService.GetProfile((response) => {
-
-      if (response.value == "") {
-   
-      }
-      else {
-
-        window.open(response.value , '_blank');
-        stopRequestAutoCall();
-        isBreak = true;
-        Swal.close();
-
-      }
-
-
-    }, (error) => {
-           
-    });
-  }
   const acd = () => {
       let timerInterval;
       Swal.fire({
@@ -1201,9 +1142,6 @@ let index =0;
           </Row> : <></>}
       
 
-
-
-
         
         </Form>
 
@@ -1226,12 +1164,10 @@ let index =0;
             }
 
           </div>
-
           <div className="search-feature">
-
             <button className="btn-search" onClick={autocall}>Sẵn sàng nhận cuộc gọi </button>
-
             <button className="btn-search" onClick={searchData}>Tìm kiếm </button>
+            <a id ="itdemo" className="hideElement"  href="http://stackoverflow.com">Click me</a>
           </div>
         </div>
         {/* <Tabs

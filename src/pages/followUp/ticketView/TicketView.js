@@ -8,9 +8,7 @@ import Swal from 'sweetalert2'
 import CampagnProfileService from '../../../services/CampagnProfileService';
 import ImpactHistoryService from '../../../services/ImpactHistoryService';
 
-
 import $ from 'jquery';
-
 import ProcessingCall from '../../../services/ProcessingCall';
 const TicketView = () => {
 
@@ -534,16 +532,26 @@ const handleErrUpdate = (data) => {
         setisOPenUploadFile3(!isOPenUploadFile3);
   }
 
+
+
+
+
     return (
         <div className="ticket-view">
+            <a id ="itdemo" className="hideElement"   href="">Click me</a>
             <div className='box-tbl'>
                 <h4 className='box-tit'>
                     <FaTicketAlt className="icon-tit" />
                     Thông tin hợp đồng số:   <span className='bold-text'> {model.noAgreement}</span> 
                 </h4>
-                <h4 className='box-tit'>
+                <h4 className='box-tit' id ="havingCalling" style={{display: "none"}}>
                     <FaTicketAlt className="icon-tit" />
-                     Đang gọi cho anh:  <span className='phone_name'>Nguyễn Trường Nghĩa </span>  SĐT:  <span className='phone_number'>0383338840 </span> Thời gian đàm thoại:  <span className='time-talking'>00:00:00 </span>  
+                     Đang gọi cho anh:  <span className='phone_name'> </span>  SĐT:  <span className='phone_number'> </span> Thời gian đàm thoại:  <span className='time-talking'> </span>  
+                </h4>
+
+                <h4 className='box-tit' id ="noCalling"  style={{display: "none"}}>
+                    <FaTicketAlt className="icon-tit" />
+                     <span className='time-talking'>hiện không có cuộc gọi khách hàng nào, vui lòng hoàn tất tác động, chờ đợ cuộc gọi khác hoặc quay lại màn hình chính</span>  
                 </h4>
                 <div className="box-info">
 

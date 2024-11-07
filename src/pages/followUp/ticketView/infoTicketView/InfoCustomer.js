@@ -394,7 +394,7 @@ const InfoCustomer = ({data,handleInputChange}) => {
             <Col>
             <InputGroup size="sm" className="mb-1">
                 <InputGroup.Text>Tổng tiền lãi</InputGroup.Text>
-                <FormControl readOnly aria-label="Small" value = {data.totalFines} name = "noTenure" onChange={handleInputChange}   />
+                <FormControl readOnly aria-label="Small" value = {numberWithCommas(data.totalFines)} name = "noTenure" onChange={handleInputChange}   />
             </InputGroup>   
                 </Col>
              

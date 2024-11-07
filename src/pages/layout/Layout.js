@@ -37,6 +37,7 @@ import DocumentData from "../DocumentData";
 import ReportTalkTime from "../reportTalkTime";
 import TrackingCall from "../TrackingCall";
 
+
 import Tracking from "../tracking";
 
 import ReportRecording from "../reportRecording";
@@ -52,6 +53,7 @@ import LineManagement from "../lineManagement";
 import DpdManagement from "../dpdManagement";
 import NanagementPackage from "../packageManagement";
 import TrackingService from "../../services/TrackingService";
+import AutoCallService from "../../services/AutoCallService";
 import Swal from "sweetalert2";
 const Layout = (props) => {
   const [heightLayout, setHeightLayout] = useState(0);
@@ -81,7 +83,7 @@ const Layout = (props) => {
         id="layout"
         className="layout layout-login"
       >
-        <Screen screen={props.page} />
+       <Screen screen={props.page} />
       </div>
     );
   } else {
@@ -94,7 +96,7 @@ const Layout = (props) => {
       >
         <Header classHeader="header" />
         <main style={{ maxHeight: heightMain + "px" }} className="main-layout">
-          <Screen screen={props.page} />
+          <Screen screen={props.page}  />
         </main>
         <Footer classFooter="footer" />
         <ToastContainer />
@@ -111,7 +113,7 @@ const Screen = (props) => {
     case "campaignAssign":
       return <CampaignAssign />;
     case "follow-up-new":
-      return <FollowUpNew />;
+      return <FollowUpNew triggerAutocall = {autocall} />;
     case "kho-luu-tru":
       return <Store />;
     case "tra-cuu":
@@ -133,7 +135,7 @@ const Screen = (props) => {
     case "tong-quan-tin-nhan":
       return <SmsDashboard />;
     case "follow-up":
-      return <FollowUp />;
+      return <FollowUp triggerAutocall = {autocall} />;
     case "reason":
       return <Reason />;
 
@@ -200,17 +202,17 @@ const Screen = (props) => {
       throw new Error("Invalid Screen");
   }
 };
-const toHHMMSS = (secs) => {
-  var sec_num = parseInt(secs, 10);
-  var hours = Math.floor(sec_num / 3600);
-  var minutes = Math.floor(sec_num / 60) % 60;
-  var seconds = sec_num % 60;
+// const toHHMMSS = (secs) => {
+//   var sec_num = parseInt(secs, 10);
+//   var hours = Math.floor(sec_num / 3600);
+//   var minutes = Math.floor(sec_num / 60) % 60;
+//   var seconds = sec_num % 60;
 
-  return [hours, minutes, seconds]
-    .map((v) => (v < 10 ? "0" + v : v))
-    .filter((v, i) => v !== "00" || i > 0)
-    .join(":");
-};
+//   return [hours, minutes, seconds]
+//     .map((v) => (v < 10 ? "0" + v : v))
+//     .filter((v, i) => v !== "00" || i > 0)
+//     .join(":");
+// };
 const requestCheck = () => {
   let bodySearch = {};
   TrackingService.RequestCheck(
@@ -239,7 +241,83 @@ const requestCheck = () => {
   );
 };
 
+ 
 
+// 
+
+
+
+
+
+// triiger auto call
+
+
+
+  var isBreak = false;
+  let myInterval = null;
+  const autocall = (showpopup = true) => {
+    isBreak = false;
+    if(showpopup)
+    {
+      Swal.fire({
+        title: "Đang chờ cuộc gọi từ hệ thóng",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
+    }
+ 
+   
+    myInterval = setInterval(getInfomationCall, 1000);
+    function getInfomationCall() {
+      getInfomation();
+  }
+
+
+  function getInfomation() {
+    if(isBreak)
+      {
+        stopRequestAutoCall();
+        return;
+      }
+    AutoCallService.GetProfile((response) => {
+      if (response.value ==null || response.value == ""
+          ||  response.value.length < 10) {
+          return;
+      }
+      else {
+      
+          var tagA = document.getElementById("itdemo");
+          tagA.setAttribute("href",response.value );
+      
+          // if(!showpopup)
+          // {
+          //   tagA.setAttribute("target","_blank" );
+          // }
+          tagA.click();
+          isBreak = true;
+      }
+      }, (error) => {
+              
+      })
+  }
+
+  function stopRequestAutoCall() {
+    clearInterval(myInterval);
+  }
+  
+  
+  
+  }
+
+  
 
 
 

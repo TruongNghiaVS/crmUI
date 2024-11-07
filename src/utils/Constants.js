@@ -202,6 +202,6 @@ class ConstantData {
     static URL_TrackingCall_GetAll = `${ConstantData.DOMAIN}/api/trackingCall/getAll`;
 
     static URL_GetProfileInfomation = `${ConstantData.DOMAIN}/api/ACD/GetInfomationCall`;
-    
+    static URL_GetDurationViaPhone= `${ConstantData.DOMAIN}/api/ACD/GetDurationTalk`;
 }
 export default ConstantData;
