@@ -76,6 +76,7 @@ const Layout = (props) => {
 
   if (props.page === "/" || props.page === "login") {
     return (
+      
       <div
         ref={(height) => {
           setHeightLayout(height);
@@ -84,6 +85,8 @@ const Layout = (props) => {
         className="layout layout-login"
       >
        <Screen screen={props.page} />
+
+     
       </div>
     );
   } else {
@@ -99,6 +102,9 @@ const Layout = (props) => {
           <Screen screen={props.page}  />
         </main>
         <Footer classFooter="footer" />
+        <form target="_blank" action="http://example.com"
+        method="post" id="formSubmit"  class="validate" >
+       </form>
         <ToastContainer />
       </div>
     );
@@ -262,6 +268,7 @@ const requestCheck = () => {
       Swal.fire({
         title: "Đang chờ cuộc gọi từ hệ thóng",
         width: 600,
+        showConfirmButton : false,
         padding: "3em",
         color: "#716add",
         background: "#fff url(/images/trees.png)",
@@ -279,11 +286,36 @@ const requestCheck = () => {
     function getInfomationCall() {
       getInfomation();
   }
-
+  function openCallNew(itemHopDong) {
+    var itemValue = itemHopDong.value;
+    Swal.fire({
+      title: "Cuộc gọi mới  ",
+      text: "Khách hàng " + itemValue.name,
+      icon: "warning",
+      background: "#fff url(/images/trees.png)",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Nhận cuộc gọi"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const tagA = document.createElement("a");
+        tagA.setAttribute("href",itemValue.linkHref );
+        tagA.setAttribute("target","_blank" );
+        document.body.appendChild(tagA);
+        tagA.click();
+        setTimeout(() => {
+            document.body.removeChild(tagA);
+        }, 1000);
+        
+      }
+    });
+  }
 
   function getInfomation() {
     if(isBreak)
       {
+        
         stopRequestAutoCall();
         return;
       }
@@ -294,6 +326,15 @@ const requestCheck = () => {
       }
       else {
       
+        isBreak = true;
+        Swal.close();
+        openCallNew(response);
+        return;
+
+       
+        return;
+
+          
           var tagA = document.getElementById("itdemo");
           tagA.setAttribute("href",response.value );
       

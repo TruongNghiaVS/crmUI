@@ -551,7 +551,10 @@ const handleErrUpdate = (data) => {
 
                 <h4 className='box-tit' id ="noCalling"  style={{display: "none"}}>
                     <FaTicketAlt className="icon-tit" />
-                     <span className='time-talking'>hiện không có cuộc gọi khách hàng nào, vui lòng hoàn tất tác động, chờ đợ cuộc gọi khác hoặc quay lại màn hình chính</span>  
+                    <br></br>
+                     <span className='time-talking'>Nếu chưa tác động, thì  hoàn thành tác động trước khi có cuộc gọi mới</span>  
+                     <br></br>
+                     <span className='requestCall'>Nếu đã tác động, thì  nhấn <a>"Nhận cuộc gọi mới"</a> và chờ đợi </span>  
                 </h4>
                 <div className="box-info">
 

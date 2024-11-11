@@ -678,6 +678,15 @@ tr:hover {
     color: rgb(124, 0, 128);
     font-size: 2rem;
 }
+.requestCall {
+    font-weight: bold;
+    color: #00883C;
+    font-size: 1.5rem;
+    a {
+        color: red !important;
+        text-decoration: underline !important;
+    }
+}
 .hideElement {
     display: none;
 }
