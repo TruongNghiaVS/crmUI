@@ -266,7 +266,7 @@ const requestCheck = () => {
     if(showpopup)
     {
       Swal.fire({
-        title: "Đang chờ cuộc gọi từ hệ thóng",
+        title: "Đang chờ cuộc gọi từ hệ thống",
         width: 600,
         showConfirmButton : false,
         padding: "3em",
