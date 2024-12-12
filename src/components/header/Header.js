@@ -76,7 +76,7 @@ const Header = ({ classHeader }) => {
         <header className={classHeader}>
             <nav className='nav-header'>
                 <ul className='menu'>
-                    <li className='list-link'><Link className='nav-link link-main' to="/">SMART BANK</Link></li>
+                    <li className='list-link'><Link className='nav-link link-main' to="/">CTy</Link></li>
                     {(1 == 2)&&<li className='list-link'>
                         <Link className='nav-link' to="/kho-luu-tru">Kho lưu trữ <FaCaretDown className='nav-icon icon-caret-down' /></Link>
                         <ul className='sub-menu'>

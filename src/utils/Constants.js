@@ -1,5 +1,5 @@
 class ConstantData {
-    static DOMAIN = "http://192.168.1.3:7777";
+    static DOMAIN = "http://42.115.94.180:7777";
     static HEADERS = {
         
     };
@@ -81,8 +81,6 @@ class ConstantData {
     static URL_campagn_getOverview= `${ConstantData.DOMAIN}/api/campagn/getOverViewDashboardById`;
 
     static URL_campagn_getOverviewAllAssignee= `${ConstantData.DOMAIN}/api/campagn/getAllCampangeAssigess`;
-
-    
     //campagn profile
     static URL_impactHistory_GetALl = `${ConstantData.DOMAIN}/api/impacthistory/getAll`;
     static URL_impactHistory_Add = `${ConstantData.DOMAIN}/api/impacthistory/add`;
@@ -90,7 +88,6 @@ class ConstantData {
     static URL_impactHistory_Delete = `${ConstantData.DOMAIN}/api/impacthistory/delete`;
     static URL_impactHistory_GetById = `${ConstantData.DOMAIN}/api/impacthistory/getById`;
     static URL_impactHistory_exportData = `${ConstantData.DOMAIN}/api/impacthistory/exportData`;
-
 
     //store Server
     static URL_store_GetALl = `${ConstantData.DOMAIN}/api/Store/getAll`;

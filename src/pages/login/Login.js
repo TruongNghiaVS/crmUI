@@ -129,7 +129,8 @@ const Login = () => {
   return (
 		<div className='login'>
       {isLoading ? <LoadingSpinner /> : <div></div>}
-      <p className='logo-login'><img alt='logo' src='/HCMLawFirm.png' /></p>
+      {/* <p className='logo-login'><img alt='logo' src='/HCMLawFirm.png' /></p> */}
+      <h2>Hệ thống quản lý hồ sơ </h2>
       <form className='form-login'>
         <div className='input-container'>
           <InputGroup className="mb-2">
@@ -157,7 +158,7 @@ const Login = () => {
         <p className='error-message'>{ errorLogin }</p>
 
         <div className="button-container">
-          <input className='btn-submit' type="submit" value="Sign in" onClick={(event) =>handleSubmit(event)} />
+          <input className='btn-submit' type="submit" value="Đăng nhập" onClick={(event) =>handleSubmit(event)} />
         </div>
       </form>
     </div>

@@ -533,7 +533,7 @@ const Reporthistorical = () => {
                 .then((result) => {
                 if (result.isConfirmed) {
                   var link = document.createElement('a');
-                  link.href = 'http://192.168.1.3:7777/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                  link.href = 'http://42.115.94.180:7777/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
