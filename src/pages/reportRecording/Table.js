@@ -23,7 +23,7 @@ const displayMobilePhone = (numberPhone) =>
 
     if( roleUser === "2" || roleUser === "5" || roleUser === "6"   )
     {
-     isShowPhoneMobile  = true;
+     isShowPhoneMobile  = false;
   
     }
    if(isShowPhoneMobile == true)

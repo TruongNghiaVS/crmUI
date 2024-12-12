@@ -33,7 +33,7 @@ const getStatusText = (dataItem)=> {
 
 const TableRow = ({ data,rowIndex,handleDeleteById, handleUpdateById, handleViewById,handleimportRow,openAssignee,handleDeleteFie }) => {
     rowIndex = rowIndex +1;
-    let likUrl = "/thong-tin-chien-dich/" + data.id;
+    let likUrl = "javascript:void(0)"
     return (
         <tr>
             <td><input type="checkbox" name ="selectId"     defaultChecked={false} /></td>
