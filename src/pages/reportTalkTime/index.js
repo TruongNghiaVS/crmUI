@@ -48,7 +48,7 @@ const User = () => {
     memberId:0,
     groupId:0,
 
-   fromTime: moment(),
+   fromTime: moment().subtract(90, 'day'),
     endTime: moment(),
   });
 
@@ -629,7 +629,7 @@ const exportDataReport = () => {
                         type="date"
                         name="fromTime"
                         value={dateForPicker(obejctSearch.fromTime)}
-                        placeholder="Từ ngày"
+                        placeholder="Từ ngày "
                         onChange={handleInputChange}
                       />
                     </InputGroup>
