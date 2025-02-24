@@ -203,7 +203,7 @@ if(roleUser === "2" || roleUser === "5" || roleUser === "3" || roleUser ==="6" )
                 .then((result) => {
                 if (result.isConfirmed) {
                   var link = document.createElement('a');
-                  link.href = 'http://192.168.1.3:7777/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                  link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
@@ -272,7 +272,7 @@ const exportDataReport = () => {
                 .then((result) => {
                 if (result.isConfirmed) {
                   var link = document.createElement('a');
-                  link.href = 'http://192.168.1.3:7777/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
+                  link.href = 'https://localhost:8098/api/reportCrm/dowloadFile?pathFile='+ response.pathFile;
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
